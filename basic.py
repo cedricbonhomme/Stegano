@@ -8,9 +8,11 @@ from PIL import Image
 
 def hide(img, message):
     """
-    use the red portion of an image (r, g, b) tuple to
-    hide the message string characters as ASCII values
-    the red value of the first pixel is used for length of string  
+    Hide a message (string) in an image.
+
+    Use the red portion of a pixel (r, g, b) tuple to
+    hide the message string characters as ASCII values.
+    The red value of the first pixel is used for length of string.
     """
     length = len(message)
     # limit length of message to 255
@@ -37,9 +39,11 @@ def hide(img, message):
 
 def reveal(img):
     """
-    check the red portion of an image (r, g, b) tuple for
-    hidden message characters (ASCII values)
-    the red value of the first pixel is used for length of string   
+    Find a message in an image.
+
+    Check the red portion of an pixel (r, g, b) tuple for
+    hidden message characters (ASCII values).
+    The red value of the first pixel is used for length of string.
     """
     width, height = img.size
     message = ""
