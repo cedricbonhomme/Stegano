@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 
+__author__ = "Cedric Bonhomme"
+__version__ = "$Revision: 0.1 $"
+__date__ = "$Date: 2010/10/01 $"
+
 from PIL import Image
 
-def encode_image(img, msg):
+def hide(img, message):
     """
     use the red portion of an image (r, g, b) tuple to
-    hide the msg string characters as ASCII values
+    hide the message string characters as ASCII values
     the red value of the first pixel is used for length of string  
     """
-    length = len(msg)
+    length = len(message)
     # limit length of message to 255
     if length > 255:
         return False
@@ -19,11 +23,11 @@ def encode_image(img, msg):
     for row in range(height):
         for col in range(width):
             (r, g, b) = img.getpixel((col, row))
-            # first value is length of msg
+            # first value is length of message
             if row == 0 and col == 0 and index < length:
                 asc = length
             elif index <= length:
-                c = msg[index -1]
+                c = message[index -1]
                 asc = ord(c)
             else:
                 asc = r
@@ -31,15 +35,14 @@ def encode_image(img, msg):
             index += 1
     return encoded
 
-
-def decode_image(img):
+def reveal(img):
     """
     check the red portion of an image (r, g, b) tuple for
     hidden message characters (ASCII values)
     the red value of the first pixel is used for length of string   
     """
     width, height = img.size
-    msg = ""
+    message = ""
     index = 0
     for row in range(height):
         for col in range(width):
@@ -48,25 +51,25 @@ def decode_image(img):
             if row == 0 and col == 0:
                 length = r
             elif index <= length:
-                msg += chr(r)
+                message += chr(r)
             index += 1
-    return msg
+    return message
 
+if __name__ == '__main__':
+    # Point of entry in execution mode
+    original_image_file = "./pictures/Lenna.png"
+    encoded_image_file = "./pictures/Lenna_enc.png"
+    # at this point don't exceed 255 characters
+    secret_message = "Parce que je le vaut bien!"
+    
+    img1 = Image.open(original_image_file)
+    img_encoded = hide(img1, secret_message)
 
-original_image_file = "./pictures/Lenna.png"
-encoded_image_file = "./pictures/Lenna_enc.png"
-img = Image.open(original_image_file)
-
-
-# at this point don't exceed 255 characters
-secret_msg = "Parce que je le vaut bien!"
-img_encoded = encode_image(img, secret_msg)
-
-if img_encoded:
-    # save it ...
-    img_encoded.save(encoded_image_file)
-    # test it ...
-    img2 = Image.open(encoded_image_file)
-    print(decode_image(img2))
-else:
-    print("text too long! (don't exeed 255 characters)") 
+    if img_encoded:
+        # Save it
+        img_encoded.save(encoded_image_file)
+        # Test it
+        img2 = Image.open(encoded_image_file)
+        print reveal(img2)
+    else:
+        print("text too long! (don't exeed 255 characters)") 

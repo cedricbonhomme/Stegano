@@ -9,7 +9,7 @@ import tools
 
 from PIL import Image
 
-def encode_image(img, message):
+def hide(img, message):
     """
     Hide a message (string) in an image with the
     LSB (Less Significant Bit) technic.
@@ -59,7 +59,7 @@ def encode_image(img, message):
 
     return encoded
 
-def decode_image(img):
+def reveal(img):
     """
     Find a message in an encoded image (with the
     LSB technic).
@@ -86,16 +86,14 @@ if __name__ == '__main__':
     # Point of entry in execution mode
     original_image_file = "./pictures/Lenna.png"
     encoded_image_file = "Lenna_enc.png"
+    secret_message = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference!"
 
-    img = Image.open(original_image_file)
-
-    secret_msg = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference!"
-    img_encoded = encode_image(img, secret_msg)
-
+    img1 = Image.open(original_image_file)
+    img_encoded = hide(img1, secret_message)
 
     if img_encoded:
         # Save it
         img_encoded.save(encoded_image_file)
         # Test it
         img2 = Image.open(encoded_image_file)
-        print(decode_image(img2))
+        print reveal(img2)
