@@ -12,45 +12,31 @@ from PIL import Image
 def hide(img, message):
     """
     Hide a message (string) in an image with the
-    LSB (Less Significant Bit) technic.
+    LSB (Least Significant Bit) technique.
     """
     encoded = img.copy()
-    width, height = img.size
+    width, height = img.size    
     index = 0
-    
-    message = message + '~~~'
+
+    message = message + '~~ '
     message_bits = tools.a2bits(message)
-    
+
+    npixels = width * height
+    if len(message_bits) > npixels * 3:
+        return """To long message (%s > %s).""" % (len(message_bits), npixels * 3)
+
     for row in range(height):
         for col in range(width):
 
             if index + 3 <= len(message_bits) :
 
+                # Get the colour component.
                 (r, g, b) = img.getpixel((col, row))
-                    
-                # Convert int to bits
-                r_bits = tools.bs(r)
-                g_bits = tools.bs(g)
-                b_bits = tools.bs(b)
 
-                # Replace (in a list) the least significant bit
-                # by the bit of the message to hide
-                list_r_bits = list(r_bits)
-                list_g_bits = list(g_bits)
-                list_b_bits = list(b_bits)
-                list_r_bits[-1] = message_bits[index]
-                list_g_bits[-1] = message_bits[index + 1]
-                list_b_bits[-1] = message_bits[index + 2]
-
-                # Convert lists to a strings
-                r_bits = "".join(list_r_bits)
-                g_bits = "".join(list_g_bits)
-                b_bits = "".join(list_b_bits)
-                
-                # Convert strings of bits to int
-                r = int(r_bits, 2)
-                g = int(g_bits, 2)
-                b = int(b_bits, 2)
+                # Change the Least Significant Bit of each colour component.
+                r = tools.setlsb(r, message_bits[index])
+                g = tools.setlsb(g, message_bits[index+1])
+                b = tools.setlsb(b, message_bits[index+2])
 
                 # Save the new pixel
                 encoded.putpixel((col, row), (r, g , b))
@@ -61,8 +47,8 @@ def hide(img, message):
 
 def reveal(img):
     """
-    Find a message in an image (with the
-    LSB technic).
+    Find a message in an image
+    (with the LSB technique).
     """
     width, height = img.size
     bits = ""
@@ -73,12 +59,12 @@ def reveal(img):
 
             bits += tools.bs(r)[-1] + tools.bs(g)[-1] + tools.bs(b)[-1]
 
-            if len(bits) >= 8:
-                if chr(int(bits[-8:], 2)) == '~':
-                    list_of_string_bits = ["".join(list(bits[i*8:(i*8)+8])) for i in range(0, len(bits)/8)]
+            if int(bits[-8:], 2) == 126:
+                # chr(126) = '~ '
+                list_of_string_bits = ["".join(list(bits[i:(i+8)])) for i in range(0, len(bits)-8, 8)]
 
-                    list_of_character = [chr(int(elem, 2)) for elem in list_of_string_bits]
-                    return "".join(list_of_character)[:-1]
+                list_of_character = [chr(int(elem, 2)) for elem in list_of_string_bits]
+                return "".join(list_of_character)
     return ""
 
 
@@ -86,7 +72,7 @@ if __name__ == '__main__':
     # Point of entry in execution mode
     original_image_file = "./pictures/Lenna.png"
     encoded_image_file = "Lenna_enc.png"
-    secret_message = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference!"
+    secret_message = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference"
 
     img1 = Image.open(original_image_file)
     img_encoded = hide(img1, secret_message)

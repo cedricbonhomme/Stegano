@@ -3,10 +3,9 @@
 
 
 
-
 def a2bits(chars):
     """
-    Convert a string to its bits representation as a string of 0's and 1's.
+    Converts a string to its bits representation as a string of 0's and 1's.
     
     >>> a2bits("Hello World!")
     '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001'
@@ -17,7 +16,7 @@ def a2bits_list(chars):
     """
     Convert a string to its bits representation as a list of 0's and 1's.
     
-    >>>  a2bits_list("Hello Word!")
+    >>>  a2bits_list("Hello World!")
     ['01001000',
     '01100101',
     '01101100',
@@ -37,6 +36,23 @@ def a2bits_list(chars):
 
 def bs(s):
     """
-    Convert an int to its bits representation as a string of 0's and 1's.
+    Converts an int to its bits representation as a string of 0's and 1's.
     """
     return str(s) if s<=1 else bs(s>>1) + str(s&1)
+
+def setlsb(component, bit):
+    """
+    Set Least Significant Bit of a colour component.
+    """
+    return component & ~1 | int(bit)
+
+def n_at_a_time(items, n, fillvalue):
+    """
+    Returns an iterator which groups n items at a time.
+    Any final partial tuple will be padded with the fillvalue
+    
+    >>> list(n_at_a_time([1, 2, 3, 4, 5], 2, 'X'))
+    [(1, 2), (3, 4), (5, 'X')]
+    """
+    it = iter(items)
+    return its.izip_longest(*[it] * n, fillvalue=fillvalue)
