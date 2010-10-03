@@ -28,7 +28,7 @@ def hide(img, message):
 
                 (r, g, b) = img.getpixel((col, row))
                     
-                # Convert in to bits
+                # Convert int to bits
                 r_bits = tools.bs(r)
                 g_bits = tools.bs(g)
                 b_bits = tools.bs(b)

@@ -7,11 +7,36 @@
 def a2bits(chars):
     """
     Convert a string to its bits representation as a string of 0's and 1's.
+    
+    >>> a2bits("Hello World!")
+    '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001'
     """
     return bin(reduce(lambda x, y : (x<<8)+y, (ord(c) for c in chars), 1))[3:]
 
+def a2bits_list(chars):
+    """
+    Convert a string to its bits representation as a list of 0's and 1's.
+    
+    >>>  a2bits_list("Hello Word!")
+    ['01001000',
+    '01100101',
+    '01101100',
+    '01101100',
+    '01101111',
+    '00100000',
+    '01010111',
+    '01101111',
+    '01110010',
+    '01101100',
+    '01100100',
+    '00100001']
+    >>> "".join(a2bits_list("Hello World!"))
+    '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001'
+    """
+    return [bin(ord(x))[2:].rjust(8,"0") for x in chars]
+
 def bs(s):
     """
-    Convert a int to its bits representation as a string of 0's and 1's.
+    Convert an int to its bits representation as a string of 0's and 1's.
     """
     return str(s) if s<=1 else bs(s>>1) + str(s&1)
