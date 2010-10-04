@@ -9,8 +9,7 @@ from PIL import Image
 
 def steganalyse(img):
     """
-    Find a message in an image
-    (with the LSB technique).
+    Steganlysis of the LSB technique.
     """
     encoded = img.copy()
     width, height = img.size
@@ -35,10 +34,10 @@ def steganalyse(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode
-    original_image_file = "./pictures/2010-08-04T15:42:06.png"
-    encoded_image_file = "./pictures/2010-08-04T15:42:06_enc.png"
-    original_image_file_steganalysed = "./pictures/2010-08-04T15:42:06_steganalysed.png"
-    encoded_image_file_steganalysed = "./pictures/2010-08-04T15:42:06_enc_steganalysed.png"
+    original_image_file = "./pictures/montenach.png"
+    encoded_image_file = "./pictures/montenach_enc.png"
+    original_image_file_steganalysed = "./pictures/montenach_steganalysed.png"
+    encoded_image_file_steganalysed = "./pictures/montenach_enc_steganalysed.png"
 
     img_original_image_file = Image.open(original_image_file)
     img_encoded_image_file = Image.open(encoded_image_file)
