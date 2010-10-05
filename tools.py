@@ -1,6 +1,10 @@
 #! /usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+__author__ = "Cedric Bonhomme"
+__version__ = "$Revision: 0.1 $"
+__date__ = "$Date: 2010/10/01 $"
+__license__ = "GPLv3"
 
 def a2bits(chars):
     """
@@ -58,13 +62,15 @@ def n_at_a_time(items, n, fillvalue):
 
 def binary2base64(binary_file, output_file):
     """
+    Convert a binary file (OGG, executable, etc.) to a
+    printable file.
     """
-    # use mode = "rb" to read binary file
+    # Use mode = "rb" to read binary file
     fin = open(binary_file, "rb")
     binary_data = fin.read()
     fin.close()
 
-    # encode binary to base64 string (printable)
+    # Encode binary to base64 string (printable)
     b64_data = base64.b64encode(binary_data)
 
     fout = open(output_file, "w")
@@ -73,11 +79,11 @@ def binary2base64(binary_file, output_file):
 
 def base642binary(b64_fname):
     """
+    Convert a printable file to a binary file.
     """
-    # read base64 string
+    # Read base64 string
     fin = open(b64_fname, "r")
     b64_str = fin.read()
     fin.close()
-
-    # decode base64 string to original binary sound object
+    # Decode base64 string to original binary sound object
     return base64.b64decode(b64_str)

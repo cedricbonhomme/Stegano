@@ -4,6 +4,7 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2010/10/01 $"
+__license__ = "GPLv3"
 
 import sys
 
@@ -117,7 +118,7 @@ if __name__ == '__main__':
     parser.add_option("-s", "--secret", dest="secret",
                     help="Your secret (Message, Image, Music or any binary file.)")
     parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                        output_image_file = './pictures/Lenna_enc.png', 
+                        output_image_file = './pictures/Lenna_enc.png',
                         secret = 'Hello World!')
 
     (options, args) = parser.parse_args()

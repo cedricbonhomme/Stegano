@@ -4,6 +4,7 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2010/10/01 $"
+__license__ = "GPLv3"
 
 import operator
 
@@ -35,22 +36,17 @@ def steganalyse(img):
     return dict_colours.keys()[:30], most_common
 
 if __name__ == '__main__':
-    # Point of entry in execution mode.    
-    original_image_file = "./pictures/montenach.png"
-    encoded_image_file = "./pictures/montenach_enc.png"
-    original_image_file_steganalysed = "./pictures/montenach_steganalysed.png"
-    encoded_image_file_steganalysed = "./pictures/montenach_enc_steganalysed.png"
+    # Point of entry in execution mode.
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="input_image_file",
+                    help="Image file")
+    parser.add_option("-o", "--output", dest="output_image_file",
+                    help="Image file")
+    parser.set_defaults(input_image_file = './pictures/Lenna.png',
+                        output_image_file = './pictures/Lenna_steganalysed.png')
+    (options, args) = parser.parse_args()
 
-    img_original_image_file = Image.open(original_image_file)
-    img_encoded_image_file = Image.open(encoded_image_file)
-    img_original_image_file_steganalysed = Image.open(original_image_file_steganalysed)
-    img_encoded_image_file_steganalysed = Image.open(encoded_image_file_steganalysed)
-
-    print steganalyse(img_original_image_file)
-    print
-    print steganalyse(img_encoded_image_file)
-    print
-    print
-    print steganalyse(img_original_image_file_steganalysed)
-    print
-    print steganalyse(img_encoded_image_file_steganalysed)
+    input_image_file = Image.open(options.input_image_file)
+    output_image = steganalyse(input_image_file)
+    soutput_image.save(options.output_image_file)
