@@ -34,16 +34,16 @@ def steganalyse(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode
-    original_image_file = "./pictures/free.png"
-    encoded_image_file = "./pictures/free_enc.png"
-    original_image_file_steganalysed = "./pictures/free_steganalysed.png"
-    encoded_image_file_steganalysed = "./pictures/free_enc_steganalysed.png"
-
-    img_original_image_file = Image.open(original_image_file)
-    img_encoded_image_file = Image.open(encoded_image_file)
-
-    img_original_image_steganalysde = steganalyse(img_original_image_file)
-    img_encoded_image_steganalysed = steganalyse(img_encoded_image_file)
-
-    img_original_image_steganalysde.save(original_image_file_steganalysed)
-    img_encoded_image_steganalysed.save(encoded_image_file_steganalysed)
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="input_image_file",
+                    help="Image file")
+    parser.add_option("-o", "--output", dest="output_image_file",
+                    help="Image file")
+    parser.set_defaults(input_image_file = './pictures/Lenna.png',
+                        output_image_file = './pictures/Lenna_steganalysed.png')
+    (options, args) = parser.parse_args()
+    
+    input_image_file = Image.open(options.input_image_file)
+    output_image = steganalyse(input_image_file)
+    output_image.save(options.output_image_file)

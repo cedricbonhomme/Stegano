@@ -108,7 +108,8 @@ def reveal_slow(img):
 if __name__ == '__main__':
     # Point of entry in execution mode.
     from optparse import OptionParser
-    parser = OptionParser()    
+    usage = "usage: %prog hide|reveal [options]"
+    parser = OptionParser(usage)
     parser.add_option("-i", "--input", dest="input_image_file",
                     help="Image file")
     parser.add_option("-o", "--output", dest="output_image_file",
@@ -127,6 +128,6 @@ if __name__ == '__main__':
         img_encoded = hide(img, options.secret)
         img_encoded.save(options.output_image_file)
 
-    if sys.argv[1] == "reveal":
+    elif sys.argv[1] == "reveal":
         img = Image.open(options.input_image_file)
         print reveal(img)

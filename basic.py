@@ -61,19 +61,27 @@ def reveal(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode
-    original_image_file = "./pictures/Lenna.png"
-    encoded_image_file = "./pictures/Lenna_enc.png"
-    # at this point don't exceed 255 characters
-    secret_message = "Parce que je le vaut bien!"
+    from optparse import OptionParser
+    usage = "usage: %prog hide|reveal [options]"
+    parser = OptionParser(usage)
+    parser.add_option("-i", "--input", dest="input_image_file",
+                    help="Image file")
+    parser.add_option("-o", "--output", dest="output_image_file",
+                    help="Image file")
+    parser.add_option("-s", "--secret", dest="secret",
+                    help="Your secret (Message, Image, Music or any binary file.)")
+    parser.set_defaults(input_image_file = './pictures/Lenna.png',
+                        output_image_file = './pictures/Lenna_enc.png',
+                        secret = 'Hello World!')
 
-    img1 = Image.open(original_image_file)
-    img_encoded = hide(img1, secret_message)
+    (options, args) = parser.parse_args()
 
-    if img_encoded:
-        # Save it
-        img_encoded.save(encoded_image_file)
-        # Test it
-        img2 = Image.open(encoded_image_file)
-        print reveal(img2)
-    else:
-        print("text too long! (don't exeed 255 characters)") 
+
+    if sys.argv[1] == "hide":
+        img = Image.open(options.input_image_file)
+        img_encoded = hide(img, options.secret)
+        img_encoded.save(options.output_image_file)
+
+    elif sys.argv[1] == "reveal":
+        img = Image.open(options.input_image_file)
+        print reveal(img)
