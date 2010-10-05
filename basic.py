@@ -65,7 +65,7 @@ if __name__ == '__main__':
     encoded_image_file = "./pictures/Lenna_enc.png"
     # at this point don't exceed 255 characters
     secret_message = "Parce que je le vaut bien!"
-    
+
     img1 = Image.open(original_image_file)
     img_encoded = hide(img1, secret_message)
 

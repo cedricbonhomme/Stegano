@@ -19,10 +19,12 @@ def hide(img, message):
     index = 0
 
     message = message + '~~~'
-    message_bits = tools.a2bits(message)
+    #message_bits = tools.a2bits(message)
+    message_bits = "".join(tools.a2bits_list(message))
 
     npixels = width * height
     if len(message_bits) > npixels * 3:
+        print """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
         return """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
 
     for row in range(height):
@@ -70,10 +72,10 @@ def reveal(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode
-    original_image_file = "./pictures/montenach.png"
-    encoded_image_file = "./pictures/montenach_enc.png"
+    original_image_file = "./pictures/free.png"
+    encoded_image_file = "./pictures/free_enc.png"
     secret_message = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference"
-    with open("./lorem_ipsum.txt", "r") as f:
+    with open("./Portishead_-_Deep_Water.ogg_b64.txt", "r") as f:
         secret_message = f.read()
 
     img1 = Image.open(original_image_file)
