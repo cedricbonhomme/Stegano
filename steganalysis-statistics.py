@@ -35,7 +35,7 @@ def steganalyse(img):
     return dict_colours.keys()[:30], most_common
 
 if __name__ == '__main__':
-    # Point of entry in execution mode
+    # Point of entry in execution mode.    
     original_image_file = "./pictures/montenach.png"
     encoded_image_file = "./pictures/montenach_enc.png"
     original_image_file_steganalysed = "./pictures/montenach_steganalysed.png"

@@ -5,9 +5,11 @@ __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2010/10/01 $"
 
-import tools
+import sys
 
 from PIL import Image
+
+import tools
 
 def hide(img, message):
     """
@@ -104,19 +106,27 @@ def reveal_slow(img):
 
 
 if __name__ == '__main__':
-    # Point of entry in execution mode
-    original_image_file = "./pictures/free.png"
-    encoded_image_file = "./pictures/free_enc.png"
-    secret_message = "Avec la technique LSB (Least Significant Bit) l'oeil humain (un normal ;-))  ne voit plus la difference"
-    with open("./Portishead_-_Deep_Water.ogg_b64.txt", "r") as f:
-        secret_message = f.read()
+    # Point of entry in execution mode.
+    from optparse import OptionParser
+    parser = OptionParser()    
+    parser.add_option("-i", "--input", dest="input_image_file",
+                    help="Image file")
+    parser.add_option("-o", "--output", dest="output_image_file",
+                    help="Image file")
+    parser.add_option("-s", "--secret", dest="secret",
+                    help="Your secret (Message, Image, Music or any binary file.)")
+    parser.set_defaults(input_image_file = './pictures/Lenna.png',
+                        output_image_file = './pictures/Lenna_enc.png', 
+                        secret = 'Hello World!')
 
-    img1 = Image.open(original_image_file)
-    img_encoded = hide(img1, secret_message)
+    (options, args) = parser.parse_args()
 
-    if img_encoded:
-        # Save it
-        img_encoded.save(encoded_image_file)
-        # Test it
-        img2 = Image.open(encoded_image_file)
-        print reveal(img2)
+
+    if sys.argv[1] == "hide":
+        img = Image.open(options.input_image_file)
+        img_encoded = hide(img, options.secret)
+        img_encoded.save(options.output_image_file)
+
+    if sys.argv[1] == "reveal":
+        img = Image.open(options.input_image_file)
+        print reveal(img)
