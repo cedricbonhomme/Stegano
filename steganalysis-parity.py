@@ -34,10 +34,10 @@ def steganalyse(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode
-    original_image_file = "./pictures/montenach.png"
-    encoded_image_file = "./pictures/montenach_enc.png"
-    original_image_file_steganalysed = "./pictures/montenach_steganalysed.png"
-    encoded_image_file_steganalysed = "./pictures/montenach_enc_steganalysed.png"
+    original_image_file = "./pictures/free.png"
+    encoded_image_file = "./pictures/free_enc.png"
+    original_image_file_steganalysed = "./pictures/free_steganalysed.png"
+    encoded_image_file_steganalysed = "./pictures/free_enc_steganalysed.png"
 
     img_original_image_file = Image.open(original_image_file)
     img_encoded_image_file = Image.open(encoded_image_file)

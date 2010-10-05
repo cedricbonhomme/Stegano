@@ -24,7 +24,6 @@ def hide(img, message):
 
     npixels = width * height
     if len(message_bits) > npixels * 3:
-        print """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
         return """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
 
     for row in range(height):
@@ -48,6 +47,40 @@ def hide(img, message):
     return encoded
 
 def reveal(img):
+    """
+    Find a message in an image
+    (with the LSB technique).
+    """
+    width, height = img.size
+    buff, count = 0, 0
+    bitab = []
+    for row in range(height):
+        for col in range(width):
+            r, g, b = img.getpixel((col, row))
+
+            buff += (r&1)<<(7-count)
+            count += 1
+            if count == 8:
+                bitab.append(chr(buff))
+                buff, count = 0, 0
+
+            buff += (g&1)<<(7-count)
+            count += 1
+            if count == 8:
+                bitab.append(chr(buff))
+                buff, count = 0, 0
+
+            buff += (b&1)<<(7-count)
+            count += 1
+            if count == 8:
+                bitab.append(chr(buff))
+                buff, count = 0, 0
+
+            if len(bitab) > 0 and bitab[-1] == chr(126):
+                return "".join(bitab)[:-1]
+    return ""
+
+def reveal_slow(img):
     """
     Find a message in an image
     (with the LSB technique).
