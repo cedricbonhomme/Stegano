@@ -35,10 +35,10 @@ def hide(img, message):
     The red value of the first pixel is used for length of string.
     """
     length = len(message)
-    # limit length of message to 255
+    # Limit length of message to 255
     if length > 255:
         return False
-    # use a copy of image to hide the text in
+    # Use a copy of image to hide the text in
     encoded = img.copy()
     width, height = img.size
     index = 0
@@ -71,7 +71,7 @@ def reveal(img):
     for row in range(height):
         for col in range(width):
             r, g, b = img.getpixel((col, row))
-            # first pixel r value is length of message
+            # First pixel r value is length of message
             if row == 0 and col == 0:
                 length = r
             elif index <= length:
@@ -80,7 +80,7 @@ def reveal(img):
     return message
 
 if __name__ == '__main__':
-    # Point of entry in execution mode
+    # Point of entry in execution mode.
     from optparse import OptionParser
     usage = "usage: %prog hide|reveal [options]"
     parser = OptionParser(usage)
@@ -95,7 +95,6 @@ if __name__ == '__main__':
                         secret = 'Hello World!')
 
     (options, args) = parser.parse_args()
-
 
     if sys.argv[1] == "hide":
         img = Image.open(options.input_image_file)

@@ -107,17 +107,16 @@ def reveal_slow(img):
     (with the LSB technique).
     """
     width, height = img.size
-    bits = ""
-    index = 0
+    bits = []
     for row in range(height):
         for col in range(width):
             r, g, b = img.getpixel((col, row))
 
-            bits += tools.bs(r)[-1] + tools.bs(g)[-1] + tools.bs(b)[-1]
+            bits.append([tools.bs(r)[-1], tools.bs(g)[-1], tools.bs(b)[-1]])
 
-            if int(bits[-8:], 2) == 126:
+            if int("".join(bits[-8:]), 2) == 126:
                 # chr(126) = '~ '
-                list_of_string_bits = ["".join(list(bits[i:(i+8)])) for i in range(0, len(bits)-8, 8)]
+                list_of_string_bits = ["".join(bits[i:(i+8)]) for i in range(0, len(bits)-8, 8)]
 
                 list_of_character = [chr(int(elem, 2)) for elem in list_of_string_bits]
                 return "".join(list_of_character)
@@ -141,11 +140,14 @@ if __name__ == '__main__':
 
     (options, args) = parser.parse_args()
 
-
     if sys.argv[1] == "hide":
         img = Image.open(options.input_image_file)
         img_encoded = hide(img, options.secret)
-        img_encoded.save(options.output_image_file)
+        try:
+            img_encoded.save(options.output_image_file)
+        except Exception, e:
+            # If hide() returns an error (Too long message).
+            print e
 
     elif sys.argv[1] == "reveal":
         img = Image.open(options.input_image_file)
