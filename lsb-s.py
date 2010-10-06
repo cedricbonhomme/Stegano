@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
     # Non binary secret message to hide
     parser.add_option("-m", "--secret-message", dest="secret_message",
-                    help="Your secret message to hide(non binary).")
+                    help="Your secret message to hide (non binary).")
 
     # Binary secret to hide (OGG, executable, etc.)
     parser.add_option("-f", "--secret-file", dest="secret_file",
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "hide":
         if options.secret_message != "" and options.secret_file == "":
             secret = options.secret_message
-        elif options.secret_message == "" and options.secret_file =! "":
+        elif options.secret_message == "" and options.secret_file != "":
             secret = tools.binary2base64(options.secret_file)
 
         img = Image.open(options.input_image_file)
