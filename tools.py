@@ -80,7 +80,7 @@ def n_at_a_time(items, n, fillvalue):
     it = iter(items)
     return its.izip_longest(*[it] * n, fillvalue=fillvalue)
 
-def binary2base64(binary_file, output_file):
+def binary2base64(binary_file):
     """
     Convert a binary file (OGG, executable, etc.) to a
     printable string.
