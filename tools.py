@@ -1,4 +1,4 @@
-#! /usr/local/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
@@ -23,6 +23,8 @@ __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2010/10/01 $"
 __license__ = "GPLv3"
+
+import base64
 
 def a2bits(chars):
     """
@@ -100,8 +102,8 @@ def base642binary(b64_fname):
     Convert a printable file to a binary file.
     """
     # Read base64 string
-    fin = open(b64_fname, "r")
-    b64_str = fin.read()
-    fin.close()
+    #fin = open(b64_fname, "r")
+    #b64_str = fin.read()
+    #fin.close()
     # Decode base64 string to original binary sound object
-    return base64.b64decode(b64_str)
+    return base64.b64decode(b64_fname)

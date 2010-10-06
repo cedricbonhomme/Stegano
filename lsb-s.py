@@ -1,4 +1,4 @@
-#! /usr/local/bin/python
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
@@ -174,7 +174,7 @@ if __name__ == '__main__':
         img = Image.open(options.input_image_file)
         secret = reveal(img)
         if options.secret_binary != "":
-            data = base64.b64decode(secret)
+            data = tools.base642binary(secret)
             with open(options.secret_binary, "w") as f:
                 f.write(data)
         else:

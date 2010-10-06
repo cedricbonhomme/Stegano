@@ -1,4 +1,4 @@
-#! /usr/local/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
