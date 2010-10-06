@@ -81,7 +81,7 @@ def n_at_a_time(items, n, fillvalue):
 def binary2base64(binary_file, output_file):
     """
     Convert a binary file (OGG, executable, etc.) to a
-    printable file.
+    printable string.
     """
     # Use mode = "rb" to read binary file
     fin = open(binary_file, "rb")
@@ -89,11 +89,11 @@ def binary2base64(binary_file, output_file):
     fin.close()
 
     # Encode binary to base64 string (printable)
-    b64_data = base64.b64encode(binary_data)
-
-    fout = open(output_file, "w")
+    return b64_data = base64.b64encode(binary_data)
+    
+    """fout = open(output_file, "w")
     fout.write(b64_data)
-    fout.close
+    fout.close"""
 
 def base642binary(b64_fname):
     """

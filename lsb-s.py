@@ -47,8 +47,8 @@ def hide(img, message):
     if len(message_bits) > npixels * 3:
         return """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
 
-    for row in range(height):
-        for col in range(width):
+    for row in xrange(height):
+        for col in xrange(width):
 
             if index + 3 <= len(message_bits) :
 
@@ -75,8 +75,8 @@ def reveal(img):
     width, height = img.size
     buff, count = 0, 0
     bitab = []
-    for row in range(height):
-        for col in range(width):
+    for row in xrange(height):
+        for col in xrange(width):
             r, g, b = img.getpixel((col, row))
 
             buff += (r&1)<<(7-count)
@@ -108,8 +108,8 @@ def reveal_slow(img):
     """
     width, height = img.size
     bits = []
-    for row in range(height):
-        for col in range(width):
+    for row in xrange(height):
+        for col in xrange(width):
             r, g, b = img.getpixel((col, row))
 
             bits.append([tools.bs(r)[-1], tools.bs(g)[-1], tools.bs(b)[-1]])
@@ -128,21 +128,39 @@ if __name__ == '__main__':
     from optparse import OptionParser
     usage = "usage: %prog hide|reveal [options]"
     parser = OptionParser(usage)
+    # Original image
     parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Image file")
+                    help="Input image fil.e")
+    # Image containing the secret
     parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Image file")
-    parser.add_option("-s", "--secret", dest="secret",
-                    help="Your secret (Message, Image, Music or any binary file.)")
+                    help="Output image containing the secret.")
+
+    # Non binary secret message to hide
+    parser.add_option("-m", "--secret-message", dest="secret_message",
+                    help="Your secret message to hide(non binary).")
+
+    # Binary secret to hide (OGG, executable, etc.)
+    parser.add_option("-f", "--secret-file", dest="secret_file",
+                    help="Your secret to hide (Text or any binary file).")
+    # Output for the binary binary secret.
+    parser.add_option("-b", "--binary", dest="secret_binary",
+                    help="Output for the binary secret (Text or any binary file).")
+
     parser.set_defaults(input_image_file = './pictures/Lenna.png',
                         output_image_file = './pictures/Lenna_enc.png',
-                        secret = 'Hello World!')
+                        secret_message = '', secret_file = '', secret_binary = "")
 
     (options, args) = parser.parse_args()
 
+
     if sys.argv[1] == "hide":
+        if options.secret_message != "" and options.secret_file == "":
+            secret = options.secret_message
+        elif options.secret_message == "" and options.secret_file =! "":
+            secret = tools.binary2base64(options.secret_file)
+
         img = Image.open(options.input_image_file)
-        img_encoded = hide(img, options.secret)
+        img_encoded = hide(img, secret)
         try:
             img_encoded.save(options.output_image_file)
         except Exception, e:
@@ -151,4 +169,10 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == "reveal":
         img = Image.open(options.input_image_file)
-        print reveal(img)
+        secret = reveal(img)
+        if options.secret_binary != "":
+            data = base64.b64decode(secret)
+            with open(options.secret_binary, "w") as f:
+                f.write(data)
+        else:
+            print secret
