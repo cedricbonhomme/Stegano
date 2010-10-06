@@ -126,8 +126,11 @@ def reveal_slow(img):
 if __name__ == '__main__':
     # Point of entry in execution mode.
     from optparse import OptionParser
-    usage = "usage: %prog hide|reveal [options]"
-    parser = OptionParser(usage)
+    parser = OptionParser(version=__version__)
+    parser.add_option('--hide', action='store_true', default=False,
+                      help="Hides a message in an image.")
+    parser.add_option('--reveal', action='store_true', default=False,
+                      help="Reveals the message hided in an image.")
     # Original image
     parser.add_option("-i", "--input", dest="input_image_file",
                     help="Input image fil.e")
@@ -153,7 +156,7 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
 
 
-    if sys.argv[1] == "hide":
+    if options.hide:
         if options.secret_message != "" and options.secret_file == "":
             secret = options.secret_message
         elif options.secret_message == "" and options.secret_file != "":
@@ -167,7 +170,7 @@ if __name__ == '__main__':
             # If hide() returns an error (Too long message).
             print e
 
-    elif sys.argv[1] == "reveal":
+    elif options.reveal:
         img = Image.open(options.input_image_file)
         secret = reveal(img)
         if options.secret_binary != "":
