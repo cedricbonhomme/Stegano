@@ -78,68 +78,23 @@ def reveal(img):
     limit = None
     for row in xrange(height):
         for col in xrange(width):
-            r, g, b = img.getpixel((col, row))
 
-            buff += (r&1)<<(7-count)
-            count += 1
-            if count == 8:
-                bitab.append(chr(buff))
-                buff, count = 0, 0
-                if bitab[-1] == ":" and limit == None:
-                    try:
-                        limit = int("".join(bitab[:-1]))
-                    except:
-                        pass
-
-            buff += (g&1)<<(7-count)
-            count += 1
-            if count == 8:
-                bitab.append(chr(buff))
-                buff, count = 0, 0
-                if bitab[-1] == ":" and limit == None:
-                    try:
-                        limit = int("".join(bitab[:-1]))
-                    except:
-                        pass
-
-
-            buff += (b&1)<<(7-count)
-            count += 1
-            if count == 8:
-                bitab.append(chr(buff))
-                buff, count = 0, 0
-                if bitab[-1] == ":" and limit == None:
-                    try:
-                        limit = int("".join(bitab[:-1]))
-                    except:
-                        pass
-
+            # color = [r, g, b]
+            for color in img.getpixel((col, row)):
+                buff += (color&1)<<(7-count)
+                count += 1
+                if count == 8:
+                    bitab.append(chr(buff))
+                    buff, count = 0, 0
+                    if bitab[-1] == ":" and limit == None:
+                        try:
+                            limit = int("".join(bitab[:-1]))
+                        except:
+                            pass
 
             if len(bitab)-len(str(limit))-1 == limit :
                 return "".join(bitab)[len(str(limit))+1:]
     return ""
-
-def reveal_slow(img):
-    """
-    Find a message in an image
-    (with the LSB technique).
-    """
-    width, height = img.size
-    bits = []
-    for row in xrange(height):
-        for col in xrange(width):
-            r, g, b = img.getpixel((col, row))
-
-            bits.append([tools.bs(r)[-1], tools.bs(g)[-1], tools.bs(b)[-1]])
-
-            if int("".join(bits[-8:]), 2) == 126:
-                # chr(126) = '~ '
-                list_of_string_bits = ["".join(bits[i:(i+8)]) for i in range(0, len(bits)-8, 8)]
-
-                list_of_character = [chr(int(elem, 2)) for elem in list_of_string_bits]
-                return "".join(list_of_character)
-    return ""
-
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
