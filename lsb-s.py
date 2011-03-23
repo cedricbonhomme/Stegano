@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
-__date__ = "$Date: 2010/10/01 $"
+__version__ = "$Revision: 0.2 $"
+__date__ = "$Date: 2010/03/23 $"
 __license__ = "GPLv3"
 
 import sys
@@ -39,7 +39,7 @@ def hide(img, message):
     width, height = img.size
     index = 0
 
-    message = message + '~~~'
+    message = str(len(message)) + ":" + message
     #message_bits = tools.a2bits(message)
     message_bits = "".join(tools.a2bits_list(message))
 
@@ -75,6 +75,7 @@ def reveal(img):
     width, height = img.size
     buff, count = 0, 0
     bitab = []
+    limit = None
     for row in xrange(height):
         for col in xrange(width):
             r, g, b = img.getpixel((col, row))
@@ -84,21 +85,38 @@ def reveal(img):
             if count == 8:
                 bitab.append(chr(buff))
                 buff, count = 0, 0
+                if bitab[-1] == ":" and limit == None:
+                    try:
+                        limit = int("".join(bitab[:-1]))
+                    except:
+                        pass
 
             buff += (g&1)<<(7-count)
             count += 1
             if count == 8:
                 bitab.append(chr(buff))
                 buff, count = 0, 0
+                if bitab[-1] == ":" and limit == None:
+                    try:
+                        limit = int("".join(bitab[:-1]))
+                    except:
+                        pass
+
 
             buff += (b&1)<<(7-count)
             count += 1
             if count == 8:
                 bitab.append(chr(buff))
                 buff, count = 0, 0
+                if bitab[-1] == ":" and limit == None:
+                    try:
+                        limit = int("".join(bitab[:-1]))
+                    except:
+                        pass
 
-            if len(bitab) > 0 and bitab[-1] == chr(126):
-                return "".join(bitab)[:-1]
+
+            if len(bitab)-len(str(limit))-1 == limit :
+                return "".join(bitab)[len(str(limit))+1:]
     return ""
 
 def reveal_slow(img):
