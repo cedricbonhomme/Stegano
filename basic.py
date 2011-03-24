@@ -85,11 +85,11 @@ if __name__ == '__main__':
     usage = "usage: %prog hide|reveal [options]"
     parser = OptionParser(usage)
     parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Image file")
+                    help="Image file.")
     parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Image file")
+                    help="Image file.")
     parser.add_option("-s", "--secret", dest="secret",
-                    help="Your secret (Message, Image, Music or any binary file.)")
+                    help="Your secret (Message, Image, Music or any binary file).")
     parser.set_defaults(input_image_file = './pictures/Lenna.png',
                         output_image_file = './pictures/Lenna_enc.png',
                         secret = 'Hello World!')

@@ -106,7 +106,7 @@ if __name__ == '__main__':
                       help="Reveals the message hided in an image.")
     # Original image
     parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Input image fil.e")
+                    help="Input image file.")
     # Image containing the secret
     parser.add_option("-o", "--output", dest="output_image_file",
                     help="Output image containing the secret.")

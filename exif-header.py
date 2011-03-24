@@ -26,7 +26,8 @@ __license__ = "GPLv3"
 
 # Thanks to: http://www.julesberman.info/spec2img.htm
 
-def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano"):
+def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano", \
+            secret_message = None, secret_file = None):
     """
     """
     import shutil
@@ -36,12 +37,16 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano"):
     from base64 import b64encode
     from exif.minimal_exif_writer import MinimalExifWriter
 
-    file = open("lorem_ipsum.txt", "r")
+    if secret_file != None:
+        with open(secret_file, "r") as f:
+            secret_file_content = f.read()
     text = "\nImage annotation date: "
     text = text + str(datetime.date.today())
     text = text  + "\nImage description:\n"
-    text = compress(b64encode(text + file.read()))
-    file.close()
+    if secret_file != None:
+        text = compress(b64encode(text + secret_file_content))
+    else:
+        text = compress(b64encode(text + secret_message))
 
     try:
         shutil.copy(img, img_enc)
@@ -73,5 +78,41 @@ def reveal(img):
 
 
 if __name__ == "__main__":
-    hide(img='./pictures/Elisha-Cuthbert.jpg', img_enc='./pictures/Elisha-Cuthbert_enc.jpg')
-    reveal(img='./pictures/Elisha-Cuthbert_enc.jpg')
+    # Point of entry in execution mode.
+    from optparse import OptionParser
+    parser = OptionParser(version=__version__)
+    parser.add_option('--hide', action='store_true', default=False,
+                      help="Hides a message in an image.")
+    parser.add_option('--reveal', action='store_true', default=False,
+                      help="Reveals the message hided in an image.")
+    # Original image
+    parser.add_option("-i", "--input", dest="input_image_file",
+                    help="Input image file.")
+    # Image containing the secret
+    parser.add_option("-o", "--output", dest="output_image_file",
+                    help="Output image containing the secret.")
+
+    # Secret raw message to hide
+    parser.add_option("-m", "--secret-message", dest="secret_message",
+                    help="Your raw secret message to hide.")
+
+    # Secret text file to hide.
+    parser.add_option("-f", "--secret-file", dest="secret_file",
+                    help="Your secret textt file to hide.")
+
+    parser.set_defaults(input_image_file = './pictures/Elisha-Cuthbert.jpg',
+                        output_image_file = './pictures/Elisha-Cuthbert_enc.jpg',
+                        secret_message = '', secret_file = '')
+
+    (options, args) = parser.parse_args()
+
+    if options.hide:
+        if options.secret_message != "" and options.secret_file == "":
+            hide(img=options.input_image_file, img_enc=options.output_image_file, \
+                    secret_message=options.secret_message)
+        elif options.secret_message == "" and options.secret_file != "":
+            hide(img=options.input_image_file, img_enc=options.output_image_file, \
+                    secret_file=options.secret_file)
+
+    elif options.reveal:
+        reveal(img=options.input_image_file)
