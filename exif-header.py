@@ -31,7 +31,8 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano"):
     """
     import shutil
     import datetime
-    import zlib.compress
+    from zlib import compress
+    from zlib import decompress
     from base64 import b64encode
     from exif.minimal_exif_writer import MinimalExifWriter
 
@@ -39,7 +40,7 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano"):
     text = "\nImage annotation date: "
     text = text + str(datetime.date.today())
     text = text  + "\nImage description:\n"
-    text = zlib.compress(b64encode(text + file.read()))
+    text = compress(b64encode(text + file.read()))
     file.close()
 
     try:
@@ -59,14 +60,14 @@ def reveal(img):
     """
     """
     from base64 import b64decode
-    import zlib.decompress
+    from zlib import decompress
     from exif.minimal_exif_reader import MinimalExifReader
     try:
         g = MinimalExifReader(img)
     except:
         print("Impossible to read description.")
         return
-    print(zlib.decompress(b64decode(g.imageDescription())))
+    print(b64decode(decompress(g.imageDescription())))
     print(("\nCopyright " + g.copyright()))
     #print g.dateTimeOriginal()s
 
