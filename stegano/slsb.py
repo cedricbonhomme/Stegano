@@ -30,11 +30,12 @@ from PIL import Image
 
 import tools
 
-def hide(img, message):
+def hide(input_image_file, message):
     """
     Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """
+    img = Image.open(input_image_file)
     encoded = img.copy()
     width, height = img.size
     index = 0
@@ -67,11 +68,12 @@ def hide(img, message):
 
     return encoded
 
-def reveal(img):
+def reveal(input_image_file):
     """
     Find a message in an image
     (with the LSB technique).
     """
+    img = Image.open(input_image_file)
     width, height = img.size
     buff, count = 0, 0
     bitab = []
@@ -95,6 +97,15 @@ def reveal(img):
             if len(bitab)-len(str(limit))-1 == limit :
                 return "".join(bitab)[len(str(limit))+1:]
     return ""
+
+def write(image, output_image_file):
+    """
+    """
+    try:
+        image.save(output_image_file)
+    except Exception, e:
+        # If hide() returns an error (Too long message).
+        print e
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
@@ -135,8 +146,7 @@ if __name__ == '__main__':
         elif options.secret_message == "" and options.secret_file != "":
             secret = tools.binary2base64(options.secret_file)
 
-        img = Image.open(options.input_image_file)
-        img_encoded = hide(img, secret)
+        img_encoded = hide(options.input_image_file, secret)
         try:
             img_encoded.save(options.output_image_file)
         except Exception, e:
@@ -144,8 +154,7 @@ if __name__ == '__main__':
             print e
 
     elif options.reveal:
-        img = Image.open(options.input_image_file)
-        secret = reveal(img)
+        secret = reveal(options.input_image_file)
         if options.secret_binary != "":
             data = tools.base642binary(secret)
             with open(options.secret_binary, "w") as f:
