@@ -25,6 +25,17 @@ Installation
 Refers to the INSTALL file.
 
 
+Use Stéganô as a library in your Python program
+-----------------------------------------------
+If you want to use Stéganô in your Python program you just have to import the appropriate steganography technique. For example:
+
+    from stegano import slsb
+
+    secret = slsb.hide("./pictures/Lenna.png", "Bonjour tout le monde")
+
+    secret.save("./Lenna-secret.png")
+
+
 Use Stéganô as a program
 ------------------------
 In addition you can use Stéganô as a program thanks to the scripts provided in the bin directory.
