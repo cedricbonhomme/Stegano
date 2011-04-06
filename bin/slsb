@@ -24,7 +24,10 @@ __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2011/04/06 $"
 __license__ = "GPLv3"
 
-from stegano import slsb
+try:
+    from stegano import slsb
+except:
+    print "Install stegano: python setup.py install"
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
