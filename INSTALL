@@ -1,5 +1,34 @@
+.. -*-restructuredtext-*-
+
+=======
+Stéganô
+=======
+
+.. Use headers in this order #=~-_
+
+:toc: yes
+:symrefs: yes
+:sortrefs: yes
+:compact: yes
+:subcompact: no
+:rfcedstyle: no
+:comments: no
+:inline: yes
+:private: yes
+
+:author: Cédric Bonhomme
+:contact: http://cedricbonhomme.org/
 
 
+Installation
+------------
+    $ python setup.py install
+
+Now you will be able to use Stéganô in your Python program.
+
+
+Requierements
+~~~~~~~~~~~~~
 For some operations Stéganô needs the Python Imaging Library (PIL):
 
     $ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz
@@ -12,6 +41,9 @@ For some operations Stéganô needs the Python Imaging Library (PIL):
 
 
 
-To install Stéganô:
+Scripts in the bin directory
+----------------------------
+In addition you can use as a program thanks to the scripts provided in the bin directory.
 
-    $ python setup.py install
+    /stegano/bin$ chmod u+x *
+    /stegano/bin$ ./slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo"
