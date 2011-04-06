@@ -22,13 +22,11 @@ Stéganô
 
 Installation
 ------------
-    $ python setup.py install
-
-Now you will be able to use Stéganô in your Python program.
+Refers to the INSTALL file.
 
 
-Requierements
-~~~~~~~~~~~~~
+Use Stéganô as a library for your applications
+----------------------------------------------
 For some operations Stéganô needs the Python Imaging Library (PIL):
 
     $ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz
@@ -38,3 +36,14 @@ For some operations Stéganô needs the Python Imaging Library (PIL):
     $ sudo python setup.py install
     $ cd ..
     $ sudo rm -Rf Imaging-1.1.7/
+
+
+
+Use Stéganô as a program
+------------------------
+In addition you can use Stéganô as a program thanks to the scripts provided in the bin directory.
+
+Example:
+
+    /stegano/bin$ chmod u+x *
+    /stegano/bin$ ./slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo" 
