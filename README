@@ -32,6 +32,7 @@ In addition you can use Stéganô as a program thanks to the scripts provided in
 Example:
 
     /stegano/bin$ chmod u+x *
+
     /stegano/bin$ ./slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo"
 
 
