@@ -32,7 +32,7 @@ If you want to use Stéganô in your Python program you just have to import the 
 .. code-block:: python
    :linenos:
 
-   rom stegano import slsb
+   from stegano import slsb
 
     secret = slsb.hide("./pictures/Lenna.png", "Bonjour tout le monde")
 
