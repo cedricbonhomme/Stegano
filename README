@@ -29,7 +29,10 @@ Use Stéganô as a library in your Python program
 -----------------------------------------------
 If you want to use Stéganô in your Python program you just have to import the appropriate steganography technique. For example:
 
-    from stegano import slsb
+.. code-block:: python
+   :linenos:
+
+   rom stegano import slsb
 
     secret = slsb.hide("./pictures/Lenna.png", "Bonjour tout le monde")
 
@@ -42,9 +45,9 @@ In addition you can use Stéganô as a program thanks to the scripts provided in
 
 Example:
 
-    /stegano/bin$ chmod u+x *
+/stegano/bin$ chmod u+x *
 
-    /stegano/bin$ ./slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo"
+/stegano/bin$ ./slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo"
 
 
 Turorial
