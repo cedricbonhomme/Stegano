@@ -28,7 +28,7 @@ import itertools
 
 def fermat():
     """
-    Return the n-th Fermat Number.
+    Generate the n-th Fermat Number.
     """
     n = 0
     while True:
@@ -37,7 +37,7 @@ def fermat():
 
 def mersenne():
     """
-    Return 2^k-1.
+    Generate 2^n-1.
     """
     n = 0
     while True:
@@ -59,7 +59,9 @@ def eratosthenes():
             yield i
 
 def eratosthenes_composite():
-    """ Generate the composite numbers with the sieve of Eratosthenes. """
+    """
+    Generate the composite numbers with the sieve of Eratosthenes.
+    """
     p1 = 3
     for p2 in eratosthenes():
         for n in range(p1 + 1, p2):
@@ -75,6 +77,9 @@ def carmichael():
             yield m
 
 def ackermann(m, n):
+    """
+    Ackermann number.
+    """
     if m == 0:
         return n + 1
     elif n == 0:
@@ -85,6 +90,8 @@ def ackermann(m, n):
 def fibonacci():
     """
     A generator for Fibonacci numbers, goes to next number in series on each call.
+    This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
+    See: http://oeis.org/A000045
     """
     a, b = 1, 2
     while True:
