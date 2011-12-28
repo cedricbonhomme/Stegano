@@ -21,7 +21,7 @@
 
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.2 $"
-__date__ = "$Date: 2010/03/24 $"
+__date__ = "$Date: 2011/12/28 $"
 __license__ = "GPLv3"
 
 import sys
