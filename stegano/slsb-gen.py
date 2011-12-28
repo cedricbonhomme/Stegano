@@ -101,9 +101,8 @@ def reveal(input_image_file, generator_function):
                 if bitab[-1] == ":" and limit == None:
                     try:
                         limit = int("".join(bitab[:-1]))
-                        print limit
                     except:
-                        print bitab
+                        pass
         if len(bitab)-len(str(limit))-1 == limit :
             return "".join(bitab)[len(str(limit))+1:]
 
@@ -171,7 +170,11 @@ if __name__ == '__main__':
             print e
 
     elif options.reveal:
-        secret = reveal(options.input_image_file, options.generator_function)
+        try:
+            secret = reveal(options.input_image_file, options.generator_function)
+        except IndexError:
+            print "Impossible to detect message."
+            exit(0)
         if options.secret_binary != "":
             data = tools.base642binary(secret)
             with open(options.secret_binary, "w") as f:
