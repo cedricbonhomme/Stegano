@@ -99,6 +99,21 @@ def fibonacci():
         a, b = b, a + b
 
 
+def syracuse(l=15):
+    n = 0
+    while True:
+        yield syracuse_gen(n, l)
+        n += 1
+        
+def syracuse_gen(n, l=15):
+    if n == 0:
+        return l
+    if n % 2 == 0:
+        return syracuse_gen(n-1)/2
+    elif n % 2 == 1:
+        return 3*syracuse_gen(n-1)+1
+
+        
 if __name__ == "__main__":
     # Point of entry in execution mode.
     f = fibonacci()
