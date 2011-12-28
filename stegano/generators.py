@@ -104,13 +104,13 @@ def syracuse(l=15):
     while True:
         yield syracuse_gen(n, l)
         n += 1
-        
+
 def syracuse_gen(n, l=15):
     if n == 0:
         return l
-    if n % 2 == 0:
+    if syracuse_gen(n-1) % 2 == 0:
         return syracuse_gen(n-1)/2
-    elif n % 2 == 1:
+    elif syracuse_gen(n-1) % 2 == 1:
         return 3*syracuse_gen(n-1)+1
 
         
