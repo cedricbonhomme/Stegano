@@ -29,6 +29,8 @@ try:
 except:
     print "Install stegano: python setup.py install"
 
+from stegano import tools
+
 from optparse import OptionParser
 parser = OptionParser(version=__version__)
 parser.add_option('--hide', action='store_true', default=False,

@@ -26,6 +26,15 @@ __license__ = "GPLv3"
 
 import itertools
 
+def identity():
+    """
+    f(x) = x
+    """
+    n = 0
+    while True:
+        yield n
+        n += 1
+
 def fermat():
     """
     Generate the n-th Fermat Number.
