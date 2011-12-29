@@ -4,25 +4,14 @@
 Stéganô
 =======
 
-.. Use headers in this order #=~-_
-
-:toc: yes
-:symrefs: yes
-:sortrefs: yes
-:compact: yes
-:subcompact: no
-:rfcedstyle: no
-:comments: no
-:inline: yes
-:private: yes
-
 :author: Cédric Bonhomme
 :contact: http://cedricbonhomme.org/
 
 
 Installation
 ------------
-    $ python setup.py install
+
+    $ sudo python setup.py install
 
 Now you will be able to use Stéganô in your Python program.
 
