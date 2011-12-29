@@ -72,7 +72,7 @@ if options.hide:
     elif options.secret_message == "" and options.secret_file != "":
         secret = tools.binary2base64(options.secret_file)
 
-    img_encoded = hide(options.input_image_file, secret, options.generator_function)
+    img_encoded = slsbset.hide(options.input_image_file, secret, options.generator_function)
     try:
         img_encoded.save(options.output_image_file)
     except Exception, e:
@@ -81,7 +81,7 @@ if options.hide:
 
 elif options.reveal:
     try:
-        secret = reveal(options.input_image_file, options.generator_function)
+        secret = slsbset.reveal(options.input_image_file, options.generator_function)
     except IndexError:
         print "Impossible to detect message."
         exit(0)
