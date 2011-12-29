@@ -29,6 +29,7 @@ try:
 except:
     print "Install stegano: python setup.py install"
 
+from PIL import Image
 
 from optparse import OptionParser
 parser = OptionParser()

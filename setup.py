@@ -24,3 +24,6 @@ shutil.copymode("./bin/slsb-set", "/bin/slsb-set")
 
 shutil.copy2("./bin/slsb", "/bin/slsb")
 shutil.copymode("./bin/slsb", "/bin/slsb")
+
+shutil.copy2("./bin/steganalysis-parity", "/bin/steganalysis-parity")
+shutil.copymode("./bin/steganalysis-parity", "/bin/steganalysis-parity")
