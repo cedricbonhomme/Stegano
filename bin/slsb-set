@@ -21,7 +21,7 @@
 
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.1 $"
-__date__ = "$Date: 2011/04/06 $"
+__date__ = "$Date: 2011/12/29 $"
 __license__ = "GPLv3"
 
 try:

@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+# Stéganô - Stéganô is a basic Python Steganography module.
+# Copyright (C) 2010-2011  Cédric Bonhomme - http://cedricbonhomme.org/
+#
+# For more information : http://bitbucket.org/cedricbonhomme/stegano/
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+__author__ = "Cedric Bonhomme"
+__version__ = "$Revision: 0.1 $"
+__date__ = "$Date: 2011/12/29 $"
+__license__ = "GPLv3"
+
+try:
+    from stegano import steganalysisParity
+except:
+    print "Install stegano: python setup.py install"
+
+
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("-i", "--input", dest="input_image_file",
+                help="Image file")
+parser.add_option("-o", "--output", dest="output_image_file",
+                help="Image file")
+parser.set_defaults(input_image_file = './pictures/Lenna.png',
+                    output_image_file = './pictures/Lenna_steganalysed.png')
+(options, args) = parser.parse_args()
+
+input_image_file = Image.open(options.input_image_file)
+output_image = steganalysisParity.steganalyse(input_image_file)
+output_image.save(options.output_image_file)
