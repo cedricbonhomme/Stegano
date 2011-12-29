@@ -1,5 +1,9 @@
 clear
 
+#
+# Test the LSB method with sets.
+#
+
 echo  "We're going to test a little Stéganô..."
 
 echo "Hide the message  with the Sieve of Eratosthenes..."
