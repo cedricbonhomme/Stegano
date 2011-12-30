@@ -40,10 +40,10 @@ def OEIS_A000217():
     http://oeis.org/A000217
     Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
     """
-    n = -1
+    n = 0
     while True:
-        n += 1
         yield (n*(n+1))/2
+        n += 1
 
 def fermat():
     """
