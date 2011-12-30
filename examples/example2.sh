@@ -1,4 +1,4 @@
-clear
+#!/bin/sh
 
 #
 # Test the LSB method with sets.

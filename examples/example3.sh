@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 
 slsb-set --hide -i examples/pictures/Montenach.png -o ~/enc-identity.png --generator identity -m 'I like steganography.'
