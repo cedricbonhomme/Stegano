@@ -35,6 +35,16 @@ def identity():
         yield n
         n += 1
 
+def OEIS_A000217():
+    """
+    http://oeis.org/A000217
+    Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+    """
+    n = -1
+    while True:
+        n += 1
+        yield (n*(n+1))/2
+
 def fermat():
     """
     Generate the n-th Fermat Number.
