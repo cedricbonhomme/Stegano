@@ -39,19 +39,19 @@ def fermat():
     """
     Generate the n-th Fermat Number.
     """
-    n = 0
+    y = 5
     while True:
-        n += 1
-        yield pow(2, pow(2, n)) + 1
+        yield y
+        y = pow(y-1,2)+1
 
 def mersenne():
     """
     Generate 2^n-1.
     """
-    n = 0
+    y = 1
     while True:
-        n += 1
-        yield pow(2, n) - 1
+        yield y
+        y = 2*y + 1
 
 def eratosthenes():
     """
@@ -107,20 +107,18 @@ def fibonacci():
         yield a
         a, b = b, a + b
 
-
 def syracuse(l=15):
-    n = 0
+    """
+    Generate the sequence of Syracuse.
+    """
+    y = l
     while True:
-        yield syracuse_gen(n, l)
-        n += 1
-
-def syracuse_gen(n, l=15):
-    if n == 0:
-        return l
-    if syracuse_gen(n-1) % 2 == 0:
-        return syracuse_gen(n-1)/2
-    elif syracuse_gen(n-1) % 2 == 1:
-        return 3*syracuse_gen(n-1)+1
+        yield y
+        q,r = divmod(y,2)
+        if r == 0:
+            y = q
+        else:
+            y = 3*y + 1
 
         
 if __name__ == "__main__":
