@@ -24,6 +24,8 @@ __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2010/10/01 $"
 __license__ = "GPLv3"
 
+import sys
+
 from PIL import Image
 
 def hide(img, message):
