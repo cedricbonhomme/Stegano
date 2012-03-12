@@ -1,9 +1,11 @@
- #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 from distutils.core import setup
 import os
 import shutil
+
+requires = ['PIL']
 
 setup(
     name='Stegano',
