@@ -35,6 +35,12 @@ def identity():
         yield n
         n += 1
 
+def Dead_Man_Walking():
+    n = 0
+    while True:
+        yield n + 7
+        n += 2
+        
 def OEIS_A000217():
     """
     http://oeis.org/A000217
