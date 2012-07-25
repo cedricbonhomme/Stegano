@@ -9,7 +9,7 @@ Welcome to Stéganô's documentation!
 .. toctree::
    :maxdepth: 2
 
-Stéganô is a Python Steganography module.
+Stéganô is a Python steganography_ module.
 Steganography is the art and science of writing hidden messages in such a way that no one,
 apart from the sender and intended recipient, suspects the existence of the message, a form
 of security through obscurity. Consequently, functions provided by Stéganô only hide message,
@@ -18,11 +18,23 @@ without encryption. Indeed steganography is often used with cryptography.
 The advantage of steganography, over cryptography alone, is that messages do not attract
 attention to themselves. If you are interested in cryptography have a look at my project pySecret.
 
+
+Download Stéganô
+================
+
+You can clone the source code of Stéganô_ :
+
+.. code-block:: bash
+
+    $ hg clone https://bitbucket.org/cedricbonhomme/stegano/
+
+More information about how to install Stéganô in the :doc:`tutorial </tutorial>`.
+
 Requirements
 ============
 
-- Python (2.4 -> 2.7);
-- Python Imaging Library (PIL).
+- Python_ (2.4 -> 2.7);
+- `Python Imaging Library`_ (PIL).
 
 Methods of hiding
 =================
@@ -30,11 +42,11 @@ Methods of hiding
 For the moment, Stéganô implements these methods of hiding:
 
 - using the red portion of a pixel to hide ASCII messages;
-- using the Least Significant Bit (LSB) technique;
+- using the `Least Significant Bit <http://en.wikipedia.org/wiki/Least_significant_bit>`_ (LSB) technique;
 - using the LSB technique with sets based on generators (Sieve for Eratosthenes, Fermat, Mersenne numbers, etc.);
 - using the description field of the image (JPEG).
 
-Moreover some methods of steganalysis are provided:
+Moreover some methods of steganalysis_ are provided:
 
 - steganalysis of LSB encoding in color images;
 - statistical steganalysis. 
@@ -45,6 +57,20 @@ Turorial
 
 More information available at the :doc:`tutorial </tutorial>` page
 
+License
+=======
+
+Balloon is under GPL v3 license.
+
+Donation
+========
+
+If you wish and if you like Balloon, you can donate via bitcoin. My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
+
+Contact
+=======
+
+`My home page <http://cedricbonhomme.org>`_
 
 Indices and tables
 ==================
@@ -53,3 +79,8 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. _Python: http://python.org/
+.. _Stéganô: https://bitbucket.org/cedricbonhomme/stegano/
+.. _`Python Imaging Library`: http://www.pythonware.com/products/pil/
+.. _steganography: http://en.wikipedia.org/wiki/Steganography
+.. _steganalysis: http://en.wikipedia.org/wiki/Steganalysis

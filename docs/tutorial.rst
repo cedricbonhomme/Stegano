@@ -10,7 +10,9 @@ Getting Stéganô
 Installation
 ============
 
-$ python setup.py install
+.. code-block:: bash
+
+    $ python setup.py install
 
 Now you will be able to use Stéganô in your Python program.
 
