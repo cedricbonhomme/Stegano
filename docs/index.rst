@@ -40,6 +40,11 @@ Moreover some methods of steganalysis are provided:
 - statistical steganalysis. 
 
 
+Turorial
+========
+
+More information available at the [[tutorial]] page
+
 
 Indices and tables
 ==================

@@ -1,9 +1,11 @@
 Getting Stéganô
 ===============
 
-$ hg clone https://bitbucket.org/cedricbonhomme/stegano
-$ cd stegano/
-$ chmod u+x *.py # if you want to use Stéganô in command line
+.. code-block:: bash
+
+    $ hg clone https://bitbucket.org/cedricbonhomme/stegano
+    $ cd stegano/
+    $ chmod u+x *.py # if you want to use Stéganô in command line
 
 Installation
 ============
@@ -32,6 +34,8 @@ Using Stéganô in command line for your scripts
 Display help
 ------------
 
+.. code-block:: bash
+
     $ ./slsb.py --help
     Usage: slsb.py [options]
 
@@ -55,12 +59,16 @@ Display help
 Hide and reveal a text message
 ------------------------------
 
+.. code-block:: bash
+
     $ ./slsb.py --hide -i ./pictures/Lenna.png -o ./pictures/Lenna_enc.png -m HelloWorld!
     $ ./slsb.py --reveal -i ./pictures/Lenna_enc.png
     HelloWorld!
 
 Hide and reveal a binary file
 -----------------------------
+
+.. code-block:: bash
 
     $ wget http://www.gnu.org/music/free-software-song.ogg
     $ ./slsb.py --hide -i ./pictures/Montenach.png -o ./pictures/Montenach_enc.png -f ./free-software-song.ogg
@@ -70,11 +78,15 @@ Hide and reveal a binary file
 Hide and reveal a message by using the description field of the image
 ---------------------------------------------------------------------
 
+.. code-block:: bash
+
     $ ./exif-header.py --hide -i ./Elisha-Cuthbert.jpg -o ./Elisha-Cuthbert_enc.jpg -f ./fileToHide.txt
     $ ./exif-header.py --reveal -i ./Elisha-Cuthbert_enc.jpg
 
 Steganalysis
 ------------
+
+.. code-block:: bash
 
     $ ./steganalysis-parity.py -i ./pictures./Lenna_enc.png -o ./pictures/Lenna_enc_st.png
 
