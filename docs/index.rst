@@ -43,7 +43,7 @@ Moreover some methods of steganalysis are provided:
 Turorial
 ========
 
-More information available at the [[tutorial]] page
+More information available at the :doc:`tutorial </tutorial>` page
 
 
 Indices and tables
