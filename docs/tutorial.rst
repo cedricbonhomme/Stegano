@@ -16,6 +16,7 @@ Using Stéganô as a Python module
 ================================
 
 .. code-block:: python
+
     Python 2.7 (r27:82500, Jul  5 2010, 10:14:47)
     [GCC 4.3.2] on linux2
     Type "help", "copyright", "credits" or "license" for more information.
