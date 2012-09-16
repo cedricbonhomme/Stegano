@@ -60,7 +60,7 @@ More information available at the :doc:`tutorial </tutorial>` page
 License
 =======
 
-Balloon is under GPL v3 license.
+Stéganô is under GPL v3 license.
 
 Donation
 ========
