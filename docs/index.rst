@@ -65,7 +65,7 @@ Stéganô is under GPL v3 license.
 Donation
 ========
 
-If you wish and if you like Balloon, you can donate via bitcoin. My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
+If you wish and if you like Stéganô, you can donate via bitcoin. My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
 
 Contact
 =======
