@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2011  Cédric Bonhomme - http://cedricbonhomme.org/
+# Copyright (C) 2010-2011-2012  Cédric Bonhomme - http://cedricbonhomme.org/
 #
 # For more information : http://bitbucket.org/cedricbonhomme/stegano/
 #
@@ -20,10 +20,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2011/12/28 $"
+__revision__ = "$Date: 2012/12/14 $"
 __license__ = "GPLv3"
 
+import math
 import itertools
 
 def identity():
@@ -136,6 +138,15 @@ def syracuse(l=15):
         else:
             y = 3*y + 1
 
+def log_gen():
+    """
+    Logarithmic generator.
+    """
+    y = 1
+    while True:
+        adder = max(1, math.pow(10, int(math.log10(y))))
+        yield int(y)
+        y = y + adder
         
 if __name__ == "__main__":
     # Point of entry in execution mode.
