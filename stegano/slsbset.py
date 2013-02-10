@@ -47,7 +47,7 @@ def hide(input_image_file, message, generator_function):
 
     npixels = width * height
     if len(message_bits) > npixels * 3:
-        return """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
+        raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
 
     generator = getattr(generators, generator_function)()
     
