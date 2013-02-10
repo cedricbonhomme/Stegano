@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2013  Cédric Bonhomme - http://cedricbonhomme.org/
+# Copyright (C) 2010-2011  Cédric Bonhomme - http://cedricbonhomme.org/
 #
 # For more information : http://bitbucket.org/cedricbonhomme/stegano/
 #
@@ -46,7 +46,7 @@ def hide(input_image_file, message):
 
     npixels = width * height
     if len(message_bits) > npixels * 3:
-        return """Too long message (%s > %s).""" % (len(message_bits), npixels * 3)
+        raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
 
     for row in xrange(height):
         for col in xrange(width):
