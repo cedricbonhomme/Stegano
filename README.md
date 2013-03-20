@@ -29,19 +29,16 @@ In addition you can use Stéganô as a program.
 Example:
 
     ~/stegano/$ sudo python setup.py install
-    ~/$ slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "MessageBo"
+    ~/$ slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "Secret Message"
 
 
 Examples
 --------
 
-There are some examples in the foler *examples*.
+There are some examples in the folder *examples*.
 
 
 Turorial
 --------
 
-You will find a complete tutorial_ and some general informations about steganography_ and Stéganô.
-
-.. _tutorial: http://projects.cedricbonhomme.org/projects/stegano/wiki/
-.. _steganography: http://wiki.cedricbonhomme.org/security:steganography
+A complete [tutorial](http://stegano.readthedocs.org/en/latest/tutorial/) is available.
