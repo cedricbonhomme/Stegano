@@ -18,12 +18,6 @@ Now you will be able to use Stéganô in your Python program.
 
 Requierements
 ~~~~~~~~~~~~~
-For some operations Stéganô needs the Python Imaging Library (PIL):
+For some operations Stéganô needs the Pillow module (friendly fork of Python Imaging Library):
 
-    $ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz
-    $ tar -xzvf Imaging-1.1.7.tar.gz
-    $ rm -f Imaging-1.1.7.tar.gz
-    $ cd Imaging-1.1.7/
-    $ sudo python setup.py install
-    $ cd ..
-    $ sudo rm -Rf Imaging-1.1.7/
+    $ sudo pip install pillow
