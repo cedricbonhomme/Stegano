@@ -34,7 +34,7 @@ setup(
     **kw
 )
 
-print "Installing binaries"
+print("Installing binaries")
 shutil.copy2("./bin/slsb-set", "/bin/slsb-set")
 shutil.copymode("./bin/slsb-set", "/bin/slsb-set")
 

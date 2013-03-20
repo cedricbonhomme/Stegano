@@ -25,6 +25,7 @@ __date__ = "$Date: 2010/10/01 $"
 __license__ = "GPLv3"
 
 import base64
+from functools import reduce
 
 def a2bits(chars):
     """

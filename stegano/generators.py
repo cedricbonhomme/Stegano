@@ -50,7 +50,7 @@ def OEIS_A000217():
     """
     n = 0
     while True:
-        yield (n*(n+1))/2
+        yield (n*(n+1))//2
         n += 1
 
 def fermat():
@@ -152,4 +152,4 @@ if __name__ == "__main__":
     # Point of entry in execution mode.
     f = fibonacci()
     for x in range(13):
-        print f.next(), # 0 1 1 2 3 5 8 13 21 34 55 89 144
+        print(next(f), end=' ') # 0 1 1 2 3 5 8 13 21 34 55 89 144

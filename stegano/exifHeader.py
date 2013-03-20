@@ -35,7 +35,7 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano", 
     from zlib import compress
     from zlib import decompress
     from base64 import b64encode
-    from exif.minimal_exif_writer import MinimalExifWriter
+    from .exif.minimal_exif_writer import MinimalExifWriter
 
     if secret_file != None:
         with open(secret_file, "r") as f:
@@ -51,7 +51,7 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano", 
     try:
         shutil.copy(img, img_enc)
     except Exception as e:
-        print("Impossible to copy image:", e)
+        print(("Impossible to copy image:", e))
         return
 
     f = MinimalExifWriter(img_enc)
@@ -66,13 +66,13 @@ def reveal(img):
     """
     from base64 import b64decode
     from zlib import decompress
-    from exif.minimal_exif_reader import MinimalExifReader
+    from .exif.minimal_exif_reader import MinimalExifReader
     try:
         g = MinimalExifReader(img)
     except:
         print("Impossible to read description.")
         return
-    print(b64decode(decompress(g.imageDescription())))
+    print((b64decode(decompress(g.imageDescription()))))
     print(("\nCopyright " + g.copyright()))
     #print g.dateTimeOriginal()s
 

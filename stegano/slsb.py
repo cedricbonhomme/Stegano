@@ -48,8 +48,8 @@ def hide(input_image_file, message):
     if len(message_bits) > npixels * 3:
         raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
 
-    for row in xrange(height):
-        for col in xrange(width):
+    for row in range(height):
+        for col in range(width):
 
             if index + 3 <= len(message_bits) :
 
@@ -78,8 +78,8 @@ def reveal(input_image_file):
     buff, count = 0, 0
     bitab = []
     limit = None
-    for row in xrange(height):
-        for col in xrange(width):
+    for row in range(height):
+        for col in range(width):
 
             # color = [r, g, b]
             for color in img.getpixel((col, row)):
@@ -103,9 +103,9 @@ def write(image, output_image_file):
     """
     try:
         image.save(output_image_file)
-    except Exception, e:
+    except Exception as e:
         # If hide() returns an error (Too long message).
-        print e
+        print(e)
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
@@ -149,9 +149,9 @@ if __name__ == '__main__':
         img_encoded = hide(options.input_image_file, secret)
         try:
             img_encoded.save(options.output_image_file)
-        except Exception, e:
+        except Exception as e:
             # If hide() returns an error (Too long message).
-            print e
+            print(e)
 
     elif options.reveal:
         secret = reveal(options.input_image_file)
@@ -160,4 +160,4 @@ if __name__ == '__main__':
             with open(options.secret_binary, "w") as f:
                 f.write(data)
         else:
-            print secret
+            print(secret)

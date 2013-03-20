@@ -43,7 +43,7 @@ if VERBOSE:
 
 import mmap
 import sys
-import minimal_exif_reader
+from . import minimal_exif_reader
 
 #---------------------------------------------------------------------
 class ExifFormatException(Exception):
@@ -91,7 +91,7 @@ class MinimalExifWriter:
       self.getExistingExifInfo()
 
     if VERBOSE:
-      print self
+      print(self)
 
     import os
     try:
@@ -105,7 +105,7 @@ class MinimalExifWriter:
 
     # We only add app0 if all we're doing is removing the exif section.
     justRemovingExif = self.description is None and self.copyright is None and self.removeExifSection
-    if VERBOSE: print 'justRemovingExif=%s' % justRemovingExif
+    if VERBOSE: print('justRemovingExif=%s' % justRemovingExif)
     self.removeExifInfo(addApp0 = justRemovingExif)
     if justRemovingExif:
       self.m.close()
@@ -114,7 +114,7 @@ class MinimalExifWriter:
     # Get here means we are adding new description and/or copyright.
     self.removeApp0()
 
-    totalTagsToBeAdded = len(filter(None, (self.description, self.copyright, self.dateTimeOriginal)))
+    totalTagsToBeAdded = len([_f for _f in (self.description, self.copyright, self.dateTimeOriginal) if _f])
     assert(totalTagsToBeAdded > 0)
 
     # Layout will be: firstifd|description|copyright|exififd|datetime.
@@ -199,9 +199,9 @@ class MinimalExifWriter:
     appMarker = self.m.read(2)
     # See if there's an APP0 section, which sometimes appears.
     if appMarker == self.APP0_MARKER:
-      if VERBOSE: print 'app0 found'
+      if VERBOSE: print('app0 found')
       app0DataLength = ord(self.m.read(1)) * 256 + ord(self.m.read(1))
-      if VERBOSE: print 'app0DataLength: %s' % app0DataLength
+      if VERBOSE: print('app0DataLength: %s' % app0DataLength)
       # Back up 2 bytes to get the length bytes.
       self.m.seek(-2, 1)
       existingApp0 = self.m.read(app0DataLength)
@@ -212,14 +212,14 @@ class MinimalExifWriter:
       return
 
     exifHeader = self.m.read(8)
-    if VERBOSE: print 'exif header: %s' % binascii.hexlify(exifHeader)
+    if VERBOSE: print('exif header: %s' % binascii.hexlify(exifHeader))
     if (exifHeader[2:6] != 'Exif' or
         exifHeader[6:8] != '\x00\x00'):
       self.m.close()
       raise ExifFormatException("Malformed APP1")
 
     app1Length = ord(exifHeader[0]) * 256 + ord(exifHeader[1])
-    if VERBOSE: print 'app1Length: %s' % app1Length
+    if VERBOSE: print('app1Length: %s' % app1Length)
 
     originalFileSize = self.m.size()
 
@@ -240,7 +240,7 @@ class MinimalExifWriter:
     if app0DataLength:
       count -= app0DataLength + len(self.APP0_MARKER)
 
-    if VERBOSE: print 'self.m.move(%s, %s, %s)' % (dest, src, count)
+    if VERBOSE: print('self.m.move(%s, %s, %s)' % (dest, src, count))
     self.m.move(dest, src, count)
 
     if addApp0:
@@ -259,13 +259,13 @@ class MinimalExifWriter:
     header = self.m.read(6)
     if (header[0:2] != self.SOI_MARKER or
         header[2:4] != self.APP0_MARKER):
-      if VERBOSE: print 'no app0 found: %s' % binascii.hexlify(header)
+      if VERBOSE: print('no app0 found: %s' % binascii.hexlify(header))
       return
 
     originalFileSize = self.m.size()
 
     app0Length = ord(header[4]) * 256 + ord(header[5])
-    if VERBOSE: print 'app0Length:', app0Length
+    if VERBOSE: print('app0Length:', app0Length)
 
     # Shift stuff to overwrite app0.
     # Start at app0 length bytes in + other bytes not incl in app0 length.
@@ -273,7 +273,7 @@ class MinimalExifWriter:
     dest = len(self.SOI_MARKER)
     count = originalFileSize - app0Length - len(self.SOI_MARKER) - len(self.APP0_MARKER)
     self.m.move(dest, src, count)
-    if VERBOSE: print 'm.move(%s, %s, %s)' % (dest, src, count)
+    if VERBOSE: print('m.move(%s, %s, %s)' % (dest, src, count))
     self.m.resize(originalFileSize - app0Length - len(self.APP0_MARKER))
 
   #---------------------------------------------------------------------------
@@ -347,10 +347,10 @@ def usage(error = None):
   """Print command line usage and exit"""
 
   if error:
-    print error
-    print
+    print(error)
+    print()
 
-  print """This program will remove exif info from an exif jpg, and can optionally
+  print("""This program will remove exif info from an exif jpg, and can optionally
 add the ImageDescription exif tag and/or the Copyright tag.  But it will always remove
 some or all existing exif info (depending on options--see below)!
 So don't run this on your original images without a backup.
@@ -379,7 +379,7 @@ Options:
 
   The image description and copyright must be > 4 characters long.
 
-  This software courtesy of Megabyte Rodeo Software."""
+  This software courtesy of Megabyte Rodeo Software.""")
 
   sys.exit(1)
 
@@ -448,7 +448,7 @@ if __name__ == '__main__':
       f.removeExif()
 
     f.process()
-  except ExifFormatException, ex:
+  except ExifFormatException as ex:
     sys.stderr.write("Exif format error: %s\n" % ex)
   except SystemExit:
     pass

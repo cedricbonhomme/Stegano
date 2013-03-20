@@ -177,20 +177,20 @@ class MinimalExifReader:
 if __name__ == '__main__':
   import sys
   if len(sys.argv) == 1:
-    print "Pass jpgs to process."
+    print("Pass jpgs to process.")
     sys.exit(1)
 
 
   for filename in sys.argv[1:]:
     try:
       f = MinimalExifReader(filename)
-      print filename
-      print "description: '%s'" % f.imageDescription()
-      print "copyright: '%s'" % f.copyright()
-      print "dateTimeOriginal: '%s'" % f.dateTimeOriginal()
-      print "dateTimeOriginal: '%s'" % f.dateTimeOriginal('%B %d, %Y %I:%M:%S %p')
-      print
-    except ExifFormatException, ex:
+      print(filename)
+      print("description: '%s'" % f.imageDescription())
+      print("copyright: '%s'" % f.copyright())
+      print("dateTimeOriginal: '%s'" % f.dateTimeOriginal())
+      print("dateTimeOriginal: '%s'" % f.dateTimeOriginal('%B %d, %Y %I:%M:%S %p'))
+      print()
+    except ExifFormatException as ex:
       sys.stderr.write("Exif format error: %s\n" % ex)
     except:
       sys.stderr.write("Unable to process %s\n" % filename)

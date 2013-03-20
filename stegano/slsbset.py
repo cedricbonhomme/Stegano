@@ -52,7 +52,7 @@ def hide(input_image_file, message, generator_function):
     generator = getattr(generators, generator_function)()
     
     while index + 3 <= len(message_bits) :
-        generated_number = generator.next()
+        generated_number = next(generator)
         (r, g, b) = img_list[generated_number]
 
         # Change the Least Significant Bit of each colour component.
@@ -90,7 +90,7 @@ def reveal(input_image_file, generator_function):
     generator = getattr(generators, generator_function)()
 
     while True:
-        generated_number = generator.next()
+        generated_number = next(generator)
         # color = [r, g, b]
         for color in img_list[generated_number]:
             buff += (color&1)<<(7-count)
@@ -113,9 +113,9 @@ def write(image, output_image_file):
     """
     try:
         image.save(output_image_file)
-    except Exception, e:
+    except Exception as e:
         # If hide() returns an error (Too long message).
-        print e
+        print(e)
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
@@ -165,19 +165,19 @@ if __name__ == '__main__':
         img_encoded = hide(options.input_image_file, secret, options.generator_function)
         try:
             img_encoded.save(options.output_image_file)
-        except Exception, e:
+        except Exception as e:
             # If hide() returns an error (Too long message).
-            print e
+            print(e)
 
     elif options.reveal:
         try:
             secret = reveal(options.input_image_file, options.generator_function)
         except IndexError:
-            print "Impossible to detect message."
+            print("Impossible to detect message.")
             exit(0)
         if options.secret_binary != "":
             data = tools.base642binary(secret)
             with open(options.secret_binary, "w") as f:
                 f.write(data)
         else:
-            print secret
+            print(secret)
