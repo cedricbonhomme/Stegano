@@ -33,8 +33,8 @@ More information about how to install Stéganô in the :doc:`tutorial </tutorial
 Requirements
 ============
 
-- Python_ (2.4 -> 2.7);
-- `Python Imaging Library`_ (PIL).
+- Python_ >= 3.2 (tested with Python 3.3.1);
+- `Pillow`_ (friendly fork of Python Imaging Library).
 
 Methods of hiding
 =================
@@ -81,6 +81,6 @@ Indices and tables
 
 .. _Python: http://python.org/
 .. _Stéganô: https://bitbucket.org/cedricbonhomme/stegano/
-.. _`Python Imaging Library`: http://www.pythonware.com/products/pil/
+.. _`Pillow`: https://pypi.python.org/pypi/Pillow
 .. _steganography: http://en.wikipedia.org/wiki/Steganography
 .. _steganalysis: http://en.wikipedia.org/wiki/Steganalysis
