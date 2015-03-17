@@ -42,3 +42,9 @@ Turorial
 --------
 
 A complete [tutorial](http://stegano.readthedocs.org/en/latest/tutorial/) is available.
+
+
+Contact
+-------
+[My home page](https://www.cedricbonhomme.org).
+
