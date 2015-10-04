@@ -5,7 +5,7 @@ from distutils.core import setup
 import os
 import shutil
 
-requires = ['PIL']
+requires = ['pillow']
 
 
 try:
