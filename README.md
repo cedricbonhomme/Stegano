@@ -1,13 +1,13 @@
 Stéganô
 =======
 
-#### A Python Steganography module.
+A Python Steganography module.
 
 
 Installation
 ------------
 
-    $ sudo python setup.py install
+    $ sudo pip install Stegano
 
 
 Use Stéganô as a library in your Python program
@@ -17,7 +17,7 @@ If you want to use Stéganô in your Python program you just have to import the 
 
 
     >>> from stegano import slsb
-    >>> secret = slsb.hide("./pictures/Lenna.png", "Bonjour tout le monde")
+    >>> secret = slsb.hide("./pictures/Lenna.png", "Hello Workd")
     >>> secret.save("./Lenna-secret.png")
 
 
@@ -30,6 +30,10 @@ Example:
 
     $ slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "Secret Message"
 
+Another example (hide the message  with Sieve of Eratosthenes):
+
+    >>> slsb-set --hide -i ../examples/pictures/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
+    
 
 Examples
 --------
@@ -40,10 +44,11 @@ There are some examples in the folder *examples*.
 Turorial
 --------
 
-A complete [tutorial](https://stegano.readthedocs.org/en/latest/tutorial/) is available.
+A [tutorial](https://stegano.readthedocs.org/en/latest/tutorial/) is available.
 
 
 Contact
 -------
+
 [My home page](https://www.cedricbonhomme.org).
 
