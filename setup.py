@@ -1,36 +1,40 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup
+import setuptools
 import os
 import shutil
 
+from distutils.core import setup, Extension
+
 requires = ['pillow']
 
+kw = {  'zip_safe': False,
+        'install_requires': requires
+    }
 
-try:
-    from setuptools import setup
-    kw = {'zip_safe': False,
-          'install_requires': requires
-          }
-except ImportError:
-    from distutils.core import setup
-    kw = {'requires': requires}
-
-
-
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name='Stegano',
     version='0.4',
     author='Cédric Bonhomme',
-    author_email='kimble.mandel@gmail.com',
+    author_email='cedric@cedricbonhomme.org',
     packages=['stegano'],
     #scripts=[''],
-    url='http://bitbucket.org/cedricbonhomme/stegano',
+    url='https://bitbucket.org/cedricbonhomme/stegano',
+    long_description=read('README.md'),
     platforms = ['Linux'],
-    license='COPYING',
+    license='GPLv3',
     description='A Python Steganography module.',
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "Topic :: Utilities",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    ],
     **kw
 )
 
