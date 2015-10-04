@@ -9,9 +9,7 @@ from distutils.core import setup, Extension
 
 requires = ['pillow']
 
-kw = {  'zip_safe': False,
-        'install_requires': requires
-    }
+kw = {'install_requires': requires}
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -33,7 +31,7 @@ setup(
         "Environment :: Console",
         "Topic :: Utilities",
         "Operating System :: OS Independent",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
     ],
     **kw
 )
