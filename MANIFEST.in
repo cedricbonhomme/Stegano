@@ -1,0 +1,12 @@
+#documentation
+recursive-include docs/ *
+
+#example files
+recursive-include examples/ *
+
+# binary files
+recursive-include bin/*
+
+#Misc
+include COPYING
+include requirements.txt

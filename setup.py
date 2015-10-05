@@ -1,47 +1,59 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import setuptools
 import os
+import sys
 import shutil
 
-from distutils.core import setup, Extension
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+packages = [
+    'stegano',
+    'stegano.exif',
+    'bin'
+]
 
 requires = ['pillow']
 
-kw = {'install_requires': requires}
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+with open('README.md', 'r') as f:
+    readme = f.read()
 
 setup(
     name='Stegano',
     version='0.4',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
-    packages=['stegano'],
+    packages=packages,
+    include_package_data=True,
     #scripts=[''],
     url='https://bitbucket.org/cedricbonhomme/stegano',
-    long_description=read('README.md'),
+    description='A Python Steganography module.',
+    long_description=readme,
     platforms = ['Linux'],
     license='GPLv3',
-    description='A Python Steganography module.',
+    install_requires=requires,
+    zip_safe=False,
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Topic :: Utilities",
         "Operating System :: OS Independent",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.4",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
-    ],
-    **kw
+    ]
 )
 
-print("Installing binaries")
-shutil.copy2("./bin/slsb-set", "/bin/slsb-set")
-shutil.copymode("./bin/slsb-set", "/bin/slsb-set")
+if sys.argv[-1] == "install":
+    print("Installing binaries")
+    shutil.copy2("./bin/slsb-set", "/bin/slsb-set")
+    shutil.copymode("./bin/slsb-set", "/bin/slsb-set")
 
-shutil.copy2("./bin/slsb", "/bin/slsb")
-shutil.copymode("./bin/slsb", "/bin/slsb")
+    shutil.copy2("./bin/slsb", "/bin/slsb")
+    shutil.copymode("./bin/slsb", "/bin/slsb")
 
-shutil.copy2("./bin/steganalysis-parity", "/bin/steganalysis-parity")
-shutil.copymode("./bin/steganalysis-parity", "/bin/steganalysis-parity")
+    shutil.copy2("./bin/steganalysis-parity", "/bin/steganalysis-parity")
+    shutil.copymode("./bin/steganalysis-parity", "/bin/steganalysis-parity")
