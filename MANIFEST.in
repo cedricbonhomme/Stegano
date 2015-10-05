@@ -9,4 +9,5 @@ recursive-include bin/*
 
 #Misc
 include COPYING
+include README.md
 include requirements.txt
