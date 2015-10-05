@@ -1,11 +1,11 @@
 #documentation
-recursive-include docs/ *
+recursive-include docs *
 
 #example files
-recursive-include examples/ *
+recursive-include examples *
 
 # binary files
-recursive-include bin/*
+recursive-include bin *
 
 #Misc
 include COPYING
