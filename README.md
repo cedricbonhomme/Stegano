@@ -4,14 +4,12 @@ Stéganô
 A Python Steganography module.
 
 
-Installation
-------------
+# Installation
 
     $ sudo pip install Stegano
 
 
-Use Stéganô as a library in your Python program
------------------------------------------------
+# Use Stéganô as a library in your Python program
 
 If you want to use Stéganô in your Python program you just have to import the appropriate steganography technique. For example:
 
@@ -21,8 +19,7 @@ If you want to use Stéganô in your Python program you just have to import the 
     >>> secret.save("./Lenna-secret.png")
 
 
-Use Stéganô as a program
-------------------------
+# Use Stéganô as a program
 
 In addition you can use Stéganô as a program.
 
@@ -32,23 +29,19 @@ Example:
 
 Another example (hide the message  with Sieve of Eratosthenes):
 
-    >>> slsb-set --hide -i ../examples/pictures/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
-    
+    $ slsb-set --hide -i ../examples/pictures/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
 
-Examples
---------
+
+# Examples
 
 There are some examples in the folder *examples*.
 
 
-Turorial
---------
+# Turorial
 
 A [tutorial](https://stegano.readthedocs.org/en/latest/tutorial/) is available.
 
 
-Contact
--------
+# Contact
 
 [My home page](https://www.cedricbonhomme.org).
-
