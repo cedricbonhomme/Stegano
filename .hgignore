@@ -12,3 +12,5 @@ syntax: glob
 
 
 build/*
+Stegano.egg-info/*
+dist/*
