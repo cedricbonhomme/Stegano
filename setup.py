@@ -19,6 +19,8 @@ requires = ['pillow']
 
 with open('README.md', 'r') as f:
     readme = f.read()
+with open('CHANGELOG.md', 'r') as f:
+    changelog = f.read()
 
 setup(
     name='Stegano',
@@ -30,7 +32,7 @@ setup(
     scripts=['bin/slsb', 'bin/slsb-set', 'bin/steganalysis-parity'],
     url='https://bitbucket.org/cedricbonhomme/stegano',
     description='A Python Steganography module.',
-    long_description=readme,
+    long_description=readme + changelog,
     platforms = ['Linux'],
     license='GPLv3',
     install_requires=requires,
