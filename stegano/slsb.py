@@ -28,7 +28,7 @@ import sys
 
 from PIL import Image
 
-import tools
+from . import tools
 
 def hide(input_image_file, message):
     """

@@ -27,7 +27,7 @@ __license__ = "GPLv3"
 try:
     from stegano import slsb
 except:
-    print "Install stegano: python setup.py install"
+    print("Install Stegano: sudo pip install Stegano")
 
 from stegano import tools
 
@@ -71,9 +71,9 @@ if options.hide:
     img_encoded = slsb.hide(options.input_image_file, secret)
     try:
         img_encoded.save(options.output_image_file)
-    except Exception, e:
+    except Exception as e:
         # If hide() returns an error (Too long message).
-        print e
+        print(e)
 
 elif options.reveal:
     secret = slsb.reveal(options.input_image_file)
@@ -82,4 +82,4 @@ elif options.reveal:
         with open(options.secret_binary, "w") as f:
             f.write(data)
     else:
-        print secret
+        print(secret)

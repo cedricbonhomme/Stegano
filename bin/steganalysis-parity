@@ -27,7 +27,7 @@ __license__ = "GPLv3"
 try:
     from stegano import steganalysisParity
 except:
-    print "Install stegano: python setup.py install"
+    print("Install Stegano: sudo pip install Stegano")
 
 from PIL import Image
 

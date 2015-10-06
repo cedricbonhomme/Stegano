@@ -12,8 +12,7 @@ except ImportError:
 
 packages = [
     'stegano',
-    'stegano.exif',
-    'bin'
+    'stegano.exif'
 ]
 
 requires = ['pillow']
@@ -23,12 +22,12 @@ with open('README.md', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.4.2',
+    version='0.4.3',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
     include_package_data=True,
-    #scripts=[''],
+    scripts=['bin/slsb', 'bin/slsb-set', 'bin/steganalysis-parity'],
     url='https://bitbucket.org/cedricbonhomme/stegano',
     description='A Python Steganography module.',
     long_description=readme,
@@ -46,14 +45,3 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
     ]
 )
-
-if sys.argv[-1] == "install":
-    print("Installing binaries")
-    shutil.copy2("./bin/slsb-set", "/bin/slsb-set")
-    shutil.copymode("./bin/slsb-set", "/bin/slsb-set")
-
-    shutil.copy2("./bin/slsb", "/bin/slsb")
-    shutil.copymode("./bin/slsb", "/bin/slsb")
-
-    shutil.copy2("./bin/steganalysis-parity", "/bin/steganalysis-parity")
-    shutil.copymode("./bin/steganalysis-parity", "/bin/steganalysis-parity")

@@ -28,8 +28,8 @@ import sys
 
 from PIL import Image
 
-import tools
-import generators
+from . import tools
+from . import generators
 
 def hide(input_image_file, message, generator_function):
     """
@@ -50,7 +50,7 @@ def hide(input_image_file, message, generator_function):
         raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
 
     generator = getattr(generators, generator_function)()
-    
+
     while index + 3 <= len(message_bits) :
         generated_number = next(generator)
         (r, g, b) = img_list[generated_number]
@@ -62,17 +62,17 @@ def hide(input_image_file, message, generator_function):
 
         # Save the new pixel
         img_list[generated_number] = (r, g , b)
-        
+
         index += 3
 
     # create empty new image of appropriate format
     encoded = Image.new('RGB', (img.size))
-        
+
     # insert saved data into the image
     encoded.putdata(img_list)
-    
+
     return encoded
-    
+
 
 
 def reveal(input_image_file, generator_function):
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     # Generator
     parser.add_option("-g", "--generator", dest="generator_function",
                     help="Generator")
-                    
+
     # Image containing the secret
     parser.add_option("-o", "--output", dest="output_image_file",
                     help="Output image containing the secret.")
