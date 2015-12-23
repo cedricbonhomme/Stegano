@@ -30,7 +30,7 @@ setup(
     packages=packages,
     include_package_data=True,
     scripts=['bin/slsb', 'bin/slsb-set', 'bin/steganalysis-parity'],
-    url='https://bitbucket.org/cedricbonhomme/stegano',
+    url='https://github.com/cedricbonhomme/Stegano',
     description='A Python Steganography module.',
     long_description=readme + '\n\n' + changelog,
     platforms = ['Linux'],
