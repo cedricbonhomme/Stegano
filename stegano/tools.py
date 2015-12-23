@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2013  Cédric Bonhomme - http://cedricbonhomme.org/
+# Copyright (C) 2010-2015  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
-# For more information : http://bitbucket.org/cedricbonhomme/stegano/
+# For more information : https://github.com/cedricbonhomme/Stegano
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ def binary2base64(binary_file):
 
     # Encode binary to base64 string (printable)
     return  base64.b64encode(binary_data)
-    
+
     """fout = open(output_file, "w")
     fout.write(b64_data)
     fout.close"""

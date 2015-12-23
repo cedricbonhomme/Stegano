@@ -6,6 +6,6 @@ recursive-include bin *
 
 #Misc
 include COPYING
-include README.md
+include README.rst
 include CHANGELOG.md
 include requirements.txt

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2013  Cédric Bonhomme - http://cedricbonhomme.org/
+# Copyright (C) 2010-2015  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
-# For more information : http://bitbucket.org/cedricbonhomme/stegano/
+# For more information : https://github.com/cedricbonhomme/Stegano
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ def Dead_Man_Walking():
     while True:
         yield n + 7
         n += 2
-        
+
 def OEIS_A000217():
     """
     http://oeis.org/A000217
@@ -147,7 +147,7 @@ def log_gen():
         adder = max(1, math.pow(10, int(math.log10(y))))
         yield int(y)
         y = y + adder
-        
+
 if __name__ == "__main__":
     # Point of entry in execution mode.
     f = fibonacci()

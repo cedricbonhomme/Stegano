@@ -2,9 +2,9 @@
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2013  Cédric Bonhomme - http://cedricbonhomme.org/
+# Copyright (C) 2010-2015  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
-# For more information : http://bitbucket.org/cedricbonhomme/stegano/
+# For more information : https://github.com/cedricbonhomme/Stegano
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     parser.set_defaults(input_image_file = './pictures/Lenna.png',
                         output_image_file = './pictures/Lenna_steganalysed.png')
     (options, args) = parser.parse_args()
-    
+
     input_image_file = Image.open(options.input_image_file)
     output_image = steganalyse(input_image_file)
     output_image.save(options.output_image_file)
