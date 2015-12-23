@@ -57,10 +57,10 @@ There are some examples in the folder *examples*.
 Turorial
 --------
 
-A [tutorial](https://stegano.readthedocs.org) is available.
+A `tutorial <https://stegano.readthedocs.org>`_ is available.
 
 
 Contact
 -------
 
-[My home page](https://www.cedricbonhomme.org).
+`My home page <https://www.cedricbonhomme.org>`_.
