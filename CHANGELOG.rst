@@ -36,16 +36,16 @@ Python codes as a Python module or as a program in your scripts.
 0.3 (2011-04-15)
 ----------------
 
-* you can now use Stéganô as a library in your Python program
-(python setup.py install) or as a 'program' thanks to the scripts provided
-in the bin directory;
+* you can now use Stéganô as a library in your Python program;
+  (python setup.py install) or as a 'program' thanks to the scripts provided
+  in the bin directory;
 * new documentation (reStructuredText) comes with Stéganô.
 
 0.2 (2011-03-24)
 ----------------
 
 * this release introduces some bugfixes and a major speed improvement of the
-*reveal* function for the LSB method. Moreover it is now possible to hide a
-binary file (ogg, executable, etc.);
+  *reveal* function for the LSB method. Moreover it is now possible to hide a
+  binary file (ogg, executable, etc.);
 * a new technique for hiding/revealing a message in a JPEG picture by using the
-description field of the image is provided.
+  description field of the image is provided.
