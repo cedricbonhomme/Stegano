@@ -19,7 +19,7 @@ requires = ['pillow']
 
 with open('README.rst', 'r') as f:
     readme = f.read()
-with open('CHANGELOG.md', 'r') as f:
+with open('CHANGELOG.rst', 'r') as f:
     changelog = f.read()
 
 setup(
