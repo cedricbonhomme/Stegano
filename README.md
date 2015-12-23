@@ -41,7 +41,7 @@ Examples
 
 There are some examples in the folder *examples*.
 
-    $ hg clone https://bitbucket.org/cedricbonhomme/stegano
+    $ git clone https://github.com/cedricbonhomme/Stegano.git
     $ cd stegano/examples
 
 

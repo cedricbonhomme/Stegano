@@ -1,18 +1,16 @@
-Getting Stéganô
-===============
+Getting the source code of Stéganô
+==================================
 
 .. code-block:: bash
 
-    $ hg clone https://bitbucket.org/cedricbonhomme/stegano
-    $ cd stegano/
-    $ chmod u+x *.py # if you want to use Stéganô in command line
+    $ git clone https://github.com/cedricbonhomme/Stegano.git
 
 Installation
 ============
 
 .. code-block:: bash
 
-    $ python setup.py install
+    $ sudo pip install Stegano
 
 Now you will be able to use Stéganô in your Python program.
 
@@ -38,8 +36,8 @@ Display help
 
 .. code-block:: bash
 
-    $ ./slsb.py --help
-    Usage: slsb.py [options]
+    $ slsb --help
+    Usage: slsb [options]
 
     Options:
     --version             show program's version number and exit
@@ -63,8 +61,8 @@ Hide and reveal a text message
 
 .. code-block:: bash
 
-    $ ./slsb.py --hide -i ./pictures/Lenna.png -o ./pictures/Lenna_enc.png -m HelloWorld!
-    $ ./slsb.py --reveal -i ./pictures/Lenna_enc.png
+    $ slsb --hide -i ./pictures/Lenna.png -o ./pictures/Lenna_enc.png -m HelloWorld!
+    $ slsb --reveal -i ./pictures/Lenna_enc.png
     HelloWorld!
 
 Hide and reveal a binary file
@@ -73,9 +71,9 @@ Hide and reveal a binary file
 .. code-block:: bash
 
     $ wget http://www.gnu.org/music/free-software-song.ogg
-    $ ./slsb.py --hide -i ./pictures/Montenach.png -o ./pictures/Montenach_enc.png -f ./free-software-song.ogg
+    $ slsb --hide -i ./pictures/Montenach.png -o ./pictures/Montenach_enc.png -f ./free-software-song.ogg
     $ rm free-software-song.ogg
-    $ ./slsb.py --reveal -i ./pictures/Montenach_enc.png -b ./song.ogg
+    $ slsb --reveal -i ./pictures/Montenach_enc.png -b ./song.ogg
 
 Hide and reveal a message by using the description field of the image
 ---------------------------------------------------------------------
@@ -90,6 +88,4 @@ Steganalysis
 
 .. code-block:: bash
 
-    $ ./steganalysis-parity.py -i ./pictures./Lenna_enc.png -o ./pictures/Lenna_enc_st.png
-
- 
+    $ steganalysis-parity -i ./pictures./Lenna_enc.png -o ./pictures/Lenna_enc_st.png
