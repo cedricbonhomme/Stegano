@@ -17,7 +17,7 @@ packages = [
 
 requires = ['pillow']
 
-with open('README.md', 'r') as f:
+with open('README.rst', 'r') as f:
     readme = f.read()
 with open('CHANGELOG.md', 'r') as f:
     changelog = f.read()
