@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.4.4 (2015-12-23)
+------------------
+
+* new project home page;
+* minor updated to the documentation.
+
+
 0.4.3 (2015-10-06)
 ------------------
 
