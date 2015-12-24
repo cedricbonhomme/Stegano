@@ -21,7 +21,7 @@ appropriate steganography technique. For example:
 .. code:: python
 
     >>> from stegano import slsb
-    >>> secret = slsb.hide("./pictures/Lenna.png", "Hello Workd")
+    >>> secret = slsb.hide("./pictures/Lenna.png", "Hello World")
     >>> secret.save("./Lenna-secret.png")
 
 
