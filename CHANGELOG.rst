@@ -1,9 +1,14 @@
 Release History
 ===============
 
-0.4.5 (2015-12-23)
+0.4.6 (2016-03-12)
 ------------------
 
+* bugfix when the length of the message to hide is not divisible by 3,
+  for the slsb and slsbset module.
+
+0.4.5 (2015-12-23)
+------------------
 * bugfix.
 
 0.4.4 (2015-12-23)
@@ -11,7 +16,6 @@ Release History
 
 * new project home page;
 * minor updated to the documentation.
-
 
 0.4.3 (2015-10-06)
 ------------------

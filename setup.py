@@ -24,7 +24,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.4.5',
+    version='0.4.6',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
@@ -44,6 +44,7 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
     ]
 )
