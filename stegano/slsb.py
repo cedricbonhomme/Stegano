@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2015  Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2016  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.2 $"
-__date__ = "$Date: 2010/03/24 $"
+__version__ = "$Revision: 0.2.1 $"
+__date__ = "$Date: 2016/03/12 $"
 __license__ = "GPLv3"
 
 import sys
@@ -43,6 +43,7 @@ def hide(input_image_file, message):
     message = str(len(message)) + ":" + message
     #message_bits = tools.a2bits(message)
     message_bits = "".join(tools.a2bits_list(message))
+    message_bits += '0' * ((3 - (len(message_bits) % 3)) % 3)
 
     npixels = width * height
     if len(message_bits) > npixels * 3:
