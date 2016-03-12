@@ -36,6 +36,15 @@ def hide(input_image_file, message):
     LSB (Least Significant Bit) technique.
     """
     img = Image.open(input_image_file)
+
+    if img.mode != 'RGB':
+        print('The mode of the image is not RGB. Mode is {}'.format(img.mode))
+        answer = input('Convert the image to RGB (Y / N) ?\n')
+        if answer == 'n':
+            raise Exception('Not a RGB image.')
+        else:
+            img = img.convert('RGB')
+
     encoded = img.copy()
     width, height = img.size
     index = 0
