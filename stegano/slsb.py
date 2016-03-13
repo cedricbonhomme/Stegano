@@ -30,6 +30,11 @@ from PIL import Image
 
 from . import tools
 
+try:
+   input = raw_input
+except NameError:
+   pass
+
 def hide(input_image_file, message):
     """
     Hide a message (string) in an image with the
@@ -49,7 +54,7 @@ def hide(input_image_file, message):
     width, height = img.size
     index = 0
 
-    message = str(len(message)) + ":" + message
+    message = str(len(message)) + ":" + str(message)
     #message_bits = tools.a2bits(message)
     message_bits = "".join(tools.a2bits_list(message))
     message_bits += '0' * ((3 - (len(message_bits) % 3)) % 3)
