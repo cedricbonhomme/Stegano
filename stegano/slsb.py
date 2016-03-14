@@ -44,8 +44,8 @@ def hide(input_image_file, message):
 
     if img.mode != 'RGB':
         print('The mode of the image is not RGB. Mode is {}'.format(img.mode))
-        answer = input('Convert the image to RGB (Y / N) ?\n')
-        if answer == 'n':
+        answer = input('Convert the image to RGB ? [Y / n]\n') or 'Y'
+        if answer.lower() == 'n':
             raise Exception('Not a RGB image.')
         else:
             img = img.convert('RGB')
