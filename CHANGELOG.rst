@@ -1,10 +1,10 @@
 Release History
 ===============
 
-0.4.7 (not yet released)
-------------------------
+0.5 (2016-03-18)
+----------------
 
-* management of greyscale images;
+* management of greyscale images.
 
 0.4.6 (2016-03-12)
 ------------------

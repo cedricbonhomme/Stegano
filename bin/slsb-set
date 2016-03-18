@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
-__date__ = "$Date: 2011/12/29 $"
+__version__ = "$Revision: 0.5 $"
+__date__ = "$Date: 2016/03/18 $"
 __license__ = "GPLv3"
 
 try:
