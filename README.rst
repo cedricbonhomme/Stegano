@@ -54,6 +54,14 @@ There are some examples in the folder *examples*.
     $ cd stegano/examples
 
 
+Running the tests
+-----------------
+
+.. code:: bash
+
+    $ python -m unittest discover -v
+
+
 Turorial
 --------
 

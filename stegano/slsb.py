@@ -81,6 +81,7 @@ def hide(input_image_file, message):
 
             index += 3
 
+    img.close()
     return encoded
 
 def reveal(input_image_file):
@@ -110,7 +111,9 @@ def reveal(input_image_file):
                             pass
 
             if len(bitab)-len(str(limit))-1 == limit :
+                img.close()
                 return "".join(bitab)[len(str(limit))+1:]
+    img.close()
     return ""
 
 def write(image, output_image_file):
@@ -121,6 +124,8 @@ def write(image, output_image_file):
     except Exception as e:
         # If hide() returns an error (Too long message).
         print(e)
+    finally:
+        image.close()
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
