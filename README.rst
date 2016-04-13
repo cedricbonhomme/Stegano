@@ -1,6 +1,9 @@
 Stéganô
 =======
 
+.. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
+    :target: https://travis-ci.org/cedricbonhomme/Stegano
+
 A Python Steganography module.
 
 
