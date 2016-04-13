@@ -57,6 +57,10 @@ class TestSLSB(unittest.TestCase):
         with open("./examples/lorem_ipsum.txt") as f:
             message = f.read()
         secret = slsb.hide("./examples/pictures/Lenna.png", message)
+        secret.save("./image.png")
+
+        clear_message = slsb.reveal("./image.png")
+        self.assertEqual(message, clear_message)
 
     def test_with_too_long_message(self):
         with open("./examples/lorem_ipsum.txt") as f:
