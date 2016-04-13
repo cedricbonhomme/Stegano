@@ -29,7 +29,7 @@ import unittest
 
 from stegano import slsbset
 
-class TestSLSBSET(unittest.TestCase):
+class TestSLSBSet(unittest.TestCase):
 
     def test_hide_empty_message(self):
         """
