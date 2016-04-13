@@ -152,4 +152,5 @@ if __name__ == "__main__":
     # Point of entry in execution mode.
     f = fibonacci()
     for x in range(13):
-        print(next(f), end=' ') # 0 1 1 2 3 5 8 13 21 34 55 89 144
+        #print(next(f), end=' ') # 0 1 1 2 3 5 8 13 21 34 55 89 144
+        pass
