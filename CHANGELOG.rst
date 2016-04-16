@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.5.1 (2016-04-16)
+------------------
+
+* minor improvements and bug fixes;
+* added unit tests for the slsb and slsbset modules.
+
 0.5 (2016-03-18)
 ----------------
 
