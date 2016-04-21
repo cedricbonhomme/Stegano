@@ -6,6 +6,8 @@ syntax: glob
 *~
 *.db
 
+.idea/
+
 build/*
 Stegano.egg-info/*
 dist/*
