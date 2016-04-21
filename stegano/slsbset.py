@@ -36,7 +36,7 @@ try:
 except NameError:
    pass
 
-def hide(input_image_file, message, generator_function):
+def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
     """
     Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
@@ -45,11 +45,12 @@ def hide(input_image_file, message, generator_function):
 
     if img.mode != 'RGB':
         print('The mode of the image is not RGB. Mode is {}'.format(img.mode))
-        answer = input('Convert the image to RGB ? [Y / n]\n') or 'Y'
-        if answer.lower() == 'n':
-            raise Exception('Not a RGB image.')
-        else:
-            img = img.convert('RGB')
+        if not auto_convert_rgb:
+            answer = input('Convert the image to RGB ? [Y / n]\n') or 'Y'
+            if answer.lower() == 'n':
+                raise Exception('Not a RGB image.')
+
+        img = img.convert('RGB')
 
     img_list = list(img.getdata())
     width, height = img.size
