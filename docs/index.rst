@@ -13,6 +13,7 @@ Presentation
     :align: left
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
+
 Stéganô_ is a Python steganography_ module.
 Steganography is the art and science of writing hidden messages in such a way that no one,
 apart from the sender and intended recipient, suspects the existence of the message, a form
@@ -59,7 +60,8 @@ Stéganô_ is under GPL v3 license.
 Donation
 ========
 
-If you wish and if you like Stéganô, you can donate via bitcoin. My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
+If you wish and if you like Stéganô, you can donate via bitcoin.
+My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
 
 
 Contact
