@@ -20,13 +20,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
-__date__ = "$Date: 2010/03/24 $"
+__version__ = "$Revision: 0.2 $"
+__date__ = "$Date: 2016/04/17 $"
 __license__ = "GPLv3"
 
 # Thanks to: http://www.julesberman.info/spec2img.htm
 
-def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano", \
+def hide(img, img_enc, copyright="https://github.com/cedricbonhomme/Stegano", \
             secret_message = None, secret_file = None):
     """
     """
@@ -57,7 +57,8 @@ def hide(img, img_enc, copyright="http://bitbucket.org/cedricbonhomme/stegano", 
     f = MinimalExifWriter(img_enc)
     f.removeExif()
     f.newImageDescription(text)
-    f.newCopyright(copyright, addYear = 1)
+    if copyright:
+        f.newCopyright(copyright, addYear = 1)
     f.process()
 
 

@@ -6,14 +6,19 @@
 Welcome to Stéganô's documentation!
 ===================================
 
-.. toctree::
-   :maxdepth: 2
+Presentation
+============
+
+.. figure:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
+    :align: left
+    :target: https://travis-ci.org/cedricbonhomme/Stegano
 
 Stéganô_ is a Python steganography_ module.
 Steganography is the art and science of writing hidden messages in such a way that no one,
 apart from the sender and intended recipient, suspects the existence of the message, a form
 of security through obscurity. Consequently, functions provided by Stéganô only hide message,
 without encryption. Indeed steganography is often used with cryptography.
+
 
 
 Requirements
