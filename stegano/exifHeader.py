@@ -24,39 +24,33 @@ __version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2016/05/17 $"
 __license__ = "GPLv3"
 
-# Thanks to: http://www.julesberman.info/spec2img.htm
+from PIL import Image
+import piexif
 
-def hide(img, img_enc, copyright="https://github.com/cedricbonhomme/Stegano", \
-            secret_message = None, secret_file = None):
+def hide(img, img_enc, secret_message = None, secret_file = None):
     """
     """
-    import shutil
-    import datetime
     from zlib import compress
-    from zlib import decompress
     from base64 import b64encode
-    from .exif.minimal_exif_writer import MinimalExifWriter
 
     if secret_file != None:
         with open(secret_file, "r") as f:
             secret_file_content = f.read()
     if secret_file != None:
-        text = compress(b64encode(secret_file_content))
+        text = compress(b64encode(bytes(secret_file_content, "utf-8")))
     else:
-        text = compress(b64encode(secret_message))
+        text = compress(b64encode(bytes(secret_message, "utf-8")))
 
-    try:
-        shutil.copy(img, img_enc)
-    except Exception as e:
-        print(("Impossible to copy image:", e))
-        return
-
-    f = MinimalExifWriter(img_enc)
-    f.removeExif()
-    f.newImageDescription(text)
-    if copyright:
-        f.newCopyright(copyright, addYear = 1)
-    f.process()
+    img = Image.open(img)
+    if "exif" in img.info:
+        exif_dict = piexif.load(img.info["exif"])
+    else:
+        exif_dict = {}
+        exif_dict["0th"] = {}
+    exif_dict["0th"][piexif.ImageIFD.ImageDescription] = text
+    exif_bytes = piexif.dump(exif_dict)
+    img.save(img_enc, exif=exif_bytes)
+    img.close()
 
 
 def reveal(img):
@@ -64,16 +58,10 @@ def reveal(img):
     """
     from base64 import b64decode
     from zlib import decompress
-    from .exif.minimal_exif_reader import MinimalExifReader
-    try:
-        g = MinimalExifReader(img)
-    except:
-        print("Impossible to read description.")
-        return
-    return b64decode(decompress(g.imageDescription()))
-    #print((b64decode(decompress(g.imageDescription()))))
-    #print(("\nCopyright " + g.copyright()))
-    #print g.dateTimeOriginal()
+
+    exif_dict = piexif.load(img)
+    encoded_message = exif_dict["0th"][piexif.ImageIFD.ImageDescription]
+    return b64decode(decompress(encoded_message))
 
 
 if __name__ == "__main__":

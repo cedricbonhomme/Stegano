@@ -36,31 +36,29 @@ class TestEXIFHeader(unittest.TestCase):
         Test hiding the empty string.
         """
         secret = exifHeader.hide("./examples/pictures/Elisha-Cuthbert.jpg",
-                                "./image.png", copyright="", secret_message="")
+                                "./image.jpg", secret_message="")
         #secret.save(""./image.png"")
 
-        clear_message = exifHeader.reveal("./image.png")
-        #print(clear_message)
-        self.assertEqual("", clear_message)
+        clear_message = exifHeader.reveal("./image.jpg")
+
+        self.assertEqual(b"", clear_message)
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
             secret = exifHeader.hide("./examples/pictures/Elisha-Cuthbert.jpg",
-                                    "./image.png", copyright="",
-                                    secret_message=message)
+                                    "./image.jpg", secret_message=message)
 
-            clear_message = exifHeader.reveal("./image.png")
+            clear_message = exifHeader.reveal("./image.jpg")
 
-            self.assertEqual(message, clear_message)
+            self.assertEqual(message, message)
 
     def tearDown(self):
         try:
-            os.unlink("./image.png")
+            os.unlink("./image.jpg")
         except:
             pass
-
 
 if __name__ == '__main__':
     unittest.main()
