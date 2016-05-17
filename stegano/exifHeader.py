@@ -21,7 +21,7 @@
 
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.2 $"
-__date__ = "$Date: 2016/04/17 $"
+__date__ = "$Date: 2016/05/17 $"
 __license__ = "GPLv3"
 
 # Thanks to: http://www.julesberman.info/spec2img.htm
@@ -40,13 +40,10 @@ def hide(img, img_enc, copyright="https://github.com/cedricbonhomme/Stegano", \
     if secret_file != None:
         with open(secret_file, "r") as f:
             secret_file_content = f.read()
-    text = "\nImage annotation date: "
-    text = text + str(datetime.date.today())
-    text = text  + "\nImage description:\n"
     if secret_file != None:
-        text = compress(b64encode(text + secret_file_content))
+        text = compress(b64encode(secret_file_content))
     else:
-        text = compress(b64encode(text + secret_message))
+        text = compress(b64encode(secret_message))
 
     try:
         shutil.copy(img, img_enc)
@@ -73,9 +70,10 @@ def reveal(img):
     except:
         print("Impossible to read description.")
         return
-    print((b64decode(decompress(g.imageDescription()))))
-    print(("\nCopyright " + g.copyright()))
-    #print g.dateTimeOriginal()s
+    return b64decode(decompress(g.imageDescription()))
+    #print((b64decode(decompress(g.imageDescription()))))
+    #print(("\nCopyright " + g.copyright()))
+    #print g.dateTimeOriginal()
 
 
 if __name__ == "__main__":
