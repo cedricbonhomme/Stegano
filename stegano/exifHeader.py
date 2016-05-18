@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     # Secret text file to hide.
     parser.add_option("-f", "--secret-file", dest="secret_file",
-                    help="Your secret textt file to hide.")
+                    help="Your secret text file to hide.")
 
     parser.set_defaults(input_image_file = './pictures/Elisha-Cuthbert.jpg',
                         output_image_file = './pictures/Elisha-Cuthbert_enc.jpg',
