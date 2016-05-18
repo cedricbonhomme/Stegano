@@ -1,10 +1,3 @@
-Getting the source code of Stéganô
-==================================
-
-.. code-block:: bash
-
-    $ git clone https://github.com/cedricbonhomme/Stegano.git
-
 Installation
 ============
 
@@ -12,21 +5,52 @@ Installation
 
     $ sudo pip install Stegano
 
-Now you will be able to use Stéganô in your Python program.
+You will be able to use Stéganô in your Python programs
+or as a command line tool.
+
+If you want to retrieve the source code (with the unit tests):
+
+.. code-block:: bash
+
+    $ git clone https://github.com/cedricbonhomme/Stegano.git
+
+.. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
+    :target: https://travis-ci.org/cedricbonhomme/Stegano
 
 Using Stéganô as a Python module
 ================================
 
+LSB method
+----------
+
 .. code-block:: python
 
-    Python 2.7 (r27:82500, Jul  5 2010, 10:14:47)
-    [GCC 4.3.2] on linux2
+    Python 3.5.1 (default, Dec  7 2015, 11:33:57)
+    [GCC 4.9.2] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import slsb
-    >>> secret = slsb.hide("./pictures/Lenna.png", "Hello world!")
+    >>> secret = slsb.hide("./examples/pictures/Lenna.png", "Hello world!")
     >>> secret.save("./Lenna-secret.png")
-    >>> slsb.reveal("./Lenna-secret.png")
+    >>> print(slsb.reveal("./Lenna-secret.png"))
     Hello world!
+
+Description field of the image
+------------------------------
+
+For JPEG and TIFF images.
+
+.. code-block:: python
+
+    Python 3.5.1 (default, Dec  7 2015, 11:33:57)
+    [GCC 4.9.2] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> from stegano import exifHeader
+    >>> secret = exifHeader.hide("./examples/pictures/20160505T130442.jpg",
+                            "./image.jpg", secret_message="Hello world!")
+    >>> print(exifHeader.reveal("./image.jpg"))
+
+More examples are available in the
+`tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
 
 Using Stéganô in command line for your scripts
 ==============================================

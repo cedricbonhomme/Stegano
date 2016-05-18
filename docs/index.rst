@@ -9,35 +9,20 @@ Welcome to Stéganô's documentation!
 Presentation
 ============
 
-.. figure:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
-    :align: left
-    :target: https://travis-ci.org/cedricbonhomme/Stegano
-
-
 Stéganô_ is a Python steganography_ module.
-Steganography is the art and science of writing hidden messages in such a way that no one,
-apart from the sender and intended recipient, suspects the existence of the message, a form
-of security through obscurity. Consequently, functions provided by Stéganô only hide message,
-without encryption. Indeed steganography is often used with cryptography.
 
+Steganography is the art and science of writing hidden messages in such a way
+that no one, apart from the sender and intended recipient, suspects the
+existence of the message, a form of security through obscurity.
+Consequently, functions provided by Stéganô only hide messages,
+without encryption. Steganography is often used with cryptography.
 
-
-Requirements
-============
-
-- Python_ >= 3.2 (tested with Python 3.3.1);
-- `Pillow`_.
-
-
-Methods of hiding
-=================
-
-For the moment, Stéganô implements these methods of hiding:
+Stéganô implements these methods of hiding:
 
 - using the red portion of a pixel to hide ASCII messages;
 - using the `Least Significant Bit <http://en.wikipedia.org/wiki/Least_significant_bit>`_ (LSB) technique;
 - using the LSB technique with sets based on generators (Sieve for Eratosthenes, Fermat, Mersenne numbers, etc.);
-- using the description field of the image (JPEG).
+- using the description field of the image (JPEG and TIFF).
 
 Moreover some methods of steganalysis_ are provided:
 
@@ -45,10 +30,24 @@ Moreover some methods of steganalysis_ are provided:
 - statistical steganalysis.
 
 
+Requirements
+============
+
+- Python_ >= 3.2 (tested with Python 3.5.1);
+- `Pillow`_;
+- `piexif`_.
+
+
 Turorial
 ========
 
-More information available at the :doc:`tutorial </tutorial>` page
+.. toctree::
+    :maxdepth: 2
+
+    tutorial
+
+You can also take a look at the
+`unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
 
 
 License
@@ -70,8 +69,9 @@ Contact
 `My home page <https://www.cedricbonhomme.org>`_
 
 
-.. _Python: http://python.org
+.. _Python: https://www.python.org
 .. _Stéganô: https://github.com/cedricbonhomme/Stegano
 .. _`Pillow`: https://pypi.python.org/pypi/Pillow
+.. _`piexif`: https://pypi.python.org/pypi/piexif
 .. _steganography: http://en.wikipedia.org/wiki/Steganography
 .. _steganalysis: http://en.wikipedia.org/wiki/Steganalysis
