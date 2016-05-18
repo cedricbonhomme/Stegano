@@ -11,11 +11,10 @@ except ImportError:
     from distutils.core import setup
 
 packages = [
-    'stegano',
-    'stegano.exif'
+    'stegano'
 ]
 
-requires = ['pillow']
+requires = ['pillow', 'piexif']
 
 with open('README.rst', 'r') as f:
     readme = f.read()
