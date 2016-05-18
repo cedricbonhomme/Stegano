@@ -12,6 +12,8 @@ build/*
 Stegano.egg-info/*
 dist/*
 
+docs/_build
+
 # Emacs
 eproject.cfg
 
