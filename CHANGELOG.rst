@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.5.2 (2016-05-18)
+------------------
+
+* improvements and bug fixes for the exifHeader module;
+* added unit tests for the exifHeader module;
+* improvements of the documentation.
+
 0.5.1 (2016-04-16)
 ------------------
 
