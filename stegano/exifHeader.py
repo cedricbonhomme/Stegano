@@ -27,8 +27,9 @@ __license__ = "GPLv3"
 from PIL import Image
 import piexif
 
-def hide(img, img_enc, secret_message = None, secret_file = None):
+def hide(input_image_file, img_enc, secret_message = None, secret_file = None):
     """
+    Hide a message (string) in an image.
     """
     from zlib import compress
     from base64 import b64encode
@@ -36,12 +37,11 @@ def hide(img, img_enc, secret_message = None, secret_file = None):
     if secret_file != None:
         with open(secret_file, "r") as f:
             secret_file_content = f.read()
-    if secret_file != None:
         text = compress(b64encode(bytes(secret_file_content, "utf-8")))
     else:
         text = compress(b64encode(bytes(secret_message, "utf-8")))
 
-    img = Image.open(img)
+    img = Image.open(input_image_file)
     if "exif" in img.info:
         exif_dict = piexif.load(img.info["exif"])
     else:
@@ -51,15 +51,17 @@ def hide(img, img_enc, secret_message = None, secret_file = None):
     exif_bytes = piexif.dump(exif_dict)
     img.save(img_enc, exif=exif_bytes)
     img.close()
+    return img
 
 
-def reveal(img):
+def reveal(input_image_file):
     """
+    Find a message in an image.
     """
     from base64 import b64decode
     from zlib import decompress
 
-    exif_dict = piexif.load(img)
+    exif_dict = piexif.load(input_image_file)
     encoded_message = exif_dict["0th"][piexif.ImageIFD.ImageDescription]
     return b64decode(decompress(encoded_message))
 
@@ -95,11 +97,13 @@ if __name__ == "__main__":
 
     if options.hide:
         if options.secret_message != "" and options.secret_file == "":
-            hide(img=options.input_image_file, img_enc=options.output_image_file, \
+            hide(input_image_file=options.input_image_file, \
+                    img_enc=options.output_image_file, \
                     secret_message=options.secret_message)
         elif options.secret_message == "" and options.secret_file != "":
-            hide(img=options.input_image_file, img_enc=options.output_image_file, \
+            hide(input_image_file=options.input_image_file, \
+                    img_enc=options.output_image_file, \
                     secret_file=options.secret_file)
 
     elif options.reveal:
-        reveal(img=options.input_image_file)
+        reveal(input_image_file=options.input_image_file)
