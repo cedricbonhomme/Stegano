@@ -21,7 +21,7 @@ tool.
 Usage
 -----
 
-A `tutorial <https://stegano.readthedocs.org>`_ is available.
+A `tutorial <https://stegano.readthedocs.io>`_ is available.
 
 There are also some examples in the folder `examples <examples>`_.
 
