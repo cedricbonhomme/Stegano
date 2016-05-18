@@ -14,9 +14,19 @@ Installation
 
     $ sudo pip install Stegano
 
+You will be able to use Stéganô in your Python programs or as a command line
+tool.
+
+
+Usage
+-----
+
+A `tutorial <https://stegano.readthedocs.org>`_ is available.
+
+There are also some examples in the folder `examples <examples>`_.
 
 Use Stéganô as a library in your Python program
------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''
 
 If you want to use Stéganô in your Python program you just have to import the
 appropriate steganography technique. For example:
@@ -29,32 +39,17 @@ appropriate steganography technique. For example:
 
 
 Use Stéganô as a program
-------------------------
-
-In addition you can use Stéganô as a program.
-
-Example:
+''''''''''''''''''''''''
 
 .. code:: bash
 
     $ slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "Secret Message"
 
-Another example (hide the message  with Sieve of Eratosthenes):
+Hide the message  with Sieve of Eratosthenes:
 
 .. code:: bash
 
     $ slsb-set --hide -i ../examples/pictures/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
-
-
-Examples
---------
-
-There are some examples in the folder *examples*.
-
-.. code:: bash
-
-    $ git clone https://github.com/cedricbonhomme/Stegano.git
-    $ cd stegano/examples
 
 
 Running the tests
@@ -63,12 +58,6 @@ Running the tests
 .. code:: bash
 
     $ python -m unittest discover -v
-
-
-Turorial
---------
-
-A `tutorial <https://stegano.readthedocs.org>`_ is available.
 
 
 Contact
