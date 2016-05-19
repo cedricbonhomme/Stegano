@@ -23,7 +23,8 @@ Usage
 
 A `tutorial <https://stegano.readthedocs.io>`_ is available.
 
-There are also some examples in the folder `examples <examples>`_.
+There are also some examples in the folder
+`examples <https://github.com/cedricbonhomme/Stegano/tree/master/examples>`_.
 
 Use Stéganô as a library in your Python program
 '''''''''''''''''''''''''''''''''''''''''''''''
