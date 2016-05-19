@@ -46,7 +46,7 @@ Turorial
 
     tutorial
 
-You can also take a look at the
+You can also have a look at the
 `unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
 
 

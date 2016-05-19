@@ -11,7 +11,12 @@ except ImportError:
     from distutils.core import setup
 
 packages = [
-    'stegano'
+    'stegano',
+    'stegano.red',
+    'stegano.exifHeader',
+    'stegano.lsb',
+    'stegano.lsbset',
+    'stegano.steganalysis'
 ]
 
 requires = ['pillow', 'piexif']
@@ -28,7 +33,7 @@ setup(
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
     include_package_data=True,
-    scripts=['bin/slsb', 'bin/slsb-set', 'bin/steganalysis-parity'],
+    scripts=['bin/lsb', 'bin/lsb-set', 'bin/steganalysis-parity'],
     url='https://github.com/cedricbonhomme/Stegano',
     description='A Python Steganography module.',
     long_description=readme + '\n\n' + changelog,

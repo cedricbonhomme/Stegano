@@ -25,9 +25,9 @@ __date__ = "$Date: 2016/03/18 $"
 __license__ = "GPLv3"
 
 try:
-    from stegano import slsbset
+    from stegano import lsb
 except:
-    print("Install stegano: sudo pip install Stegano")
+    print("Install Stegano: sudo pip install Stegano")
 
 from stegano import tools
 
@@ -40,11 +40,6 @@ parser.add_option('--reveal', action='store_true', default=False,
 # Original image
 parser.add_option("-i", "--input", dest="input_image_file",
                 help="Input image file.")
-
-# Generator
-parser.add_option("-g", "--generator", dest="generator_function",
-                help="Generator")
-
 # Image containing the secret
 parser.add_option("-o", "--output", dest="output_image_file",
                 help="Output image containing the secret.")
@@ -61,7 +56,6 @@ parser.add_option("-b", "--binary", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
 parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                    generator_function = 'fermat',
                     output_image_file = './pictures/Lenna_enc.png',
                     secret_message = '', secret_file = '', secret_binary = "")
 
@@ -74,7 +68,7 @@ if options.hide:
     elif options.secret_message == "" and options.secret_file != "":
         secret = tools.binary2base64(options.secret_file)
 
-    img_encoded = slsbset.hide(options.input_image_file, secret, options.generator_function)
+    img_encoded = lsb.hide(options.input_image_file, secret)
     try:
         img_encoded.save(options.output_image_file)
     except Exception as e:
@@ -82,11 +76,7 @@ if options.hide:
         print(e)
 
 elif options.reveal:
-    try:
-        secret = slsbset.reveal(options.input_image_file, options.generator_function)
-    except IndexError:
-        print("Impossible to detect message.")
-        exit(0)
+    secret = lsb.reveal(options.input_image_file)
     if options.secret_binary != "":
         data = tools.base642binary(secret)
         with open(options.secret_binary, "w") as f:

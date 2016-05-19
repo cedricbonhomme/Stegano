@@ -28,7 +28,7 @@ import sys
 
 from PIL import Image
 
-from . import tools
+from stegano import tools
 
 try:
    input = raw_input

@@ -5,18 +5,18 @@
 
 
 # Hide the message - LSB with a set defined by the identity function (f(x) = x).
-slsb-set --hide -i examples/pictures/Montenach.png -o ~/enc-identity.png --generator identity -m 'I like steganography.'
+lsb-set --hide -i examples/pictures/Montenach.png -o ~/enc-identity.png --generator identity -m 'I like steganography.'
 
 # Hide the message - LSB only.
-slsb --hide -i examples/pictures/Montenach.png -o ~/enc.png -m 'I like steganography.'
+lsb --hide -i examples/pictures/Montenach.png -o ~/enc.png -m 'I like steganography.'
 
 
 # Check if the two generated files are the same.
-sha1sum ~/enc-identity.png ~/enc.png 
+sha1sum ~/enc-identity.png ~/enc.png
 
 
 # The output of slsb is given to slsb-set.
-slsb-set --reveal -i ~/enc.png --generator identity 
+lsb-set --reveal -i ~/enc.png --generator identity
 
 # The output of slsb-set is given to slsb.
-slsb --reveal -i ~/enc-identity.png
+lsb --reveal -i ~/enc-identity.png

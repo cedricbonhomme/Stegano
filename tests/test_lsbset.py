@@ -27,19 +27,19 @@ __license__ = "GPLv3"
 import os
 import unittest
 
-from stegano import slsbset
+from stegano import lsbset
 
-class TestSLSBSet(unittest.TestCase):
+class TestLSBSet(unittest.TestCase):
 
     def test_hide_empty_message(self):
         """
         Test hiding the empty string.
         """
-        secret = slsbset.hide("./examples/pictures/Lenna.png", "",
+        secret = lsbset.hide("./examples/pictures/Lenna.png", "",
                                 "eratosthenes")
         secret.save("./image.png")
 
-        clear_message = slsbset.reveal("./image.png", "eratosthenes")
+        clear_message = lsbset.reveal("./image.png", "eratosthenes")
 
         self.assertEqual("", clear_message)
 
@@ -47,23 +47,23 @@ class TestSLSBSet(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = slsbset.hide("./examples/pictures/Lenna.png", message,
+            secret = lsbset.hide("./examples/pictures/Lenna.png", message,
                                     "eratosthenes")
             secret.save("./image.png")
 
-            clear_message = slsbset.reveal("./image.png", "eratosthenes")
+            clear_message = lsbset.reveal("./image.png", "eratosthenes")
 
             self.assertEqual(message, clear_message)
 
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
 
-        secret = slsbset.hide("./examples/pictures/Lenna.png", message_to_hide,
+        secret = lsbset.hide("./examples/pictures/Lenna.png", message_to_hide,
                             "eratosthenes")
         secret.save("./image.png")
 
         with self.assertRaises(IndexError):
-            clear_message = slsbset.reveal("./image.png", "identity")
+            clear_message = lsbset.reveal("./image.png", "identity")
 
     def tearDown(self):
         try:

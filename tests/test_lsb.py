@@ -27,18 +27,18 @@ __license__ = "GPLv3"
 import os
 import unittest
 
-from stegano import slsb
+from stegano import lsb
 
-class TestSLSB(unittest.TestCase):
+class TestLSB(unittest.TestCase):
 
     def test_hide_empty_message(self):
         """
         Test hiding the empty string.
         """
-        secret = slsb.hide("./examples/pictures/Lenna.png", "")
+        secret = lsb.hide("./examples/pictures/Lenna.png", "")
         secret.save("./image.png")
 
-        clear_message = slsb.reveal("./image.png")
+        clear_message = lsb.reveal("./image.png")
 
         self.assertEqual("", clear_message)
 
@@ -46,20 +46,20 @@ class TestSLSB(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = slsb.hide("./examples/pictures/Lenna.png", message)
+            secret = lsb.hide("./examples/pictures/Lenna.png", message)
             secret.save("./image.png")
 
-            clear_message = slsb.reveal("./image.png")
+            clear_message = lsb.reveal("./image.png")
 
             self.assertEqual(message, clear_message)
 
     def test_with_long_message(self):
         with open("./examples/lorem_ipsum.txt") as f:
             message = f.read()
-        secret = slsb.hide("./examples/pictures/Lenna.png", message)
+        secret = lsb.hide("./examples/pictures/Lenna.png", message)
         secret.save("./image.png")
 
-        clear_message = slsb.reveal("./image.png")
+        clear_message = lsb.reveal("./image.png")
         self.assertEqual(message, clear_message)
 
     def test_with_too_long_message(self):
@@ -67,7 +67,7 @@ class TestSLSB(unittest.TestCase):
             message = f.read()
         message += message*2
         with self.assertRaises(Exception):
-            slsb.hide("./examples/pictures/Lenna.png", message)
+            lsb.hide("./examples/pictures/Lenna.png", message)
 
     def tearDown(self):
         try:
