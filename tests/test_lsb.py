@@ -35,7 +35,7 @@ class TestLSB(unittest.TestCase):
         """
         Test hiding the empty string.
         """
-        secret = lsb.hide("./examples/pictures/Lenna.png", "")
+        secret = lsb.hide("./tests/sample-files/Lenna.png", "")
         secret.save("./image.png")
 
         clear_message = lsb.reveal("./image.png")
@@ -46,7 +46,7 @@ class TestLSB(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = lsb.hide("./examples/pictures/Lenna.png", message)
+            secret = lsb.hide("./tests/sample-files/Lenna.png", message)
             secret.save("./image.png")
 
             clear_message = lsb.reveal("./image.png")
@@ -54,20 +54,20 @@ class TestLSB(unittest.TestCase):
             self.assertEqual(message, clear_message)
 
     def test_with_long_message(self):
-        with open("./examples/lorem_ipsum.txt") as f:
+        with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
-        secret = lsb.hide("./examples/pictures/Lenna.png", message)
+        secret = lsb.hide("./tests/sample-files/Lenna.png", message)
         secret.save("./image.png")
 
         clear_message = lsb.reveal("./image.png")
         self.assertEqual(message, clear_message)
 
     def test_with_too_long_message(self):
-        with open("./examples/lorem_ipsum.txt") as f:
+        with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
         message += message*2
         with self.assertRaises(Exception):
-            lsb.hide("./examples/pictures/Lenna.png", message)
+            lsb.hide("./tests/sample-files/Lenna.png", message)
 
     def tearDown(self):
         try:

@@ -35,7 +35,7 @@ class TestEXIFHeader(unittest.TestCase):
         """
         Test hiding the empty string.
         """
-        secret = exifHeader.hide("./examples/pictures/20160505T130442.jpg",
+        secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
                                 "./image.jpg", secret_message="")
         #secret.save(""./image.png"")
 
@@ -47,7 +47,7 @@ class TestEXIFHeader(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = exifHeader.hide("./examples/pictures/20160505T130442.jpg",
+            secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
                                     "./image.jpg", secret_message=message)
 
             clear_message = exifHeader.reveal("./image.jpg")
@@ -55,7 +55,7 @@ class TestEXIFHeader(unittest.TestCase):
             self.assertEqual(message, message)
 
     def test_with_image_without_exif_data(self):
-        secret = exifHeader.hide("./examples/pictures/Elisha-Cuthbert.jpg",
+        secret = exifHeader.hide("./tests/sample-files/Elisha-Cuthbert.jpg",
                                 "./image.jpg", secret_message="")
         #secret.save(""./image.png"")
 
@@ -64,7 +64,7 @@ class TestEXIFHeader(unittest.TestCase):
         self.assertEqual(b"", clear_message)
 
     def test_with_png_image(self):
-        secret = exifHeader.hide("./examples/pictures/Lenna.png",
+        secret = exifHeader.hide("./tests/sample-files/Lenna.png",
                                 "./image.png", secret_message="Secret")
         #secret.save(""./image.png"")
 

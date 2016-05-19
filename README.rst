@@ -23,8 +23,6 @@ Usage
 
 A `tutorial <https://stegano.readthedocs.io>`_ is available.
 
-There are also some examples in the folder
-`examples <https://github.com/cedricbonhomme/Stegano/tree/master/examples>`_.
 
 Use Stéganô as a library in your Python program
 '''''''''''''''''''''''''''''''''''''''''''''''
@@ -34,8 +32,8 @@ appropriate steganography technique. For example:
 
 .. code:: python
 
-    >>> from stegano import slsb
-    >>> secret = slsb.hide("./pictures/Lenna.png", "Hello World")
+    >>> from stegano import lsb
+    >>> secret = slsb.hide("./tests/sample-files/Lenna.png", "Hello World")
     >>> secret.save("./Lenna-secret.png")
 
 
@@ -44,13 +42,13 @@ Use Stéganô as a program
 
 .. code:: bash
 
-    $ slsb --hide -i ../examples/pictures/Lenna.png -o Lena1.png -m "Secret Message"
+    $ lsb --hide -i ./tests/sample-files/Lenna.png -o Lena1.png -m "Secret Message"
 
 Hide the message  with Sieve of Eratosthenes:
 
 .. code:: bash
 
-    $ slsb-set --hide -i ../examples/pictures/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
+    $ lsb-set --hide -i ./tests/sample-files/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
 
 
 Running the tests

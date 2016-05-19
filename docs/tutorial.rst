@@ -29,7 +29,7 @@ LSB method
     [GCC 4.9.2] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import slsb
-    >>> secret = slsb.hide("./examples/pictures/Lenna.png", "Hello world!")
+    >>> secret = slsb.hide("./tests/sample-files/Lenna.png", "Hello world!")
     >>> secret.save("./Lenna-secret.png")
     >>> print(slsb.reveal("./Lenna-secret.png"))
     Hello world!
@@ -45,7 +45,7 @@ For JPEG and TIFF images.
     [GCC 4.9.2] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import exifHeader
-    >>> secret = exifHeader.hide("./examples/pictures/20160505T130442.jpg",
+    >>> secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
                             "./image.jpg", secret_message="Hello world!")
     >>> print(exifHeader.reveal("./image.jpg"))
 
@@ -80,13 +80,13 @@ Display help
                             Output for the binary secret (Text or any binary
                             file).
 
-Hide and reveal a text message
-------------------------------
+Hide and reveal a text message with the LSB method
+--------------------------------------------------
 
 .. code-block:: bash
 
-    $ slsb --hide -i ./pictures/Lenna.png -o ./pictures/Lenna_enc.png -m HelloWorld!
-    $ slsb --reveal -i ./pictures/Lenna_enc.png
+    $ lsb --hide -i ./tests/sample-files/Lenna.png -o ./Lenna_enc.png -m HelloWorld!
+    $ lsb --reveal -i ./Lenna_enc.png
     HelloWorld!
 
 Hide and reveal a binary file
@@ -95,21 +95,72 @@ Hide and reveal a binary file
 .. code-block:: bash
 
     $ wget http://www.gnu.org/music/free-software-song.ogg
-    $ slsb --hide -i ./pictures/Montenach.png -o ./pictures/Montenach_enc.png -f ./free-software-song.ogg
+    $ lsb --hide -i ./tests/sample-files/Montenach.png -o ./Montenach_enc.png -f ./free-software-song.ogg
     $ rm free-software-song.ogg
-    $ slsb --reveal -i ./pictures/Montenach_enc.png -b ./song.ogg
+    $ lsb --reveal -i ./Montenach_enc.png -b ./song.ogg
 
-Hide and reveal a message by using the description field of the image
+Hide and reveal a text message with the LSB method and generated sets
 ---------------------------------------------------------------------
 
+Sets are used in order to select the pixels where the message will be hidden.
+
 .. code-block:: bash
 
-    $ ./exif-header.py --hide -i ./Elisha-Cuthbert.jpg -o ./Elisha-Cuthbert_enc.jpg -f ./fileToHide.txt
-    $ ./exif-header.py --reveal -i ./Elisha-Cuthbert_enc.jpg
+    echo "Hide the message  with the Sieve of Eratosthenes..."
+    lsb-set --hide -i ./tests/sample-files/Montenach.png -o ./surprise.png --generator eratosthenes -m 'Joyeux Noël!'
+    echo ""
+
+    echo "Try to reveal with Mersenne numbers..."
+    lsb-set --reveal --generator mersenne -i ./surprise.png
+    echo ""
+
+    echo "Try to reveal with fermat numbers..."
+    lsb-set --reveal --generator fermat -i ./surprise.png
+    echo ""
+
+    echo "Try to reveal with carmichael numbers..."
+    lsb-set --reveal --generator carmichael -i ./surprise.png
+    echo ""
+
+    echo "Try to reveal with Sieve of Eratosthenes..."
+    lsb-set --reveal --generator eratosthenes -i ./surprise.png
+
+
+An other example:
+
+.. code-block:: bash
+
+    # Hide the message - LSB with a set defined by the identity function (f(x) = x).
+    lsb-set --hide -i ./tests/sample-files/Montenach.png -o ./enc-identity.png --generator identity -m 'I like steganography.'
+
+    # Hide the message - LSB only.
+    lsb --hide -i ./tests/sample-files/Montenach.png -o ./enc.png -m 'I like steganography.'
+
+    # Check if the two generated files are the same.
+    sha1sum ./enc-identity.png ./enc.png
+
+    # The output of lsb is given to lsb-set.
+    lsb-set --reveal -i ./enc.png --generator identity
+
+    # The output of lsb-set is given to lsb.
+    lsb --reveal -i ./enc-identity.png
+
+
+
 
 Steganalysis
-------------
+============
 
 .. code-block:: bash
 
-    $ steganalysis-parity -i ./pictures./Lenna_enc.png -o ./pictures/Lenna_enc_st.png
+    # Hide the message  with Sieve of Eratosthenes
+    lsb-set --hide -i ./tests/sample-files/Ginnifer-Goodwin.png -o ./surprise.png --generator eratosthenes -m 'Very important message.'
+
+    # Steganalysis of the original photo
+    steganalysis-parity -i ./tests/sample-files/Ginnifer-Goodwin.png -o ./surprise_st_original.png
+
+    # Steganalysis of the secret photo
+    steganalysis-parity -i ./surprise.png -o ./surprise_st_secret.png
+
+    # Reveal with Sieve of Eratosthenes
+    lsb-set --reveal --generator eratosthenes -i ./surprise.png

@@ -35,7 +35,7 @@ class TestLSBSet(unittest.TestCase):
         """
         Test hiding the empty string.
         """
-        secret = lsbset.hide("./examples/pictures/Lenna.png", "",
+        secret = lsbset.hide("./tests/sample-files/Lenna.png", "",
                                 "eratosthenes")
         secret.save("./image.png")
 
@@ -47,7 +47,7 @@ class TestLSBSet(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = lsbset.hide("./examples/pictures/Lenna.png", message,
+            secret = lsbset.hide("./tests/sample-files/Lenna.png", message,
                                     "eratosthenes")
             secret.save("./image.png")
 
@@ -58,7 +58,7 @@ class TestLSBSet(unittest.TestCase):
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
 
-        secret = lsbset.hide("./examples/pictures/Lenna.png", message_to_hide,
+        secret = lsbset.hide("./tests/sample-files/Lenna.png", message_to_hide,
                             "eratosthenes")
         secret.save("./image.png")
 
