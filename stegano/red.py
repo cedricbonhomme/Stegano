@@ -28,18 +28,18 @@ import sys
 
 from PIL import Image
 
-def hide(img, message):
+def hide(input_image_file, message):
     """
     Hide a message (string) in an image.
 
     Use the red portion of a pixel (r, g, b) tuple to
     hide the message string characters as ASCII values.
-    The red value of the first pixel is used for length of string.
+    The red value of the first pixel is used for length of the string.
     """
     length = len(message)
-    # Limit length of message to 255
-    if length > 255:
-        return False
+    assert length != 0, "lenght of message is null"
+    assert length < 255, "message is too long"
+    img = Image.open(input_image_file)
     # Use a copy of image to hide the text in
     encoded = img.copy()
     width, height = img.size
@@ -59,7 +59,7 @@ def hide(img, message):
             index += 1
     return encoded
 
-def reveal(img):
+def reveal(input_image_file):
     """
     Find a message in an image.
 
@@ -67,6 +67,7 @@ def reveal(img):
     hidden message characters (ASCII values).
     The red value of the first pixel is used for length of string.
     """
+    img = Image.open(input_image_file)
     width, height = img.size
     message = ""
     index = 0
@@ -80,6 +81,17 @@ def reveal(img):
                 message += chr(r)
             index += 1
     return message
+
+def write(image, output_image_file):
+    """
+    """
+    try:
+        image.save(output_image_file)
+    except Exception as e:
+        # If hide() returns an error (Too long message).
+        print(e)
+    finally:
+        image.close()
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
