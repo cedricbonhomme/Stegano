@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.5.3 (2016-05-19)
+------------------
+
+* reorganization of all modules. No impact for the users of Stegano.
+
 0.5.2 (2016-05-18)
 ------------------
 

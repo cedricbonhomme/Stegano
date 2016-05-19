@@ -33,7 +33,7 @@ appropriate steganography technique. For example:
 .. code:: python
 
     >>> from stegano import lsb
-    >>> secret = slsb.hide("./tests/sample-files/Lenna.png", "Hello World")
+    >>> secret = lsb.hide("./tests/sample-files/Lenna.png", "Hello World")
     >>> secret.save("./Lenna-secret.png")
 
 
@@ -44,7 +44,7 @@ Use Stéganô as a program
 
     $ lsb --hide -i ./tests/sample-files/Lenna.png -o Lena1.png -m "Secret Message"
 
-Hide the message  with Sieve of Eratosthenes:
+Hide the message with the Sieve of Eratosthenes:
 
 .. code:: bash
 
