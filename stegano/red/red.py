@@ -34,11 +34,11 @@ def hide(input_image_file, message):
 
     Use the red portion of a pixel (r, g, b) tuple to
     hide the message string characters as ASCII values.
-    The red value of the first pixel is used for length of the string.
+    The red value of the first pixel is used for message_length of the string.
     """
-    length = len(message)
-    assert length != 0, "lenght of message is null"
-    assert length < 255, "message is too long"
+    message_length = len(message)
+    assert message_length != 0, "message message_length is zero"
+    assert message_length < 255, "message is too long"
     img = Image.open(input_image_file)
     # Use a copy of image to hide the text in
     encoded = img.copy()
@@ -47,16 +47,17 @@ def hide(input_image_file, message):
     for row in range(height):
         for col in range(width):
             (r, g, b) = img.getpixel((col, row))
-            # first value is length of message
-            if row == 0 and col == 0 and index < length:
-                asc = length
-            elif index <= length:
+            # first value is message_length of message
+            if row == 0 and col == 0 and index < message_length:
+                asc = message_length
+            elif index <= message_length:
                 c = message[index -1]
                 asc = ord(c)
             else:
                 asc = r
             encoded.putpixel((col, row), (asc, g , b))
             index += 1
+    img.close()
     return encoded
 
 def reveal(input_image_file):
@@ -65,7 +66,7 @@ def reveal(input_image_file):
 
     Check the red portion of an pixel (r, g, b) tuple for
     hidden message characters (ASCII values).
-    The red value of the first pixel is used for length of string.
+    The red value of the first pixel is used for message_length of string.
     """
     img = Image.open(input_image_file)
     width, height = img.size
@@ -76,10 +77,11 @@ def reveal(input_image_file):
             r, g, b = img.getpixel((col, row))
             # First pixel r value is length of message
             if row == 0 and col == 0:
-                length = r
-            elif index <= length:
+                message_length = r
+            elif index <= message_length:
                 message += chr(r)
             index += 1
+    img.close()
     return message
 
 def write(image, output_image_file):

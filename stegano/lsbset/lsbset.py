@@ -41,8 +41,10 @@ def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
     Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """
-    img = Image.open(input_image_file)
+    message_length = len(message)
+    assert message_length != 0, "message length is zero"
 
+    img = Image.open(input_image_file)
     if img.mode != 'RGB':
         print('The mode of the image is not RGB. Mode is {}'.format(img.mode))
         if not auto_convert_rgb:

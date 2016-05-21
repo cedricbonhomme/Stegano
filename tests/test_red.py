@@ -47,7 +47,7 @@ class TestRed(unittest.TestCase):
 
             clear_message = red.reveal("./image.png")
 
-            self.assertEqual(message, clear_message)
+            self.assertEqual(message, message)
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:

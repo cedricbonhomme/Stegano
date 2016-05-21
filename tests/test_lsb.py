@@ -35,12 +35,8 @@ class TestLSB(unittest.TestCase):
         """
         Test hiding the empty string.
         """
-        secret = lsb.hide("./tests/sample-files/Lenna.png", "")
-        secret.save("./image.png")
-
-        clear_message = lsb.reveal("./image.png")
-
-        self.assertEqual("", clear_message)
+        with self.assertRaises(AssertionError):
+            secret = lsb.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
