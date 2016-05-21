@@ -62,12 +62,13 @@ def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
     message_bits += '0' * ((3 - (len(message_bits) % 3)) % 3)
 
     npixels = width * height
-    if len(message_bits) > npixels * 3:
-        raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
+    len_message_bits = len(message_bits)
+    if len_message_bits > npixels * 3:
+        raise Exception("""The message you want to hide is too long (%s > %s).""" % (len_message_bits, npixels * 3))
 
     generator = getattr(generators, generator_function)()
 
-    while index + 3 <= len(message_bits) :
+    while index + 3 <= len_message_bits :
         generated_number = next(generator)
         (r, g, b) = img_list[generated_number]
 

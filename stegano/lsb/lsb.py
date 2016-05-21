@@ -55,18 +55,17 @@ def hide(input_image_file, message, auto_convert_rgb=False):
     index = 0
 
     message = str(len(message)) + ":" + str(message)
-    #message_bits = tools.a2bits(message)
     message_bits = "".join(tools.a2bits_list(message))
     message_bits += '0' * ((3 - (len(message_bits) % 3)) % 3)
 
     npixels = width * height
-    if len(message_bits) > npixels * 3:
+    len_message_bits = len(message_bits)
+    if len_message_bits > npixels * 3:
         raise Exception("""The message you want to hide is too long (%s > %s).""" % (len(message_bits), npixels * 3))
 
     for row in range(height):
         for col in range(width):
-
-            if index + 3 <= len(message_bits) :
+            if index + 3 <= len_message_bits :
 
                 # Get the colour component.
                 (r, g, b) = img.getpixel((col, row))
@@ -79,7 +78,10 @@ def hide(input_image_file, message, auto_convert_rgb=False):
                 # Save the new pixel
                 encoded.putpixel((col, row), (r, g , b))
 
-            index += 3
+                index += 3
+            else:
+                img.close()
+                return encoded
 
     img.close()
     return encoded
