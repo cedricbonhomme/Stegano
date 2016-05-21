@@ -64,7 +64,7 @@ def hide(input_image_file, message, auto_convert_rgb=False):
     npixels = width * height
     len_message_bits = len(message_bits)
     if len_message_bits > npixels * 3:
-        raise Exception("The message you want to hide is too long: {}).". \
+        raise Exception("The message you want to hide is too long: {}". \
                                                         format(message_length))
     for row in range(height):
         for col in range(width):

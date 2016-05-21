@@ -41,7 +41,6 @@ class TestLSBSet(unittest.TestCase):
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
-
         for message in messages_to_hide:
             secret = lsbset.hide("./tests/sample-files/Lenna.png", message,
                                     "eratosthenes")
@@ -53,13 +52,18 @@ class TestLSBSet(unittest.TestCase):
 
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
-
         secret = lsbset.hide("./tests/sample-files/Lenna.png", message_to_hide,
                             "eratosthenes")
         secret.save("./image.png")
 
         with self.assertRaises(IndexError):
             clear_message = lsbset.reveal("./image.png", "identity")
+
+    def test_with_unknown_generator(self):
+        message_to_hide = "Hello World!"
+        with self.assertRaises(AttributeError):
+            secret = lsbset.hide("./tests/sample-files/Lenna.png",
+                                message_to_hide, "eratosthene")
 
     def tearDown(self):
         try:
