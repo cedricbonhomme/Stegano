@@ -20,14 +20,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2016/04/13 $"
+__revision__ = "$Date: 2016/05/22 $"
 __license__ = "GPLv3"
 
 import os
 import unittest
 
 from stegano import lsbset
+from stegano.lsbset import generators
 
 class TestLSBSet(unittest.TestCase):
 
@@ -37,33 +39,34 @@ class TestLSBSet(unittest.TestCase):
         """
         with self.assertRaises(AssertionError):
             secret = lsbset.hide("./tests/sample-files/Lenna.png", "",
-                                    "eratosthenes")
+                                    generators.eratosthenes())
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:
             secret = lsbset.hide("./tests/sample-files/Lenna.png", message,
-                                    "eratosthenes")
+                                    generators.eratosthenes())
             secret.save("./image.png")
 
-            clear_message = lsbset.reveal("./image.png", "eratosthenes")
+            clear_message = lsbset.reveal("./image.png",
+                                    generators.eratosthenes())
 
             self.assertEqual(message, clear_message)
 
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
         secret = lsbset.hide("./tests/sample-files/Lenna.png", message_to_hide,
-                            "eratosthenes")
+                                    generators.eratosthenes())
         secret.save("./image.png")
 
         with self.assertRaises(IndexError):
-            clear_message = lsbset.reveal("./image.png", "identity")
+            clear_message = lsbset.reveal("./image.png", generators.identity())
 
     def test_with_unknown_generator(self):
         message_to_hide = "Hello World!"
         with self.assertRaises(AttributeError):
             secret = lsbset.hide("./tests/sample-files/Lenna.png",
-                                message_to_hide, "eratosthene")
+                                    message_to_hide, generators.eratosthene())
 
     def tearDown(self):
         try:

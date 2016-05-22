@@ -20,8 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.4.1 $"
+__version__ = "$Revision: 0.4.2 $"
 __date__ = "$Date: 2016/03/13 $"
+__revision__ = "$Date: 2016/05/22 $"
 __license__ = "GPLv3"
 
 import sys
@@ -36,7 +37,7 @@ try:
 except NameError:
    pass
 
-def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
+def hide(input_image_file, message, generator, auto_convert_rgb=False):
     """
     Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
@@ -69,11 +70,6 @@ def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
         raise Exception("The message you want to hide is too long: {}".\
                             format(message_length))
 
-    try:
-        generator = getattr(generators, generator_function)()
-    except AttributeError as e:
-        raise e
-
     while index + 3 <= len_message_bits :
         generated_number = next(generator)
         (r, g, b) = img_list[generated_number]
@@ -97,8 +93,7 @@ def hide(input_image_file, message, generator_function, auto_convert_rgb=False):
     return encoded
 
 
-
-def reveal(input_image_file, generator_function):
+def reveal(input_image_file, generator):
     """
     Find a message in an image
     (with the LSB technique).
@@ -109,8 +104,6 @@ def reveal(input_image_file, generator_function):
     buff, count = 0, 0
     bitab = []
     limit = None
-
-    generator = getattr(generators, generator_function)()
 
     while True:
         generated_number = next(generator)
@@ -178,6 +171,10 @@ if __name__ == '__main__':
 
     (options, args) = parser.parse_args()
 
+    try:
+        generator = getattr(generators, options.generator_function)()
+    except AttributeError as e:
+        raise e
 
     if options.hide:
         if options.secret_message != "" and options.secret_file == "":
@@ -185,7 +182,7 @@ if __name__ == '__main__':
         elif options.secret_message == "" and options.secret_file != "":
             secret = tools.binary2base64(options.secret_file)
 
-        img_encoded = hide(options.input_image_file, secret, options.generator_function)
+        img_encoded = hide(options.input_image_file, secret, generator)
         try:
             img_encoded.save(options.output_image_file)
         except Exception as e:
@@ -194,7 +191,7 @@ if __name__ == '__main__':
 
     elif options.reveal:
         try:
-            secret = reveal(options.input_image_file, options.generator_function)
+            secret = reveal(options.input_image_file, generator)
         except IndexError:
             print("Impossible to detect message.")
             exit(0)
