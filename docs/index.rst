@@ -3,9 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Stéganô's documentation!
-===================================
-
 Presentation
 ============
 
@@ -33,7 +30,7 @@ Moreover some methods of steganalysis_ are provided:
 Requirements
 ============
 
-- Python_ >= 3.2 (tested with Python 3.5.1);
+- Python_ 3 (tested with Python 3.5.1);
 - `Pillow`_;
 - `piexif`_.
 
@@ -44,7 +41,10 @@ Turorial
 .. toctree::
     :maxdepth: 2
 
-    tutorial
+    installation
+    module
+    software
+    steganalysis
 
 You can also have a look at the
 `unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
