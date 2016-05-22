@@ -174,7 +174,8 @@ if __name__ == '__main__':
     try:
         generator = getattr(generators, options.generator_function)()
     except AttributeError as e:
-        raise e
+        print("Unknown generator: {}".format(options.generator_function))
+        exit(1)
 
     if options.hide:
         if options.secret_message != "" and options.secret_file == "":
