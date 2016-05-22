@@ -1,6 +1,14 @@
 Release History
 ===============
 
+0.5.4 (2016-05-22)
+------------------
+
+* the generator provided to the functions lsbset.hide() and lsbset.reveal() is
+  now a function. This is more convenient for a user who wants to use a custom
+  generator (not in the module lsbset.generators).
+* performance improvements for the lsb and lsbset modules.
+
 0.5.3 (2016-05-19)
 ------------------
 
