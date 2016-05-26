@@ -49,8 +49,9 @@ class TestLSB(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
-    def test_with_long_message(self):
-        with open("./tests/sample-files/lorem_ipsum.txt") as f:
+    def test_with_text_file(self):
+        text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
+        with open(text_file_to_hide) as f:
             message = f.read()
         secret = lsb.hide("./tests/sample-files/Lenna.png", message)
         secret.save("./image.png")
