@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.5
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
@@ -78,8 +78,15 @@ if options.hide:
 elif options.reveal:
     secret = lsb.reveal(options.input_image_file)
     if options.secret_binary != "":
-        data = tools.base642binary(secret)
-        with open(options.secret_binary, "w") as f:
-            f.write(data)
+        data = tools.base642binary(bytes(secret, "utf-8"))
+        from PIL import Image
+        import io
+        file_like = io.BytesIO(data)
+        file_like.seek(0)
+        image = Image.open(file_like)
+        image.save(options.secret_binary)
+        """data = tools.base642binary(bytes(secret, "utf-8)"))
+        with open(options.secret_binary, "wb") as f:
+            f.write(data)"""
     else:
         print(secret)

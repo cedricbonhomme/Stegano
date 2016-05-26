@@ -107,4 +107,9 @@ def base642binary(b64_fname):
     #b64_str = fin.read()
     #fin.close()
     # Decode base64 string to original binary sound object
-    return base64.b64decode(b64_fname)
+    missing_padding = 4 - len(b64_fname) % 4
+    if missing_padding:
+        b64_fname += b'='* missing_padding
+    return base64.decodestring(b64_fname)
+
+    #return base64.b64decode(b64_fname)

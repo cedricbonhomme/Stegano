@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.2 $"
-__date__ = "$Date: 2016/05/17 $"
+__version__ = "$Revision: 0.2.1 $"
+__date__ = "$Date: 2016/05/26 $"
 __license__ = "GPLv3"
 
 from PIL import Image
@@ -36,10 +36,12 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None):
 
     if secret_file != None:
         with open(secret_file, "r") as f:
-            secret_file_content = f.read()
-        text = compress(b64encode(bytes(secret_file_content, "utf-8")))
-    else:
+            secret_message = f.read()
+
+    try:
         text = compress(b64encode(bytes(secret_message, "utf-8")))
+    except:
+        text = compress(b64encode(secret_message))
 
     img = Image.open(input_image_file)
     if "exif" in img.info:

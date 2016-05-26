@@ -181,8 +181,8 @@ if __name__ == '__main__':
     elif options.reveal:
         secret = reveal(options.input_image_file)
         if options.secret_binary != "":
-            data = tools.base642binary(secret)
-            with open(options.secret_binary, "w") as f:
+            data = tools.base642binary(bytes(secret, "utf-8)"))
+            with open(options.secret_binary, "wb") as f:
                 f.write(data)
         else:
             print(secret)
