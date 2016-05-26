@@ -53,6 +53,13 @@ class TestLSBSet(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_with_too_long_message(self):
+        with open("./tests/sample-files/lorem_ipsum.txt") as f:
+            message = f.read()
+        with self.assertRaises(Exception):
+            lsbset.hide("./tests/sample-files/Lenna.png", message,
+                                    generators.eratosthenes())
+
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
         secret = lsbset.hide("./tests/sample-files/Lenna.png", message_to_hide,
