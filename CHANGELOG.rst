@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.5.5 (2016-08-03)
+------------------
+
+* bugfix: Incorrect padding size in `base642string` in tools.base642binary().
+
 0.5.4 (2016-05-22)
 ------------------
 
