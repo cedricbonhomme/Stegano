@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.2.1 $"
-__date__ = "$Date: 2016/03/13 $"
+__version__ = "$Revision: 0.2.2 $"
+__date__ = "$Date: 2016/08/04 $"
 __license__ = "GPLv3"
 
 import sys
@@ -131,58 +131,3 @@ def write(image, output_image_file):
         print(e)
     finally:
         image.close()
-
-if __name__ == '__main__':
-    # Point of entry in execution mode.
-    from optparse import OptionParser
-    parser = OptionParser(version=__version__)
-    parser.add_option('--hide', action='store_true', default=False,
-                      help="Hides a message in an image.")
-    parser.add_option('--reveal', action='store_true', default=False,
-                      help="Reveals the message hided in an image.")
-    # Original image
-    parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Input image file.")
-    # Image containing the secret
-    parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Output image containing the secret.")
-
-    # Non binary secret message to hide
-    parser.add_option("-m", "--secret-message", dest="secret_message",
-                    help="Your secret message to hide (non binary).")
-
-    # Binary secret to hide (OGG, executable, etc.)
-    parser.add_option("-f", "--secret-file", dest="secret_file",
-                    help="Your secret to hide (Text or any binary file).")
-    # Output for the binary binary secret.
-    parser.add_option("-b", "--binary", dest="secret_binary",
-                    help="Output for the binary secret (Text or any binary file).")
-
-    parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                        output_image_file = './pictures/Lenna_enc.png',
-                        secret_message = '', secret_file = '', secret_binary = "")
-
-    (options, args) = parser.parse_args()
-
-
-    if options.hide:
-        if options.secret_message != "" and options.secret_file == "":
-            secret = options.secret_message
-        elif options.secret_message == "" and options.secret_file != "":
-            secret = tools.binary2base64(options.secret_file)
-
-        img_encoded = hide(options.input_image_file, secret)
-        try:
-            img_encoded.save(options.output_image_file)
-        except Exception as e:
-            # If hide() returns an error (Too long message).
-            print(e)
-
-    elif options.reveal:
-        secret = reveal(options.input_image_file)
-        if options.secret_binary != "":
-            data = tools.base642binary(bytes(secret, "utf-8)"))
-            with open(options.secret_binary, "wb") as f:
-                f.write(data)
-        else:
-            print(secret)

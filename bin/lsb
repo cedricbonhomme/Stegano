@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.5 $"
-__date__ = "$Date: 2016/03/18 $"
+__version__ = "$Revision: 0.6 $"
+__date__ = "$Date: 2016/08/04 $"
 __license__ = "GPLv3"
 
 try:
@@ -31,53 +31,52 @@ except:
 
 from stegano import tools
 
-from optparse import OptionParser
-parser = OptionParser(version=__version__)
-parser.add_option('--hide', action='store_true', default=False,
-                help="Hides a message in an image.")
-parser.add_option('--reveal', action='store_true', default=False,
-                help="Reveals the message hided in an image.")
+import argparse
+parser = argparse.ArgumentParser(prog='Stegano')
+group_method = parser.add_mutually_exclusive_group(required=True)
+group_method.add_argument('--hide', action='store_true', default=False,
+                  help='Hides a message in an image.')
+group_method.add_argument('--reveal', action='store_true', default=False,
+                  help='Reveals the message hided in an image.')
+
 # Original image
-parser.add_option("-i", "--input", dest="input_image_file",
+parser.add_argument("-i", "--input", dest="input_image_file",
                 help="Input image file.")
-# Image containing the secret
-parser.add_option("-o", "--output", dest="output_image_file",
-                help="Output image containing the secret.")
 
+group_secret = parser.add_mutually_exclusive_group()
 # Non binary secret message to hide
-parser.add_option("-m", "--secret-message", dest="secret_message",
+group_secret.add_argument("-m", dest="secret_message",
                 help="Your secret message to hide (non binary).")
-
-# Binary secret to hide (OGG, executable, etc.)
-parser.add_option("-f", "--secret-file", dest="secret_file",
+# Binary secret message to hide
+group_secret.add_argument("-f", dest="secret_file",
                 help="Your secret to hide (Text or any binary file).")
-# Output for the binary binary secret.
-parser.add_option("-b", "--binary", dest="secret_binary",
+
+# Image containing the secret
+group_output = parser.add_mutually_exclusive_group()
+group_output.add_argument("-o", "--output", dest="output_image_file",
+                help="Output image containing the secret.")
+group_output.add_argument("-b", "--binary", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
-parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                    output_image_file = './pictures/Lenna_enc.png',
-                    secret_message = '', secret_file = '', secret_binary = "")
+arguments = parser.parse_args()
 
-(options, args) = parser.parse_args()
-
-
-if options.hide:
-    if options.secret_message != "" and options.secret_file == "":
-        secret = options.secret_message
-    elif options.secret_message == "" and options.secret_file != "":
+if arguments.hide:
+    #parser.parse_args(['--hide'])
+    if arguments.secret_message != None:
+        secret = arguments.secret_message
+    elif arguments.secret_file != None:
         secret = tools.binary2base64(options.secret_file)
 
-    img_encoded = lsb.hide(options.input_image_file, secret)
+    img_encoded = lsb.hide(arguments.input_image_file, secret)
     try:
-        img_encoded.save(options.output_image_file)
+        img_encoded.save(arguments.output_image_file)
     except Exception as e:
         # If hide() returns an error (Too long message).
         print(e)
 
-elif options.reveal:
-    secret = lsb.reveal(options.input_image_file)
-    if options.secret_binary != "":
+elif arguments.reveal:
+    secret = lsb.reveal(arguments.input_image_file)
+    if arguments.secret_binary != None:
         data = tools.base642binary(bytes(secret, "utf-8"))
         from PIL import Image
         import io

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.5
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
@@ -33,70 +33,69 @@ except:
 
 from stegano import tools
 
-from optparse import OptionParser
-parser = OptionParser(version=__version__)
-parser.add_option('--hide', action='store_true', default=False,
-                help="Hides a message in an image.")
-parser.add_option('--reveal', action='store_true', default=False,
-                help="Reveals the message hided in an image.")
+import argparse
+parser = argparse.ArgumentParser(prog='Stegano')
+group_method = parser.add_mutually_exclusive_group(required=True)
+group_method.add_argument('--hide', action='store_true', default=False,
+                  help='Hides a message in an image.')
+group_method.add_argument('--reveal', action='store_true', default=False,
+                  help='Reveals the message hided in an image.')
+
 # Original image
-parser.add_option("-i", "--input", dest="input_image_file",
+parser.add_argument("-i", "--input", dest="input_image_file",
                 help="Input image file.")
 
 # Generator
-parser.add_option("-g", "--generator", dest="generator_function",
+parser.add_argument("-g", "--generator", dest="generator_function",
                 help="Generator")
 
-# Image containing the secret
-parser.add_option("-o", "--output", dest="output_image_file",
-                help="Output image containing the secret.")
+group_secret = parser.add_mutually_exclusive_group()
 
 # Non binary secret message to hide
-parser.add_option("-m", "--secret-message", dest="secret_message",
+group_secret.add_argument("-m", dest="secret_message",
                 help="Your secret message to hide (non binary).")
-
-# Binary secret to hide (OGG, executable, etc.)
-parser.add_option("-f", "--secret-file", dest="secret_file",
+# Binary secret message to hide
+group_secret.add_argument("-f", dest="secret_file",
                 help="Your secret to hide (Text or any binary file).")
-# Output for the binary binary secret.
-parser.add_option("-b", "--binary", dest="secret_binary",
+
+# Image containing the secret
+group_output = parser.add_mutually_exclusive_group()
+group_output.add_argument("-o", "--output", dest="output_image_file",
+                help="Output image containing the secret.")
+group_output.add_argument("-b", "--binary", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
-parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                    generator_function = 'fermat',
-                    output_image_file = './pictures/Lenna_enc.png',
-                    secret_message = '', secret_file = '', secret_binary = "")
+arguments = parser.parse_args()
 
-(options, args) = parser.parse_args()
 
 try:
-    generator = getattr(generators, options.generator_function)()
+    generator = getattr(generators, arguments.generator_function)()
 except AttributeError as e:
-    print("Unknown generator: {}".format(options.generator_function))
+    print("Unknown generator: {}".format(arguments.generator_function))
     exit(1)
 
-if options.hide:
-    if options.secret_message != "" and options.secret_file == "":
-        secret = options.secret_message
-    elif options.secret_message == "" and options.secret_file != "":
-        secret = tools.binary2base64(options.secret_file)
+if arguments.hide:
+    if arguments.secret_message != None:
+        secret = arguments.secret_message
+    elif arguments.secret_file != "":
+        secret = tools.binary2base64(arguments.secret_file)
 
-    img_encoded = lsbset.hide(options.input_image_file, secret, generator)
+    img_encoded = lsbset.hide(arguments.input_image_file, secret, generator)
     try:
-        img_encoded.save(options.output_image_file)
+        img_encoded.save(arguments.output_image_file)
     except Exception as e:
         # If hide() returns an error (Too long message).
         print(e)
 
-elif options.reveal:
+elif arguments.reveal:
     try:
-        secret = lsbset.reveal(options.input_image_file, generator)
+        secret = lsbset.reveal(arguments.input_image_file, generator)
     except IndexError:
         print("Impossible to detect message.")
         exit(0)
-    if options.secret_binary != "":
+    if arguments.secret_binary != None:
         data = tools.base642binary(secret)
-        with open(options.secret_binary, "w") as f:
+        with open(arguments.secret_binary, "w") as f:
             f.write(data)
     else:
         print(secret)
