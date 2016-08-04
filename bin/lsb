@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
@@ -32,18 +32,16 @@ except:
 from stegano import tools
 
 import argparse
-parser = argparse.ArgumentParser(prog='Stegano')
-group_method = parser.add_mutually_exclusive_group(required=True)
-group_method.add_argument('--hide', action='store_true', default=False,
-                  help='Hides a message in an image.')
-group_method.add_argument('--reveal', action='store_true', default=False,
-                  help='Reveals the message hided in an image.')
+parser = argparse.ArgumentParser(prog='lsb')
+subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
+# Subparser: Hide
+parser_hide = subparsers.add_parser('hide', help='hide help')
 # Original image
-parser.add_argument("-i", "--input", dest="input_image_file",
-                help="Input image file.")
+parser_hide.add_argument("-i", "--input", dest="input_image_file",
+                required=True, help="Input image file.")
 
-group_secret = parser.add_mutually_exclusive_group()
+group_secret = parser_hide.add_mutually_exclusive_group(required=True)
 # Non binary secret message to hide
 group_secret.add_argument("-m", dest="secret_message",
                 help="Your secret message to hide (non binary).")
@@ -52,20 +50,26 @@ group_secret.add_argument("-f", dest="secret_file",
                 help="Your secret to hide (Text or any binary file).")
 
 # Image containing the secret
-group_output = parser.add_mutually_exclusive_group()
-group_output.add_argument("-o", "--output", dest="output_image_file",
-                help="Output image containing the secret.")
-group_output.add_argument("-b", "--binary", dest="secret_binary",
+parser_hide.add_argument("-o", "--output", dest="output_image_file",
+                required=True, help="Output image containing the secret.")
+
+
+# Subparser: Reveal
+parser_reveal = subparsers.add_parser('reveal', help='reveal help')
+parser_reveal.add_argument("-i", "--input", dest="input_image_file",
+                required=True, help="Input image file.")
+parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
+
 
 arguments = parser.parse_args()
 
-if arguments.hide:
-    #parser.parse_args(['--hide'])
+
+if arguments.command == 'hide':
     if arguments.secret_message != None:
         secret = arguments.secret_message
     elif arguments.secret_file != None:
-        secret = tools.binary2base64(options.secret_file)
+        secret = tools.binary2base64(arguments.secret_file)
 
     img_encoded = lsb.hide(arguments.input_image_file, secret)
     try:
@@ -74,18 +78,18 @@ if arguments.hide:
         # If hide() returns an error (Too long message).
         print(e)
 
-elif arguments.reveal:
+elif arguments.command == 'reveal':
     secret = lsb.reveal(arguments.input_image_file)
     if arguments.secret_binary != None:
-        data = tools.base642binary(bytes(secret, "utf-8"))
+        """data = tools.base642binary(secret)
         from PIL import Image
         import io
         file_like = io.BytesIO(data)
         file_like.seek(0)
         image = Image.open(file_like)
-        image.save(options.secret_binary)
-        """data = tools.base642binary(bytes(secret, "utf-8)"))
-        with open(options.secret_binary, "wb") as f:
-            f.write(data)"""
+        image.save(arguments.secret_binary)"""
+        data = tools.base642binary(secret)
+        with open(arguments.secret_binary, "wb") as f:
+            f.write(data)
     else:
         print(secret)
