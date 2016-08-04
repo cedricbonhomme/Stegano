@@ -1,7 +1,7 @@
 Release History
 ===============
 
-0.6 (not yet released)
+0.6 (2016-08-04)
 ------------------
 
 * improvements of the command line of Stéganô. The use of Stéganô through the
