@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.6 (not yet released)
+------------------
+
+* improvements of the command line of Stéganô.
+
 0.5.5 (2016-08-03)
 ------------------
 
