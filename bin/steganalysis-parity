@@ -20,8 +20,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.5 $"
-__date__ = "$Date: 2016/03/18 $"
+__version__ = "$Revision: 0.6 $"
+__date__ = "$Date: 2016/08/04 $"
 __license__ = "GPLv3"
 
 try:
@@ -31,16 +31,14 @@ except:
 
 from PIL import Image
 
-from optparse import OptionParser
-parser = OptionParser()
-parser.add_option("-i", "--input", dest="input_image_file",
+import argparse
+parser = argparse.ArgumentParser(prog='steganalysis-parity')
+parser.add_argument("-i", "--input", dest="input_image_file",
                 help="Image file")
-parser.add_option("-o", "--output", dest="output_image_file",
+parser.add_argument("-o", "--output", dest="output_image_file",
                 help="Image file")
-parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                    output_image_file = './pictures/Lenna_steganalysed.png')
-(options, args) = parser.parse_args()
+arguments = parser.parse_args()
 
-input_image_file = Image.open(options.input_image_file)
+input_image_file = Image.open(arguments.input_image_file)
 output_image = steganalysisParity.steganalyse(input_image_file)
-output_image.save(options.output_image_file)
+output_image.save(arguments.output_image_file)

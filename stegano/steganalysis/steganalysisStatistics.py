@@ -55,16 +55,14 @@ def steganalyse(img):
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
-    from optparse import OptionParser
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="input_image_file",
+    import argparse
+    parser = argparse.ArgumentParser(prog='steganalysis-statistics')
+    parser.add_argument("-i", "--input", dest="input_image_file",
                     help="Image file.")
-    parser.add_option("-o", "--output", dest="output_image_file",
+    parser.add_argument("-o", "--output", dest="output_image_file",
                     help="Image file.")
-    parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                        output_image_file = './pictures/Lenna_steganalysed.png')
-    (options, args) = parser.parse_args()
+    arguments = parser.parse_args()
 
-    input_image_file = Image.open(options.input_image_file)
+    input_image_file = Image.open(arguments.input_image_file)
     output_image = steganalyse(input_image_file)
-    soutput_image.save(options.output_image_file)
+    soutput_image.save(arguments.output_image_file)

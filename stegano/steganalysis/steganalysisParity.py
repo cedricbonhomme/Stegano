@@ -50,19 +50,3 @@ def steganalyse(img):
                 b = 255
             encoded.putpixel((col, row), (r, g , b))
     return encoded
-
-if __name__ == '__main__':
-    # Point of entry in execution mode.
-    from optparse import OptionParser
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Image file")
-    parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Image file")
-    parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                        output_image_file = './pictures/Lenna_steganalysed.png')
-    (options, args) = parser.parse_args()
-
-    input_image_file = Image.open(options.input_image_file)
-    output_image = steganalyse(input_image_file)
-    output_image.save(options.output_image_file)
