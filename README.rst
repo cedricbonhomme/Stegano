@@ -42,13 +42,13 @@ Use Stéganô as a program
 
 .. code:: bash
 
-    $ lsb --hide -i ./tests/sample-files/Lenna.png -o Lena1.png -m "Secret Message"
+    $ lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
 
 Hide the message with the Sieve of Eratosthenes:
 
 .. code:: bash
 
-    $ lsb-set --hide -i ./tests/sample-files/Lenna.png -o Lena2.png --generator eratosthenes -m 'Secret Message'
+    $ lsb-set hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
 
 
 Running the tests
