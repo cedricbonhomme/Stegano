@@ -97,6 +97,7 @@ def write(image, output_image_file):
 
 if __name__ == '__main__':
     # Point of entry in execution mode.
+    # Todo: improve the management of arguments
     from optparse import OptionParser
     usage = "usage: %prog hide|reveal [options]"
     parser = OptionParser(usage)

@@ -70,6 +70,7 @@ def reveal(input_image_file):
 
 if __name__ == "__main__":
     # Point of entry in execution mode.
+    # TODO: improve the management of arguments
     from optparse import OptionParser
     parser = OptionParser(version=__version__)
     parser.add_option('--hide', action='store_true', default=False,

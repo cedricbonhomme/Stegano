@@ -34,6 +34,18 @@ Display help
                             Output image containing the secret.
 
 
+.. code-block:: bash
+
+    $ lsb reveal --help
+    usage: lsb reveal [-h] -i INPUT_IMAGE_FILE [-o SECRET_BINARY]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+                            Input image file.
+      -o SECRET_BINARY      Output for the binary secret (Text or any binary
+                            file)
+
 
 Hide and reveal a text message with the LSB method
 --------------------------------------------------
@@ -82,10 +94,10 @@ An other example:
 .. code-block:: bash
 
     # Hide the message - LSB with a set defined by the identity function (f(x) = x).
-    lsb-set hide -i ./tests/sample-files/Montenach.png -o ./enc-identity.png --generator identity -m 'I like steganography.'
+    lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
 
     # Hide the message - LSB only.
-    lsb hide -i ./tests/sample-files/Montenach.png -o ./enc.png -m 'I like steganography.'
+    lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
 
     # Check if the two generated files are the same.
     sha1sum ./enc-identity.png ./enc.png

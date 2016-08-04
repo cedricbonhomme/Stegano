@@ -4,7 +4,10 @@ Release History
 0.6 (not yet released)
 ------------------
 
-* improvements of the command line of Stéganô.
+* improvements of the command line of Stéganô. The use of Stéganô through the
+  command line has slightly changed ('hide' and 'reveal' are now sub-parameters
+  of the command line). No changes if you use Stéganô as a module in your
+  software. The documentation has been updated accordingly.
 
 0.5.5 (2016-08-03)
 ------------------
