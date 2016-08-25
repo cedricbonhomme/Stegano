@@ -55,7 +55,7 @@ class TestEXIFHeader(unittest.TestCase):
             self.assertEqual(message, message)
 
     def test_with_image_without_exif_data(self):
-        secret = exifHeader.hide("./tests/sample-files/Elisha-Cuthbert.jpg",
+        secret = exifHeader.hide("./tests/sample-files/Lenna.jpg",
                                 "./image.jpg", secret_message="")
         #secret.save(""./image.png"")
 
@@ -67,7 +67,7 @@ class TestEXIFHeader(unittest.TestCase):
         text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide, "rb") as f:
             message = f.read()
-        secret = exifHeader.hide("./tests/sample-files/Elisha-Cuthbert.jpg",
+        secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
                             img_enc="./image.jpg",
                             secret_file=text_file_to_hide)
 

@@ -62,4 +62,4 @@ Running the tests
 Contact
 -------
 
-`My home page <https://www.cedricbonhomme.org>`_.
+`Cédric Bonhomme <https://www.cedricbonhomme.org>`_.

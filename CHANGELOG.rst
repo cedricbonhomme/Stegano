@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.6.1 (2016-08-25)
+------------------
+
+* reorganization of the steganalysis sub-module.
+
 0.6 (2016-08-04)
 ------------------
 
