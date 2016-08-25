@@ -20,12 +20,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.6 $"
-__date__ = "$Date: 2016/08/04 $"
+__version__ = "$Revision: 0.7 $"
+__date__ = "$Date: 2016/08/25 $"
 __license__ = "GPLv3"
 
 try:
-    from stegano import steganalysisParity
+    from stegano.steganalysis import parity
 except:
     print("Install Stegano: sudo pip install Stegano")
 
@@ -40,5 +40,5 @@ parser.add_argument("-o", "--output", dest="output_image_file",
 arguments = parser.parse_args()
 
 input_image_file = Image.open(arguments.input_image_file)
-output_image = steganalysisParity.steganalyse(input_image_file)
+output_image = parity.steganalyse(input_image_file)
 output_image.save(arguments.output_image_file)
