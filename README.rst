@@ -40,15 +40,26 @@ appropriate steganography technique. For example:
 Use Stéganô as a program
 ''''''''''''''''''''''''
 
+Hide a message
+~~~~~~~~~~~~~~
+
+
 .. code:: bash
 
     $ lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
 
-Hide the message with the Sieve of Eratosthenes:
+
+Hide the message with the Sieve of Eratosthenes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: bash
 
     $ lsb-set hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
+
+The message will be scattered in the picture, following a set described by the
+Sieve of Eratosthenes. Other sets are available. You can also use your own
+generators.
+This will make a steganalysis more complicated.
 
 
 Running the tests
@@ -62,4 +73,4 @@ Running the tests
 Contact
 -------
 
-`Cédric Bonhomme <https://www.cedricbonhomme.org>`_.
+`Cédric Bonhomme <https://www.cedricbonhomme.org>`_
