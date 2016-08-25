@@ -59,6 +59,7 @@ Hide the message with the Sieve of Eratosthenes
 The message will be scattered in the picture, following a set described by the
 Sieve of Eratosthenes. Other sets are available. You can also use your own
 generators.
+
 This will make a steganalysis more complicated.
 
 
