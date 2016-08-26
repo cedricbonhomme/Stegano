@@ -22,7 +22,7 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2010/10/01 $"
-__revision__ "$Date: 2016/08/26 $"
+__revision__ = "$Date: 2016/08/26 $"
 __license__ = "GPLv3"
 
 import operator
