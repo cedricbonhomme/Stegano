@@ -19,6 +19,13 @@ packages = [
     'stegano.steganalysis'
 ]
 
+scripts = [
+    'bin/lsb',
+    'bin/lsb-set',
+    'bin/steganalysis-parity',
+    'bin/steganalysis-statistics'
+]
+
 requires = ['pillow', 'piexif']
 
 with open('README.rst', 'r') as f:
@@ -33,7 +40,7 @@ setup(
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
     include_package_data=True,
-    scripts=['bin/lsb', 'bin/lsb-set', 'bin/steganalysis-parity'],
+    scripts=scripts,
     url='https://github.com/cedricbonhomme/Stegano',
     description='A Python Steganography module.',
     long_description=readme + '\n\n' + changelog,
