@@ -27,7 +27,7 @@ __license__ = "GPLv3"
 from PIL import Image
 import piexif
 
-def hide(input_image_file, img_enc, secret_message = None, secret_file = None):
+def hide(input_image_file, img_enc, secret_message = None, secret_file = None, img_format = None):
     """
     Hide a message (string) in an image.
     """
@@ -44,6 +44,10 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None):
         text = compress(b64encode(secret_message))
 
     img = Image.open(input_image_file)
+
+    if img_format is None:
+        img_format = img.format
+
     if "exif" in img.info:
         exif_dict = piexif.load(img.info["exif"])
     else:
@@ -51,7 +55,7 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None):
         exif_dict["0th"] = {}
     exif_dict["0th"][piexif.ImageIFD.ImageDescription] = text
     exif_bytes = piexif.dump(exif_dict)
-    img.save(img_enc, exif=exif_bytes)
+    img.save(img_enc, format=img_format, exif=exif_bytes)
     img.close()
     return img
 
@@ -63,8 +67,20 @@ def reveal(input_image_file):
     from base64 import b64decode
     from zlib import decompress
 
-    exif_dict = piexif.load(input_image_file)
-    encoded_message = exif_dict["0th"][piexif.ImageIFD.ImageDescription]
+    img = Image.open(input_image_file)
+    try:
+        if img.format in ['JPEG', 'TIFF']:
+            if 'exif' in img.info:
+                exif_dict = piexif.load(img.info.get("exif", b''))
+                description_key = piexif.ImageIFD.ImageDescription
+                encoded_message = exif_dict["0th"][description_key]
+            else:
+                encoded_message = b''
+        else:
+            raise ValueError("Given file is neither JPEG nor TIFF.")
+    finally:
+        img.close()
+
     return b64decode(decompress(encoded_message))
 
 
