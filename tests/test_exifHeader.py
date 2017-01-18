@@ -86,7 +86,7 @@ class TestEXIFHeader(unittest.TestCase):
     def test_with_bytes(self):
         outputBytes = io.BytesIO()
         message = b"Secret"
-        exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
+        exifHeader.hide(open("./tests/sample-files/20160505T130442.jpg", 'rb'),
                             outputBytes,
                             secret_message=message)
 
