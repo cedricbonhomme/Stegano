@@ -26,6 +26,7 @@ __license__ = "GPLv3"
 
 import os
 import unittest
+import io
 
 from stegano import exifHeader
 
@@ -81,6 +82,16 @@ class TestEXIFHeader(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             clear_message = exifHeader.reveal("./image.png")
+
+    def test_with_bytes(self):
+        outputBytes = io.BytesIO()
+        message = b"Secret"
+        exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
+                            outputBytes,
+                            secret_message=message)
+
+        clean_message = exifHeader.reveal(outputBytes)
+        self.assertEqual(message, clean_message)
 
     def tearDown(self):
         try:
