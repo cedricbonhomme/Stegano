@@ -35,7 +35,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.6.1',
+    version='0.6.2',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,

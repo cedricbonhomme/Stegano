@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.6.2 (2017-01-19)
+------------------
+
+* bugfix: solved a bug when the image data is coming via byte streams (ByteIO),
+  for the exifHeader hiding method.
+
 0.6.1 (2016-08-25)
 ------------------
 
