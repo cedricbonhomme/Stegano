@@ -14,8 +14,8 @@ Installation
 
     $ sudo pip install Stegano
 
-You will be able to use Stéganô in your Python programs or as a command line
-tool.
+You will be able to use `Stéganô <https://github.com/cedricbonhomme/Stegano>`_
+in your Python programs or as a command line tool.
 
 
 Usage
