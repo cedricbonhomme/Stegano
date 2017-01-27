@@ -49,6 +49,17 @@ class TestLSB(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_with_transparent_png(self):
+        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+
+        for message in messages_to_hide:
+            secret = lsb.hide("./tests/sample-files/transparent.png", message)
+            secret.save("./image.png")
+
+            clear_message = lsb.reveal("./image.png")
+
+            self.assertEqual(message, clear_message)
+
     def test_with_text_file(self):
         text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide) as f:
