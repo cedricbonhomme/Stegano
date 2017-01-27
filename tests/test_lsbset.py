@@ -53,6 +53,19 @@ class TestLSBSet(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_with_transparent_png(self):
+        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+
+        for message in messages_to_hide:
+            secret = lsbset.hide("./tests/sample-files/transparent.png",
+                                    message, generators.eratosthenes())
+            secret.save("./image.png")
+
+            clear_message = lsbset.reveal("./image.png",
+                                    generators.eratosthenes())
+
+            self.assertEqual(message, clear_message)
+
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()

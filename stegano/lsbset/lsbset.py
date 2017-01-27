@@ -46,13 +46,14 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
     assert message_length != 0, "message length is zero"
 
     img = Image.open(input_image_file)
-    if img.mode != 'RGB':
-        print('The mode of the image is not RGB. Mode is {}'.format(img.mode))
+
+    if img.mode not in ['RGB', 'RGBA']:
         if not auto_convert_rgb:
+            print('The mode of the image is not RGB. Mode is {}'.\
+                                                            format(img.mode))
             answer = input('Convert the image to RGB ? [Y / n]\n') or 'Y'
             if answer.lower() == 'n':
                 raise Exception('Not a RGB image.')
-
         img = img.convert('RGB')
 
     img_list = list(img.getdata())
@@ -72,7 +73,7 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
 
     while index + 3 <= len_message_bits :
         generated_number = next(generator)
-        (r, g, b) = img_list[generated_number]
+        r, g, b, *a = img_list[generated_number]
 
         # Change the Least Significant Bit of each colour component.
         r = tools.setlsb(r, message_bits[index])
@@ -80,7 +81,10 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
         b = tools.setlsb(b, message_bits[index+2])
 
         # Save the new pixel
-        img_list[generated_number] = (r, g , b)
+        if img.mode == 'RGBA':
+            img_list[generated_number] = (r, g , b, a[0])
+        else:
+            img_list[generated_number] = (r, g , b)
 
         index += 3
 
