@@ -44,7 +44,8 @@ def hide(input_image_file, message, auto_convert_rgb=False):
     assert message_length != 0, "message length is zero"
 
     img = Image.open(input_image_file)
-    if img.mode != 'RGB':
+
+    if img.mode not in ['RGB', 'RGBA']:
         if not auto_convert_rgb:
             print('The mode of the image is not RGB. Mode is {}'.\
                                                             format(img.mode))
@@ -71,7 +72,10 @@ def hide(input_image_file, message, auto_convert_rgb=False):
             if index + 3 <= len_message_bits :
 
                 # Get the colour component.
-                (r, g, b) = img.getpixel((col, row))
+                pixel = img.getpixel((col, row))
+                r = pixel[0]
+                g = pixel[1]
+                b = pixel[2]
 
                 # Change the Least Significant Bit of each colour component.
                 r = tools.setlsb(r, message_bits[index])
@@ -79,7 +83,12 @@ def hide(input_image_file, message, auto_convert_rgb=False):
                 b = tools.setlsb(b, message_bits[index+2])
 
                 # Save the new pixel
-                encoded.putpixel((col, row), (r, g , b))
+                if img.mode == 'RGBA':
+                    updated_pixel = (r, g, b, pixel[3])
+                else:
+                    updated_pixel = (r, g, b)
+
+                encoded.putpixel((col, row), updated_pixel)
 
                 index += 3
             else:
@@ -102,8 +111,11 @@ def reveal(input_image_file):
     for row in range(height):
         for col in range(width):
 
-            # color = [r, g, b]
-            for color in img.getpixel((col, row)):
+            # pixel = [r, g, b] or [r,g,b,a]
+            pixel = img.getpixel((col, row))
+            if img.mode == 'RGBA':
+                pixel = pixel[:3] # ignore the alpha
+            for color in pixel:
                 buff += (color&1)<<(7-count)
                 count += 1
                 if count == 8:
