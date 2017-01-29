@@ -4,7 +4,8 @@ Stéganô
 .. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
-A Python Steganography module.
+`Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a Python Steganography
+module.
 
 
 Installation
@@ -14,8 +15,8 @@ Installation
 
     $ sudo pip install Stegano
 
-You will be able to use `Stéganô <https://github.com/cedricbonhomme/Stegano>`_
-in your Python programs or as a command line tool.
+You will be able to use Stéganô in your Python programs or as a command line
+tool.
 
 
 Usage

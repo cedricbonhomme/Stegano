@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.6.3 (2017-01-29)
+------------------
+
+* Support for transparent PNG images has been added (lsb and lsbset modules).
+
 0.6.2 (2017-01-19)
 ------------------
 
