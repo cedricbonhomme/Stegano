@@ -1,8 +1,17 @@
 Stéganô
 =======
 
+.. image:: https://img.shields.io/pypi/v/Stegano.svg
+    :target: https://pypi.python.org/pypi/Stegano
+
+.. image:: https://img.shields.io/pypi/l/Stegano.svg
+    :target: https://pypi.python.org/pypi/Stegano
+
 .. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
     :target: https://travis-ci.org/cedricbonhomme/Stegano
+
+.. image:: https://img.shields.io/badge/SayThanks.io-☼-1EAEDB.svg
+    :target: https://saythanks.io/to/cedricbonhomme
 
 `Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a Python Steganography
 module.
