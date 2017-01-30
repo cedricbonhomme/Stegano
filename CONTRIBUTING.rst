@@ -11,9 +11,7 @@ When contributing code, you'll want to follow this checklist:
 
 1. Fork the repository on GitHub.
 2. Run the tests to confirm they all pass on your system. If they don't, you'll
-   need to investigate why they fail. If you're unable to diagnose this
-   yourself, raise it as a bug report by following the guidelines in this
-   document: :ref:`bug-reports`.
+   need to investigate why they fail.
 3. Write tests that demonstrate your bug or feature. Ensure that they fail.
 4. Make your change.
 5. Run the entire test suite again, confirming that all tests pass *including
@@ -59,13 +57,15 @@ Questions
 
 The GitHub issue tracker is for *bug reports* and *feature requests*. Please do
 not use it to ask questions about how to use Stegano. These questions should
-instead be directed to [Stack Overflow](https://stackoverflow.com/). Make sure
+instead be directed to Stack Overflow. Make sure
 that your question is tagged with the `python-stegano` tag when asking it on
 Stack Overflow, to ensure that it is answered promptly and accurately.
 You can search for questions with
-<these tags `http://stackoverflow.com/questions/tagged/python+steganography`>_.
+`these tags <http://stackoverflow.com/questions/tagged/python+steganography>_.
 
-## Good Bug Reports
+
+Good Bug Reports
+================
 
 Please be aware of the following things when filing bug reports:
 
