@@ -61,7 +61,7 @@ instead be directed to Stack Overflow. Make sure
 that your question is tagged with the `python-stegano` tag when asking it on
 Stack Overflow, to ensure that it is answered promptly and accurately.
 You can search for questions with
-`these tags <http://stackoverflow.com/questions/tagged/python+steganography>_.
+`these tags <http://stackoverflow.com/questions/tagged/python+steganography>`_.
 
 
 Good Bug Reports
