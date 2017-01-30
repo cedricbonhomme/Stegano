@@ -1,9 +1,11 @@
-# Contribution Guidelines
+Contribution Guidelines
+=======================
 
 Before opening proposing any pull requests (about code or documentation),
 please open an issue.
 
-## Code Contributions
+Code Contributions
+------------------
 
 When contributing code, you'll want to follow this checklist:
 
@@ -20,7 +22,8 @@ When contributing code, you'll want to follow this checklist:
    GitHub Pull Requests are the expected method of code collaboration on this
    project.
 
-### Code Style
+Code Style
+~~~~~~~~~~
 
 Please try to respect the `PEP 8`_ code style.
 
@@ -31,7 +34,8 @@ following additional notes.
 .. _PEP 8: http://pep8.org
 
 
-## Documentation Contributions
+Documentation Contributions
+---------------------------
 
 Documentation improvements are always welcome! The documentation files live in
 the ``docs/`` directory of the codebase. They're written in
@@ -50,8 +54,8 @@ When presenting Python code, use single-quoted strings (``'hello'`` instead of
 
 
 
-
-# Questions
+Questions
+=========
 
 The GitHub issue tracker is for *bug reports* and *feature requests*. Please do
 not use it to ask questions about how to use Stegano. These questions should
