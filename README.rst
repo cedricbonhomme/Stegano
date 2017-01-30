@@ -10,8 +10,12 @@ Stéganô
 .. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
-`Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a Python Steganography
-module.
+.. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg
+    :target: https://saythanks.io/to/cedricbonhomme
+
+
+`Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a pure Python
+Steganography module.
 
 
 Installation

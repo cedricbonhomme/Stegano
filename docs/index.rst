@@ -6,7 +6,19 @@
 Presentation
 ============
 
-Stéganô_ is a Python steganography_ module.
+.. image:: https://img.shields.io/pypi/v/Stegano.svg
+    :target: https://pypi.python.org/pypi/Stegano
+
+.. image:: https://img.shields.io/pypi/l/Stegano.svg
+    :target: https://pypi.python.org/pypi/Stegano
+
+.. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
+    :target: https://travis-ci.org/cedricbonhomme/Stegano
+
+.. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg
+    :target: https://saythanks.io/to/cedricbonhomme
+
+Stéganô_ is a pure Python steganography_ module.
 
 Steganography is the art and science of writing hidden messages in such a way
 that no one, apart from the sender and intended recipient, suspects the
@@ -61,6 +73,7 @@ Donation
 
 If you wish and if you like Stéganô, you can donate via bitcoin.
 My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
+
 
 
 Contact
