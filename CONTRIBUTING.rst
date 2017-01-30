@@ -52,20 +52,8 @@ When presenting Python code, use single-quoted strings (``'hello'`` instead of
 
 
 
-Questions
-=========
-
-The GitHub issue tracker is for *bug reports* and *feature requests*. Please do
-not use it to ask questions about how to use Stegano. These questions should
-instead be directed to Stack Overflow. Make sure
-that your question is tagged with the `python-stegano` tag when asking it on
-Stack Overflow, to ensure that it is answered promptly and accurately.
-You can search for questions with
-`these tags <http://stackoverflow.com/questions/tagged/python+steganography>`_.
-
-
 Good Bug Reports
-================
+----------------
 
 Please be aware of the following things when filing bug reports:
 
@@ -102,3 +90,16 @@ Please be aware of the following things when filing bug reports:
    If you do not provide all of these things, it will take us much longer to
    fix your problem. If we ask you to clarify these and you never respond, we
    will close your issue without fixing it.
+
+
+
+Questions
+=========
+
+The GitHub issue tracker is for *bug reports* and *feature requests*. Please do
+not use it to ask questions about how to use Stegano. These questions should
+instead be directed to Stack Overflow. Make sure
+that your question is tagged with the `python-stegano` tag when asking it on
+Stack Overflow, to ensure that it is answered promptly and accurately.
+You can search for questions with
+`these tags <http://stackoverflow.com/questions/tagged/python+steganography>`_.
