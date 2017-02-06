@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.6.4 (2017-02-06)
+------------------
+
+* a command line for the 'red' module has been added;
+* bugfix: fixed a bug in the lsb-set command line when the generator wasn't
+  specified by the user.
+
 0.6.3 (2017-01-29)
 ------------------
 

@@ -107,3 +107,26 @@ An other example:
 
     # The output of lsb-set is given to lsb.
     lsb reveal -i ./enc-identity.png
+
+
+Hide and reveal a text message with the red portion of a pixel
+--------------------------------------------------------------
+
+.. code-block:: bash
+
+    $ stegano-red hide --help
+    usage: stegano-red hide [-h] [-i INPUT_IMAGE_FILE] [-m SECRET_MESSAGE]
+                        [-o OUTPUT_IMAGE_FILE]
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+                        Image file
+    -m SECRET_MESSAGE     Your secret message to hide (non binary).
+    -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
+                        Image file
+
+    $ stegano-red hide -i ./tests/sample-files/Lenna.png -m 'Basic steganography technique.' -o ~/Lenna1.png
+
+    $ stegano-red reveal -i ~/Lenna1.png
+    Basic steganography technique.

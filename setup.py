@@ -22,6 +22,7 @@ packages = [
 scripts = [
     'bin/lsb',
     'bin/lsb-set',
+    'bin/stegano-red',
     'bin/steganalysis-parity',
     'bin/steganalysis-statistics'
 ]
@@ -35,7 +36,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.6.3',
+    version='0.6.4',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
@@ -53,7 +54,6 @@ setup(
         "Environment :: Console",
         "Topic :: Utilities",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
