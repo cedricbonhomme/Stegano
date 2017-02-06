@@ -20,8 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2010/10/01 $"
+__revision__ = "$Date: 2017/02/06 $"
 __license__ = "GPLv3"
 
 import sys
@@ -94,30 +95,3 @@ def write(image, output_image_file):
         print(e)
     finally:
         image.close()
-
-if __name__ == '__main__':
-    # Point of entry in execution mode.
-    # Todo: improve the management of arguments
-    from optparse import OptionParser
-    usage = "usage: %prog hide|reveal [options]"
-    parser = OptionParser(usage)
-    parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Image file.")
-    parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Image file.")
-    parser.add_option("-s", "--secret", dest="secret",
-                    help="Your secret (Message, Image, Music or any binary file).")
-    parser.set_defaults(input_image_file = './pictures/Lenna.png',
-                        output_image_file = './pictures/Lenna_enc.png',
-                        secret = 'Hello World!')
-
-    (options, args) = parser.parse_args()
-
-    if sys.argv[1] == "hide":
-        img = Image.open(options.input_image_file)
-        img_encoded = hide(img, options.secret)
-        img_encoded.save(options.output_image_file)
-
-    elif sys.argv[1] == "reveal":
-        img = Image.open(options.input_image_file)
-        print(reveal(img))
