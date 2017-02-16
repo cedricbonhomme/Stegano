@@ -44,7 +44,7 @@ setup(
     scripts=scripts,
     url='https://github.com/cedricbonhomme/Stegano',
     description='A Python Steganography module.',
-    long_description=readme + '\n|\n|\n|\n' + changelog,
+    long_description=readme + '\n|\n\n' + changelog,
     platforms = ['Linux'],
     license='GPLv3',
     install_requires=requires,
