@@ -24,6 +24,7 @@ __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2016/04/12 $"
 __license__ = "GPLv3"
 
+import io
 import os
 import unittest
 
@@ -76,6 +77,20 @@ class TestLSB(unittest.TestCase):
         message += message*2
         with self.assertRaises(Exception):
             lsb.hide("./tests/sample-files/Lenna.png", message)
+
+    def test_with_bytes(self):
+        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+
+        for message in messages_to_hide:
+            message = "Hello World"
+            outputBytes = io.BytesIO()
+            bytes_image = lsb.hide(open("./tests/sample-files/20160505T130442.jpg", 'rb'), message)
+            bytes_image.save(outputBytes, "PNG")
+            outputBytes.seek(0)
+
+            clear_message = lsb.reveal(outputBytes)
+
+            self.assertEqual(message, clear_message)
 
     def tearDown(self):
         try:
