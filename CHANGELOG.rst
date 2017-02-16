@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.6.5 (2017-02-16)
+------------------
+
+* added a command to list all available generators for the lsb-set module;
+* test when the data image is coming via byte stream, for the lsb module.
+
+
 0.6.4 (2017-02-06)
 ------------------
 

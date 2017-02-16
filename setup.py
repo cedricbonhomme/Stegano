@@ -36,7 +36,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.6.4',
+    version='0.6.5',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
@@ -44,7 +44,7 @@ setup(
     scripts=scripts,
     url='https://github.com/cedricbonhomme/Stegano',
     description='A Python Steganography module.',
-    long_description=readme + '\n\n' + changelog,
+    long_description=readme + '\n|\n|\n|\n' + changelog,
     platforms = ['Linux'],
     license='GPLv3',
     install_requires=requires,

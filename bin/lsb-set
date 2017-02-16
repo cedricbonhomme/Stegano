@@ -70,20 +70,25 @@ parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
 
+# Subparser: List generators
+parser_list_generators = subparsers.add_parser('list-generators',
+                                                help='list-generators help')
+
 arguments = parser.parse_args()
 
-try:
-    arguments.generator_function
-except AttributeError:
-    print('You must specify the name of a generator.')
-    parser.print_help()
-    exit(1)
+if arguments.command != 'list-generators':
+    try:
+        arguments.generator_function
+    except AttributeError:
+        print('You must specify the name of a generator.')
+        parser.print_help()
+        exit(1)
 
-try:
-    generator = getattr(generators, arguments.generator_function)()
-except AttributeError as e:
-    print("Unknown generator: {}".format(arguments.generator_function))
-    exit(1)
+    try:
+        generator = getattr(generators, arguments.generator_function)()
+    except AttributeError as e:
+        print("Unknown generator: {}".format(arguments.generator_function))
+        exit(1)
 
 if arguments.command == 'hide':
     if arguments.secret_message != None:
@@ -110,3 +115,9 @@ elif arguments.command == 'reveal':
             f.write(data)
     else:
         print(secret)
+
+elif arguments.command == 'list-generators':
+    import inspect
+    all_generators = inspect.getmembers(generators, inspect.isfunction)
+    for generator in all_generators:
+        print(generator[0], generator[1].__doc__)

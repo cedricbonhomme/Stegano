@@ -38,6 +38,9 @@ def identity():
         n += 1
 
 def Dead_Man_Walking():
+    """
+    Dead Man Walking.
+    """
     n = 0
     while True:
         yield n + 7
@@ -96,6 +99,10 @@ def eratosthenes_composite():
         p1 = p2
 
 def carmichael():
+    """
+    https://oeis.org/A002997
+    Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+    """
     for m in eratosthenes_composite():
         for a in range(2, m):
             if pow(a,m,m) != a:
@@ -116,9 +123,9 @@ def ackermann(m, n):
 
 def fibonacci():
     """
+    https://oeis.org/A000045
     A generator for Fibonacci numbers, goes to next number in series on each call.
     This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
-    See: http://oeis.org/A000045
     """
     a, b = 1, 2
     while True:
