@@ -74,19 +74,61 @@ Sets are used in order to select the pixels where the message will be hidden.
 .. code-block:: bash
 
     # Hide the message with the Sieve of Eratosthenes
-    lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
+    $ lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
 
     # Try to reveal with Mersenne numbers
-    lsb-set reveal --generator mersenne -i ./surprise.png
+    $ lsb-set reveal --generator mersenne -i ./surprise.png
 
     # Try to reveal with fermat numbers
-    lsb-set reveal --generator fermat -i ./surprise.png
+    $ lsb-set reveal --generator fermat -i ./surprise.png
 
     # Try to reveal with carmichael numbers
-    lsb-set reveal --generator carmichael -i ./surprise.png
+    $ lsb-set reveal --generator carmichael -i ./surprise.png
 
     # Try to reveal with Sieve of Eratosthenes
-    lsb-set reveal --generator eratosthenes -i ./surprise.png
+    $ lsb-set reveal --generator eratosthenes -i ./surprise.png
+
+    # List all available generators
+    $ lsb-set list-generators
+    Dead_Man_Walking
+        Dead Man Walking.
+
+    OEIS_A000217
+        http://oeis.org/A000217
+        Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+
+    ackermann
+        Ackermann number.
+
+    carmichael
+        https://oeis.org/A002997
+        Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+
+    eratosthenes
+        Generate the prime numbers with the sieve of Eratosthenes.
+
+    eratosthenes_composite
+        Generate the composite numbers with the sieve of Eratosthenes.
+
+    fermat
+        Generate the n-th Fermat Number.
+
+    fibonacci
+        https://oeis.org/A000045
+        A generator for Fibonacci numbers, goes to next number in series on each call.
+        This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
+
+    identity
+        f(x) = x
+
+    log_gen
+        Logarithmic generator.
+
+    mersenne
+        Generate 2^n-1.
+
+    syracuse
+        Generate the sequence of Syracuse
 
 
 An other example:
