@@ -5,10 +5,10 @@ Stéganô
     :target: https://pypi.python.org/pypi/Stegano
 
 .. image:: https://img.shields.io/pypi/v/Stegano.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/Stegano
+    :target: https://github.com/cedricbonhomme/Stegano/releases/tag/v0.6.5
 
 .. image:: https://img.shields.io/pypi/l/Stegano.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/Stegano
+    :target: https://www.gnu.org/licenses/gpl-3.0.html
 
 .. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://travis-ci.org/cedricbonhomme/Stegano
