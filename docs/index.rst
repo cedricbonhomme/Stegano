@@ -6,16 +6,22 @@
 Presentation
 ============
 
-.. image:: https://img.shields.io/pypi/v/Stegano.svg
+.. image:: https://img.shields.io/pypi/pyversions/Stegano.svg?style=flat-square
     :target: https://pypi.python.org/pypi/Stegano
 
-.. image:: https://img.shields.io/pypi/l/Stegano.svg
-    :target: https://pypi.python.org/pypi/Stegano
+.. image:: https://img.shields.io/pypi/v/Stegano.svg?style=flat-square
+    :target: https://github.com/cedricbonhomme/Stegano/releases/latest
 
-.. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
+.. image:: https://img.shields.io/pypi/l/Stegano.svg?style=flat-square
+    :target: https://www.gnu.org/licenses/gpl-3.0.html
+
+.. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
-.. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg
+.. image:: https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?maxAge=2592000&style=flat-square
+    :target: https://github.com/cedricbonhomme/Stegano/stargazers
+
+.. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square
     :target: https://saythanks.io/to/cedricbonhomme
 
 Stéganô_ is a pure Python steganography_ module.
@@ -42,7 +48,7 @@ Moreover some methods of steganalysis_ are provided:
 Requirements
 ============
 
-- Python_ 3 (tested with Python 3.5.1);
+- Python_ 3;
 - `Pillow`_;
 - `piexif`_.
 
