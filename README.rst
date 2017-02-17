@@ -5,7 +5,7 @@ Stéganô
     :target: https://pypi.python.org/pypi/Stegano
 
 .. image:: https://img.shields.io/pypi/v/Stegano.svg?style=flat-square
-    :target: https://github.com/cedricbonhomme/Stegano/releases/tag/v0.6.5
+    :target: https://github.com/cedricbonhomme/Stegano/releases/latest
 
 .. image:: https://img.shields.io/pypi/l/Stegano.svg?style=flat-square
     :target: https://www.gnu.org/licenses/gpl-3.0.html
