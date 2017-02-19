@@ -92,7 +92,6 @@ Please be aware of the following things when filing bug reports:
    will close your issue without fixing it.
 
 
-
 Questions
 =========
 
