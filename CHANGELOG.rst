@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.6.6 (2017-02-20)
+------------------
+
+* improved docstrings for the desciption of the generators;
+* improved the command which displays the list of generators.
+
 0.6.5 (2017-02-16)
 ------------------
 

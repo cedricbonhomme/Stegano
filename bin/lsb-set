@@ -25,6 +25,8 @@ __date__ = "$Date: 2016/03/18 $"
 __revision__ = "$Date: 2016/08/04 $"
 __license__ = "GPLv3"
 
+import crayons
+
 try:
     from stegano import lsbset
     from stegano.lsbset import generators
@@ -120,4 +122,7 @@ elif arguments.command == 'list-generators':
     import inspect
     all_generators = inspect.getmembers(generators, inspect.isfunction)
     for generator in all_generators:
-        print(generator[0], generator[1].__doc__)
+        print('Generator id:\n    {}\nDesciption:\n    {}'.format(
+                                        crayons.green(generator[0]),
+                                        generator[1].__doc__))
+        print('')
