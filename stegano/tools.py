@@ -91,24 +91,12 @@ def binary2base64(binary_file):
     fin = open(binary_file, "rb")
     binary_data = fin.read()
     fin.close()
-
     # Encode binary to base64 string (printable)
     return  base64.b64encode(binary_data)
-
-    """fout = open(output_file, "w")
-    fout.write(b64_data)
-    fout.close"""
 
 def base642binary(b64_fname):
     """
     Convert a printable file to a binary file.
     """
-    # Read base64 string
-    #fin = open(b64_fname, "r")
-    #b64_str = fin.read()
-    #fin.close()
-    # Decode base64 string to original binary sound object
     b64_fname += b'==='
     return base64.decodestring(b64_fname)
-
-    #return base64.b64decode(b64_fname)
