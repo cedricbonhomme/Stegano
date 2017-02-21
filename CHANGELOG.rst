@@ -4,7 +4,7 @@ Release History
 0.6.7 (2017-02-21)
 ------------------
 
-* bugfix: added missing a dependency in the setup.py file.
+* bugfix: added missing dependency in the setup.py file.
 
 0.6.6 (2017-02-20)
 ------------------
