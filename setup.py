@@ -27,7 +27,7 @@ scripts = [
     'bin/steganalysis-statistics'
 ]
 
-requires = ['pillow', 'piexif']
+requires = ['pillow', 'piexif', 'crayons']
 
 with open('README.rst', 'r') as f:
     readme = f.read()
@@ -36,7 +36,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.6.6',
+    version='0.6.7',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
