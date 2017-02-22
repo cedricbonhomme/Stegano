@@ -29,8 +29,7 @@ from PIL import Image
 import piexif
 
 def hide(input_image_file, img_enc, secret_message = None, secret_file = None, img_format = None):
-    """
-    Hide a message (string) in an image.
+    """Hide a message (string) in an image.
     """
     from zlib import compress
     from base64 import b64encode
@@ -62,8 +61,7 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None, i
 
 
 def reveal(input_image_file):
-    """
-    Find a message in an image.
+    """Find a message in an image.
     """
     from base64 import b64decode
     from zlib import decompress

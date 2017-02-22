@@ -38,8 +38,7 @@ except NameError:
    pass
 
 def hide(input_image_file, message, generator, auto_convert_rgb=False):
-    """
-    Hide a message (string) in an image with the
+    """Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """
     message_length = len(message)
@@ -98,8 +97,7 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
 
 
 def reveal(input_image_file, generator):
-    """
-    Find a message in an image
+    """Find a message in an image
     (with the LSB technique).
     """
     img = Image.open(input_image_file)
