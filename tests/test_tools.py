@@ -31,7 +31,7 @@ import io
 
 from stegano import tools
 
-class TestEXIFHeader(unittest.TestCase):
+class TestTools(unittest.TestCase):
 
     def test_a2bits(self):
         bits = tools.a2bits("Hello World!")
