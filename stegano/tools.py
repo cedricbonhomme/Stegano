@@ -26,6 +26,7 @@ __revision__ = "$Date: 2016/08/03 $"
 __license__ = "GPLv3"
 
 import base64
+import itertools
 from functools import reduce
 
 def a2bits(chars):
@@ -80,7 +81,7 @@ def n_at_a_time(items, n, fillvalue):
     [(1, 2), (3, 4), (5, 'X')]
     """
     it = iter(items)
-    return its.izip_longest(*[it] * n, fillvalue=fillvalue)
+    return itertools.zip_longest(*[it] * n, fillvalue=fillvalue)
 
 def binary2base64(binary_file):
     """
