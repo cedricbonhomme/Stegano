@@ -7,3 +7,6 @@ install:
 
 script:
   - nosetests --with-coverage --cover-package=stegano
+
+after_success:
+  - coveralls
