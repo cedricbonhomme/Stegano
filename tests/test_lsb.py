@@ -20,13 +20,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2016/04/12 $"
+__revision__ = "$Date: 2017/02/22 $"
 __license__ = "GPLv3"
 
 import io
 import os
 import unittest
+from unittest.mock import patch
 
 from stegano import lsb
 
@@ -41,7 +43,6 @@ class TestLSB(unittest.TestCase):
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
-
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/Lenna.png", message)
             secret.save("./image.png")
@@ -52,7 +53,6 @@ class TestLSB(unittest.TestCase):
 
     def test_with_transparent_png(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
-
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/transparent.png", message)
             secret.save("./image.png")
@@ -60,6 +60,24 @@ class TestLSB(unittest.TestCase):
             clear_message = lsb.reveal("./image.png")
 
             self.assertEqual(message, clear_message)
+
+    @patch('builtins.input', return_value='y')
+    def test_manual_convert_rgb(self, input):
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
+                                    message_to_hide)
+
+    @patch('builtins.input', return_value='n')
+    def test_refuse_convert_rgb(self, input):
+        message_to_hide = "I love 🍕 and 🍫!"
+        with self.assertRaises(Exception):
+            secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
+                                    message_to_hide)
+
+    def test_auto_convert_rgb(self):
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
+                            message_to_hide, True)
 
     def test_with_text_file(self):
         text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"

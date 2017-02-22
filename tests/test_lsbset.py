@@ -20,13 +20,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.2 $"
+__version__ = "$Revision: 0.3 $"
 __date__ = "$Date: 2016/04/13 $"
-__revision__ = "$Date: 2016/05/22 $"
+__revision__ = "$Date: 2017/02/22 $"
 __license__ = "GPLv3"
 
 import os
 import unittest
+from unittest.mock import patch
 
 from stegano import lsbset
 from stegano.lsbset import generators
@@ -55,7 +56,6 @@ class TestLSBSet(unittest.TestCase):
 
     def test_with_transparent_png(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
-
         for message in messages_to_hide:
             secret = lsbset.hide("./tests/sample-files/transparent.png",
                                     message, generators.eratosthenes())
@@ -65,6 +65,24 @@ class TestLSBSet(unittest.TestCase):
                                     generators.eratosthenes())
 
             self.assertEqual(message, clear_message)
+
+    @patch('builtins.input', return_value='y')
+    def test_manual_convert_rgb(self, input):
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
+                                    message_to_hide, generators.eratosthenes())
+
+    @patch('builtins.input', return_value='n')
+    def test_refuse_convert_rgb(self, input):
+        message_to_hide = "I love 🍕 and 🍫!"
+        with self.assertRaises(Exception):
+            secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
+                                    message_to_hide, generators.eratosthenes())
+
+    def test_auto_convert_rgb(self):
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
+                            message_to_hide, generators.eratosthenes(), True)
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
