@@ -13,6 +13,9 @@ Stéganô
 .. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
+.. image:: https://coveralls.io/repos/github/cedricbonhomme/Stegano/badge.svg?branch=master
+   :target: https://coveralls.io/github/cedricbonhomme/Stegano?branch=master
+
 .. image:: https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://github.com/cedricbonhomme/Stegano/stargazers
 
