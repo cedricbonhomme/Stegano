@@ -13,7 +13,7 @@ Stéganô
 .. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
-.. image:: https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?maxAge=2592000&style=flat-square
+.. image:: https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?style=flat-square
     :target: https://github.com/cedricbonhomme/Stegano/stargazers
 
 .. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square
