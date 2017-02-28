@@ -54,16 +54,15 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
     width, height = img.size
     index = 0
 
-    message = str(len(message)) + ":" + str(message)
-    #message_bits = tools.a2bits(message)
+    message = str(message_length) + ":" + str(message)
     message_bits = "".join(tools.a2bits_list(message))
     message_bits += '0' * ((3 - (len(message_bits) % 3)) % 3)
 
     npixels = width * height
     len_message_bits = len(message_bits)
     if len_message_bits > npixels * 3:
-        raise Exception("The message you want to hide is too long: {}".\
-                            format(message_length))
+        raise Exception("The message you want to hide is too long: {}". \
+                                                        format(message_length))
 
     while index + 3 <= len_message_bits :
         generated_number = next(generator)
@@ -92,8 +91,7 @@ def hide(input_image_file, message, generator, auto_convert_rgb=False):
 
 
 def reveal(input_image_file, generator):
-    """Find a message in an image
-    (with the LSB technique).
+    """Find a message in an image (with the LSB technique).
     """
     img = Image.open(input_image_file)
     img_list = list(img.getdata())
@@ -118,5 +116,3 @@ def reveal(input_image_file, generator):
                         pass
         if len(bitab)-len(str(limit))-1 == limit :
             return "".join(bitab)[len(str(limit))+1:]
-
-    return ""

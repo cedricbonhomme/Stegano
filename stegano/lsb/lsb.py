@@ -89,12 +89,9 @@ def hide(input_image_file, message, auto_convert_rgb=False):
                 img.close()
                 return encoded
 
-    img.close()
-    return encoded
 
 def reveal(input_image_file):
-    """Find a message in an image
-    (with the LSB technique).
+    """Find a message in an image (with the LSB technique).
     """
     img = Image.open(input_image_file)
     width, height = img.size
@@ -123,5 +120,3 @@ def reveal(input_image_file):
             if len(bitab)-len(str(limit))-1 == limit :
                 img.close()
                 return "".join(bitab)[len(str(limit))+1:]
-    img.close()
-    return ""
