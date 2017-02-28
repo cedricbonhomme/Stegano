@@ -12,6 +12,8 @@ build/*
 Stegano.egg-info/*
 dist/*
 
+.coverage
+
 docs/_build
 
 # Emacs
