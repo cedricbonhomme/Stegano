@@ -44,7 +44,7 @@ def Dead_Man_Walking():
         yield n + 7
         n += 2
 
-def OEIS_A000217():
+def triangular_numbers():
     """http://oeis.org/A000217
     Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
     """
@@ -54,17 +54,19 @@ def OEIS_A000217():
         n += 1
 
 def fermat():
-    """Generate the n-th Fermat Number.
+    """https://oeis.org/A000215
+    Generate the n-th Fermat Number.
     """
-    y = 5
+    y = 3
     while True:
         yield y
         y = pow(y-1,2)+1
 
 def mersenne():
-    """Generate 2^n-1.
+    """https://oeis.org/A001348
+    Generate 2^n - 1.
     """
-    y = 1
+    y = 3
     while True:
         yield y
         y = 2*y + 1
