@@ -27,6 +27,7 @@ __license__ = "GPLv3"
 
 import io
 import os
+import base64
 import unittest
 from unittest.mock import patch
 
@@ -88,6 +89,28 @@ class TestLSB(unittest.TestCase):
 
         clear_message = lsb.reveal("./image.png")
         self.assertEqual(message, clear_message)
+
+    def test_with_binary_file(self):
+        binary_file_to_hide = "./tests/sample-files/free-software-song.ogg"
+        with open(binary_file_to_hide, "rb") as bin_file:
+            encoded_string = base64.b64encode(bin_file.read())
+            message = encoded_string.decode()
+        secret = lsb.hide("./tests/sample-files/Montenach.png", message)
+        secret.save("./image.png")
+
+        clear_message = lsb.reveal("./image.png")
+        clear_message += '==='
+        clear_message = base64.b64decode(clear_message)
+        with open('file1', 'wb') as f:
+            f.write(clear_message)
+        with open('file1', 'rb') as bin_file:
+            encoded_string = base64.b64encode(bin_file.read())
+            message1 = encoded_string.decode()
+        self.assertEqual(message, message1)
+        try:
+            os.unlink('./file1')
+        except:
+            pass
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
