@@ -89,15 +89,13 @@ def binary2base64(binary_file):
     printable string.
     """
     # Use mode = "rb" to read binary file
-    fin = open(binary_file, "rb")
-    binary_data = fin.read()
-    fin.close()
-    # Encode binary to base64 string (printable)
-    return  base64.b64encode(binary_data)
+    with open(binary_file, "rb") as bin_file:
+        encoded_string = base64.b64encode(bin_file.read())
+    return encoded_string.decode()
 
 def base642binary(b64_fname):
     """
     Convert a printable file to a binary file.
     """
-    b64_fname += b'==='
-    return base64.decodestring(b64_fname)
+    b64_fname += '==='
+    return base64.b64decode(b64_fname)

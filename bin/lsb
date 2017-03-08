@@ -81,13 +81,6 @@ if arguments.command == 'hide':
 elif arguments.command == 'reveal':
     secret = lsb.reveal(arguments.input_image_file)
     if arguments.secret_binary != None:
-        """data = tools.base642binary(secret)
-        from PIL import Image
-        import io
-        file_like = io.BytesIO(data)
-        file_like.seek(0)
-        image = Image.open(file_like)
-        image.save(arguments.secret_binary)"""
         data = tools.base642binary(secret)
         with open(arguments.secret_binary, "wb") as f:
             f.write(data)
