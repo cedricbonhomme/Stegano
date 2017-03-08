@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.6.8 (2017-03-08)
+------------------
+
+* bugfix: fixed #12: Error when revealing a hidden binary file in an image.
+
 0.6.7 (2017-02-21)
 ------------------
 
