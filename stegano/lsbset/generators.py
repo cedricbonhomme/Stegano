@@ -27,8 +27,9 @@ __license__ = "GPLv3"
 
 import math
 import itertools
+from typing import Iterator
 
-def identity():
+def identity() -> Iterator[int]:
     """f(x) = x
     """
     n = 0
@@ -36,7 +37,7 @@ def identity():
         yield n
         n += 1
 
-def Dead_Man_Walking():
+def Dead_Man_Walking() -> Iterator[int]:
     """Dead Man Walking.
     """
     n = 0
@@ -44,7 +45,7 @@ def Dead_Man_Walking():
         yield n + 7
         n += 2
 
-def triangular_numbers():
+def triangular_numbers() -> Iterator[int]:
     """http://oeis.org/A000217
     Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
     """
@@ -53,7 +54,7 @@ def triangular_numbers():
         yield (n*(n+1))//2
         n += 1
 
-def fermat():
+def fermat() -> Iterator[int]:
     """https://oeis.org/A000215
     Generate the n-th Fermat Number.
     """
@@ -62,7 +63,7 @@ def fermat():
         yield y
         y = pow(y-1,2)+1
 
-def mersenne():
+def mersenne() -> Iterator[int]:
     """https://oeis.org/A001348
     Generate 2^n - 1.
     """
@@ -71,10 +72,10 @@ def mersenne():
         yield y
         y = 2*y + 1
 
-def eratosthenes():
+def eratosthenes() -> Iterator[int]:
     """Generate the prime numbers with the sieve of Eratosthenes.
     """
-    d = {}
+    d = {} # type: dict[int, int]
     for i in itertools.count(2):
         if i in d:
             for j in d[i]:
@@ -84,7 +85,7 @@ def eratosthenes():
             d[i * i] = [i]
             yield i
 
-def eratosthenes_composite():
+def eratosthenes_composite() -> Iterator[int]:
     """Generate the composite numbers with the sieve of Eratosthenes.
     """
     p1 = 3
@@ -93,7 +94,7 @@ def eratosthenes_composite():
             yield n
         p1 = p2
 
-def carmichael():
+def carmichael() -> Iterator[int]:
     """https://oeis.org/A002997
     Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
     """
@@ -104,7 +105,7 @@ def carmichael():
         else:
             yield m
 
-def ackermann(m, n):
+def ackermann(m: int, n: int) -> int:
     """Ackermann number.
     """
     if m == 0:
@@ -114,7 +115,7 @@ def ackermann(m, n):
     else:
         return ackermann(m - 1, ackermann(m, n - 1))
 
-def fibonacci():
+def fibonacci() -> Iterator[int]:
     """https://oeis.org/A000045
     A generator for Fibonacci numbers, goes to next number in series on each call.
     This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
@@ -124,7 +125,7 @@ def fibonacci():
         yield a
         a, b = b, a + b
 
-def syracuse(l=15):
+def syracuse(l: int = 15) -> Iterator[int]:
     """Generate the sequence of Syracuse.
     """
     y = l
@@ -136,18 +137,11 @@ def syracuse(l=15):
         else:
             y = 3*y + 1
 
-def log_gen():
+def log_gen() -> Iterator[int]:
     """Logarithmic generator.
     """
     y = 1
     while True:
         adder = max(1, math.pow(10, int(math.log10(y))))
         yield int(y)
-        y = y + adder
-
-if __name__ == "__main__":
-    # Point of entry in execution mode.
-    f = fibonacci()
-    for x in range(13):
-        #print(next(f), end=' ') # 0 1 1 2 3 5 8 13 21 34 55 89 144
-        pass
+        y = y + int(adder)

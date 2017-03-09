@@ -30,7 +30,7 @@ from PIL import Image
 
 from stegano import tools
 
-def hide(input_image_file, message, auto_convert_rgb=False):
+def hide(input_image_file: str, message, auto_convert_rgb: bool = False):
     """Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """

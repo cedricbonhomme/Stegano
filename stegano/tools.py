@@ -27,9 +27,10 @@ __license__ = "GPLv3"
 
 import base64
 import itertools
+from typing import List, Iterator, Tuple, Union
 from functools import reduce
 
-def a2bits(chars):
+def a2bits(chars: str) -> str:
     """
     Converts a string to its bits representation as a string of 0's and 1's.
 
@@ -38,7 +39,7 @@ def a2bits(chars):
     """
     return bin(reduce(lambda x, y : (x<<8)+y, (ord(c) for c in chars), 1))[3:]
 
-def a2bits_list(chars):
+def a2bits_list(chars: str) -> List[str]:
     """
     Convert a string to its bits representation as a list of 0's and 1's.
 
@@ -60,19 +61,20 @@ def a2bits_list(chars):
     """
     return [bin(ord(x))[2:].rjust(8,"0") for x in chars]
 
-def bs(s):
+def bs(s: int) -> str:
     """
     Converts an int to its bits representation as a string of 0's and 1's.
     """
     return str(s) if s<=1 else bs(s>>1) + str(s&1)
 
-def setlsb(component, bit):
+def setlsb(component: int, bit: str) -> int:
     """
     Set Least Significant Bit of a colour component.
     """
     return component & ~1 | int(bit)
 
-def n_at_a_time(items, n, fillvalue):
+def n_at_a_time(items: List[int], n: int, fillvalue: str) \
+        -> Iterator[Tuple[Union[int, str]]]:
     """
     Returns an iterator which groups n items at a time.
     Any final partial tuple will be padded with the fillvalue
@@ -83,7 +85,7 @@ def n_at_a_time(items, n, fillvalue):
     it = iter(items)
     return itertools.zip_longest(*[it] * n, fillvalue=fillvalue)
 
-def binary2base64(binary_file):
+def binary2base64(binary_file: str) -> str:
     """
     Convert a binary file (OGG, executable, etc.) to a
     printable string.
@@ -93,7 +95,7 @@ def binary2base64(binary_file):
         encoded_string = base64.b64encode(bin_file.read())
     return encoded_string.decode()
 
-def base642binary(b64_fname):
+def base642binary(b64_fname: str) -> bytes:
     """
     Convert a printable file to a binary file.
     """
