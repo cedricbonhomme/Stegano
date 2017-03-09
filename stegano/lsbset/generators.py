@@ -37,14 +37,6 @@ def identity() -> Iterator[int]:
         yield n
         n += 1
 
-def Dead_Man_Walking() -> Iterator[int]:
-    """Dead Man Walking.
-    """
-    n = 0
-    while True:
-        yield n + 7
-        n += 2
-
 def triangular_numbers() -> Iterator[int]:
     """http://oeis.org/A000217
     Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.

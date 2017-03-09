@@ -90,9 +90,6 @@ Sets are used in order to select the pixels where the message will be hidden.
 
     # List all available generators
     $ lsb-set list-generators
-    Dead_Man_Walking
-        Dead Man Walking.
-
     OEIS_A000217
         http://oeis.org/A000217
         Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
@@ -107,8 +104,8 @@ Sets are used in order to select the pixels where the message will be hidden.
     eratosthenes
         Generate the prime numbers with the sieve of Eratosthenes.
 
-    eratosthenes_composite
-        Generate the composite numbers with the sieve of Eratosthenes.
+    composite
+        Generate the composite numbers using the sieve of Eratosthenes.
 
     fermat
         Generate the n-th Fermat Number.
