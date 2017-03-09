@@ -73,7 +73,8 @@ def mersenne() -> Iterator[int]:
         y = 2*y + 1
 
 def eratosthenes() -> Iterator[int]:
-    """Generate the prime numbers with the sieve of Eratosthenes.
+    """https://oeis.org/A000040
+    Generate the prime numbers with the sieve of Eratosthenes.
     """
     d = {} # type: dict[int, int]
     for i in itertools.count(2):
@@ -85,8 +86,9 @@ def eratosthenes() -> Iterator[int]:
             d[i * i] = [i]
             yield i
 
-def eratosthenes_composite() -> Iterator[int]:
-    """Generate the composite numbers with the sieve of Eratosthenes.
+def composite() -> Iterator[int]:
+    """https://oeis.org/A002808
+    Generate the composite numbers using the sieve of Eratosthenes.
     """
     p1 = 3
     for p2 in eratosthenes():
