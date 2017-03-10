@@ -27,7 +27,7 @@ __license__ = "GPLv3"
 
 import math
 import itertools
-from typing import Iterator
+from typing import Iterator, List, Dict
 
 def identity() -> Iterator[int]:
     """f(x) = x
@@ -68,7 +68,7 @@ def eratosthenes() -> Iterator[int]:
     """https://oeis.org/A000040
     Generate the prime numbers with the sieve of Eratosthenes.
     """
-    d = {} # type: dict[int, int]
+    d = {} # type: Dict[int, List[int]]
     for i in itertools.count(2):
         if i in d:
             for j in d[i]:
@@ -92,7 +92,7 @@ def carmichael() -> Iterator[int]:
     """https://oeis.org/A002997
     Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
     """
-    for m in eratosthenes_composite():
+    for m in composite():
         for a in range(2, m):
             if pow(a,m,m) != a:
                 break
