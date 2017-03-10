@@ -36,26 +36,28 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.6.8',
+    version='0.6.9',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
     include_package_data=True,
     scripts=scripts,
     url='https://github.com/cedricbonhomme/Stegano',
-    description='A Python Steganography module.',
+    description='A pure Python Steganography module.',
     long_description=readme + '\n|\n\n' + changelog,
     platforms = ['Linux'],
     license='GPLv3',
     install_requires=requires,
     zip_safe=False,
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "Environment :: Console",
-        "Topic :: Utilities",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'Topic :: Security',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)'
     ]
 )

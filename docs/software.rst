@@ -90,42 +90,67 @@ Sets are used in order to select the pixels where the message will be hidden.
 
     # List all available generators
     $ lsb-set list-generators
-    OEIS_A000217
-        http://oeis.org/A000217
-        Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
-
-    ackermann
+    Generator id:
+        ackermann
+    Desciption:
         Ackermann number.
 
-    carmichael
-        https://oeis.org/A002997
+    Generator id:
+        carmichael
+    Desciption:
         Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+        https://oeis.org/A002997
 
-    eratosthenes
-        Generate the prime numbers with the sieve of Eratosthenes.
-
-    composite
+    Generator id:
+        composite
+    Desciption:
         Generate the composite numbers using the sieve of Eratosthenes.
+        https://oeis.org/A002808
 
-    fermat
+    Generator id:
+        eratosthenes
+    Desciption:
+        Generate the prime numbers with the sieve of Eratosthenes.
+        https://oeis.org/A000040
+
+    Generator id:
+        fermat
+    Desciption:
         Generate the n-th Fermat Number.
+        https://oeis.org/A000215
 
-    fibonacci
+    Generator id:
+        fibonacci
+    Desciption:
+        Generate the sequence of Fibonacci.
         https://oeis.org/A000045
-        A generator for Fibonacci numbers, goes to next number in series on each call.
-        This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
 
-    identity
+    Generator id:
+        identity
+    Desciption:
         f(x) = x
 
-    log_gen
+    Generator id:
+        log_gen
+    Desciption:
         Logarithmic generator.
 
-    mersenne
-        Generate 2^n-1.
+    Generator id:
+        mersenne
+    Desciption:
+        Generate 2^n - 1.
+        https://oeis.org/A001348
 
-    syracuse
-        Generate the sequence of Syracuse
+    Generator id:
+        syracuse
+    Desciption:
+        Generate the sequence of Syracuse.
+
+    Generator id:
+        triangular_numbers
+    Desciption:
+        Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+        http://oeis.org/A000217
 
 
 An other example:

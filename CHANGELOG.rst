@@ -1,6 +1,14 @@
 Release History
 ===============
 
+0.6.9 (2017-03-10)
+------------------
+
+* introduces some type hints (PEP 484);
+* more tests for the generators and for the tools module;
+* updated descriptions of generators;
+* fixed a bug with a generator that has been previously renamed.
+
 0.6.8 (2017-03-08)
 ------------------
 
