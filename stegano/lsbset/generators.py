@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.2 $"
+__version__ = "$Revision: 0.3 $"
 __date__ = "$Date: 2011/12/28 $"
-__revision__ = "$Date: 2012/12/14 $"
+__revision__ = "$Date: 2017/03/10 $"
 __license__ = "GPLv3"
 
 import math
@@ -38,8 +38,8 @@ def identity() -> Iterator[int]:
         n += 1
 
 def triangular_numbers() -> Iterator[int]:
-    """http://oeis.org/A000217
-    Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+    """Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+    http://oeis.org/A000217
     """
     n = 0
     while True:
@@ -47,8 +47,8 @@ def triangular_numbers() -> Iterator[int]:
         n += 1
 
 def fermat() -> Iterator[int]:
-    """https://oeis.org/A000215
-    Generate the n-th Fermat Number.
+    """Generate the n-th Fermat Number.
+    https://oeis.org/A000215
     """
     y = 3
     while True:
@@ -56,8 +56,8 @@ def fermat() -> Iterator[int]:
         y = pow(y-1,2)+1
 
 def mersenne() -> Iterator[int]:
-    """https://oeis.org/A001348
-    Generate 2^n - 1.
+    """Generate 2^n - 1.
+    https://oeis.org/A001348
     """
     y = 3
     while True:
@@ -65,8 +65,8 @@ def mersenne() -> Iterator[int]:
         y = 2*y + 1
 
 def eratosthenes() -> Iterator[int]:
-    """https://oeis.org/A000040
-    Generate the prime numbers with the sieve of Eratosthenes.
+    """Generate the prime numbers with the sieve of Eratosthenes.
+    https://oeis.org/A000040
     """
     d = {} # type: Dict[int, List[int]]
     for i in itertools.count(2):
@@ -79,8 +79,8 @@ def eratosthenes() -> Iterator[int]:
             yield i
 
 def composite() -> Iterator[int]:
-    """https://oeis.org/A002808
-    Generate the composite numbers using the sieve of Eratosthenes.
+    """Generate the composite numbers using the sieve of Eratosthenes.
+    https://oeis.org/A002808
     """
     p1 = 3
     for p2 in eratosthenes():
@@ -89,8 +89,8 @@ def composite() -> Iterator[int]:
         p1 = p2
 
 def carmichael() -> Iterator[int]:
-    """https://oeis.org/A002997
-    Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+    """Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+    https://oeis.org/A002997
     """
     for m in composite():
         for a in range(2, m):
@@ -110,9 +110,8 @@ def ackermann(m: int, n: int) -> int:
         return ackermann(m - 1, ackermann(m, n - 1))
 
 def fibonacci() -> Iterator[int]:
-    """https://oeis.org/A000045
-    A generator for Fibonacci numbers, goes to next number in series on each call.
-    This generator start at 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, ...
+    """Generate the sequence of Fibonacci.
+    https://oeis.org/A000045
     """
     a, b = 1, 2
     while True:

@@ -122,7 +122,7 @@ elif arguments.command == 'list-generators':
     import inspect
     all_generators = inspect.getmembers(generators, inspect.isfunction)
     for generator in all_generators:
-        print('Generator id:\n    {}\nDesciption:\n    {}'.format(
-                                        crayons.green(generator[0]),
-                                        generator[1].__doc__))
-        print('')
+        print('Generator id:')
+        print('    {}'.format(crayons.green(generator[0], bold=True)))
+        print('Desciption:')
+        print('    {}'.format(generator[1].__doc__))
