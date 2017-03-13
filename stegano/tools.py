@@ -57,7 +57,8 @@ def a2bits_list(chars: str) -> List[str]:
     >>> "".join(a2bits_list("Hello World!"))
     '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001'
     """
-    return [bin(ord(x))[2:].rjust(8,"0") for x in chars]
+    #return [bin(ord(x))[2:].rjust(8,"0") for x in chars]
+    return [bin(ord(x))[2:].rjust(32,"0") for x in chars]
 
 def bs(s: int) -> str:
     """Converts an int to its bits representation as a string of 0's and 1's.

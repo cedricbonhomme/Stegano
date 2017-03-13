@@ -43,7 +43,7 @@ class TestLSB(unittest.TestCase):
             secret = lsb.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
-        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+        messages_to_hide = ['🍕', 'a', 'foo', 'Hello World!', ':Python:']
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/Lenna.png", message)
             secret.save("./image.png")
@@ -53,7 +53,7 @@ class TestLSB(unittest.TestCase):
             self.assertEqual(message, clear_message)
 
     def test_with_transparent_png(self):
-        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+        messages_to_hide = ['🍕', 'a', 'foo', 'Hello World!', ':Python:']
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/transparent.png", message)
             secret.save("./image.png")
@@ -64,24 +64,24 @@ class TestLSB(unittest.TestCase):
 
     @patch('builtins.input', return_value='y')
     def test_manual_convert_rgb(self, input):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = 'I love 🍕 and 🍫!'
         secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
                                     message_to_hide)
 
     @patch('builtins.input', return_value='n')
     def test_refuse_convert_rgb(self, input):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = 'I love 🍕 and 🍫!'
         with self.assertRaises(Exception):
             secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
                                     message_to_hide)
 
     def test_auto_convert_rgb(self):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = 'I love 🍕 and 🍫!'
         secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
                             message_to_hide, True)
 
     def test_with_text_file(self):
-        text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
+        text_file_to_hide = './tests/sample-files/lorem_ipsum.txt'
         with open(text_file_to_hide) as f:
             message = f.read()
         secret = lsb.hide("./tests/sample-files/Lenna.png", message)

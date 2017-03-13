@@ -104,9 +104,9 @@ def reveal(input_image_file, generator):
         generated_number = next(generator)
         # color = [r, g, b]
         for color in img_list[generated_number]:
-            buff += (color&1)<<(7-count)
+            buff += (color&1)<<(31-count)
             count += 1
-            if count == 8:
+            if count == 32:
                 bitab.append(chr(buff))
                 buff, count = 0, 0
                 if bitab[-1] == ":" and limit == None:

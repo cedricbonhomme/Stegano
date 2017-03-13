@@ -106,9 +106,9 @@ def reveal(input_image_file):
             if img.mode == 'RGBA':
                 pixel = pixel[:3] # ignore the alpha
             for color in pixel:
-                buff += (color&1)<<(7-count)
+                buff += (color&1)<<(31-count)
                 count += 1
-                if count == 8:
+                if count == 32:
                     bitab.append(chr(buff))
                     buff, count = 0, 0
                     if bitab[-1] == ":" and limit == None:
