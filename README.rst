@@ -10,7 +10,7 @@ Stéganô
 .. image:: https://img.shields.io/pypi/l/Stegano.svg?style=flat-square
     :target: https://www.gnu.org/licenses/gpl-3.0.html
 
-.. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
+.. image:: https://img.shields.io/travis/cedricbonhomme/Stegano/master.svg?style=flat-square
     :target: https://travis-ci.org/cedricbonhomme/Stegano
 
 .. image:: https://img.shields.io/coveralls/cedricbonhomme/Stegano/master.svg?style=flat-square
