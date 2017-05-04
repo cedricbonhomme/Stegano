@@ -1,8 +1,8 @@
 Release History
 ===============
 
-0.7 (not yet released)
-----------------------
+0.7 (2017-05-04)
+----------------
 
 * unicode is now supported. By default UTF-8 encoding is used. UTF-32LE can also
   be used to hide non-ASCII characters. UTF-8 (8 bits) is the default choice
