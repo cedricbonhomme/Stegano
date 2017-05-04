@@ -5,8 +5,8 @@ Release History
 ----------------------
 
 * unicode is now supported. By default UTF-8 encoding is used. UTF-32LE can also
-  be used to hide non-ASCII characters. UTF-8 is the default choice since it is
-  possible to hide longer messages with it.
+  be used to hide non-ASCII characters. UTF-8 (8 bits) is the default choice
+  since it is possible to hide longer messages with it.
 * improved checks with type hints.
 
 0.6.9 (2017-03-10)
