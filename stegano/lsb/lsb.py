@@ -82,11 +82,9 @@ def hide(input_image_file: str,
 
                 # Save the new pixel
                 if img.mode == 'RGBA':
-                    updated_pixel = (r, g, b, pixel[3])
+                    encoded.putpixel((col, row), (r, g, b, pixel[3]))
                 else:
-                    updated_pixel = (r, g, b)
-
-                encoded.putpixel((col, row), updated_pixel)
+                    encoded.putpixel((col, row), (r, g, b))
 
                 index += 3
             else:
