@@ -4,10 +4,9 @@ Release History
 0.7 (not yet released)
 ----------------------
 
-* unicode is now supported ✌
-  By default UTF-8 encoding is used, but UTF-32LE can also be used if it is
-  needed to hide non-ASCII characters (for example: 🍕). UTF-8 is the default
-  choice since it is possible to hide longer messages with it.
+* unicode is now supported. By default UTF-8 encoding is used. UTF-32LE can also
+  be used to hide non-ASCII characters. UTF-8 is the default choice since it is
+  possible to hide longer messages with it.
 * improved checks with type hints.
 
 0.6.9 (2017-03-10)
