@@ -54,6 +54,18 @@ class TestLSBSet(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_hide_and_reveal_UTF32LE(self):
+        messages_to_hide = 'I love 🍕 and 🍫!'
+        secret = lsbset.hide("./tests/sample-files/Lenna.png",
+                            messages_to_hide,
+                            generators.eratosthenes(),
+                            'UTF-32LE')
+        secret.save("./image.png")
+
+        clear_message = lsbset.reveal("./image.png", generators.eratosthenes(),
+                                        'UTF-32LE')
+        self.assertEqual(messages_to_hide, clear_message)
+
     def test_with_transparent_png(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:
@@ -68,21 +80,22 @@ class TestLSBSet(unittest.TestCase):
 
     @patch('builtins.input', return_value='y')
     def test_manual_convert_rgb(self, input):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = "Hello World!"
         secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
                                     message_to_hide, generators.eratosthenes())
 
     @patch('builtins.input', return_value='n')
     def test_refuse_convert_rgb(self, input):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = "Hello World!"
         with self.assertRaises(Exception):
             secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
                                     message_to_hide, generators.eratosthenes())
 
     def test_auto_convert_rgb(self):
-        message_to_hide = "I love 🍕 and 🍫!"
+        message_to_hide = "Hello World!"
         secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
-                            message_to_hide, generators.eratosthenes(), True)
+                            message_to_hide, generators.eratosthenes(),
+                            auto_convert_rgb=True)
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:

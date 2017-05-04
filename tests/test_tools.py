@@ -37,8 +37,23 @@ class TestTools(unittest.TestCase):
         bits = tools.a2bits("Hello World!")
         self.assertEqual(bits, '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001')
 
-    def test_a2bits_list(self):
+    def test_a2bits_list_UTF8(self):
         list_of_bits = tools.a2bits_list("Hello World!")
+        self.assertEqual(list_of_bits, ['01001000',
+                                        '01100101',
+                                        '01101100',
+                                        '01101100',
+                                        '01101111',
+                                        '00100000',
+                                        '01010111',
+                                        '01101111',
+                                        '01110010',
+                                        '01101100',
+                                        '01100100',
+                                        '00100001'])
+
+    def test_a2bits_list_UTF32LE(self):
+        list_of_bits = tools.a2bits_list("Hello World!", 'UTF-32LE')
         self.assertEqual(list_of_bits, ['00000000000000000000000001001000',
                                         '00000000000000000000000001100101',
                                         '00000000000000000000000001101100',

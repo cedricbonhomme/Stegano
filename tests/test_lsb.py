@@ -43,22 +43,31 @@ class TestLSB(unittest.TestCase):
             secret = lsb.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
-        messages_to_hide = ['🍕', 'a', 'foo', 'Hello World!', ':Python:']
+        messages_to_hide = ['a', 'foo', 'Hello World!', ':Python:']
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/Lenna.png", message)
             secret.save("./image.png")
 
             clear_message = lsb.reveal("./image.png")
-
             self.assertEqual(message, clear_message)
+
+    def test_hide_and_reveal_UTF32LE(self):
+        messages_to_hide = 'I love 🍕 and 🍫!'
+        secret = lsb.hide("./tests/sample-files/Lenna.png",
+                            messages_to_hide, 'UTF-32LE')
+        secret.save("./image.png")
+
+        clear_message = lsb.reveal("./image.png", 'UTF-32LE')
+        self.assertEqual(messages_to_hide, clear_message)
 
     def test_with_transparent_png(self):
         messages_to_hide = ['🍕', 'a', 'foo', 'Hello World!', ':Python:']
         for message in messages_to_hide:
-            secret = lsb.hide("./tests/sample-files/transparent.png", message)
+            secret = lsb.hide("./tests/sample-files/transparent.png",
+                                message, 'UTF-32LE')
             secret.save("./image.png")
 
-            clear_message = lsb.reveal("./image.png")
+            clear_message = lsb.reveal("./image.png", 'UTF-32LE')
 
             self.assertEqual(message, clear_message)
 
@@ -66,19 +75,19 @@ class TestLSB(unittest.TestCase):
     def test_manual_convert_rgb(self, input):
         message_to_hide = 'I love 🍕 and 🍫!'
         secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                                    message_to_hide)
+                            message_to_hide, 'UTF-32LE')
 
     @patch('builtins.input', return_value='n')
     def test_refuse_convert_rgb(self, input):
         message_to_hide = 'I love 🍕 and 🍫!'
         with self.assertRaises(Exception):
             secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                                    message_to_hide)
+                                    message_to_hide, 'UTF-32LE')
 
     def test_auto_convert_rgb(self):
         message_to_hide = 'I love 🍕 and 🍫!'
         secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                            message_to_hide, True)
+                            message_to_hide, 'UTF-32LE', True)
 
     def test_with_text_file(self):
         text_file_to_hide = './tests/sample-files/lorem_ipsum.txt'
