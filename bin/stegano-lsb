@@ -32,7 +32,7 @@ except:
 from stegano import tools
 
 import argparse
-parser = argparse.ArgumentParser(prog='lsb')
+parser = argparse.ArgumentParser(prog='stegano-lsb')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
 # Subparser: Hide

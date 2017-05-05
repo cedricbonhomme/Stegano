@@ -20,11 +20,11 @@ packages = [
 ]
 
 scripts = [
-    'bin/lsb',
-    'bin/lsb-set',
+    'bin/stegano-lsb',
+    'bin/stegano-lsb-set',
     'bin/stegano-red',
-    'bin/steganalysis-parity',
-    'bin/steganalysis-statistics'
+    'bin/stegano-steganalysis-parity',
+    'bin/stegano-steganalysis-statistics'
 ]
 
 requires = ['pillow', 'piexif', 'crayons']

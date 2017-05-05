@@ -32,7 +32,7 @@ except:
 from PIL import Image
 
 import argparse
-parser = argparse.ArgumentParser(prog='steganalysis-parity')
+parser = argparse.ArgumentParser(prog='stegano-steganalysis-parity')
 parser.add_argument("-i", "--input", dest="input_image_file",
                 help="Image file")
 parser.add_argument("-o", "--output", dest="output_image_file",

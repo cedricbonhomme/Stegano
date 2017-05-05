@@ -71,7 +71,13 @@ Hide a message
 
 .. code:: bash
 
-    $ lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
+    $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
+
+Reveal the message
+~~~~~~~~~~~~~~~~~~
+
+    $ stegano-lsb reveal -i Lena1.png
+    Secret Message
 
 
 Hide the message with the Sieve of Eratosthenes
@@ -79,7 +85,7 @@ Hide the message with the Sieve of Eratosthenes
 
 .. code:: bash
 
-    $ lsb-set hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
+    $ stegano-lsb-set hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
 
 The message will be scattered in the picture, following a set described by the
 Sieve of Eratosthenes. Other sets are available. You can also use your own
