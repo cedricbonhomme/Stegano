@@ -26,6 +26,11 @@ Stéganô
 `Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a pure Python
 Steganography module.
 
+Steganography is the art and science of writing hidden messages in such a way
+that no one, apart from the sender and intended recipient, suspects the
+existence of the message, a form of security through obscurity. Consequently,
+functions provided by Stéganô only hide messages, without encryption.
+Steganography is often used with cryptography.
 
 Installation
 ------------
