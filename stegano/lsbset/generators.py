@@ -56,13 +56,12 @@ def fermat() -> Iterator[int]:
         y = pow(y-1,2)+1
 
 def mersenne() -> Iterator[int]:
-    """Generate 2^n - 1.
+    """Generate 2^p - 1, where p is prime.
     https://oeis.org/A001348
     """
-    y = 3
+    prime_numbers = eratosthenes()
     while True:
-        yield y
-        y = 2*y + 1
+        yield 2**next(prime_numbers) - 1
 
 def eratosthenes() -> Iterator[int]:
     """Generate the prime numbers with the sieve of Eratosthenes.
@@ -89,7 +88,8 @@ def composite() -> Iterator[int]:
         p1 = p2
 
 def carmichael() -> Iterator[int]:
-    """Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+    """Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime
+    to n.
     https://oeis.org/A002997
     """
     for m in composite():
@@ -99,7 +99,7 @@ def carmichael() -> Iterator[int]:
         else:
             yield m
 
-def ackermann(m: int, n: int) -> int:
+def ackermann_naive(m: int, n: int) -> int:
     """Ackermann number.
     """
     if m == 0:
@@ -109,6 +109,24 @@ def ackermann(m: int, n: int) -> int:
     else:
         return ackermann(m - 1, ackermann(m, n - 1))
 
+def ackermann(m: int, n: int) -> int:
+    """Ackermann number.
+    """
+    while m >= 4:
+        if n == 0:
+            n = 1
+        else:
+            n = ackermann(m, n - 1)
+        m -= 1
+    if m == 3:
+        return (1 << n + 3) - 3
+    elif m == 2:
+        return (n << 1) + 3
+    elif m == 1:
+        return n + 2
+    else:
+        return n + 1
+
 def fibonacci() -> Iterator[int]:
     """Generate the sequence of Fibonacci.
     https://oeis.org/A000045
@@ -117,18 +135,6 @@ def fibonacci() -> Iterator[int]:
     while True:
         yield a
         a, b = b, a + b
-
-def syracuse(l: int = 15) -> Iterator[int]:
-    """Generate the sequence of Syracuse.
-    """
-    y = l
-    while True:
-        yield y
-        q,r = divmod(y,2)
-        if r == 0:
-            y = q
-        else:
-            y = 3*y + 1
 
 def log_gen() -> Iterator[int]:
     """Logarithmic generator.
