@@ -76,6 +76,8 @@ Hide a message
 Reveal the message
 ~~~~~~~~~~~~~~~~~~
 
+.. code:: bash
+
     $ stegano-lsb reveal -i Lena1.png
     Secret Message
 
