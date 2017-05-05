@@ -1,6 +1,13 @@
 Release History
 ===============
 
+0.7.1 (2017-05-05)
+------------------
+
+* improved generators for the lsb-set module;
+* improved tests for the generators;
+* improved type hints.
+
 0.7 (2017-05-04)
 ----------------
 
