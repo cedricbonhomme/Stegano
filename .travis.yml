@@ -9,6 +9,7 @@ install:
 
 script:
   - nosetests --with-coverage --cover-package=stegano
+  - mypy --ignore-missing-imports --follow-imports skip --check-untyped-defs stegano/
 
 after_success:
   - coveralls
