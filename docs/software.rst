@@ -6,8 +6,8 @@ Display help
 
 .. code-block:: bash
 
-    $ lsb --help
-    usage: lsb [-h] {hide,reveal} ...
+    $ stegano-lsb --help
+    usage: stegano-lsb [-h] {hide,reveal} ...
 
     positional arguments:
       {hide,reveal}  sub-command help
@@ -20,8 +20,8 @@ Display help
 
 .. code-block:: bash
 
-    $ lsb hide --help
-    usage: lsb hide [-h] -i INPUT_IMAGE_FILE (-m SECRET_MESSAGE | -f SECRET_FILE)
+    $ stegano-lsb hide --help
+    usage: stegano-lsb hide [-h] -i INPUT_IMAGE_FILE (-m SECRET_MESSAGE | -f SECRET_FILE)
                     -o OUTPUT_IMAGE_FILE
 
     optional arguments:
@@ -36,8 +36,8 @@ Display help
 
 .. code-block:: bash
 
-    $ lsb reveal --help
-    usage: lsb reveal [-h] -i INPUT_IMAGE_FILE [-o SECRET_BINARY]
+    $ stegano-lsb reveal --help
+    usage: stegano-lsb reveal [-h] -i INPUT_IMAGE_FILE [-o SECRET_BINARY]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -52,8 +52,8 @@ Hide and reveal a text message with the LSB method
 
 .. code-block:: bash
 
-    $ lsb hide -i ./tests/sample-files/Lenna.png -m 'Hello World!' -o ./Lenna_enc.png
-    $ lsb reveal -i ./Lenna_enc.png
+    $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'Hello World!' -o ./Lenna_enc.png
+    $ stegano-lsb reveal -i ./Lenna_enc.png
     Hello World!
 
 Hide and reveal a binary file
@@ -62,9 +62,9 @@ Hide and reveal a binary file
 .. code-block:: bash
 
     $ wget http://www.gnu.org/music/free-software-song.ogg
-    $ lsb hide -i ./tests/sample-files/Montenach.png -f ./free-software-song.ogg -o ./Montenach_enc.png
+    $ stegano-lsb hide -i ./tests/sample-files/Montenach.png -f ./free-software-song.ogg -o ./Montenach_enc.png
     $ rm free-software-song.ogg
-    $ lsb reveal -i ./Montenach_enc.png -o ./song.ogg
+    $ stegano-lsb reveal -i ./Montenach_enc.png -o ./song.ogg
 
 Hide and reveal a text message with the LSB method and generated sets
 ---------------------------------------------------------------------
@@ -74,22 +74,22 @@ Sets are used in order to select the pixels where the message will be hidden.
 .. code-block:: bash
 
     # Hide the message with the Sieve of Eratosthenes
-    $ lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
+    $ stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
 
     # Try to reveal with Mersenne numbers
-    $ lsb-set reveal --generator mersenne -i ./surprise.png
+    $ stegano-lsb-set reveal --generator mersenne -i ./surprise.png
 
     # Try to reveal with fermat numbers
-    $ lsb-set reveal --generator fermat -i ./surprise.png
+    $ stegano-lsb-set reveal --generator fermat -i ./surprise.png
 
     # Try to reveal with carmichael numbers
-    $ lsb-set reveal --generator carmichael -i ./surprise.png
+    $ stegano-lsb-set reveal --generator carmichael -i ./surprise.png
 
     # Try to reveal with Sieve of Eratosthenes
-    $ lsb-set reveal --generator eratosthenes -i ./surprise.png
+    $ stegano-lsb-set reveal --generator eratosthenes -i ./surprise.png
 
     # List all available generators
-    $ lsb-set list-generators
+    $ stegano-lsb-set list-generators
     Generator id:
         ackermann
     Desciption:
@@ -142,11 +142,6 @@ Sets are used in order to select the pixels where the message will be hidden.
         https://oeis.org/A001348
 
     Generator id:
-        syracuse
-    Desciption:
-        Generate the sequence of Syracuse.
-
-    Generator id:
         triangular_numbers
     Desciption:
         Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
@@ -158,19 +153,19 @@ An other example:
 .. code-block:: bash
 
     # Hide the message - LSB with a set defined by the identity function (f(x) = x).
-    lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
+    stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
 
     # Hide the message - LSB only.
-    lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
+    stegano-lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
 
     # Check if the two generated files are the same.
     sha1sum ./enc-identity.png ./enc.png
 
     # The output of lsb is given to lsb-set.
-    lsb-set reveal -i ./enc.png --generator identity
+    stegano-lsb-set reveal -i ./enc.png --generator identity
 
     # The output of lsb-set is given to lsb.
-    lsb reveal -i ./enc-identity.png
+    stegano-lsb reveal -i ./enc-identity.png
 
 
 Hide and reveal a text message with the red portion of a pixel
