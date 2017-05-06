@@ -28,22 +28,23 @@ __license__ = "GPLv3"
 import sys
 
 from PIL import Image
+from typing import Union, Iterator, IO
 
 from stegano import tools
 from . import generators
 
-def hide(input_image_file,
-        message,
-        generator,
-        encoding='UTF-8',
-        auto_convert_rgb=False):
+def hide(input_image: Union[str, IO[bytes]],
+        message: str,
+        generator: Iterator[int],
+        encoding: str = 'UTF-8',
+        auto_convert_rgb: bool = False):
     """Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """
     message_length = len(message)
     assert message_length != 0, "message length is zero"
 
-    img = Image.open(input_image_file)
+    img = Image.open(input_image)
 
     if img.mode not in ['RGB', 'RGBA']:
         if not auto_convert_rgb:
@@ -94,10 +95,12 @@ def hide(input_image_file,
     return encoded
 
 
-def reveal(input_image_file, generator, encoding='UTF-8'):
+def reveal(input_image: Union[str, IO[bytes]],
+            generator: Iterator[int],
+            encoding: str = 'UTF-8'):
     """Find a message in an image (with the LSB technique).
     """
-    img = Image.open(input_image_file)
+    img = Image.open(input_image)
     img_list = list(img.getdata())
     width, height = img.size
     buff, count = 0, 0
@@ -114,9 +117,9 @@ def reveal(input_image_file, generator, encoding='UTF-8'):
                 bitab.append(chr(buff))
                 buff, count = 0, 0
                 if bitab[-1] == ":" and limit == None:
-                    try:
+                    if "".join(bitab[:-1]).isdigit():
                         limit = int("".join(bitab[:-1]))
-                    except:
-                        pass
+                    else:
+                        raise IndexError("Impossible to detect message.")
         if len(bitab)-len(str(limit))-1 == limit :
             return "".join(bitab)[len(str(limit))+1:]

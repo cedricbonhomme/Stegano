@@ -28,8 +28,9 @@ __license__ = "GPLv3"
 import sys
 
 from PIL import Image
+from typing import Union, IO
 
-def hide(input_image_file, message):
+def hide(input_image: Union[str, IO[bytes]], message: str):
     """
     Hide a message (string) in an image.
 
@@ -40,7 +41,7 @@ def hide(input_image_file, message):
     message_length = len(message)
     assert message_length != 0, "message message_length is zero"
     assert message_length < 255, "message is too long"
-    img = Image.open(input_image_file)
+    img = Image.open(input_image)
     # Use a copy of image to hide the text in
     encoded = img.copy()
     width, height = img.size
@@ -61,7 +62,7 @@ def hide(input_image_file, message):
     img.close()
     return encoded
 
-def reveal(input_image_file):
+def reveal(input_image: Union[str, IO[bytes]]):
     """
     Find a message in an image.
 
@@ -69,7 +70,7 @@ def reveal(input_image_file):
     hidden message characters (ASCII values).
     The red value of the first pixel is used for message_length of string.
     """
-    img = Image.open(input_image_file)
+    img = Image.open(input_image)
     width, height = img.size
     message = ""
     index = 0

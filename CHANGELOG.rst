@@ -1,9 +1,12 @@
 Release History
 ===============
 
-0.8 (not yet released)
-----------------------
+0.8 (2017-05-06)
+----------------
 * updated command line. All commands are now prefixed with *stegano-*;
+* improved type hints;
+* it is possible to load and save images from and to file objects (BytesIO);
+* improved checks when revealing a message with the lsbset module fails.
 
 0.7.1 (2017-05-05)
 ------------------
