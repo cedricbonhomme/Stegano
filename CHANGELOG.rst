@@ -1,6 +1,10 @@
 Release History
 ===============
 
+0.8 (not yet released)
+----------------------
+* updated command line. All commands are now prefixed with *stegano-*;
+
 0.7.1 (2017-05-05)
 ------------------
 
