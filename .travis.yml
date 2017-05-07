@@ -8,7 +8,10 @@ install:
   - "pip install -r requirements.dev.txt"
 
 script:
+  # Run the test suit
   - nosetests --with-coverage --cover-package=stegano
+  # Run the type checker
+  - python tools/run_mypy.py
 
 after_success:
   - coveralls
