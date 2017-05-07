@@ -100,12 +100,9 @@ class TestGenerators(unittest.TestCase):
     def test_mersenne(self):
         """Test the Mersenne generator.
         """
-        self.assertEqual(tuple(itertools.islice(generators.mersenne(), 20)),
-                        (3, 7, 31, 127, 2047, 8191, 131071, 524287, 8388607,
-                        536870911, 2147483647, 137438953471, 2199023255551,
-                        8796093022207, 140737488355327, 9007199254740991,
-                        576460752303423487, 2305843009213693951,
-                        147573952589676412927, 2361183241434822606847))
+        with open('./tests/expected-results/mersenne', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.mersenne(), 20)),
+                             tuple(int(line) for line in f))
 
     def test_carmichael(self):
         """Test the Carmichael generator.
