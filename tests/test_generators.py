@@ -48,54 +48,30 @@ class TestGenerators(unittest.TestCase):
     def test_eratosthenes(self):
         """Test the Eratosthenes sieve.
         """
-        self.assertEqual(tuple(itertools.islice(generators.eratosthenes(), 168)),
-                        (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
-                        53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107,
-                        109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
-                        173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
-                        233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283,
-                        293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359,
-                        367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431,
-                        433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491,
-                        499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571,
-                        577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641,
-                        643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709,
-                        719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787,
-                        797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859,
-                        863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941,
-                        947, 953, 967, 971, 977, 983, 991, 997))
+        with open('./tests/expected-results/eratosthenes', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.eratosthenes(), 168)),
+                            tuple(int(line) for line in f))
 
     def test_composite(self):
         """Test the composite sieve.
         """
-        self.assertEqual(tuple(itertools.islice(generators.composite(), 114)),
-                        (4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25,
-                        26, 27, 28, 30, 32, 33, 34, 35, 36, 38, 39, 40, 42, 44,
-                        45, 46, 48, 49, 50, 51, 52, 54, 55, 56, 57, 58, 60, 62,
-                        63, 64, 65, 66, 68, 69, 70, 72, 74, 75, 76, 77, 78, 80,
-                        81, 82, 84, 85, 86, 87, 88, 90, 91, 92, 93, 94, 95, 96,
-                        98, 99, 100, 102, 104, 105, 106, 108, 110, 111, 112,
-                        114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124,
-                        125, 126, 128, 129, 130, 132, 133, 134, 135, 136, 138,
-                        140, 141, 142, 143, 144, 145, 146, 147, 148, 150))
+        with open('./tests/expected-results/composite', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.composite(), 114)),
+                            tuple(int(line) for line in f))
 
     def test_fermat(self):
         """Test the Fermat generator.
         """
-        self.assertEqual(tuple(itertools.islice(generators.fermat(), 9)),
-                        (3, 5, 17, 257, 65537, 4294967297, 18446744073709551617,
-                        340282366920938463463374607431768211457,
-                        115792089237316195423570985008687907853269984665640564039457584007913129639937))
+        with open('./tests/expected-results/fermat', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.fermat(), 9)),
+                             tuple(int(line) for line in f))
 
     def test_triangular_numbers(self):
         """Test the Triangular numbers generator.
         """
-        self.assertEqual(tuple(itertools.islice(generators.triangular_numbers(), 54)),
-                        (0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91,
-                        105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300,
-                        325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630,
-                        666, 703, 741, 780, 820, 861, 903, 946, 990, 1035, 1081,
-                        1128, 1176, 1225, 1275, 1326, 1378, 1431))
+        with open('./tests/expected-results/triangular_numbers', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.triangular_numbers(), 54)),
+                             tuple(int(line) for line in f))
 
     def test_mersenne(self):
         """Test the Mersenne generator.
@@ -107,12 +83,9 @@ class TestGenerators(unittest.TestCase):
     def test_carmichael(self):
         """Test the Carmichael generator.
         """
-        self.assertEqual(tuple(itertools.islice(generators.carmichael(), 33)),
-                        (561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841,
-                        29341, 41041, 46657, 52633, 62745, 63973, 75361, 101101,
-                         115921, 126217, 162401, 172081, 188461, 252601, 278545,
-                          294409, 314821, 334153, 340561, 399001, 410041,
-                          449065, 488881, 512461))
+        with open('./tests/expected-results/carmichael', 'r') as f: 
+            self.assertEqual(tuple(itertools.islice(generators.carmichael(), 33)),
+                             tuple(int(line) for line in f))
 
     def test_ackermann_naive(self):
         """Test the Ackermann set.
@@ -124,10 +97,10 @@ class TestGenerators(unittest.TestCase):
     def test_ackermann(self):
         """Test the Ackermann set.
         """
-        self.assertEqual(generators.ackermann(3, 1), 13)
-        self.assertEqual(generators.ackermann(3, 2), 29)
-        self.assertEqual(generators.ackermann(4, 1), 65533)
         with open('./tests/expected-results/ackermann', 'r') as f:
+            self.assertEqual(generators.ackermann(3, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann(3, 2), int(f.readline()))
+            self.assertEqual(generators.ackermann(4, 1), int(f.readline()))
             self.assertEqual(generators.ackermann(4, 2), int(f.readline())) 
 
 if __name__ == '__main__':
