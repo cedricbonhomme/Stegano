@@ -6,14 +6,21 @@ syntax: glob
 *~
 *.db
 
-.idea/
+# Virtualenv
+venv
+build
 
+# setuptools
 build/*
 Stegano.egg-info/*
 dist/*
 
+# tests
 .coverage
+.mypy_cache/
+.cache/
 
+# sphinx
 docs/_build
 
 # Emacs
@@ -22,12 +29,10 @@ eproject.cfg
 # Temporary files (vim backups)
 *.swp
 
+.idea/
+
 # Log files:
 *.log
 
 # Vagrant:
 .vagrant/
-
-# Virtualenv
-venv
-build
