@@ -5,10 +5,7 @@ import os
 import sys
 import shutil
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 packages = [
     'stegano',
