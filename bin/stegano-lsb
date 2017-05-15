@@ -40,6 +40,9 @@ parser_hide = subparsers.add_parser('hide', help='hide help')
 # Original image
 parser_hide.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
+parser_hide.add_argument("-e", "--encoding", dest="encoding", default="UTF-8",
+                help="Specify the encoding of the message to hide." +
+                " UTF-8 (default) or UTF-32LE.")
 
 group_secret = parser_hide.add_mutually_exclusive_group(required=True)
 # Non binary secret message to hide
@@ -58,6 +61,9 @@ parser_hide.add_argument("-o", "--output", dest="output_image_file",
 parser_reveal = subparsers.add_parser('reveal', help='reveal help')
 parser_reveal.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
+parser_reveal.add_argument("-e", "--encoding", dest="encoding", default="UTF-8",
+                help="Specify the encoding of the message to reveal." +
+                " UTF-8 (default) or UTF-32LE.")
 parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
@@ -71,7 +77,8 @@ if arguments.command == 'hide':
     elif arguments.secret_file != None:
         secret = tools.binary2base64(arguments.secret_file)
 
-    img_encoded = lsb.hide(arguments.input_image_file, secret)
+    img_encoded = lsb.hide(arguments.input_image_file, secret,
+                            arguments.encoding)
     try:
         img_encoded.save(arguments.output_image_file)
     except Exception as e:
@@ -79,7 +86,7 @@ if arguments.command == 'hide':
         print(e)
 
 elif arguments.command == 'reveal':
-    secret = lsb.reveal(arguments.input_image_file)
+    secret = lsb.reveal(arguments.input_image_file, arguments.encoding)
     if arguments.secret_binary != None:
         data = tools.base642binary(secret)
         with open(arguments.secret_binary, "wb") as f:

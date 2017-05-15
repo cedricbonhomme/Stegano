@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.8.1 (not yet released)
+------------------------
+* it is now possible to specify the encoding (UTF-8 or UTF-32LE) of the message
+  to hide/reveal through the command line.
+
 0.8 (2017-05-06)
 ----------------
 * updated command line. All commands are now prefixed with *stegano-*;
