@@ -67,19 +67,12 @@ appropriate steganography technique. For example:
 Use Stéganô as a program
 ''''''''''''''''''''''''
 
-Hide a message
-~~~~~~~~~~~~~~
-
+Hide and reveal a message
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: bash
 
     $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
-
-Reveal the message
-~~~~~~~~~~~~~~~~~~
-
-.. code:: bash
-
     $ stegano-lsb reveal -i Lena1.png
     Secret Message
 
