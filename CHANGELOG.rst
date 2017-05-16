@@ -1,10 +1,15 @@
 Release History
 ===============
 
-0.8.1 (not yet released)
-------------------------
+0.8.1 (2017-05-16)
+------------------
 * it is now possible to specify the encoding (UTF-8 or UTF-32LE) of the message
-  to hide/reveal through the command line.
+  to hide/reveal through the command line;
+* the help of the command line now displays the available choices for the
+  arguments, if it is necessary (list of available encodings, list of available
+  generators);
+* tests expected results lies now in a dedicated folder;
+* a script has been added in order to get proper exit code check for mypy.
 
 0.8 (2017-05-06)
 ----------------

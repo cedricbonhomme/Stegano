@@ -20,11 +20,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.6 $"
+__version__ = "$Revision: 0.7 $"
 __date__ = "$Date: 2016/03/18 $"
-__revision__ = "$Date: 2016/08/04 $"
+__revision__ = "$Date: 2017/05/16 $"
 __license__ = "GPLv3"
 
+import inspect
 import crayons
 
 try:
@@ -44,9 +45,15 @@ parser_hide = subparsers.add_parser('hide', help='hide help')
 # Original image
 parser_hide.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
+parser_hide.add_argument("-e", "--encoding", dest="encoding",
+                choices=tools.ENCODINGS.keys(),
+                help="Specify the encoding of the message to hide." +
+                " UTF-8 (default) or UTF-32LE.")
 
 # Generator
 parser_hide.add_argument("-g", "--generator", dest="generator_function",
+                choices=[generator[0] for generator in \
+                            inspect.getmembers(generators, inspect.isfunction)],
                 required=True, help="Generator")
 
 group_secret = parser_hide.add_mutually_exclusive_group(required=True)
@@ -66,7 +73,13 @@ parser_hide.add_argument("-o", "--output", dest="output_image_file",
 parser_reveal = subparsers.add_parser('reveal', help='reveal help')
 parser_reveal.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
+parser_reveal.add_argument("-e", "--encoding", dest="encoding",
+                choices=tools.ENCODINGS.keys(),
+                help="Specify the encoding of the message to reveal." +
+                " UTF-8 (default) or UTF-32LE.")
 parser_reveal.add_argument("-g", "--generator", dest="generator_function",
+                choices=[generator[0] for generator in \
+                            inspect.getmembers(generators, inspect.isfunction)],
                 required=True, help="Generator")
 parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
@@ -119,7 +132,6 @@ elif arguments.command == 'reveal':
         print(secret)
 
 elif arguments.command == 'list-generators':
-    import inspect
     all_generators = inspect.getmembers(generators, inspect.isfunction)
     for generator in all_generators:
         print('Generator id:')
