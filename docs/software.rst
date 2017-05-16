@@ -1,5 +1,10 @@
-Using Stéganô in command line for your scripts
-==============================================
+Using Stéganô in command line
+=============================
+
+The command ``stegano-lsb``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hide and reveal a message with the LSB method.
 
 Display help
 ------------
@@ -21,13 +26,17 @@ Display help
 .. code-block:: bash
 
     $ stegano-lsb hide --help
-    usage: stegano-lsb hide [-h] -i INPUT_IMAGE_FILE (-m SECRET_MESSAGE | -f SECRET_FILE)
-                    -o OUTPUT_IMAGE_FILE
+    usage: stegano-lsb hide [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}]
+                        (-m SECRET_MESSAGE | -f SECRET_FILE) -o
+                        OUTPUT_IMAGE_FILE
 
     optional arguments:
       -h, --help            show this help message and exit
       -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
                             Input image file.
+      -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
+                            Specify the encoding of the message to hide. UTF-8
+                            (default) or UTF-32LE.
       -m SECRET_MESSAGE     Your secret message to hide (non binary).
       -f SECRET_FILE        Your secret to hide (Text or any binary file).
       -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
@@ -37,24 +46,39 @@ Display help
 .. code-block:: bash
 
     $ stegano-lsb reveal --help
-    usage: stegano-lsb reveal [-h] -i INPUT_IMAGE_FILE [-o SECRET_BINARY]
+    usage: stegano-lsb reveal [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}]
+                              [-o SECRET_BINARY]
 
     optional arguments:
       -h, --help            show this help message and exit
       -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
                             Input image file.
+      -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
+                            Specify the encoding of the message to reveal. UTF-8
+                            (default) or UTF-32LE.
       -o SECRET_BINARY      Output for the binary secret (Text or any binary
-                            file)
+                            file).
 
 
-Hide and reveal a text message with the LSB method
---------------------------------------------------
+Hide and reveal a text message
+------------------------------
 
 .. code-block:: bash
 
     $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'Hello World!' -o ./Lenna_enc.png
     $ stegano-lsb reveal -i ./Lenna_enc.png
     Hello World!
+
+Specify an encoding
+-------------------
+
+.. code-block:: bash
+
+    $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'I love 🍕 and 🍫.' -e UTF-32LE -o ./Lenna_enc.png
+    $ stegano-lsb reveal -i ./Lenna_enc.png
+    I love 🍕 and 🍫.
+
+The default encoding is UTF-8.
 
 Hide and reveal a binary file
 -----------------------------
@@ -66,10 +90,18 @@ Hide and reveal a binary file
     $ rm free-software-song.ogg
     $ stegano-lsb reveal -i ./Montenach_enc.png -o ./song.ogg
 
-Hide and reveal a text message with the LSB method and generated sets
----------------------------------------------------------------------
+
+
+
+
+
+The command ``stegano-lsb-set``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sets are used in order to select the pixels where the message will be hidden.
+
+Hide and reveal a text message
+------------------------------
 
 .. code-block:: bash
 
@@ -88,7 +120,31 @@ Sets are used in order to select the pixels where the message will be hidden.
     # Try to reveal with Sieve of Eratosthenes
     $ stegano-lsb-set reveal --generator eratosthenes -i ./surprise.png
 
-    # List all available generators
+An other example:
+
+.. code-block:: bash
+
+    # Hide the message - LSB with a set defined by the identity function (f(x) = x).
+    stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
+
+    # Hide the message - LSB only.
+    stegano-lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
+
+    # Check if the two generated files are the same.
+    sha1sum ./enc-identity.png ./enc.png
+
+    # The output of lsb is given to lsb-set.
+    stegano-lsb-set reveal -i ./enc.png --generator identity
+
+    # The output of lsb-set is given to lsb.
+    stegano-lsb reveal -i ./enc-identity.png
+
+
+List all available generators
+------------------------------
+
+.. code-block:: bash
+
     $ stegano-lsb-set list-generators
     Generator id:
         ackermann
@@ -96,9 +152,15 @@ Sets are used in order to select the pixels where the message will be hidden.
         Ackermann number.
 
     Generator id:
+        ackermann_naive
+    Desciption:
+        Ackermann number.
+
+    Generator id:
         carmichael
     Desciption:
-        Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime to n.
+        Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime
+        to n.
         https://oeis.org/A002997
 
     Generator id:
@@ -138,7 +200,7 @@ Sets are used in order to select the pixels where the message will be hidden.
     Generator id:
         mersenne
     Desciption:
-        Generate 2^n - 1.
+        Generate 2^p - 1, where p is prime.
         https://oeis.org/A001348
 
     Generator id:
@@ -148,28 +210,18 @@ Sets are used in order to select the pixels where the message will be hidden.
         http://oeis.org/A000217
 
 
-An other example:
-
-.. code-block:: bash
-
-    # Hide the message - LSB with a set defined by the identity function (f(x) = x).
-    stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
-
-    # Hide the message - LSB only.
-    stegano-lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
-
-    # Check if the two generated files are the same.
-    sha1sum ./enc-identity.png ./enc.png
-
-    # The output of lsb is given to lsb-set.
-    stegano-lsb-set reveal -i ./enc.png --generator identity
-
-    # The output of lsb-set is given to lsb.
-    stegano-lsb reveal -i ./enc-identity.png
 
 
-Hide and reveal a text message with the red portion of a pixel
---------------------------------------------------------------
+
+
+
+The command ``stegano-red``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hide and reveal a text message with the red portion of a pixel.
+
+Display help
+------------
 
 .. code-block:: bash
 
@@ -185,7 +237,11 @@ Hide and reveal a text message with the red portion of a pixel
     -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
                         Image file
 
-    $ stegano-red hide -i ./tests/sample-files/Lenna.png -m 'Basic steganography technique.' -o ~/Lenna1.png
+Hide and reveal a text message
+------------------------------
 
+.. code-block:: bash
+
+    $ stegano-red hide -i ./tests/sample-files/Lenna.png -m 'Basic steganography technique.' -o ~/Lenna1.png
     $ stegano-red reveal -i ~/Lenna1.png
     Basic steganography technique.
