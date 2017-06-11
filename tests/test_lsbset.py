@@ -100,9 +100,10 @@ class TestLSBSet(unittest.TestCase):
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
+        message += message*2
         with self.assertRaises(Exception):
             lsbset.hide("./tests/sample-files/Lenna.png", message,
-                                    generators.eratosthenes())
+                                    generators.identity())
 
     def test_hide_and_reveal_with_bad_generator(self):
         message_to_hide = "Hello World!"
