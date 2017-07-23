@@ -105,6 +105,26 @@ Running the static type checker:
     $ python tools/run_mypy.py
 
 
+Contributions
+-------------
+
+Contributions are welcome. If you want to contribute to Stegano I highly
+recommend you to install it in a Python virtual environment. For example:
+
+.. code-block:: bash
+
+    $ git clone https://github.com/cedricbonhomme/Stegano.git
+    $ cd Stegano/
+    $ pew install 3.6.1 --type CPython
+    $ pew new --python=$(pew locate_python 3.6.1)  -a . -r requirements.txt stegano-dev
+    stegano-dev$ python
+    Python 3.6.1 (default, Jun 28 2017, 07:49:05)
+    [GCC 6.3.0 20170406] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import stegano
+    >>>
+
+
 Contact
 -------
 
