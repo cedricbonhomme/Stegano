@@ -98,6 +98,12 @@ Running the tests
 
     $ python -m unittest discover -v
 
+Running the static type checker:
+
+.. code:: bash
+
+    $ python tools/run_mypy.py
+
 
 Contact
 -------
