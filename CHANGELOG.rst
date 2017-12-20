@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.8.2 (2017-12-20)
+------------------
+* Fixed a bug with the new 'encoding' function when using Stegano as a command
+  line tool. No default value was set. Default value is UTF-8.
+
 0.8.1 (2017-05-16)
 ------------------
 * it is now possible to specify the encoding (UTF-8 or UTF-32LE) of the message
