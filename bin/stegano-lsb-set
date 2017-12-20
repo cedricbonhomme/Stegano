@@ -46,7 +46,7 @@ parser_hide = subparsers.add_parser('hide', help='hide help')
 parser_hide.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
 parser_hide.add_argument("-e", "--encoding", dest="encoding",
-                choices=tools.ENCODINGS.keys(),
+                choices=tools.ENCODINGS.keys(), default='UTF-8',
                 help="Specify the encoding of the message to hide." +
                 " UTF-8 (default) or UTF-32LE.")
 
@@ -74,7 +74,7 @@ parser_reveal = subparsers.add_parser('reveal', help='reveal help')
 parser_reveal.add_argument("-i", "--input", dest="input_image_file",
                 required=True, help="Input image file.")
 parser_reveal.add_argument("-e", "--encoding", dest="encoding",
-                choices=tools.ENCODINGS.keys(),
+                choices=tools.ENCODINGS.keys(), default='UTF-8',
                 help="Specify the encoding of the message to reveal." +
                 " UTF-8 (default) or UTF-32LE.")
 parser_reveal.add_argument("-g", "--generator", dest="generator_function",

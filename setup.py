@@ -29,7 +29,7 @@ with open('CHANGELOG.rst', 'r') as f:
 
 setup(
     name='Stegano',
-    version='0.8.1',
+    version='0.8.2',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
