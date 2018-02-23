@@ -37,7 +37,7 @@ Installation
 
 .. code:: bash
 
-    $ sudo pip install Stegano
+    $ pipenv install Stegano
 
 You will be able to use Stéganô in your Python programs or as a command line
 tool.
