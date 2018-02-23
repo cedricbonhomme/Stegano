@@ -14,6 +14,7 @@ crayons = "*"
 
 [dev-packages]
 
+twine = "*"
 pep8 = "*"
 coverage = "*"
 coveralls = "*"
