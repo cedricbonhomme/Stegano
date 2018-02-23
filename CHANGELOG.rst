@@ -1,6 +1,10 @@
 Release History
 ===============
 
+0.8.3 (2018-02-23)
+------------------
+* the recommended way to install Stegano is now to use pipenv.
+
 0.8.2 (2017-12-20)
 ------------------
 * Fixed a bug with the new 'encoding' function when using Stegano as a command
