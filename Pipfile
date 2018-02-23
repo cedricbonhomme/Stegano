@@ -14,3 +14,7 @@ crayons = "*"
 
 [dev-packages]
 
+pep8 = "*"
+coverage = "*"
+coveralls = "*"
+mypy = "*"

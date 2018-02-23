@@ -1,4 +1,0 @@
-pep8
-coverage
-coveralls
-mypy
