@@ -1,4 +1,4 @@
-Stéganô
+Stegano
 =======
 
 .. image:: https://img.shields.io/pypi/pyversions/Stegano.svg?style=flat-square
@@ -23,13 +23,13 @@ Stéganô
     :target: https://saythanks.io/to/cedricbonhomme
 
 
-`Stéganô <https://github.com/cedricbonhomme/Stegano>`_, a pure Python
+`Stegano <https://github.com/cedricbonhomme/Stegano>`_, a pure Python
 Steganography module.
 
 Steganography is the art and science of writing hidden messages in such a way
 that no one, apart from the sender and intended recipient, suspects the
 existence of the message, a form of security through obscurity. Consequently,
-functions provided by Stéganô only hide messages, without encryption.
+functions provided by Stegano only hide messages, without encryption.
 Steganography is often used with cryptography.
 
 Installation
@@ -39,9 +39,12 @@ Installation
 
     $ pipenv install Stegano
 
-You will be able to use Stéganô in your Python programs or as a command line
-tool.
+You will be able to use Stegano in your Python programs.
+If you only want to install Stegano as a command line tool:
 
+.. code:: bash
+
+    $ pipsi install Stegano
 
 Usage
 -----
@@ -49,10 +52,10 @@ Usage
 A `tutorial <https://stegano.readthedocs.io>`_ is available.
 
 
-Use Stéganô as a library in your Python program
+Use Stegano as a library in your Python program
 '''''''''''''''''''''''''''''''''''''''''''''''
 
-If you want to use Stéganô in your Python program you just have to import the
+If you want to use Stegano in your Python program you just have to import the
 appropriate steganography technique. For example:
 
 .. code:: python
@@ -64,8 +67,8 @@ appropriate steganography technique. For example:
     >>> clear_message = lsb.reveal("./Lenna-secret.png")
 
 
-Use Stéganô as a program
-''''''''''''''''''''''''
+Use Stegano as a command line tool
+''''''''''''''''''''''''''''''''''
 
 Hide and reveal a message
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,7 +121,7 @@ recommend you to install it in a Python virtual environment. For example:
     $ pew install 3.6.3 --type CPython
     $ pew new --python=$(pew locate_python 3.6.3)  -a . -r requirements.txt stegano-dev
     stegano-dev$ python
-    Python 3.6.3 (default, Dec  5 2017, 22:12:25) 
+    Python 3.6.3 (default, Dec  5 2017, 22:12:25)
     [GCC 7.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import stegano
