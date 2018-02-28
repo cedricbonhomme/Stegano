@@ -38,13 +38,20 @@ Installation
 .. code:: bash
 
     $ pipenv install Stegano
+    ✨🐍✨
 
 You will be able to use Stegano in your Python programs.
+
 If you only want to install Stegano as a command line tool:
 
 .. code:: bash
 
     $ pipsi install Stegano
+    ✨🍰✨
+
+pipsi installs scripts (system wide available) provided by Python packages into
+separate virtualenvs to shield them from your system and each other.
+
 
 Usage
 -----
