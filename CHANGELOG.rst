@@ -1,6 +1,10 @@
 Release History
 ===============
 
+0.8.4 (2018-02-28)
+------------------
+* Stegano is ready for use with pipenv and pipsi.
+
 0.8.3 (2018-02-23)
 ------------------
 * the recommended way to install Stegano is now to use pipenv.
