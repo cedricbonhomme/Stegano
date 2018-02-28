@@ -119,20 +119,7 @@ Contributions
 -------------
 
 Contributions are welcome. If you want to contribute to Stegano I highly
-recommend you to install it in a Python virtual environment. For example:
-
-.. code-block:: bash
-
-    $ git clone https://github.com/cedricbonhomme/Stegano.git
-    $ cd Stegano/
-    $ pew install 3.6.3 --type CPython
-    $ pew new --python=$(pew locate_python 3.6.3)  -a . -r requirements.txt stegano-dev
-    stegano-dev$ python
-    Python 3.6.3 (default, Dec  5 2017, 22:12:25)
-    [GCC 7.2.0] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import stegano
-    >>>
+recommend you to install it in a Python virtual environment with pipenv.
 
 
 License
