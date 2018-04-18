@@ -15,14 +15,12 @@ python_version = "3.6"
 pillow = "*"
 piexif = "*"
 crayons = "*"
-white = "*"
-black = "*"
 
 
 [dev-packages]
 
 twine = "*"
-"pep8" = "*"
+pep8 = "*"
 coverage = "*"
 coveralls = "*"
 mypy = "*"
