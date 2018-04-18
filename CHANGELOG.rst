@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.8.5 (2018-04-18)
+------------------
+* Fixed an encoding problem which occured on Windows during the installation
+  of the module.
+
 0.8.4 (2018-02-28)
 ------------------
 * Stegano is ready for use with pipenv and pipsi.
