@@ -1,7 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import codecs
+import os
 
 from setuptools import setup
+
+here = os.path.abspath(os.path.dirname(__file__))
 
 packages = [
     'stegano',
@@ -22,9 +26,9 @@ scripts = [
 
 requires = ['pillow', 'piexif', 'crayons']
 
-with open('README.rst', 'r') as f:
+with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     readme = f.read()
-with open('CHANGELOG.rst', 'r') as f:
+with codecs.open(os.path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
     changelog = f.read()
 
 setup(
