@@ -134,13 +134,14 @@ class TestLSB(unittest.TestCase):
         for message in messages_to_hide:
             message = "Hello World"
             outputBytes = io.BytesIO()
-            bytes_image = lsb.hide(open("./tests/sample-files/20160505T130442.jpg", 'rb'), message)
-            bytes_image.save(outputBytes, "PNG")
-            outputBytes.seek(0)
+            with open("./tests/sample-files/20160505T130442.jpg", 'rb') as f:
+                bytes_image = lsb.hide(f, message)
+                bytes_image.save(outputBytes, "PNG")
+                outputBytes.seek(0)
 
-            clear_message = lsb.reveal(outputBytes)
+                clear_message = lsb.reveal(outputBytes)
 
-            self.assertEqual(message, clear_message)
+                self.assertEqual(message, clear_message)
 
     def tearDown(self):
         try:

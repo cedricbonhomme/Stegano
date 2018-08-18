@@ -86,12 +86,11 @@ class TestEXIFHeader(unittest.TestCase):
     def test_with_bytes(self):
         outputBytes = io.BytesIO()
         message = b"Secret"
-        exifHeader.hide(open("./tests/sample-files/20160505T130442.jpg", 'rb'),
-                            outputBytes,
-                            secret_message=message)
+        with open("./tests/sample-files/20160505T130442.jpg", 'rb') as f:
+            exifHeader.hide(f, outputBytes, secret_message=message)
 
-        clear_message = exifHeader.reveal(outputBytes)
-        self.assertEqual(message, clear_message)
+            clear_message = exifHeader.reveal(outputBytes)
+            self.assertEqual(message, clear_message)
 
     def tearDown(self):
         try:
