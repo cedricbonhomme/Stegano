@@ -54,6 +54,7 @@ setup(
         'Topic :: Security',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)'
     ]
 )
