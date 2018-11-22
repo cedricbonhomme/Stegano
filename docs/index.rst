@@ -24,7 +24,7 @@ Presentation
 .. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square
     :target: https://saythanks.io/to/cedricbonhomme
 
-Stéganô_ is a pure Python steganography_ module.
+Stegano_ is a pure Python steganography_ module.
 
 Steganography is the art and science of writing hidden messages in such a way
 that no one, apart from the sender and intended recipient, suspects the
@@ -44,6 +44,8 @@ Moreover some methods of steganalysis_ are provided:
 - steganalysis of LSB encoding in color images;
 - statistical steganalysis.
 
+You can also use Stegano through this `Web service <https://stegano-web.herokuapp.com>`_.
+Not all functionalities of Stegano are covered.
 
 Requirements
 ============
@@ -64,20 +66,20 @@ Turorial
     software
     steganalysis
 
-You can also have a look at the
+You can have a look at the
 `unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
 
 
 License
 =======
 
-Stéganô_ is under GPL v3 license.
+Stegano_ is under GPL v3 license.
 
 
 Donation
 ========
 
-If you wish and if you like Stéganô, you can donate via bitcoin.
+If you wish and if you like Stegano, you can donate via bitcoin.
 My bitcoin address: `1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ <http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ>`_
 
 
