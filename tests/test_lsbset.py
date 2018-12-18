@@ -53,17 +53,29 @@ class TestLSBSet(unittest.TestCase):
                                     generators.eratosthenes())
 
             self.assertEqual(message, clear_message)
+            
+    def test_hide_and_reveal_with_shift(self):
+        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
+        for message in messages_to_hide:
+            secret = lsbset.hide("./tests/sample-files/Lenna.png", message,
+                                    generators.eratosthenes(), 4)
+            secret.save("./image.png")
+
+            clear_message = lsbset.reveal("./image.png",
+                                    generators.eratosthenes(), 4)
+
+            self.assertEqual(message, clear_message)
 
     def test_hide_and_reveal_UTF32LE(self):
         messages_to_hide = 'I love 🍕 and 🍫!'
         secret = lsbset.hide("./tests/sample-files/Lenna.png",
                             messages_to_hide,
                             generators.eratosthenes(),
-                            'UTF-32LE')
+                            encoding='UTF-32LE')
         secret.save("./image.png")
 
         clear_message = lsbset.reveal("./image.png", generators.eratosthenes(),
-                                        'UTF-32LE')
+                                        encoding='UTF-32LE')
         self.assertEqual(messages_to_hide, clear_message)
 
     def test_with_transparent_png(self):

@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.9.0 (2018-12-18)
+------------------
+
+* added the possibility to shift the encoded bits when using the lsbset module.
+
 0.8.6 (2018-11-05)
 ------------------
 

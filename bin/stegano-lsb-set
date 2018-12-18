@@ -55,6 +55,8 @@ parser_hide.add_argument("-g", "--generator", dest="generator_function",
                 choices=[generator[0] for generator in \
                             inspect.getmembers(generators, inspect.isfunction)],
                 required=True, help="Generator")
+parser_hide.add_argument("-s", "--shift", dest="shift",
+                default=0, help="Shift for the generator")
 
 group_secret = parser_hide.add_mutually_exclusive_group(required=True)
 # Non binary secret message to hide
@@ -81,6 +83,8 @@ parser_reveal.add_argument("-g", "--generator", dest="generator_function",
                 choices=[generator[0] for generator in \
                             inspect.getmembers(generators, inspect.isfunction)],
                 required=True, help="Generator")
+parser_reveal.add_argument("-s", "--shift", dest="shift",
+                default=0, help="Shift for the generator")
 parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
 
@@ -111,7 +115,8 @@ if arguments.command == 'hide':
     elif arguments.secret_file != "":
         secret = tools.binary2base64(arguments.secret_file)
 
-    img_encoded = lsbset.hide(arguments.input_image_file, secret, generator)
+    img_encoded = lsbset.hide(arguments.input_image_file, secret, generator,
+                              int(arguments.shift))
     try:
         img_encoded.save(arguments.output_image_file)
     except Exception as e:
@@ -120,7 +125,8 @@ if arguments.command == 'hide':
 
 elif arguments.command == 'reveal':
     try:
-        secret = lsbset.reveal(arguments.input_image_file, generator)
+        secret = lsbset.reveal(arguments.input_image_file, generator,
+                               int(arguments.shift))
     except IndexError:
         print("Impossible to detect message.")
         exit(0)

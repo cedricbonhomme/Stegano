@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
-# Copyright (C) 2010-2017  Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2018  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.5 $"
+__version__ = "$Revision: 0.6 $"
 __date__ = "$Date: 2016/03/13 $"
-__revision__ = "$Date: 2017/05/04 $"
+__revision__ = "$Date: 2018/12/18 $"
 __license__ = "GPLv3"
 
 import sys
@@ -36,6 +36,7 @@ from . import generators
 def hide(input_image: Union[str, IO[bytes]],
         message: str,
         generator: Iterator[int],
+        shift: int = 0,
         encoding: str = 'UTF-8',
         auto_convert_rgb: bool = False):
     """Hide a message (string) in an image with the
@@ -68,6 +69,9 @@ def hide(input_image: Union[str, IO[bytes]],
     if len_message_bits > npixels * 3:
         raise Exception("The message you want to hide is too long: {}". \
                                                         format(message_length))
+    while shift != 0:
+        next(generator)
+        shift -= 1
 
     while index + 3 <= len_message_bits :
         generated_number = next(generator)
@@ -97,6 +101,7 @@ def hide(input_image: Union[str, IO[bytes]],
 
 def reveal(input_image: Union[str, IO[bytes]],
             generator: Iterator[int],
+            shift: int = 0,
             encoding: str = 'UTF-8'):
     """Find a message in an image (with the LSB technique).
     """
@@ -106,6 +111,10 @@ def reveal(input_image: Union[str, IO[bytes]],
     buff, count = 0, 0
     bitab = []
     limit = None
+
+    while shift != 0:
+        next(generator)
+        shift -= 1
 
     while True:
         generated_number = next(generator)
