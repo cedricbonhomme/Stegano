@@ -140,6 +140,17 @@ An other example:
     stegano-lsb reveal -i ./enc-identity.png
 
 
+Sometimes it can be useful to skip the first values of a set. For example if you want
+to hide several messages or because due to the selected generator
+(Fibonacci starts with 0, 1, 1, etc.). Or maybe you just want to add more complexity.
+In this case, simply use the optional arguments ``--shift``:
+
+
+.. code-block:: bash
+
+    stegano-lsb-set reveal -i ./tests/sample-files/Lenna.png --generator fibonacci --shift 7
+    
+    
 List all available generators
 ------------------------------
 
