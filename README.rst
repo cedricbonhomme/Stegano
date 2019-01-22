@@ -128,6 +128,6 @@ License
 This software is licensed under
 `GNU General Public License version 3 <https://www.gnu.org/licenses/gpl-3.0.html>`_
 
-Copyright (C) 2010-2018 `Cédric Bonhomme <https://www.cedricbonhomme.org>`_
+Copyright (C) 2010-2019 `Cédric Bonhomme <https://www.cedricbonhomme.org>`_
 
 For more information, `the list of authors and contributors <CONTRIBUTORS.rst>`_ is available.
