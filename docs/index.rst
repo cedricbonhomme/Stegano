@@ -91,7 +91,7 @@ Contact
 
 
 .. _Python: https://www.python.org
-.. _Stéganô: https://github.com/cedricbonhomme/Stegano
+.. _Stegano: https://github.com/cedricbonhomme/Stegano
 .. _`Pillow`: https://pypi.python.org/pypi/Pillow
 .. _`piexif`: https://pypi.python.org/pypi/piexif
 .. _steganography: http://en.wikipedia.org/wiki/Steganography
