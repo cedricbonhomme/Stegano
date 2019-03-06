@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.9.1 (2019-03-06)
+------------------
+
+* updated Pillow dependency in order to fix a bug when opening some PNG files.
+
 0.9.0 (2018-12-18)
 ------------------
 
