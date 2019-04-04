@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.9.2 (2019-04-04)
+------------------
+
+* updated Pillow dependency to version 6.0.0 in order to fix a bug when opening
+  some PNG files (https://github.com/python-pillow/Pillow/issues/3557).
+
 0.9.1 (2019-03-06)
 ------------------
 
