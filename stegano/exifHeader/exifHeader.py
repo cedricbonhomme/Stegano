@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
@@ -25,10 +25,17 @@ __date__ = "$Date: 2016/05/26 $"
 __revision__ = "$Date: 2017/01/18 $"
 __license__ = "GPLv3"
 
-from PIL import Image
 import piexif
+from stegano import tools
 
-def hide(input_image_file, img_enc, secret_message = None, secret_file = None, img_format = None):
+
+def hide(
+    input_image_file,
+    img_enc,
+    secret_message=None,
+    secret_file=None,
+    img_format=None,
+):
     """Hide a message (string) in an image.
     """
     from zlib import compress
@@ -43,7 +50,7 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None, i
     except:
         text = compress(b64encode(secret_message))
 
-    img = Image.open(input_image_file)
+    img = tools.open_image(input_image_file)
 
     if img_format is None:
         img_format = img.format
@@ -66,15 +73,16 @@ def reveal(input_image_file):
     from base64 import b64decode
     from zlib import decompress
 
-    img = Image.open(input_image_file)
+    img = tools.open_image(input_image_file)
+
     try:
-        if img.format in ['JPEG', 'TIFF']:
-            if 'exif' in img.info:
-                exif_dict = piexif.load(img.info.get("exif", b''))
+        if img.format in ["JPEG", "TIFF"]:
+            if "exif" in img.info:
+                exif_dict = piexif.load(img.info.get("exif", b""))
                 description_key = piexif.ImageIFD.ImageDescription
                 encoded_message = exif_dict["0th"][description_key]
             else:
-                encoded_message = b''
+                encoded_message = b""
         else:
             raise ValueError("Given file is neither JPEG nor TIFF.")
     finally:
@@ -87,41 +95,70 @@ if __name__ == "__main__":
     # Point of entry in execution mode.
     # TODO: improve the management of arguments
     from optparse import OptionParser
+
     parser = OptionParser(version=__version__)
-    parser.add_option('--hide', action='store_true', default=False,
-                      help="Hides a message in an image.")
-    parser.add_option('--reveal', action='store_true', default=False,
-                      help="Reveals the message hided in an image.")
+    parser.add_option(
+        "--hide",
+        action="store_true",
+        default=False,
+        help="Hides a message in an image.",
+    )
+    parser.add_option(
+        "--reveal",
+        action="store_true",
+        default=False,
+        help="Reveals the message hided in an image.",
+    )
     # Original image
-    parser.add_option("-i", "--input", dest="input_image_file",
-                    help="Input image file.")
+    parser.add_option(
+        "-i", "--input", dest="input_image_file", help="Input image file."
+    )
     # Image containing the secret
-    parser.add_option("-o", "--output", dest="output_image_file",
-                    help="Output image containing the secret.")
+    parser.add_option(
+        "-o",
+        "--output",
+        dest="output_image_file",
+        help="Output image containing the secret.",
+    )
 
     # Secret raw message to hide
-    parser.add_option("-m", "--secret-message", dest="secret_message",
-                    help="Your raw secret message to hide.")
+    parser.add_option(
+        "-m",
+        "--secret-message",
+        dest="secret_message",
+        help="Your raw secret message to hide.",
+    )
 
     # Secret text file to hide.
-    parser.add_option("-f", "--secret-file", dest="secret_file",
-                    help="Your secret text file to hide.")
+    parser.add_option(
+        "-f",
+        "--secret-file",
+        dest="secret_file",
+        help="Your secret text file to hide.",
+    )
 
-    parser.set_defaults(input_image_file = './pictures/Elisha-Cuthbert.jpg',
-                        output_image_file = './pictures/Elisha-Cuthbert_enc.jpg',
-                        secret_message = '', secret_file = '')
+    parser.set_defaults(
+        input_image_file="./pictures/Elisha-Cuthbert.jpg",
+        output_image_file="./pictures/Elisha-Cuthbert_enc.jpg",
+        secret_message="",
+        secret_file="",
+    )
 
     (options, args) = parser.parse_args()
 
     if options.hide:
         if options.secret_message != "" and options.secret_file == "":
-            hide(input_image_file=options.input_image_file, \
-                    img_enc=options.output_image_file, \
-                    secret_message=options.secret_message)
+            hide(
+                input_image_file=options.input_image_file,
+                img_enc=options.output_image_file,
+                secret_message=options.secret_message,
+            )
         elif options.secret_message == "" and options.secret_file != "":
-            hide(input_image_file=options.input_image_file, \
-                    img_enc=options.output_image_file, \
-                    secret_file=options.secret_file)
+            hide(
+                input_image_file=options.input_image_file,
+                img_enc=options.output_image_file,
+                secret_file=options.secret_file,
+            )
 
     elif options.reveal:
         reveal(input_image_file=options.input_image_file)

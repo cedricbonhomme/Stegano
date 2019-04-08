@@ -25,9 +25,10 @@ __date__ = "$Date: 2011/12/28 $"
 __revision__ = "$Date: 2017/03/10 $"
 __license__ = "GPLv3"
 
-import math
 import itertools
-from typing import Iterator, List, Dict
+import math
+from typing import Dict, Iterator, List
+
 
 def identity() -> Iterator[int]:
     """f(x) = x
@@ -37,14 +38,16 @@ def identity() -> Iterator[int]:
         yield n
         n += 1
 
+
 def triangular_numbers() -> Iterator[int]:
     """Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
     http://oeis.org/A000217
     """
     n = 0
     while True:
-        yield (n*(n+1))//2
+        yield (n * (n + 1)) // 2
         n += 1
+
 
 def fermat() -> Iterator[int]:
     """Generate the n-th Fermat Number.
@@ -53,7 +56,8 @@ def fermat() -> Iterator[int]:
     y = 3
     while True:
         yield y
-        y = pow(y-1,2)+1
+        y = pow(y - 1, 2) + 1
+
 
 def mersenne() -> Iterator[int]:
     """Generate 2^p - 1, where p is prime.
@@ -61,13 +65,14 @@ def mersenne() -> Iterator[int]:
     """
     prime_numbers = eratosthenes()
     while True:
-        yield 2**next(prime_numbers) - 1
+        yield 2 ** next(prime_numbers) - 1
+
 
 def eratosthenes() -> Iterator[int]:
     """Generate the prime numbers with the sieve of Eratosthenes.
     https://oeis.org/A000040
     """
-    d = {} # type: Dict[int, List[int]]
+    d = {}  # type: Dict[int, List[int]]
     for i in itertools.count(2):
         if i in d:
             for j in d[i]:
@@ -76,6 +81,7 @@ def eratosthenes() -> Iterator[int]:
         else:
             d[i * i] = [i]
             yield i
+
 
 def composite() -> Iterator[int]:
     """Generate the composite numbers using the sieve of Eratosthenes.
@@ -87,6 +93,7 @@ def composite() -> Iterator[int]:
             yield n
         p1 = p2
 
+
 def carmichael() -> Iterator[int]:
     """Composite numbers n such that a^(n-1) == 1 (mod n) for every a coprime
     to n.
@@ -94,10 +101,11 @@ def carmichael() -> Iterator[int]:
     """
     for m in composite():
         for a in range(2, m):
-            if pow(a,m,m) != a:
+            if pow(a, m, m) != a:
                 break
         else:
             yield m
+
 
 def ackermann_naive(m: int, n: int) -> int:
     """Ackermann number.
@@ -108,6 +116,7 @@ def ackermann_naive(m: int, n: int) -> int:
         return ackermann(m - 1, 1)
     else:
         return ackermann(m - 1, ackermann(m, n - 1))
+
 
 def ackermann(m: int, n: int) -> int:
     """Ackermann number.
@@ -127,6 +136,7 @@ def ackermann(m: int, n: int) -> int:
     else:
         return n + 1
 
+
 def fibonacci() -> Iterator[int]:
     """Generate the sequence of Fibonacci.
     https://oeis.org/A000045
@@ -135,6 +145,7 @@ def fibonacci() -> Iterator[int]:
     while True:
         yield a
         a, b = b, a + b
+
 
 def log_gen() -> Iterator[int]:
     """Logarithmic generator.
