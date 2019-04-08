@@ -29,6 +29,7 @@ import sys
 
 from PIL import Image
 from typing import Union, IO
+from stegano import tools
 
 def hide(input_image: Union[str, IO[bytes]], message: str):
     """
@@ -41,7 +42,7 @@ def hide(input_image: Union[str, IO[bytes]], message: str):
     message_length = len(message)
     assert message_length != 0, "message message_length is zero"
     assert message_length < 255, "message is too long"
-    img = Image.open(input_image)
+    img = tools.open_image(input_image)
     # Use a copy of image to hide the text in
     encoded = img.copy()
     width, height = img.size
@@ -70,7 +71,7 @@ def reveal(input_image: Union[str, IO[bytes]]):
     hidden message characters (ASCII values).
     The red value of the first pixel is used for message_length of string.
     """
-    img = Image.open(input_image)
+    img = tools.open_image(input_image)
     width, height = img.size
     message = ""
     index = 0

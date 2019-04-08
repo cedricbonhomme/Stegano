@@ -26,7 +26,10 @@ __revision__ = "$Date: 2017/01/18 $"
 __license__ = "GPLv3"
 
 from PIL import Image
+
 import piexif
+from stegano import tools
+
 
 def hide(input_image_file, img_enc, secret_message = None, secret_file = None, img_format = None):
     """Hide a message (string) in an image.
@@ -43,7 +46,7 @@ def hide(input_image_file, img_enc, secret_message = None, secret_file = None, i
     except:
         text = compress(b64encode(secret_message))
 
-    img = Image.open(input_image_file)
+    img = tools.open_image(input_image_file)
 
     if img_format is None:
         img_format = img.format
@@ -66,7 +69,8 @@ def reveal(input_image_file):
     from base64 import b64decode
     from zlib import decompress
 
-    img = Image.open(input_image_file)
+    img = tools.open_image(input_image_file)
+
     try:
         if img.format in ['JPEG', 'TIFF']:
             if 'exif' in img.info:

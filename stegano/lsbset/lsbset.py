@@ -45,7 +45,7 @@ def hide(input_image: Union[str, IO[bytes]],
     message_length = len(message)
     assert message_length != 0, "message length is zero"
 
-    img = Image.open(input_image)
+    img = tools.open_image(input_image)
 
     if img.mode not in ['RGB', 'RGBA']:
         if not auto_convert_rgb:
@@ -105,7 +105,7 @@ def reveal(input_image: Union[str, IO[bytes]],
             encoding: str = 'UTF-8'):
     """Find a message in an image (with the LSB technique).
     """
-    img = Image.open(input_image)
+    img = tools.open_image(input_image)
     img_list = list(img.getdata())
     width, height = img.size
     buff, count = 0, 0

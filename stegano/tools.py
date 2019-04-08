@@ -29,6 +29,9 @@ import base64
 import itertools
 from typing import List, Iterator, Tuple, Union
 from functools import reduce
+from typing import IO, Iterator, List, Tuple, Union
+
+from PIL import Image
 
 ENCODINGS = {
     'UTF-8': 8,
@@ -99,3 +102,14 @@ def base642binary(b64_fname: str) -> bytes:
     """
     b64_fname += '==='
     return base64.b64decode(b64_fname)
+
+def open_image(fname_or_instance: Union[str, IO[bytes]]):
+    """Opens a Image and returns it.
+
+    :param fname_or_instance: Can either be the location of the image as a
+                              string or the Image.Image instance itself.
+    """
+    if isinstance(fname_or_instance, Image.Image):
+        return fname_or_instance
+
+    return Image.open(fname_or_instance)
