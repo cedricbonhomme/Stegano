@@ -25,11 +25,10 @@ __date__ = "$Date: 2010/10/01 $"
 __revision__ = "$Date: 2017/02/06 $"
 __license__ = "GPLv3"
 
-import sys
+from typing import IO, Union
 
-from PIL import Image
-from typing import Union, IO
 from stegano import tools
+
 
 def hide(input_image: Union[str, IO[bytes]], message: str):
     """
@@ -54,14 +53,15 @@ def hide(input_image: Union[str, IO[bytes]], message: str):
             if row == 0 and col == 0 and index < message_length:
                 asc = message_length
             elif index <= message_length:
-                c = message[index -1]
+                c = message[index - 1]
                 asc = ord(c)
             else:
                 asc = r
-            encoded.putpixel((col, row), (asc, g , b))
+            encoded.putpixel((col, row), (asc, g, b))
             index += 1
     img.close()
     return encoded
+
 
 def reveal(input_image: Union[str, IO[bytes]]):
     """
