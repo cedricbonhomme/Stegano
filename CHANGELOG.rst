@@ -1,6 +1,14 @@
 Release History
 ===============
 
+0.9.3 (2019-04-10)
+------------------
+
+* it is now possible to either pass the location of an image or directly pass
+  an already opened Image.Image to the hide and reveal methods;
+* code re-formatted a bit with black.
+
+
 0.9.2 (2019-04-04)
 ------------------
 
