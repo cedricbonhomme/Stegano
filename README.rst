@@ -46,10 +46,10 @@ If you only want to install Stegano as a command line tool:
 
 .. code:: bash
 
-    $ pipsi install Stegano
+    $ pipx install Stegano
     ✨🍰✨
 
-pipsi installs scripts (system wide available) provided by Python packages into
+pipx installs scripts (system wide available) provided by Python packages into
 separate virtualenvs to shield them from your system and each other.
 
 
