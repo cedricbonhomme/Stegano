@@ -52,9 +52,9 @@ parser_hide.add_argument("-e", "--encoding", dest="encoding",
 
 # Generator
 parser_hide.add_argument("-g", "--generator", dest="generator_function",
-                choices=[generator[0] for generator in \
-                            inspect.getmembers(generators, inspect.isfunction)],
-                required=True, help="Generator")
+                # choices=[generator[0] for generator in \
+                #             inspect.getmembers(generators, inspect.isfunction)],
+                nargs='*', required=True, help="Generator")
 parser_hide.add_argument("-s", "--shift", dest="shift",
                 default=0, help="Shift for the generator")
 
@@ -80,9 +80,9 @@ parser_reveal.add_argument("-e", "--encoding", dest="encoding",
                 help="Specify the encoding of the message to reveal." +
                 " UTF-8 (default) or UTF-32LE.")
 parser_reveal.add_argument("-g", "--generator", dest="generator_function",
-                choices=[generator[0] for generator in \
-                            inspect.getmembers(generators, inspect.isfunction)],
-                required=True, help="Generator")
+                # choices=[generator[0] for generator in \
+                #             inspect.getmembers(generators, inspect.isfunction)],
+                nargs='*', required=True, help="Generator")
 parser_reveal.add_argument("-s", "--shift", dest="shift",
                 default=0, help="Shift for the generator")
 parser_reveal.add_argument("-o", dest="secret_binary",
@@ -97,14 +97,19 @@ arguments = parser.parse_args()
 
 if arguments.command != 'list-generators':
     try:
-        arguments.generator_function
+        arguments.generator_function[0]
     except AttributeError:
         print('You must specify the name of a generator.')
         parser.print_help()
         exit(1)
 
     try:
-        generator = getattr(generators, arguments.generator_function)()
+        if (len(arguments.generator_function) > 1):
+            generator = getattr(generators, arguments.generator_function[0])\
+                (*[int(e) for e in arguments.generator_function[1:]])
+        else:
+            generator = getattr(generators, arguments.generator_function[0])()
+            
     except AttributeError as e:
         print("Unknown generator: {}".format(arguments.generator_function))
         exit(1)
