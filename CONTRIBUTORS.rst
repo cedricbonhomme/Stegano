@@ -10,5 +10,6 @@ Contributors
 - Maxwell Gerber
 - Nejdet Çağdaş Yücesoy <nejdetyucesoy@gmail.com>
 - panni <panni@fragstore.net>
+- Peter Justin <peter@peterjustin.me>
 
 Thank you to the testers!

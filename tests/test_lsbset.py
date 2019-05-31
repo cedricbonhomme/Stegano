@@ -25,6 +25,7 @@ __date__ = "$Date: 2016/04/13 $"
 __revision__ = "$Date: 2017/05/04 $"
 __license__ = "GPLv3"
 
+import io
 import os
 import unittest
 from unittest.mock import patch
@@ -102,6 +103,20 @@ class TestLSBSet(unittest.TestCase):
         with self.assertRaises(Exception):
             secret = lsbset.hide("./tests/sample-files/Lenna-grayscale.png",
                                     message_to_hide, generators.eratosthenes())
+
+    def test_with_location_of_image_as_argument(self):
+        messages_to_hide = ["Hello World!"]
+
+        for message in messages_to_hide:
+            outputBytes = io.BytesIO()
+            bytes_image = lsbset.hide("./tests/sample-files/20160505T130442.jpg", message,
+                                      generators.identity())
+            bytes_image.save(outputBytes, "PNG")
+            outputBytes.seek(0)
+
+            clear_message = lsbset.reveal(outputBytes, generators.identity())
+
+            self.assertEqual(message, clear_message)
 
     def test_auto_convert_rgb(self):
         message_to_hide = "Hello World!"
