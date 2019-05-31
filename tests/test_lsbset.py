@@ -54,6 +54,18 @@ class TestLSBSet(unittest.TestCase):
                                     generators.eratosthenes())
 
             self.assertEqual(message, clear_message)
+
+    def test_hide_and_reveal_with_ackermann(self):
+        messages_to_hide = ["foo"]
+        for message in messages_to_hide:
+            secret = lsbset.hide("./tests/sample-files/Lenna.png", message,
+                                    generators.ackermann(m=3))
+            secret.save("./image.png")
+
+            clear_message = lsbset.reveal("./image.png",
+                                    generators.ackermann(m=3))
+
+            self.assertEqual(message, clear_message)
             
     def test_hide_and_reveal_with_shift(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
