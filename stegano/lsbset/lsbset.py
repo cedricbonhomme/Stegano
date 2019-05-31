@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.6 $"
+__version__ = "$Revision: 0.7 $"
 __date__ = "$Date: 2016/03/13 $"
-__revision__ = "$Date: 2018/12/18 $"
+__revision__ = "$Date: 2019/05/31 $"
 __license__ = "GPLv3"
 
 from typing import IO, Iterator, Union
