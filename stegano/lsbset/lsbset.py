@@ -126,7 +126,7 @@ def reveal(
     while True:
         generated_number = next(generator)
         # color = [r, g, b]
-        for color in  img_list[generated_number][0:3]:
+        for color in  img_list[generated_number][:3]: # ignore the alpha
             buff += (color & 1) << (tools.ENCODINGS[encoding] - 1 - count)
             count += 1
             if count == tools.ENCODINGS[encoding]:
