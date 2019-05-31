@@ -89,14 +89,14 @@ def hide(
 
         # Save the new pixel
         if img.mode == "RGBA":
-            img_list[generated_number] = (r, g, b, a[0])
+            img_list[generated_number] = (r, g, b, *a)
         else:
             img_list[generated_number] = (r, g, b)
 
         index += 3
 
     # create empty new image of appropriate format
-    encoded = Image.new("RGB", (img.size))
+    encoded = Image.new(img.mode, (img.size))
 
     # insert saved data into the image
     encoded.putdata(img_list)
@@ -126,7 +126,7 @@ def reveal(
     while True:
         generated_number = next(generator)
         # color = [r, g, b]
-        for color in img_list[generated_number]:
+        for color in  img_list[generated_number][0:3]:
             buff += (color & 1) << (tools.ENCODINGS[encoding] - 1 - count)
             count += 1
             if count == tools.ENCODINGS[encoding]:
