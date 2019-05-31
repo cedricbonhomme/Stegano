@@ -113,9 +113,9 @@ def ackermann_naive(m: int, n: int) -> int:
     if m == 0:
         return n + 1
     elif n == 0:
-        return ackermann(m - 1, 1)
+        return ackermann_naive(m - 1, 1)
     else:
-        return ackermann(m - 1, ackermann(m, n - 1))
+        return ackermann_naive(m - 1, ackermann_naive(m, n - 1))
 
 
 def ackermann_fast(m: int, n: int) -> int:
@@ -137,7 +137,7 @@ def ackermann_fast(m: int, n: int) -> int:
         return n + 1
 
 def ackermann(m: int) -> Iterator[int]:
-    """Ackermann written as a generator.
+    """Ackermann encapsulated in a generator.
     """
     n = 0
     while True:
