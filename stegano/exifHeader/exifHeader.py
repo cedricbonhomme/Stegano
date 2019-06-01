@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Stéganô - Stéganô is a basic Python Steganography module.
+# Stegano - Stegano is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
