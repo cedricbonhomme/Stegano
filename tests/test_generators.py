@@ -91,17 +91,17 @@ class TestGenerators(unittest.TestCase):
         """Test the Ackermann set.
         """
 
-        self.assertEqual(generators.ackermann(3, 1), 13)
-        self.assertEqual(generators.ackermann(3, 2), 29)
+        self.assertEqual(generators.ackermann_naive(3, 1), 13)
+        self.assertEqual(generators.ackermann_naive(3, 2), 29)
 
     def test_ackermann(self):
         """Test the Ackermann set.
         """
         with open('./tests/expected-results/ackermann', 'r') as f:
-            self.assertEqual(generators.ackermann(3, 1), int(f.readline()))
-            self.assertEqual(generators.ackermann(3, 2), int(f.readline()))
-            self.assertEqual(generators.ackermann(4, 1), int(f.readline()))
-            self.assertEqual(generators.ackermann(4, 2), int(f.readline())) 
+            self.assertEqual(generators.ackermann_fast(3, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(3, 2), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(4, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(4, 2), int(f.readline()))
 
 if __name__ == '__main__':
     unittest.main()

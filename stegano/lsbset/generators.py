@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Stéganô - Stéganô is a basic Python Steganography module.
+# Stegano - Stegano is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
@@ -113,19 +113,19 @@ def ackermann_naive(m: int, n: int) -> int:
     if m == 0:
         return n + 1
     elif n == 0:
-        return ackermann(m - 1, 1)
+        return ackermann_naive(m - 1, 1)
     else:
-        return ackermann(m - 1, ackermann(m, n - 1))
+        return ackermann_naive(m - 1, ackermann_naive(m, n - 1))
 
 
-def ackermann(m: int, n: int) -> int:
+def ackermann_fast(m: int, n: int) -> int:
     """Ackermann number.
     """
     while m >= 4:
         if n == 0:
             n = 1
         else:
-            n = ackermann(m, n - 1)
+            n = ackermann_fast(m, n - 1)
         m -= 1
     if m == 3:
         return (1 << n + 3) - 3
@@ -136,6 +136,13 @@ def ackermann(m: int, n: int) -> int:
     else:
         return n + 1
 
+def ackermann(m: int) -> Iterator[int]:
+    """Ackermann encapsulated in a generator.
+    """
+    n = 0
+    while True:
+        yield ackermann_fast(m, n)
+        n += 1
 
 def fibonacci() -> Iterator[int]:
     """Generate the sequence of Fibonacci.

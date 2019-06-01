@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Stéganô - Stéganô is a basic Python Steganography module.
+# Stegano - Stegano is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.6 $"
+__version__ = "$Revision: 0.7 $"
 __date__ = "$Date: 2016/03/13 $"
-__revision__ = "$Date: 2018/12/18 $"
+__revision__ = "$Date: 2019/05/31 $"
 __license__ = "GPLv3"
 
 from typing import IO, Iterator, Union
@@ -89,14 +89,14 @@ def hide(
 
         # Save the new pixel
         if img.mode == "RGBA":
-            img_list[generated_number] = (r, g, b, a[0])
+            img_list[generated_number] = (r, g, b, *a)
         else:
             img_list[generated_number] = (r, g, b)
 
         index += 3
 
     # create empty new image of appropriate format
-    encoded = Image.new("RGB", (img.size))
+    encoded = Image.new(img.mode, (img.size))
 
     # insert saved data into the image
     encoded.putdata(img_list)
@@ -126,7 +126,7 @@ def reveal(
     while True:
         generated_number = next(generator)
         # color = [r, g, b]
-        for color in img_list[generated_number]:
+        for color in  img_list[generated_number][:3]: # ignore the alpha
             buff += (color & 1) << (tools.ENCODINGS[encoding] - 1 - count)
             count += 1
             if count == tools.ENCODINGS[encoding]:

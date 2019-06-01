@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Stéganô - Stéganô is a basic Python Steganography module.
+# Stegano - Stegano is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.3 $"
+__version__ = "$Revision: 0.4 $"
 __date__ = "$Date: 2016/08/04 $"
-__revision__ = "$Date: 2017/05/04 $"
+__revision__ = "$Date: 2019/06/01 $"
 __license__ = "GPLv3"
 
 from typing import IO, Union
@@ -34,6 +34,7 @@ def hide(
     input_image: Union[str, IO[bytes]],
     message: str,
     encoding: str = "UTF-8",
+    shift: int = 0,
     auto_convert_rgb: bool = False,
 ):
     """Hide a message (string) in an image with the
@@ -72,6 +73,9 @@ def hide(
         )
     for row in range(height):
         for col in range(width):
+            if shift != 0:
+                shift -= 1
+                continue
             if index + 3 <= len_message_bits:
 
                 # Get the colour component.
@@ -97,7 +101,10 @@ def hide(
                 return encoded
 
 
-def reveal(input_image: Union[str, IO[bytes]], encoding="UTF-8"):
+def reveal(input_image: Union[str, IO[bytes]],
+           encoding: str = "UTF-8",
+           shift: int = 0
+):
     """Find a message in an image (with the LSB technique).
     """
     img = tools.open_image(input_image)
@@ -107,7 +114,9 @@ def reveal(input_image: Union[str, IO[bytes]], encoding="UTF-8"):
     limit = None
     for row in range(height):
         for col in range(width):
-
+            if shift != 0:
+                shift -= 1
+                continue
             # pixel = [r, g, b] or [r,g,b,a]
             pixel = img.getpixel((col, row))
             if img.mode == "RGBA":
