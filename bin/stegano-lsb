@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.7 $"
+__version__ = "$Revision: 0.8 $"
 __date__ = "$Date: 2016/08/04 $"
-__revision__ = "$Date: 2017/05/16 $"
+__revision__ = "$Date: 2019/06/01 $"
 __license__ = "GPLv3"
 
 try:
@@ -58,6 +58,9 @@ group_secret.add_argument("-f", dest="secret_file",
 parser_hide.add_argument("-o", "--output", dest="output_image_file",
                 required=True, help="Output image containing the secret.")
 
+# Shift the message to hide
+parser_hide.add_argument("-s", "--shift", dest="shift", default=0,
+                help="Shift for the message to hide")
 
 # Subparser: Reveal
 parser_reveal = subparsers.add_parser('reveal', help='reveal help')
@@ -69,7 +72,9 @@ parser_reveal.add_argument("-e", "--encoding", dest="encoding",
                 " UTF-8 (default) or UTF-32LE.")
 parser_reveal.add_argument("-o", dest="secret_binary",
                 help="Output for the binary secret (Text or any binary file).")
-
+# Shift the message to reveal
+parser_reveal.add_argument("-s", "--shift", dest="shift", default=0,
+                help="Shift for the reveal")
 
 arguments = parser.parse_args()
 
@@ -81,7 +86,7 @@ if arguments.command == 'hide':
         secret = tools.binary2base64(arguments.secret_file)
 
     img_encoded = lsb.hide(arguments.input_image_file, secret,
-                            arguments.encoding)
+                           arguments.encoding, int(arguments.shift))
     try:
         img_encoded.save(arguments.output_image_file)
     except Exception as e:
@@ -89,7 +94,8 @@ if arguments.command == 'hide':
         print(e)
 
 elif arguments.command == 'reveal':
-    secret = lsb.reveal(arguments.input_image_file, arguments.encoding)
+    secret = lsb.reveal(arguments.input_image_file, arguments.encoding,
+                        int(arguments.shift))
     if arguments.secret_binary != None:
         data = tools.base642binary(secret)
         with open(arguments.secret_binary, "wb") as f:
