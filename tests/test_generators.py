@@ -88,14 +88,25 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(tuple(itertools.islice(generators.carmichael(), 33)),
                              tuple(int(line) for line in f))
 
-    def test_ackermann_naive(self):
+    def test_ackermann_slow(self):
         """Test the Ackermann set.
         """
+        with open('./tests/expected-results/ackermann', 'r') as f:
+            self.assertEqual(generators.ackermann_slow(
+                3, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann_slow(
+                3, 2), int(f.readline()))
 
-        self.assertEqual(generators.ackermann_slow(3, 1), 13)
-        self.assertEqual(generators.ackermann_slow(3, 2), 29)
+    def test_ackermann_naive(self):
+        """Test the Naive Ackermann generator
+        """
+        gen = generators.ackermann_naive(3)
+        next(gen)
+        with open('./tests/expected-results/ackermann', 'r') as f:
+            self.assertEqual(next(gen), int(f.readline()))
+            self.assertEqual(next(gen), int(f.readline()))
 
-    def test_ackermann(self):
+    def test_ackermann_fast(self):
         """Test the Ackermann set.
         """
         with open('./tests/expected-results/ackermann', 'r') as f:
@@ -107,6 +118,15 @@ class TestGenerators(unittest.TestCase):
                 4, 1), int(f.readline()))
             self.assertEqual(generators.ackermann_fast(
                 4, 2), int(f.readline()))
+
+    def test_ackermann(self):
+        """Test the Ackermann generator
+        """
+        gen = generators.ackermann(3)
+        next(gen)
+        with open('./tests/expected-results/ackermann', 'r') as f:
+            self.assertEqual(next(gen), int(f.readline()))
+            self.assertEqual(next(gen), int(f.readline()))
 
 
 if __name__ == '__main__':
