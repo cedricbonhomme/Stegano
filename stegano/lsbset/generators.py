@@ -213,9 +213,9 @@ def LFSR(m: int) -> Iterator[int]:
     """
     n: int = m.bit_length() - 1
     # Set initial state to {1 0 0 ... 0}
-    state: List[bool] = [0] * n
+    state: List[int] = [0] * n
     state[0] = 1
-    feedback: bool = 0
+    feedback: int = 0
     poly: List[int] = polys[n]
     while True:
         # Compute the feedback bit
