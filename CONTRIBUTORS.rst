@@ -6,6 +6,7 @@ Owner
 Contributors
 ============
 
+- Adrien Cosson <https://github.com/AdrienCos>
 - Andrew Roberts <andy.roberts.uk@gmail.com>
 - Maxwell Gerber
 - Nejdet Çağdaş Yücesoy <nejdetyucesoy@gmail.com>
