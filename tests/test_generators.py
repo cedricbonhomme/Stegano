@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # Stéganô - Stéganô is a basic Python Steganography module.
 # Copyright (C) 2010-2017  Cédric Bonhomme - https://www.cedricbonhomme.org
@@ -30,60 +30,61 @@ import itertools
 
 from stegano.lsbset import generators
 
+
 class TestGenerators(unittest.TestCase):
 
     def test_identity(self):
         """Test the identity generator.
         """
         self.assertEqual(tuple(itertools.islice(generators.identity(), 15)),
-                        (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+                         (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
 
     def test_fibonacci(self):
         """Test the Fibonacci generator.
         """
         self.assertEqual(tuple(itertools.islice(generators.fibonacci(), 20)),
-                        (1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,
-                        987, 1597, 2584, 4181, 6765, 10946))
+                         (1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,
+                          987, 1597, 2584, 4181, 6765, 10946))
 
     def test_eratosthenes(self):
         """Test the Eratosthenes sieve.
         """
-        with open('./tests/expected-results/eratosthenes', 'r') as f: 
+        with open('./tests/expected-results/eratosthenes', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.eratosthenes(), 168)),
-                            tuple(int(line) for line in f))
+                             tuple(int(line) for line in f))
 
     def test_composite(self):
         """Test the composite sieve.
         """
-        with open('./tests/expected-results/composite', 'r') as f: 
+        with open('./tests/expected-results/composite', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.composite(), 114)),
-                            tuple(int(line) for line in f))
+                             tuple(int(line) for line in f))
 
     def test_fermat(self):
         """Test the Fermat generator.
         """
-        with open('./tests/expected-results/fermat', 'r') as f: 
+        with open('./tests/expected-results/fermat', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.fermat(), 9)),
                              tuple(int(line) for line in f))
 
     def test_triangular_numbers(self):
         """Test the Triangular numbers generator.
         """
-        with open('./tests/expected-results/triangular_numbers', 'r') as f: 
+        with open('./tests/expected-results/triangular_numbers', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.triangular_numbers(), 54)),
                              tuple(int(line) for line in f))
 
     def test_mersenne(self):
         """Test the Mersenne generator.
         """
-        with open('./tests/expected-results/mersenne', 'r') as f: 
+        with open('./tests/expected-results/mersenne', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.mersenne(), 20)),
                              tuple(int(line) for line in f))
 
     def test_carmichael(self):
         """Test the Carmichael generator.
         """
-        with open('./tests/expected-results/carmichael', 'r') as f: 
+        with open('./tests/expected-results/carmichael', 'r') as f:
             self.assertEqual(tuple(itertools.islice(generators.carmichael(), 33)),
                              tuple(int(line) for line in f))
 
@@ -91,17 +92,22 @@ class TestGenerators(unittest.TestCase):
         """Test the Ackermann set.
         """
 
-        self.assertEqual(generators.ackermann_naive(3, 1), 13)
-        self.assertEqual(generators.ackermann_naive(3, 2), 29)
+        self.assertEqual(generators.ackermann_slow(3, 1), 13)
+        self.assertEqual(generators.ackermann_slow(3, 2), 29)
 
     def test_ackermann(self):
         """Test the Ackermann set.
         """
         with open('./tests/expected-results/ackermann', 'r') as f:
-            self.assertEqual(generators.ackermann_fast(3, 1), int(f.readline()))
-            self.assertEqual(generators.ackermann_fast(3, 2), int(f.readline()))
-            self.assertEqual(generators.ackermann_fast(4, 1), int(f.readline()))
-            self.assertEqual(generators.ackermann_fast(4, 2), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(
+                3, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(
+                3, 2), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(
+                4, 1), int(f.readline()))
+            self.assertEqual(generators.ackermann_fast(
+                4, 2), int(f.readline()))
+
 
 if __name__ == '__main__':
     unittest.main()
