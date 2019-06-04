@@ -22,7 +22,7 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.3 $"
 __date__ = "$Date: 2011/12/28 $"
-__revision__ = "$Date: 2017/03/10 $"
+__revision__ = "$Date: 2019/06/04 $"
 __license__ = "GPLv3"
 
 import itertools
@@ -107,15 +107,24 @@ def carmichael() -> Iterator[int]:
             yield m
 
 
-def ackermann_naive(m: int, n: int) -> int:
+def ackermann_slow(m: int, n: int) -> int:
     """Ackermann number.
     """
     if m == 0:
         return n + 1
     elif n == 0:
-        return ackermann_naive(m - 1, 1)
+        return ackermann_slow(m - 1, 1)
     else:
-        return ackermann_naive(m - 1, ackermann_naive(m, n - 1))
+        return ackermann_slow(m - 1, ackermann_slow(m, n - 1))
+
+
+def ackermann_naive(m: int) -> Iterator[int]:
+    """Naive Ackermann encapsulated in a generator
+    """
+    n = 0
+    while True:
+        yield ackermann_slow(m, n)
+        n += 1
 
 
 def ackermann_fast(m: int, n: int) -> int:
@@ -136,6 +145,7 @@ def ackermann_fast(m: int, n: int) -> int:
     else:
         return n + 1
 
+
 def ackermann(m: int) -> Iterator[int]:
     """Ackermann encapsulated in a generator.
     """
@@ -143,6 +153,7 @@ def ackermann(m: int) -> Iterator[int]:
     while True:
         yield ackermann_fast(m, n)
         n += 1
+
 
 def fibonacci() -> Iterator[int]:
     """Generate the sequence of Fibonacci.
