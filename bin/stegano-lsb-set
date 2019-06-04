@@ -115,6 +115,12 @@ if arguments.command != 'list-generators':
         exit(1)
 
     try:
+        if (arguments.generator_function[0] == "LFSR"):
+            # Compute the size of the image for use by the LFSR generator if needed
+            tmp = tools.open_image(arguments.input_image_file)
+            size = tmp.width * tmp.height
+            tmp.close()
+            arguments.generator_function.append(size)
         if (len(arguments.generator_function) > 1):
             generator = getattr(generators, arguments.generator_function[0])(
                 *[int(e) for e in arguments.generator_function[1:]])

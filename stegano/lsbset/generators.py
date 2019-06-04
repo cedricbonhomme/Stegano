@@ -173,3 +173,59 @@ def log_gen() -> Iterator[int]:
         adder = max(1, math.pow(10, int(math.log10(y))))
         yield int(y)
         y = y + int(adder)
+
+
+polys = {2: [2, 1],
+         3: [3, 1],
+         4: [4, 1],
+         5: [5, 2],
+         6: [6, 1],
+         7: [7, 1],
+         8: [8, 4, 3, 2],
+         9: [9, 4],
+         10: [10, 3],
+         11: [11, 2],
+         12: [12, 6, 4, 1],
+         13: [13, 4, 3, 1],
+         14: [14, 8, 6, 1],
+         15: [15, 1],
+         16: [16, 12, 3, 1],
+         17: [17, 3],
+         18: [18, 7],
+         19: [19, 5, 2, 1],
+         20: [20, 3],
+         21: [21, 2],
+         22: [22, 1],
+         23: [23, 5],
+         24: [24, 7, 2, 1],
+         25: [25, 3],
+         26: [26, 6, 2, 1],
+         27: [27, 5, 2, 1],
+         28: [28, 3],
+         29: [29, 2],
+         30: [30, 23, 2, 1],
+         31: [31, 3]}
+
+
+def LFSR(m: int) -> Iterator[int]:
+    """LFSR generator of the given size
+    https://en.wikipedia.org/wiki/Linear-feedback_shift_register
+    """
+    n: int = m.bit_length() - 1
+    # Set initial state to {1 0 0 ... 0}
+    state: List[bool] = [0] * n
+    state[0] = 1
+    feedback: bool = 0
+    poly: List[int] = polys[n]
+    while True:
+        # Compute the feedback bit
+        feedback = 0
+        for i in range(len(poly)):
+            feedback = feedback ^ state[poly[i] - 1]
+        # Roll the registers
+        state.pop()
+        # Add the feedback bit
+        state.insert(0, feedback)
+        # Convert the registers to an int
+        out = sum([e * (2**i) for i, e in enumerate(state)])
+        yield out

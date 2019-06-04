@@ -128,6 +128,13 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(next(gen), int(f.readline()))
             self.assertEqual(next(gen), int(f.readline()))
 
+    def test_LFSR(self):
+        """ Test the LFSR generator
+        """
+        with open('./tests/expected-results/LFSR', 'r') as f:
+            self.assertEqual(tuple(itertools.islice(generators.LFSR(2**8), 256)),
+                             tuple(int(line) for line in f))
+
 
 if __name__ == '__main__':
     unittest.main()
