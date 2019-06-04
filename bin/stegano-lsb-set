@@ -22,7 +22,7 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.7 $"
 __date__ = "$Date: 2016/03/18 $"
-__revision__ = "$Date: 2017/05/16 $"
+__revision__ = "$Date: 2019/06/04 $"
 __license__ = "GPLv3"
 
 import inspect
