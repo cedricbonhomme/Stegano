@@ -4,11 +4,16 @@ Release History
 0.9.4 (2019-06-05)
 ------------------
 
-* new: Implemented LFSR generator (with tests and CLI) (PR #27)
-* new: Implemented Ackemann generators CLI interface (PR #26)
-* new: The Ackermann functions are not actual generators #24
-* new: add a shift parameter for the lsbmodule #25
-* fix: lsbset.hide cause .png transparent area lost #23
+* new: Implemented LFSR generator (with tests and CLI)
+  (`PR #27 <https://github.com/cedricbonhomme/Stegano/pull/27>`_)
+* new: Implemented Ackermann generators CLI interface
+  (`PR #26 <https://github.com/cedricbonhomme/Stegano/pull/26>`_)
+* new: The Ackermann functions are not actual generators
+  (`#24 <https://github.com/cedricbonhomme/Stegano/issues/24>`_)
+* new: add a shift parameter for the lsbmodule
+  (`#25 <https://github.com/cedricbonhomme/Stegano/issues/25>`_)
+* fix: lsbset.hide cause .png transparent area lost
+  (`#23 <https://github.com/cedricbonhomme/Stegano/issues/23>`_)
 
 
 0.9.3 (2019-04-10)
@@ -25,15 +30,18 @@ Release History
 * updated Pillow dependency to version 6.0.0 in order to fix a bug when opening
   some PNG files (https://github.com/python-pillow/Pillow/issues/3557).
 
+  
 0.9.1 (2019-03-06)
 ------------------
 
 * updated Pillow dependency in order to fix a bug when opening some PNG files.
 
+
 0.9.0 (2018-12-18)
 ------------------
 
 * added the possibility to shift the encoded bits when using the lsbset module.
+
 
 0.8.6 (2018-11-05)
 ------------------
