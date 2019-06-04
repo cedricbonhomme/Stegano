@@ -1,6 +1,16 @@
 Release History
 ===============
 
+0.9.4 (2019-06-05)
+------------------
+
+* new: Implemented LFSR generator (with tests and CLI) (PR #27)
+* new: Implemented Ackemann generators CLI interface (PR #26)
+* new: The Ackermann functions are not actual generators #24
+* new: add a shift parameter for the lsbmodule #25
+* fix: lsbset.hide cause .png transparent area lost #23
+
+
 0.9.3 (2019-04-10)
 ------------------
 
