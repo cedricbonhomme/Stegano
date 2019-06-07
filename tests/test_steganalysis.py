@@ -50,6 +50,15 @@ class TestSteganalysis(unittest.TestCase):
         diff = ImageChops.difference(target, analysis).getbbox()
         self.assertTrue(diff is None)
 
+    def test_parity_rgba(self):
+        """ Test that stegano.steganalysis.parity works with RGBA images
+        """
+        img = Image.open('./tests/sample-files/transparent.png')
+        analysis = parity.steganalyse(img)
+        target = Image.open("./tests/expected-results/parity_rgba.png")
+        diff = ImageChops.difference(target, analysis).getbbox()
+        self.assertTrue(diff is None)
+
 
 if __name__ == '__main__':
     unittest.main()
