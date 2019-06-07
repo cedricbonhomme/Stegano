@@ -32,7 +32,7 @@ import unittest
 from unittest.mock import patch
 
 from stegano import lsb
-from stegano.steganalysis import parity
+from stegano.steganalysis import parity, statistics
 from PIL import Image, ImageChops
 
 
@@ -58,6 +58,16 @@ class TestSteganalysis(unittest.TestCase):
         target = Image.open("./tests/expected-results/parity_rgba.png")
         diff = ImageChops.difference(target, analysis).getbbox()
         self.assertTrue(diff is None)
+
+    def test_statistics(self):
+        """ Test stegano.steganalysis.statistics
+        """
+        image = Image.open("./tests/sample-files/Lenna.png")
+        stats = str(statistics.steganalyse(image)) + '\n'
+        file = open("./tests/expected-results/statistics")
+        target = file.read()
+        file.close()
+        self.assertEqual(stats, target)
 
 
 if __name__ == '__main__':
