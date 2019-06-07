@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
@@ -20,22 +20,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.9.4 $"
 __date__ = "$Date: 2010/10/01 $"
+__revision__ = "$Date: 2019/06/06 $"
 __license__ = "GPLv3"
 
 from PIL import Image
 
-def steganalyse(img):
+
+def steganalyse(img: Image.Image) -> Image.Image:
     """
     Steganlysis of the LSB technique.
     """
-    encoded = img.copy()
+    encoded = Image.new(img.mode, (img.size))
     width, height = img.size
-    bits = ""
     for row in range(height):
         for col in range(width):
-            r, g, b = img.getpixel((col, row))
+            r, g, b = img.getpixel((col, row))[0:3]
             if r % 2 == 0:
                 r = 0
             else:
@@ -48,5 +49,5 @@ def steganalyse(img):
                 b = 0
             else:
                 b = 255
-            encoded.putpixel((col, row), (r, g , b))
+            encoded.putpixel((col, row), (r, g, b))
     return encoded
