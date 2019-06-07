@@ -20,8 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.9.4 $"
 __date__ = "$Date: 2010/10/01 $"
+__revision__ = "$Date: 2019/06/06 $"
 __license__ = "GPLv3"
 
 from PIL import Image
