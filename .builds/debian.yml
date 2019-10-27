@@ -1,6 +1,8 @@
 image: debian/sid
 sources:
   - https://git.sr.ht/~cedric/Stegano
+packages:
+  - pip
 tasks:
   - setup: |
       pip install pipenv
