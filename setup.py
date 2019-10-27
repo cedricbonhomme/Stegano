@@ -26,9 +26,9 @@ scripts = [
 
 requires = ['pillow', 'piexif', 'crayons']
 
-with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+with codecs.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     readme = f.read()
-with codecs.open(os.path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
+with codecs.open(os.path.join(here, 'CHANGELOG.md'), encoding='utf-8') as f:
     changelog = f.read()
 
 setup(
@@ -41,7 +41,7 @@ setup(
     scripts=scripts,
     url='https://github.com/cedricbonhomme/Stegano',
     description='A pure Python Steganography module.',
-    long_description=readme + '\n|\n\n' + changelog,
+    long_description=readme + '\n\n' + changelog,
     platforms = ['Linux'],
     license='GPLv3',
     install_requires=requires,
