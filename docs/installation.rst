@@ -12,7 +12,7 @@ If you want to retrieve the source code (with the unit tests):
 
 .. code-block:: bash
 
-    $ git clone https://github.com/cedricbonhomme/Stegano.git
+    $ git clone https://git.sr.ht/~cedric/Stegano
 
 .. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
     :target: https://travis-ci.org/cedricbonhomme/Stegano

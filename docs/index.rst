@@ -6,23 +6,9 @@
 Presentation
 ============
 
-.. image:: https://img.shields.io/pypi/pyversions/Stegano.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/Stegano
+.. image:: https://builds.sr.ht/~cedric/Stegano.svg
+    :target: https://builds.sr.ht/~cedric/Stegano
 
-.. image:: https://img.shields.io/pypi/v/Stegano.svg?style=flat-square
-    :target: https://github.com/cedricbonhomme/Stegano/releases/latest
-
-.. image:: https://img.shields.io/pypi/l/Stegano.svg?style=flat-square
-    :target: https://www.gnu.org/licenses/gpl-3.0.html
-
-.. image:: https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square
-    :target: https://travis-ci.org/cedricbonhomme/Stegano
-
-.. image:: https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?maxAge=2592000&style=flat-square
-    :target: https://github.com/cedricbonhomme/Stegano/stargazers
-
-.. image:: https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square
-    :target: https://saythanks.io/to/cedricbonhomme
 
 Stegano_ is a pure Python steganography_ module.
 
@@ -67,7 +53,7 @@ Turorial
     steganalysis
 
 You can have a look at the
-`unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
+`unit tests <https://git.sr.ht/~cedric/Stegano/tree/master/tests>`_.
 
 
 License
@@ -91,7 +77,7 @@ Contact
 
 
 .. _Python: https://www.python.org
-.. _Stegano: https://github.com/cedricbonhomme/Stegano
+.. _Stegano: https://git.sr.ht/~cedric/Stegano
 .. _`Pillow`: https://pypi.python.org/pypi/Pillow
 .. _`piexif`: https://pypi.python.org/pypi/piexif
 .. _steganography: http://en.wikipedia.org/wiki/Steganography
