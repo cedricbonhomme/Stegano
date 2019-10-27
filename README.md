@@ -75,7 +75,7 @@ generators.
 This will make a steganalysis more complicated.
 
 
-## Running the tests
+# Running the tests
 
 ```bash
 $ python -m unittest discover -v
