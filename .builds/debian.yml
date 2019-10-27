@@ -6,14 +6,10 @@ packages:
   - python3-dev
   - python3-pip
 tasks:
-  - build: |
+  - test: |
       pip3 install pipenv
       PATH=$PATH:/home/build/.local/bin
       pipenv install
       pipenv install --dev
-  - test: |
-      PATH=$PATH:/home/build/.local/bin
       pipenv shell
       nosetests --with-coverage --cover-package=stegano
-  - typecheck: |
-      python tools/run_mypy.py
