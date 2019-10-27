@@ -8,6 +8,7 @@ packages:
 tasks:
   - setup: |
       pip3 install pipenv
+      PATH=$PATH:/home/build/.local/bin
       pipenv install
       pipenv install --dev
   - test: |
