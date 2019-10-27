@@ -1,0 +1,12 @@
+image: debian/sid
+sources:
+  - https://git.sr.ht/~cedric/Stegano
+tasks:
+  - setup: |
+      pip install pipenv
+      pipenv imstall
+      pipenv install --dev
+  - tests: |
+      nosetests --with-coverage --cover-package=stegano
+  - typecheck: |
+      python tools/run_mypy.py
