@@ -11,4 +11,4 @@ tasks:
       PATH=$PATH:/home/build/.local/bin
       pipenv install
       pipenv install --dev
-      pipenv run --with-coverage --cover-package=stegano
+      pipenv run nosetests --with-coverage --cover-package=stegano
