@@ -2,7 +2,9 @@ image: alpine/3.10
 sources:
   - https://git.sr.ht/~cedric/Stegano
 packages:
-  - python-pip
+  - python3
+  - python3-dev
+  - py3-pip
 tasks:
   - setup: |
       pip install pipenv
