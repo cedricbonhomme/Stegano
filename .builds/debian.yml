@@ -15,4 +15,5 @@ tasks:
       pipenv run nosetests --with-coverage --cover-package=stegano
   - typecheck: |
       PATH=$PATH:/home/build/.local/bin
+      cd Stegano
       pipenv run python tools/run_mypy.py  
