@@ -33,7 +33,7 @@ with codecs.open(os.path.join(here, 'CHANGELOG.md'), encoding='utf-8') as f:
 
 setup(
     name='Stegano',
-    version='0.9.4',
+    version='0.9.5',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,

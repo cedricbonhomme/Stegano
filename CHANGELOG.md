@@ -1,7 +1,7 @@
 # Release History
 
 
-## 0.9.4 (2019-10-27)
+## 0.9.5 (2019-10-27)
 
 * updated dependencies;
 * home page of the project is now: https://git.sr.ht/~cedric/Stegano
@@ -10,15 +10,15 @@
 ## 0.9.4 (2019-06-05)
 
 * new: Implemented LFSR generator (with tests and CLI)
-  (`PR #27 <https://github.com/cedricbonhomme/Stegano/pull/27>`_)
+  ([PR #27](https://github.com/cedricbonhomme/Stegano/pull/27))
 * new: Implemented Ackermann generators CLI interface
-  (`PR #26 <https://github.com/cedricbonhomme/Stegano/pull/26>`_)
+  ([PR #26](https://github.com/cedricbonhomme/Stegano/pull/26))
 * new: The Ackermann functions are not actual generators
-  (`#24 <https://github.com/cedricbonhomme/Stegano/issues/24>`_)
+  ([#24](https://github.com/cedricbonhomme/Stegano/issues/24))
 * new: add a shift parameter for the lsbmodule
-  (`#25 <https://github.com/cedricbonhomme/Stegano/issues/25>`_)
+  ([#25](https://github.com/cedricbonhomme/Stegano/issues/25))
 * fix: lsbset.hide cause .png transparent area lost
-  (`#23 <https://github.com/cedricbonhomme/Stegano/issues/23>`_)
+  ([#23](https://github.com/cedricbonhomme/Stegano/issues/23))
 
 
 ## 0.9.3 (2019-04-10)
@@ -33,7 +33,7 @@
 * updated Pillow dependency to version 6.0.0 in order to fix a bug when opening
   some PNG files (https://github.com/python-pillow/Pillow/issues/3557).
 
-  
+
 ## 0.9.1 (2019-03-06)
 
 * updated Pillow dependency in order to fix a bug when opening some PNG files.
