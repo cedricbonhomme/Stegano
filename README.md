@@ -1,5 +1,4 @@
-Stegano
--------
+# Stegano
 
 [![builds.sr.ht status](https://builds.sr.ht/~cedric/Stegano.svg)](https://builds.sr.ht/~cedric/Stegano)
 
@@ -13,7 +12,7 @@ existence of the message, a form of security through obscurity. Consequently,
 functions provided by Stegano only hide messages, without encryption.
 Steganography is often used with cryptography.
 
-# Installation
+## Installation
 
 
 ```bash
@@ -32,7 +31,7 @@ pipx installs scripts (system wide available) provided by Python packages into
 separate virtualenvs to shield them from your system and each other.
 
 
-# Usage
+## Usage
 
 A [tutorial](https://stegano.readthedocs.io) is available.
 
@@ -75,7 +74,7 @@ generators.
 This will make a steganalysis more complicated.
 
 
-# Running the tests
+## Running the tests
 
 ```bash
 $ python -m unittest discover -v
@@ -88,13 +87,13 @@ $ python tools/run_mypy.py
 ```
 
 
-# Contributions
+## Contributions
 
 Contributions are welcome. If you want to contribute to Stegano I highly
 recommend you to install it in a Python virtual environment with pipenv.
 
 
-# License
+## License
 
 This software is licensed under
 [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html)

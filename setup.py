@@ -33,7 +33,7 @@ with codecs.open(os.path.join(here, 'CHANGELOG.md'), encoding='utf-8') as f:
 
 setup(
     name='Stegano',
-    version='0.9.5',
+    version='0.9.7',
     author='Cédric Bonhomme',
     author_email='cedric@cedricbonhomme.org',
     packages=packages,
@@ -41,6 +41,7 @@ setup(
     scripts=scripts,
     url='https://git.sr.ht/~cedric/Stegano',
     description='A pure Python Steganography module.',
+    long_description_content_type='text/markdown',
     long_description=readme + '\n\n' + changelog,
     platforms = ['Linux'],
     license='GPLv3',
