@@ -7,7 +7,7 @@ packages:
   - python3-pip
 tasks:
   - setup: |
-      pip install pipenv
+      pip3 install pipenv
       pipenv install
       pipenv install --dev
   - test: |
