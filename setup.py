@@ -39,7 +39,7 @@ setup(
     packages=packages,
     include_package_data=True,
     scripts=scripts,
-    url='https://github.com/cedricbonhomme/Stegano',
+    url='https://git.sr.ht/~cedric/Stegano',
     description='A pure Python Steganography module.',
     long_description=readme + '\n\n' + changelog,
     platforms = ['Linux'],
@@ -53,8 +53,8 @@ setup(
         'Intended Audience :: Science/Research',
         'Topic :: Security',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)'
     ]
 )
