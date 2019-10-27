@@ -9,6 +9,7 @@ tasks:
   - test: |
       pip3 install pipenv
       PATH=$PATH:/home/build/.local/bin
+      cd Stegano
       pipenv install
       pipenv install --dev
       pipenv run nosetests --with-coverage --cover-package=stegano
