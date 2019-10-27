@@ -1,7 +1,7 @@
 Stegano
 -------
 
-[![builds.sr.ht status](https://builds.sr.ht/~cedric/Stegano.svg)](https://builds.sr.ht/~cedric/Stegano?)
+[![builds.sr.ht status](https://builds.sr.ht/~cedric/Stegano.svg)](https://builds.sr.ht/~cedric/Stegano)
 
 
 [Stegano](https://github.com/cedricbonhomme/Stegano), a pure Python
