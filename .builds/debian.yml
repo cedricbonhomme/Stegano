@@ -1,14 +1,14 @@
-image: debian/sid
+image: alpine/3.10
 sources:
   - https://git.sr.ht/~cedric/Stegano
 packages:
-  - pip
+  - python-pip
 tasks:
   - setup: |
       pip install pipenv
       pipenv imstall
       pipenv install --dev
-  - tests: |
+  - test: |
       nosetests --with-coverage --cover-package=stegano
   - typecheck: |
       python tools/run_mypy.py
