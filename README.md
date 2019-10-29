@@ -104,4 +104,4 @@ This software is licensed under
 
 Copyright (C) 2010-2019 [Cédric Bonhomme](https://www.cedricbonhomme.org)
 
-For more information, [the list of authors and contributors](CONTRIBUTORS.rst) is available.
+For more information, [the list of authors and contributors](CONTRIBUTORS.md) is available.
