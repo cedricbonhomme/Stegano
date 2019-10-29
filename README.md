@@ -12,6 +12,10 @@ existence of the message, a form of security through obscurity. Consequently,
 functions provided by Stegano only hide messages, without encryption.
 Steganography is often used with cryptography.
 
+For reporting issues, visit the tracker here:
+https://todo.sr.ht/~cedric/stegano
+
+
 ## Installation
 
 
