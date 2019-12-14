@@ -6,21 +6,26 @@ packages:
   - python3-dev
   - python3-pip
   - python3-venv
+environment:
+  project: Stegano
 tasks:
   - dependencies: |
       pip3 install --user poetry
       export PATH="$PATH:/home/build/.local/bin"
-      cd Stegano
+      cd ${project}
       poetry install
   - lint: |
       export PATH="$PATH:/home/build/.local/bin"
+      cd ${project}
       # stop the build if there are Python syntax errors or undefined names
       poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
       # exit-zero treats all errors as warnings.
       poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   - test: |
       export PATH="$PATH:/home/build/.local/bin"
+      cd ${project}
       poetry run nosetests
   - typecheck: |
       export PATH="$PATH:/home/build/.local/bin"
+      cd ${project}
       poetry run python tools/run_mypy.py
