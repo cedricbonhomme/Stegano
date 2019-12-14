@@ -12,7 +12,7 @@ tasks:
       export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       poetry install
-  - link: |
+  - lint: |
       export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       # stop the build if there are Python syntax errors or undefined names
