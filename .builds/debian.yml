@@ -5,6 +5,7 @@ packages:
   - python3
   - python3-dev
   - python3-pip
+  - python3-venv
 tasks:
   - dependencies: |
       pip3 install --user poetry
@@ -15,13 +16,13 @@ tasks:
       export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       # stop the build if there are Python syntax errors or undefined names
-      flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
       # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-      flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   - test: |
       export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
-      poetry run nosetests --with-coverage --cover-package=stegano
+      poetry run nosetests
   - typecheck: |
       export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
