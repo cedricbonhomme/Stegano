@@ -14,5 +14,5 @@ If you want to retrieve the source code (with the unit tests):
 
     $ git clone https://git.sr.ht/~cedric/Stegano
 
-.. image:: https://api.travis-ci.org/cedricbonhomme/Stegano.svg?branch=master
-    :target: https://travis-ci.org/cedricbonhomme/Stegano
+.. image:: https://builds.sr.ht/~cedric/Stegano.svg
+    :target: https://builds.sr.ht/~cedric/Stegano
