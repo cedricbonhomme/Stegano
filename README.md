@@ -20,7 +20,7 @@ https://todo.sr.ht/~cedric/stegano
 
 
 ```bash
-$ pipenv install Stegano
+$ poetry install Stegano
 ```
 
 You will be able to use Stegano in your Python programs.
