@@ -3,7 +3,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pipenv install Stegano
+    $ poetry install Stegano
 
 You will be able to use Stéganô in your Python programs
 or as a command line tool.
