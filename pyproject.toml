@@ -6,7 +6,7 @@ authors = ["Cédric Bonhomme <cedric@cedricbonhomme.org>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 pillow = "^6.2.1"
 piexif = "^1.1.3"
 crayons = "^0.3.0"

@@ -7,22 +7,22 @@ packages:
   - python3-pip
 tasks:
   - dependencies: |
-      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-      export PATH="$PATH:~/.poetry/bin/"
+      pip3 install --user poetry
+      export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       poetry install
   - link: |
-      export PATH="$PATH:~/.poetry/bin/"
+      export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       # stop the build if there are Python syntax errors or undefined names
       flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
       # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
       flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   - test: |
-      export PATH="$PATH:~/.poetry/bin/"
+      export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       poetry run nosetests --with-coverage --cover-package=stegano
   - typecheck: |
-      export PATH="$PATH:~/.poetry/bin/"
+      export PATH="$PATH:/home/build/.local/bin"
       cd Stegano
       poetry run python tools/run_mypy.py

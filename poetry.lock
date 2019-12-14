@@ -128,8 +128,8 @@ python-versions = "*"
 version = "3.7.4.1"
 
 [metadata]
-content-hash = "21dcc4095f950de42a0f9895f16a35f2d0d2adf4c5ada11bfb2cc7f9d7b75736"
-python-versions = "^3.8"
+content-hash = "e75b206f8f8842db93c74a9575ec2f7cbc501b839b49770aaf88d296d6617ba6"
+python-versions = "^3.7"
 
 [metadata.files]
 colorama = [
