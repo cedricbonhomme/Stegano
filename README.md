@@ -3,8 +3,8 @@
 [![builds.sr.ht status](https://builds.sr.ht/~cedric/stegano.svg)](https://builds.sr.ht/~cedric/stegano)
 
 
-[Stegano](https://git.sr.ht/~cedric/stegano), a pure Python
-Steganography module.
+[Stegano](https://git.sr.ht/~cedric/stegano), a pure Python Steganography
+module.
 
 Steganography is the art and science of writing hidden messages in such a way
 that no one, apart from the sender and intended recipient, suspects the
@@ -94,7 +94,7 @@ $ python tools/run_mypy.py
 ## Contributions
 
 Contributions are welcome. If you want to contribute to Stegano I highly
-recommend you to install it in a Python virtual environment with pipenv.
+recommend you to install it in a Python virtual environment with poetry.
 
 
 ## License
