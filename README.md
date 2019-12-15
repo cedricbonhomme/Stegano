@@ -1,9 +1,9 @@
 # Stegano
 
-[![builds.sr.ht status](https://builds.sr.ht/~cedric/Stegano.svg)](https://builds.sr.ht/~cedric/Stegano)
+[![builds.sr.ht status](https://builds.sr.ht/~cedric/stegano.svg)](https://builds.sr.ht/~cedric/stegano)
 
 
-[Stegano](https://git.sr.ht/~cedric/Stegano), a pure Python
+[Stegano](https://git.sr.ht/~cedric/stegano), a pure Python
 Steganography module.
 
 Steganography is the art and science of writing hidden messages in such a way

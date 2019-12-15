@@ -4,7 +4,7 @@
 # Stegano - Stéganô is a basic Python Steganography module.
 # Copyright (C) 2010-2019  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
-# For more information : https://github.com/cedricbonhomme/Stegano
+# For more information : https://git.sr.ht/~cedric/stegano
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
