@@ -25,6 +25,7 @@ __date__ = "$Date: 2010/10/01 $"
 __revision__ = "$Date: 2016/08/26 $"
 __license__ = "GPLv3"
 
+import typing
 import operator
 
 from PIL import Image
@@ -37,7 +38,7 @@ def steganalyse(img):
     """
     encoded = img.copy()
     width, height = img.size
-    colours_counter = Counter() # type: Counter[int]
+    colours_counter = Counter() # type: typing.Counter[int]
     for row in range(height):
         for col in range(width):
             r, g, b = img.getpixel((col, row))
