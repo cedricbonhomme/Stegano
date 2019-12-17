@@ -50,9 +50,7 @@ def hide(
 
     if img.mode not in ["RGB", "RGBA"]:
         if not auto_convert_rgb:
-            print(
-                "The mode of the image is not RGB. Mode is {}".format(img.mode)
-            )
+            print("The mode of the image is not RGB. Mode is {}".format(img.mode))
             answer = input("Convert the image to RGB ? [Y / n]\n") or "Y"
             if answer.lower() == "n":
                 raise Exception("Not a RGB image.")
@@ -70,9 +68,7 @@ def hide(
     len_message_bits = len(message_bits)
     if len_message_bits > npixels * 3:
         raise Exception(
-            "The message you want to hide is too long: {}".format(
-                message_length
-            )
+            "The message you want to hide is too long: {}".format(message_length)
         )
     while shift != 0:
         next(generator)
@@ -126,7 +122,7 @@ def reveal(
     while True:
         generated_number = next(generator)
         # color = [r, g, b]
-        for color in  img_list[generated_number][:3]: # ignore the alpha
+        for color in img_list[generated_number][:3]:  # ignore the alpha
             buff += (color & 1) << (tools.ENCODINGS[encoding] - 1 - count)
             count += 1
             if count == tools.ENCODINGS[encoding]:

@@ -41,9 +41,7 @@ def a2bits(chars: str) -> str:
     >>> a2bits("Hello World!")
     '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001'
     """
-    return bin(reduce(lambda x, y: (x << 8) + y, (ord(c) for c in chars), 1))[
-        3:
-    ]
+    return bin(reduce(lambda x, y: (x << 8) + y, (ord(c) for c in chars), 1))[3:]
 
 
 def a2bits_list(chars: str, encoding: str = "UTF-8") -> List[str]:

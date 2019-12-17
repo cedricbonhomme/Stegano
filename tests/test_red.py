@@ -29,8 +29,8 @@ import unittest
 
 from stegano import red
 
-class TestRed(unittest.TestCase):
 
+class TestRed(unittest.TestCase):
     def test_hide_empty_message(self):
         """
         Test hiding the empty string.
@@ -62,5 +62,5 @@ class TestRed(unittest.TestCase):
             pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

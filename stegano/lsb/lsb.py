@@ -47,9 +47,7 @@ def hide(
 
     if img.mode not in ["RGB", "RGBA"]:
         if not auto_convert_rgb:
-            print(
-                "The mode of the image is not RGB. Mode is {}".format(img.mode)
-            )
+            print("The mode of the image is not RGB. Mode is {}".format(img.mode))
             answer = input("Convert the image to RGB ? [Y / n]\n") or "Y"
             if answer.lower() == "n":
                 raise Exception("Not a RGB image.")
@@ -67,9 +65,7 @@ def hide(
     len_message_bits = len(message_bits)
     if len_message_bits > npixels * 3:
         raise Exception(
-            "The message you want to hide is too long: {}".format(
-                message_length
-            )
+            "The message you want to hide is too long: {}".format(message_length)
         )
     for row in range(height):
         for col in range(width):
@@ -101,10 +97,7 @@ def hide(
                 return encoded
 
 
-def reveal(input_image: Union[str, IO[bytes]],
-           encoding: str = "UTF-8",
-           shift: int = 0
-):
+def reveal(input_image: Union[str, IO[bytes]], encoding: str = "UTF-8", shift: int = 0):
     """Find a message in an image (with the LSB technique).
     """
     img = tools.open_image(input_image)

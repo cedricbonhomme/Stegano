@@ -37,11 +37,10 @@ from PIL import Image, ImageChops
 
 
 class TestSteganalysis(unittest.TestCase):
-
     def test_parity(self):
         """Test stegano.steganalysis.parity
         """
-        text_file_to_hide = './tests/sample-files/lorem_ipsum.txt'
+        text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide) as f:
             message = f.read()
         secret = lsb.hide("./tests/sample-files/Lenna.png", message)
@@ -53,7 +52,7 @@ class TestSteganalysis(unittest.TestCase):
     def test_parity_rgba(self):
         """ Test that stegano.steganalysis.parity works with RGBA images
         """
-        img = Image.open('./tests/sample-files/transparent.png')
+        img = Image.open("./tests/sample-files/transparent.png")
         analysis = parity.steganalyse(img)
         target = Image.open("./tests/expected-results/parity_rgba.png")
         diff = ImageChops.difference(target, analysis).getbbox()
@@ -63,12 +62,12 @@ class TestSteganalysis(unittest.TestCase):
         """ Test stegano.steganalysis.statistics
         """
         image = Image.open("./tests/sample-files/Lenna.png")
-        stats = str(statistics.steganalyse(image)) + '\n'
+        stats = str(statistics.steganalyse(image)) + "\n"
         file = open("./tests/expected-results/statistics")
         target = file.read()
         file.close()
         self.assertEqual(stats, target)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

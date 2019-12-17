@@ -32,26 +32,28 @@ from PIL import Image
 from collections import Counter
 from collections import OrderedDict
 
+
 def steganalyse(img):
     """
     Steganlysis of the LSB technique.
     """
     encoded = img.copy()
     width, height = img.size
-    colours_counter = Counter() # type: typing.Counter[int]
+    colours_counter = Counter()  # type: typing.Counter[int]
     for row in range(height):
         for col in range(width):
             r, g, b = img.getpixel((col, row))
             colours_counter[r] += 1
 
     most_common = colours_counter.most_common(10)
-    dict_colours = OrderedDict(sorted(list(colours_counter.items()),
-                                key=lambda t: t[1]))
+    dict_colours = OrderedDict(
+        sorted(list(colours_counter.items()), key=lambda t: t[1])
+    )
 
-    colours = 0 # type: float
+    colours = 0  # type: float
     for colour in list(dict_colours.keys()):
         colours += colour
     colours = colours / len(dict_colours)
 
-    #return colours.most_common(10)
+    # return colours.most_common(10)
     return list(dict_colours.keys())[:30], most_common

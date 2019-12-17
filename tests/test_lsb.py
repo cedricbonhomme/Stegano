@@ -33,8 +33,8 @@ from unittest.mock import patch
 
 from stegano import lsb
 
-class TestLSB(unittest.TestCase):
 
+class TestLSB(unittest.TestCase):
     def test_hide_empty_message(self):
         """
         Test hiding the empty string.
@@ -43,7 +43,7 @@ class TestLSB(unittest.TestCase):
             secret = lsb.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
-        messages_to_hide = ['a', 'foo', 'Hello World!', ':Python:']
+        messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:
             secret = lsb.hide("./tests/sample-files/Lenna.png", message)
             secret.save("./image.png")
@@ -52,45 +52,57 @@ class TestLSB(unittest.TestCase):
             self.assertEqual(message, clear_message)
 
     def test_hide_and_reveal_UTF32LE(self):
-        messages_to_hide = 'I love 🍕 and 🍫!'
-        secret = lsb.hide("./tests/sample-files/Lenna.png",
-                            messages_to_hide, encoding='UTF-32LE')
+        messages_to_hide = "I love 🍕 and 🍫!"
+        secret = lsb.hide(
+            "./tests/sample-files/Lenna.png", messages_to_hide, encoding="UTF-32LE"
+        )
         secret.save("./image.png")
 
-        clear_message = lsb.reveal("./image.png", encoding='UTF-32LE')
+        clear_message = lsb.reveal("./image.png", encoding="UTF-32LE")
         self.assertEqual(messages_to_hide, clear_message)
 
     def test_with_transparent_png(self):
-        messages_to_hide = ['🍕', 'a', 'foo', 'Hello World!', ':Python:']
+        messages_to_hide = ["🍕", "a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:
-            secret = lsb.hide("./tests/sample-files/transparent.png",
-                                message, encoding='UTF-32LE')
+            secret = lsb.hide(
+                "./tests/sample-files/transparent.png", message, encoding="UTF-32LE"
+            )
             secret.save("./image.png")
 
-            clear_message = lsb.reveal("./image.png", encoding='UTF-32LE')
+            clear_message = lsb.reveal("./image.png", encoding="UTF-32LE")
 
             self.assertEqual(message, clear_message)
 
-    @patch('builtins.input', return_value='y')
+    @patch("builtins.input", return_value="y")
     def test_manual_convert_rgb(self, input):
-        message_to_hide = 'I love 🍕 and 🍫!'
-        secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                            message_to_hide, encoding='UTF-32LE')
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsb.hide(
+            "./tests/sample-files/Lenna-grayscale.png",
+            message_to_hide,
+            encoding="UTF-32LE",
+        )
 
-    @patch('builtins.input', return_value='n')
+    @patch("builtins.input", return_value="n")
     def test_refuse_convert_rgb(self, input):
-        message_to_hide = 'I love 🍕 and 🍫!'
+        message_to_hide = "I love 🍕 and 🍫!"
         with self.assertRaises(Exception):
-            secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                                    message_to_hide, encoding='UTF-32LE')
+            secret = lsb.hide(
+                "./tests/sample-files/Lenna-grayscale.png",
+                message_to_hide,
+                encoding="UTF-32LE",
+            )
 
     def test_auto_convert_rgb(self):
-        message_to_hide = 'I love 🍕 and 🍫!'
-        secret = lsb.hide("./tests/sample-files/Lenna-grayscale.png",
-                            message_to_hide, encoding='UTF-32LE', auto_convert_rgb=True)
+        message_to_hide = "I love 🍕 and 🍫!"
+        secret = lsb.hide(
+            "./tests/sample-files/Lenna-grayscale.png",
+            message_to_hide,
+            encoding="UTF-32LE",
+            auto_convert_rgb=True,
+        )
 
     def test_with_text_file(self):
-        text_file_to_hide = './tests/sample-files/lorem_ipsum.txt'
+        text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide) as f:
             message = f.read()
         secret = lsb.hide("./tests/sample-files/Lenna.png", message)
@@ -108,23 +120,23 @@ class TestLSB(unittest.TestCase):
         secret.save("./image.png")
 
         clear_message = lsb.reveal("./image.png")
-        clear_message += '==='
+        clear_message += "==="
         clear_message = base64.b64decode(clear_message)
-        with open('file1', 'wb') as f:
+        with open("file1", "wb") as f:
             f.write(clear_message)
-        with open('file1', 'rb') as bin_file:
+        with open("file1", "rb") as bin_file:
             encoded_string = base64.b64encode(bin_file.read())
             message1 = encoded_string.decode()
         self.assertEqual(message, message1)
         try:
-            os.unlink('./file1')
+            os.unlink("./file1")
         except:
             pass
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
-        message += message*2
+        message += message * 2
         with self.assertRaises(Exception):
             lsb.hide("./tests/sample-files/Lenna.png", message)
 
@@ -133,7 +145,7 @@ class TestLSB(unittest.TestCase):
 
         for message in messages_to_hide:
             outputBytes = io.BytesIO()
-            with open("./tests/sample-files/20160505T130442.jpg", 'rb') as f:
+            with open("./tests/sample-files/20160505T130442.jpg", "rb") as f:
                 bytes_image = lsb.hide(f, message)
                 bytes_image.save(outputBytes, "PNG")
                 outputBytes.seek(0)
@@ -162,5 +174,5 @@ class TestLSB(unittest.TestCase):
             pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

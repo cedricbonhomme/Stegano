@@ -31,48 +31,61 @@ import io
 
 from stegano import tools
 
-class TestTools(unittest.TestCase):
 
+class TestTools(unittest.TestCase):
     def test_a2bits(self):
         bits = tools.a2bits("Hello World!")
-        self.assertEqual(bits, '010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001')
+        self.assertEqual(
+            bits,
+            "010010000110010101101100011011000110111100100000010101110110111101110010011011000110010000100001",
+        )
 
     def test_a2bits_list_UTF8(self):
         list_of_bits = tools.a2bits_list("Hello World!")
-        self.assertEqual(list_of_bits, ['01001000',
-                                        '01100101',
-                                        '01101100',
-                                        '01101100',
-                                        '01101111',
-                                        '00100000',
-                                        '01010111',
-                                        '01101111',
-                                        '01110010',
-                                        '01101100',
-                                        '01100100',
-                                        '00100001'])
+        self.assertEqual(
+            list_of_bits,
+            [
+                "01001000",
+                "01100101",
+                "01101100",
+                "01101100",
+                "01101111",
+                "00100000",
+                "01010111",
+                "01101111",
+                "01110010",
+                "01101100",
+                "01100100",
+                "00100001",
+            ],
+        )
 
     def test_a2bits_list_UTF32LE(self):
-        list_of_bits = tools.a2bits_list("Hello World!", 'UTF-32LE')
-        self.assertEqual(list_of_bits, ['00000000000000000000000001001000',
-                                        '00000000000000000000000001100101',
-                                        '00000000000000000000000001101100',
-                                        '00000000000000000000000001101100',
-                                        '00000000000000000000000001101111',
-                                        '00000000000000000000000000100000',
-                                        '00000000000000000000000001010111',
-                                        '00000000000000000000000001101111',
-                                        '00000000000000000000000001110010',
-                                        '00000000000000000000000001101100',
-                                        '00000000000000000000000001100100',
-                                        '00000000000000000000000000100001'])
+        list_of_bits = tools.a2bits_list("Hello World!", "UTF-32LE")
+        self.assertEqual(
+            list_of_bits,
+            [
+                "00000000000000000000000001001000",
+                "00000000000000000000000001100101",
+                "00000000000000000000000001101100",
+                "00000000000000000000000001101100",
+                "00000000000000000000000001101111",
+                "00000000000000000000000000100000",
+                "00000000000000000000000001010111",
+                "00000000000000000000000001101111",
+                "00000000000000000000000001110010",
+                "00000000000000000000000001101100",
+                "00000000000000000000000001100100",
+                "00000000000000000000000000100001",
+            ],
+        )
 
     def test_n_at_a_time(self):
-        result = tools.n_at_a_time([1, 2, 3, 4, 5], 2, 'X')
-        self.assertEqual(list(result), [(1, 2), (3, 4), (5, 'X')])
+        result = tools.n_at_a_time([1, 2, 3, 4, 5], 2, "X")
+        self.assertEqual(list(result), [(1, 2), (3, 4), (5, "X")])
 
     def test_binary2base64(self):
-        with open('./tests/expected-results/binary2base64', 'r') as f:
-           expected_value = f.read()
-        value = tools.binary2base64('tests/sample-files/free-software-song.ogg')
+        with open("./tests/expected-results/binary2base64", "r") as f:
+            expected_value = f.read()
+        value = tools.binary2base64("tests/sample-files/free-software-song.ogg")
         self.assertEqual(expected_value, value)

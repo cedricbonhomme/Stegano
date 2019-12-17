@@ -30,11 +30,7 @@ from stegano import tools
 
 
 def hide(
-    input_image_file,
-    img_enc,
-    secret_message=None,
-    secret_file=None,
-    img_format=None,
+    input_image_file, img_enc, secret_message=None, secret_file=None, img_format=None,
 ):
     """Hide a message (string) in an image.
     """
