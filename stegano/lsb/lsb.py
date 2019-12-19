@@ -123,9 +123,9 @@ def reveal(input_image: Union[str, IO[bytes]], encoding: str = "UTF-8", shift: i
                     if bitab[-1] == ":" and limit is None:
                         try:
                             limit = int("".join(bitab[:-1]))
-                        except:
+                        except Exception:
                             pass
 
             if len(bitab) - len(str(limit)) - 1 == limit:
                 img.close()
-                return "".join(bitab)[len(str(limit)) + 1 :]
+                return "".join(bitab)[len(str(limit)) + 1:]

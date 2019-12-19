@@ -24,7 +24,7 @@ tasks:
   - test: |
       export PATH="$PATH:/home/build/.local/bin"
       cd ${project}
-      poetry run nosetests
+      poetry run nose2 -v --pretty-assert
   - typecheck: |
       export PATH="$PATH:/home/build/.local/bin"
       cd ${project}

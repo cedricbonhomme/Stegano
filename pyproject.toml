@@ -13,8 +13,8 @@ crayons = "^0.3.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.750"
-nose = "^1.3.7"
 flake8 = "^3.7.9"
+nose2 = "^0.9.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
