@@ -28,7 +28,7 @@ classifiers = [
 ]
 
 include = [
-    "CHANGELOG.md",
+    "README.md",
     "COPYING",
     "CHANGELOG.md",
     "docs/**/*",
