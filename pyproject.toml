@@ -6,10 +6,15 @@ authors = [
     "Cédric Bonhomme <cedric@cedricbonhomme.org>"
 ]
 license = "GPL-3.0-or-later"
+
 readme = "README.md"
+
 homepage = "https://git.sr.ht/~cedric/stegano"
 repository = "https://git.sr.ht/~cedric/stegano"
 documentation = "https://stegano.readthedocs.io"
+
+keywords = ["steganography", "security", "stegano"]
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
@@ -21,21 +26,21 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
 ]
+
 include = [
     "CHANGELOG.md",
     "COPYING",
     "CHANGELOG.md",
     "docs/**/*",
-    "bin/"
+    "bin/*"
 ]
 
 [tool.poetry.scripts]
 stegano-lsb = "bin.lsb:main"
 stegano-lsb-set = "bin.lsbset:main"
-# stegano-lsb-set = "bin.stegano-lsb-set"
-# stegano-red = "bin.stegano-red"
-# stegano-steganalysis-parity = "bin.stegano-steganalysis-parity"
-# stegano-steganalysis-statistics = "bin.stegano-steganalysis-statistics"
+stegano-red = "bin.red:main"
+stegano-steganalysis-parity = "bin.parity:main"
+stegano-steganalysis-statistics = "bin.statistics:main"
 
 [tool.poetry.dependencies]
 python = "^3.7"

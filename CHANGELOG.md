@@ -1,9 +1,15 @@
 ## Release History
 
 
+### 0.9.8 (2019-12-20)
+
+* stegano is now using poetry;
+* minor improvements to the command line.
+
+
 ### 0.9.7 (2019-10-27)
 
-* fixed markdown of the previous release;
+* fixed markdown of the previous release.
 
 
 ### 0.9.6 (2019-10-27)
