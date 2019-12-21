@@ -20,7 +20,7 @@ https://todo.sr.ht/~cedric/stegano
 
 
 ```bash
-$ poetry install Stegano
+$ poetry install stegano
 ```
 
 You will be able to use Stegano in your Python programs.
@@ -28,7 +28,7 @@ You will be able to use Stegano in your Python programs.
 If you only want to install Stegano as a command line tool:
 
 ```bash
-$ pipx install Stegano
+$ pipx install stegano
 ```
 
 pipx installs scripts (system wide available) provided by Python packages into
