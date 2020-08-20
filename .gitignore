@@ -12,7 +12,7 @@ build
 
 # setuptools
 build/*
-Stegano.egg-info/*
+stegano.egg-info/
 dist/*
 
 # tests
