@@ -6,6 +6,9 @@ packages:
   - python3-dev
   - python3-pip
   - python3-venv
+  - libjpeg8-dev
+  - libpng-dev
+  - libfreetype6-dev
 environment:
   project: stegano
 tasks:
