@@ -3,7 +3,7 @@
 [![builds.sr.ht status](https://builds.sr.ht/~cedric/stegano.svg)](https://builds.sr.ht/~cedric/stegano)
 
 
-[Stegano](https://git.sr.ht/~cedric/stegano), a pure Python Steganography
+[Stegano](https://sr.ht/~cedric/stegano), a pure Python Steganography
 module.
 
 Steganography is the art and science of writing hidden messages in such a way
@@ -102,6 +102,6 @@ recommend you to install it in a Python virtual environment with poetry.
 This software is licensed under
 [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-Copyright (C) 2010-2020 [Cédric Bonhomme](https://www.cedricbonhomme.org)
+Copyright (C) 2010-2021 [Cédric Bonhomme](https://www.cedricbonhomme.org)
 
 For more information, [the list of authors and contributors](CONTRIBUTORS.md) is available.
