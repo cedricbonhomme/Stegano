@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2019 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2021 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
