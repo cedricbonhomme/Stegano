@@ -138,9 +138,6 @@ html_static_path = ['_static']
 # If false, no module index is generated.
 #html_domain_indices = True
 
-# If false, no index is generated.
-html_use_index = False
-
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
 
@@ -160,9 +157,6 @@ html_use_index = False
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
-
-# Output file base name for HTML help builder.
-htmlhelp_basename = 'Stgandoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
