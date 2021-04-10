@@ -53,6 +53,7 @@ crayons = "^0.4.0"
 mypy = "^0.750"
 flake8 = "^3.7.9"
 nose2 = "^0.9.1"
+Sphinx = "^3.5.3"
 
 [build-system]
 requires = ["poetry>=0.12"]
