@@ -6,6 +6,7 @@ packages:
   - python3-dev
   - python3-pip
   - python3-venv
+  - rust
   - libjpeg-dev
   - libpng-dev
   - libfreetype6-dev
