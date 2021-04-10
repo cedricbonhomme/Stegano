@@ -8,6 +8,8 @@ packages:
   - python3-venv
   - rustc
   - cargo
+  - libffi-dev
+  - libssl-dev
   - libjpeg-dev
   - libpng-dev
   - libfreetype6-dev
