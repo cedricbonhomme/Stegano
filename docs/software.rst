@@ -1,4 +1,4 @@
-Using Stéganô in command line
+Using Stegano in command line
 =============================
 
 The command ``stegano-lsb``
@@ -149,8 +149,8 @@ In this case, simply use the optional arguments ``--shift``:
 .. code-block:: bash
 
     stegano-lsb-set reveal -i ./tests/sample-files/Lenna.png --generator fibonacci --shift 7
-    
-    
+
+
 List all available generators
 ------------------------------
 

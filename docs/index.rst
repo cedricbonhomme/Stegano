@@ -6,8 +6,8 @@
 Presentation
 ============
 
-.. image:: https://builds.sr.ht/~cedric/Stegano.svg
-    :target: https://builds.sr.ht/~cedric/Stegano
+.. image:: https://builds.sr.ht/~cedric/stegano.svg
+    :target: https://builds.sr.ht/~cedric/stegano
 
 
 Stegano_ is a pure Python steganography_ module.
@@ -15,10 +15,10 @@ Stegano_ is a pure Python steganography_ module.
 Steganography is the art and science of writing hidden messages in such a way
 that no one, apart from the sender and intended recipient, suspects the
 existence of the message, a form of security through obscurity.
-Consequently, functions provided by Stéganô only hide messages,
+Consequently, functions provided by Stegano only hide messages,
 without encryption. Steganography is often used with cryptography.
 
-Stéganô implements these methods of hiding:
+Stegano implements these methods of hiding:
 
 - using the red portion of a pixel to hide ASCII messages;
 - using the `Least Significant Bit <http://en.wikipedia.org/wiki/Least_significant_bit>`_ (LSB) technique;
@@ -53,7 +53,7 @@ Turorial
     steganalysis
 
 You can have a look at the
-`unit tests <https://git.sr.ht/~cedric/Stegano/tree/master/tests>`_.
+`unit tests <https://git.sr.ht/~cedric/stegano/tree/master/tests>`_.
 
 
 License
@@ -77,7 +77,7 @@ Contact
 
 
 .. _Python: https://www.python.org
-.. _Stegano: https://git.sr.ht/~cedric/Stegano
+.. _Stegano: https://sr.ht/~cedric/stegano
 .. _`Pillow`: https://pypi.python.org/pypi/Pillow
 .. _`piexif`: https://pypi.python.org/pypi/piexif
 .. _steganography: http://en.wikipedia.org/wiki/Steganography

@@ -1,8 +1,8 @@
-Using Stéganô as a Python module
+Using Stegano as a Python module
 ================================
 
 You can find more examples in the
-`unit tests directory <https://git.sr.ht/~cedric/Stegano/tree/master/tests>`_.
+`unit tests directory <https://git.sr.ht/~cedric/stegano/tree/master/tests>`_.
 
 LSB method
 ----------
