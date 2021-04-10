@@ -7,11 +7,12 @@
 ## Contributors
 
 
-- Adrien Cosson <https://github.com/AdrienCos>
+- Adrien Cosson - https://cosson.io
 - Andrew Roberts <andy.roberts.uk@gmail.com>
-- Maxwell Gerber
+- Maxwell Gerber - https://github.com/maxwellgerber
 - Nejdet Çağdaş Yücesoy <nejdetyucesoy@gmail.com>
 - panni <panni@fragstore.net>
 - Peter Justin <peter@peterjustin.me>
+- Christophe Goessen - https://github.com/cgoessen
 
-Thank you to the testers!
+And thank you to the testers!
