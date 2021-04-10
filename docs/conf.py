@@ -42,6 +42,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Stegano'
 copyright = u'2010-2021, Cédric Bonhomme'
+author = 'Cédric Bonhomme <cedric@cedricbonhomme.org>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -79,9 +80,6 @@ exclude_patterns = ['_build']
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
 #show_authors = False
-
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -169,43 +167,21 @@ htmlhelp_basename = 'Stgandoc'
 
 # -- Options for LaTeX output --------------------------------------------------
 
-latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
-
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
-
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
-}
+latex_engine = 'pdflatex'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Stgan.tex', u'Stegano Documentation',
-   u'Cédric Bonhomme', 'manual'),
+   u'Cédric Bonhomme', 'howto'),
 ]
 
-# The name of an image file (relative to this directory) to place at the top of
-# the title page.
-#latex_logo = None
+latex_show_urls = True
+latex_show_pagerefs = True
 
-# For "manual" documents, if this is true, then toplevel headings are parts,
-# not chapters.
-#latex_use_parts = False
-
-# If true, show page references after internal links.
-#latex_show_pagerefs = False
-
-# If true, show URL addresses after external links.
-#latex_show_urls = False
-
-# Documents to append as an appendix to all manuals.
-#latex_appendices = []
-
-# If false, no module index is generated.
-#latex_domain_indices = True
+ADDITIONAL_PREAMBLE = """
+\setcounter{tocdepth}{3}
+"""
 
 
 # -- Options for manual page output --------------------------------------------
