@@ -1,6 +1,11 @@
 ## Release History
 
 
+### 0.9.9 (2021-07-02)
+
+* stegano now uses Pillow 8.3.0.
+
+
 ### 0.9.8 (2019-12-20)
 
 * stegano is now using poetry;
