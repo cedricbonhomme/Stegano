@@ -41,7 +41,7 @@ Requirements
 - `piexif`_.
 
 
-Turorial
+Tutorial
 ========
 
 .. toctree::
