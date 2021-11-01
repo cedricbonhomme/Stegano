@@ -1,4 +1,4 @@
-image: debian/buster
+image: debian/bullseye
 sources:
   - https://git.sr.ht/~cedric/stegano
 packages:
