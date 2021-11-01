@@ -87,7 +87,7 @@ $ python -m unittest discover -v
 Running the static type checker:
 
 ```bash
-$ python tools/run_mypy.py
+$ mypy stegano
 ```
 
 
