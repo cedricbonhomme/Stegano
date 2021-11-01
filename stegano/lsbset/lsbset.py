@@ -128,7 +128,7 @@ def reveal(
             if count == tools.ENCODINGS[encoding]:
                 bitab.append(chr(buff))
                 buff, count = 0, 0
-                if bitab[-1] == ":" and limit == None:
+                if bitab[-1] == ":" and limit is None:
                     if "".join(bitab[:-1]).isdigit():
                         limit = int("".join(bitab[:-1]))
                     else:

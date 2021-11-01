@@ -22,13 +22,11 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2010/10/01 $"
-__revision__ = "$Date: 2016/08/26 $"
+__revision__ = "$Date: 2021/11/01 $"
 __license__ = "GPLv3"
 
 import typing
-import operator
 
-from PIL import Image
 from collections import Counter
 from collections import OrderedDict
 
@@ -37,7 +35,6 @@ def steganalyse(img):
     """
     Steganlysis of the LSB technique.
     """
-    encoded = img.copy()
     width, height = img.size
     colours_counter = Counter()  # type: typing.Counter[int]
     for row in range(height):

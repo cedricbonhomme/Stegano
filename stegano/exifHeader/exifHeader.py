@@ -37,13 +37,13 @@ def hide(
     from zlib import compress
     from base64 import b64encode
 
-    if secret_file != None:
+    if secret_file is not None:
         with open(secret_file, "r") as f:
             secret_message = f.read()
 
     try:
         text = compress(b64encode(bytes(secret_message, "utf-8")))
-    except:
+    except Exception:
         text = compress(b64encode(secret_message))
 
     img = tools.open_image(input_image_file)
