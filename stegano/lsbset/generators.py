@@ -26,6 +26,8 @@ __revision__ = "$Date: 2019/06/04 $"
 __license__ = "GPLv3"
 
 import itertools
+import cv2
+import numpy as np
 import math
 from typing import Dict, Iterator, List
 
@@ -231,3 +233,25 @@ def LFSR(m: int) -> Iterator[int]:
         # Convert the registers to an int
         out = sum([e * (2 ** i) for i, e in enumerate(state)])
         yield out
+
+
+def shi_tomashi(image: str,
+                corners: int = 100,
+                quality: float = 0.01,
+                min_distance: float = 10) -> Iterator[int]:
+    """Shi-Tomachi corner generator of the given points
+        https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
+    """
+    image = cv2.imread(image)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    corners = cv2.goodFeaturesToTrack(gray, corners, quality, min_distance)
+    corners = np.int0(corners)
+    i = 0
+    while True:
+        x, y = corners[i].ravel()
+        # Compute the pixel number with top left of image as origin
+        # using coordinates of the corner.
+        # (y * number of pixels a row) + pixels left in last row
+        yield (y * image.shape[1]) + x
+        i += 1
+

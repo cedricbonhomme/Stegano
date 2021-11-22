@@ -27,6 +27,8 @@ __license__ = "GPLv3"
 
 import unittest
 import itertools
+import cv2
+import numpy as np
 
 from stegano.lsbset import generators
 
@@ -165,6 +167,41 @@ class TestGenerators(unittest.TestCase):
                 tuple(itertools.islice(generators.LFSR(2 ** 8), 256)),
                 tuple(int(line) for line in f),
             )
+
+    def test_shi_tomashi(self):
+        """ Test the Shi Tomashi generator
+        """
+
+        # The expected results are only for tests/sample-files/Montenach.png file and
+        # the below mentioned shi-tomashi configuration.
+        # If the values below are changed,
+        # please ensure the tests/expected-results/shi_tomashi.txt
+        # is also appropriately modified
+        # Using the shi_tomashi_reconfigure static method
+
+        image = cv2.imread("tests/sample-files/Montenach.png")
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        corners = cv2.goodFeaturesToTrack(gray, 1000, 0.001, 10)
+        corners = np.int0(corners)
+        corners = corners.reshape(corners.shape[0], -1)
+        test_file = np.loadtxt("tests/expected-results/shi_tomashi.txt")
+        test_file_reshaped = test_file.reshape(test_file.shape[0], test_file.shape[1])
+        self.assertIsNone(np.testing.assert_array_equal(corners, test_file_reshaped))
+
+    @staticmethod
+    def shi_tomashi_reconfigure(file_name: str,
+                                corners: int = 1000,
+                                quality: float = 0.001,
+                                min_distance: int = 10):
+        """
+        Method to update/reconfigure Shi-Tomashi for various images and configuration
+        """
+        image = cv2.imread(file_name)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        corners = cv2.goodFeaturesToTrack(gray, corners, quality, min_distance)
+        corners = np.int0(corners)
+        corners = corners.reshape(corners.shape[0], -1)
+        np.savetxt('tests/expected-results/shi_tomashi.txt', corners)
 
 
 if __name__ == "__main__":
