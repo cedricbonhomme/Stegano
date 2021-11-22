@@ -68,6 +68,18 @@ class TestLSBSet(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_hide_and_reveal_with_shi_tomashi(self):
+        messages_to_hide = ["foo bar"]
+        for message in messages_to_hide:
+            secret = lsbset.hide(
+                "./tests/sample-files/Lenna.png", message, generators.shi_tomashi("./tests/sample-files/Lenna.png")
+            )
+            secret.save("./image.png")
+
+            clear_message = lsbset.reveal("./image.png", generators.shi_tomashi("./tests/sample-files/Lenna.png"))
+
+            self.assertEqual(message, clear_message)
+
     def test_hide_and_reveal_with_shift(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:
