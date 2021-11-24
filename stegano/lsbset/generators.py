@@ -33,8 +33,7 @@ from typing import Dict, Iterator, List
 
 
 def identity() -> Iterator[int]:
-    """f(x) = x
-    """
+    """f(x) = x"""
     n = 0
     while True:
         yield n
@@ -110,8 +109,7 @@ def carmichael() -> Iterator[int]:
 
 
 def ackermann_slow(m: int, n: int) -> int:
-    """Ackermann number.
-    """
+    """Ackermann number."""
     if m == 0:
         return n + 1
     elif n == 0:
@@ -121,8 +119,7 @@ def ackermann_slow(m: int, n: int) -> int:
 
 
 def ackermann_naive(m: int) -> Iterator[int]:
-    """Naive Ackermann encapsulated in a generator
-    """
+    """Naive Ackermann encapsulated in a generator"""
     n = 0
     while True:
         yield ackermann_slow(m, n)
@@ -130,8 +127,7 @@ def ackermann_naive(m: int) -> Iterator[int]:
 
 
 def ackermann_fast(m: int, n: int) -> int:
-    """Ackermann number.
-    """
+    """Ackermann number."""
     while m >= 4:
         if n == 0:
             n = 1
@@ -149,8 +145,7 @@ def ackermann_fast(m: int, n: int) -> int:
 
 
 def ackermann(m: int) -> Iterator[int]:
-    """Ackermann encapsulated in a generator.
-    """
+    """Ackermann encapsulated in a generator."""
     n = 0
     while True:
         yield ackermann_fast(m, n)
@@ -168,8 +163,7 @@ def fibonacci() -> Iterator[int]:
 
 
 def log_gen() -> Iterator[int]:
-    """Logarithmic generator.
-    """
+    """Logarithmic generator."""
     y = 1
     while True:
         adder = max(1, math.pow(10, int(math.log10(y))))
@@ -235,12 +229,11 @@ def LFSR(m: int) -> Iterator[int]:
         yield out
 
 
-def shi_tomashi(image: str,
-                corners: int = 100,
-                quality: float = 0.01,
-                min_distance: float = 10) -> Iterator[int]:
+def shi_tomashi(
+    image: str, corners: int = 100, quality: float = 0.01, min_distance: float = 10.0
+) -> Iterator[int]:
     """Shi-Tomachi corner generator of the given points
-        https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
+    https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
     """
     image = cv2.imread(image)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -254,4 +247,3 @@ def shi_tomashi(image: str,
         # (y * number of pixels a row) + pixels left in last row
         yield (y * image.shape[1]) + x
         i += 1
-

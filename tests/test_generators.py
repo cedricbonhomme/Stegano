@@ -35,16 +35,14 @@ from stegano.lsbset import generators
 
 class TestGenerators(unittest.TestCase):
     def test_identity(self):
-        """Test the identity generator.
-        """
+        """Test the identity generator."""
         self.assertEqual(
             tuple(itertools.islice(generators.identity(), 15)),
             (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14),
         )
 
     def test_fibonacci(self):
-        """Test the Fibonacci generator.
-        """
+        """Test the Fibonacci generator."""
         self.assertEqual(
             tuple(itertools.islice(generators.fibonacci(), 20)),
             (
@@ -72,8 +70,7 @@ class TestGenerators(unittest.TestCase):
         )
 
     def test_eratosthenes(self):
-        """Test the Eratosthenes sieve.
-        """
+        """Test the Eratosthenes sieve."""
         with open("./tests/expected-results/eratosthenes", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.eratosthenes(), 168)),
@@ -81,8 +78,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_composite(self):
-        """Test the composite sieve.
-        """
+        """Test the composite sieve."""
         with open("./tests/expected-results/composite", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.composite(), 114)),
@@ -90,8 +86,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_fermat(self):
-        """Test the Fermat generator.
-        """
+        """Test the Fermat generator."""
         with open("./tests/expected-results/fermat", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.fermat(), 9)),
@@ -99,8 +94,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_triangular_numbers(self):
-        """Test the Triangular numbers generator.
-        """
+        """Test the Triangular numbers generator."""
         with open("./tests/expected-results/triangular_numbers", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.triangular_numbers(), 54)),
@@ -108,8 +102,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_mersenne(self):
-        """Test the Mersenne generator.
-        """
+        """Test the Mersenne generator."""
         with open("./tests/expected-results/mersenne", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.mersenne(), 20)),
@@ -117,8 +110,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_carmichael(self):
-        """Test the Carmichael generator.
-        """
+        """Test the Carmichael generator."""
         with open("./tests/expected-results/carmichael", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.carmichael(), 33)),
@@ -126,15 +118,13 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_ackermann_slow(self):
-        """Test the Ackermann set.
-        """
+        """Test the Ackermann set."""
         with open("./tests/expected-results/ackermann", "r") as f:
             self.assertEqual(generators.ackermann_slow(3, 1), int(f.readline()))
             self.assertEqual(generators.ackermann_slow(3, 2), int(f.readline()))
 
     def test_ackermann_naive(self):
-        """Test the Naive Ackermann generator
-        """
+        """Test the Naive Ackermann generator"""
         gen = generators.ackermann_naive(3)
         next(gen)
         with open("./tests/expected-results/ackermann", "r") as f:
@@ -142,8 +132,7 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(next(gen), int(f.readline()))
 
     def test_ackermann_fast(self):
-        """Test the Ackermann set.
-        """
+        """Test the Ackermann set."""
         with open("./tests/expected-results/ackermann", "r") as f:
             self.assertEqual(generators.ackermann_fast(3, 1), int(f.readline()))
             self.assertEqual(generators.ackermann_fast(3, 2), int(f.readline()))
@@ -151,8 +140,7 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(generators.ackermann_fast(4, 2), int(f.readline()))
 
     def test_ackermann(self):
-        """Test the Ackermann generator
-        """
+        """Test the Ackermann generator"""
         gen = generators.ackermann(3)
         next(gen)
         with open("./tests/expected-results/ackermann", "r") as f:
@@ -160,8 +148,7 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(next(gen), int(f.readline()))
 
     def test_LFSR(self):
-        """ Test the LFSR generator
-        """
+        """Test the LFSR generator"""
         with open("./tests/expected-results/LFSR", "r") as f:
             self.assertEqual(
                 tuple(itertools.islice(generators.LFSR(2 ** 8), 256)),
@@ -169,8 +156,7 @@ class TestGenerators(unittest.TestCase):
             )
 
     def test_shi_tomashi(self):
-        """ Test the Shi Tomashi generator
-        """
+        """Test the Shi Tomashi generator"""
 
         # The expected results are only for tests/sample-files/Montenach.png file and
         # the below mentioned shi-tomashi configuration.
@@ -182,17 +168,23 @@ class TestGenerators(unittest.TestCase):
         image = cv2.imread("tests/sample-files/Montenach.png")
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         corners = cv2.goodFeaturesToTrack(gray, 1000, 0.001, 10)
-        corners = np.int0(corners)
+        # Commented because min_distance argument of generators.shi_tomashi is now set
+        # to 10.0:
+        # corners = np.int0(corners)
         corners = corners.reshape(corners.shape[0], -1)
         test_file = np.loadtxt("tests/expected-results/shi_tomashi.txt")
-        test_file_reshaped = test_file.reshape(test_file.shape[0], test_file.shape[1])
+        test_file_reshaped = test_file.reshape(
+            int(test_file.shape[0]), int(test_file.shape[1])
+        )
         self.assertIsNone(np.testing.assert_array_equal(corners, test_file_reshaped))
 
     @staticmethod
-    def shi_tomashi_reconfigure(file_name: str,
-                                corners: int = 1000,
-                                quality: float = 0.001,
-                                min_distance: int = 10):
+    def shi_tomashi_reconfigure(
+        file_name: str,
+        corners: int = 1000,
+        quality: float = 0.001,
+        min_distance: int = 10,
+    ):
         """
         Method to update/reconfigure Shi-Tomashi for various images and configuration
         """
@@ -201,7 +193,7 @@ class TestGenerators(unittest.TestCase):
         corners = cv2.goodFeaturesToTrack(gray, corners, quality, min_distance)
         corners = np.int0(corners)
         corners = corners.reshape(corners.shape[0], -1)
-        np.savetxt('tests/expected-results/shi_tomashi.txt', corners)
+        np.savetxt("tests/expected-results/shi_tomashi.txt", corners)
 
 
 if __name__ == "__main__":
