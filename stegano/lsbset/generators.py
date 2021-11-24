@@ -237,7 +237,7 @@ def shi_tomashi(
     """
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    corners: Union[int, List[Any]] = cv2.goodFeaturesToTrack(
+    corners: np.signedinteger[Any] = cv2.goodFeaturesToTrack(
         gray, max_corners, quality, min_distance)
     corners = np.int0(corners)
     i = 0
