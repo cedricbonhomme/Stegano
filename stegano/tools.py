@@ -67,14 +67,12 @@ def a2bits_list(chars: str, encoding: str = "UTF-8") -> List[str]:
 
 
 def bs(s: int) -> str:
-    """Converts an int to its bits representation as a string of 0's and 1's.
-    """
+    """Converts an int to its bits representation as a string of 0's and 1's."""
     return str(s) if s <= 1 else bs(s >> 1) + str(s & 1)
 
 
 def setlsb(component: int, bit: str) -> int:
-    """Set Least Significant Bit of a colour component.
-    """
+    """Set Least Significant Bit of a colour component."""
     return component & ~1 | int(bit)
 
 
@@ -102,8 +100,7 @@ def binary2base64(binary_file: str) -> str:
 
 
 def base642binary(b64_fname: str) -> bytes:
-    """Convert a printable string to a binary file.
-    """
+    """Convert a printable string to a binary file."""
     b64_fname += "==="
     return base64.b64decode(b64_fname)
 

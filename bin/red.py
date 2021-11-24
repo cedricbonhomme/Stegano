@@ -33,27 +33,31 @@ except:
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='stegano-red')
-    subparsers = parser.add_subparsers(help='sub-command help', dest='command')
+    parser = argparse.ArgumentParser(prog="stegano-red")
+    subparsers = parser.add_subparsers(help="sub-command help", dest="command")
 
-    parser_hide = subparsers.add_parser('hide', help='hide help')
-    parser_hide.add_argument("-i", "--input", dest="input_image_file",
-                    help="Image file")
-    parser_hide.add_argument("-m", dest="secret_message",
-                    help="Your secret message to hide (non binary).")
-    parser_hide.add_argument("-o", "--output", dest="output_image_file",
-                    help="Image file")
+    parser_hide = subparsers.add_parser("hide", help="hide help")
+    parser_hide.add_argument(
+        "-i", "--input", dest="input_image_file", help="Image file"
+    )
+    parser_hide.add_argument(
+        "-m", dest="secret_message", help="Your secret message to hide (non binary)."
+    )
+    parser_hide.add_argument(
+        "-o", "--output", dest="output_image_file", help="Image file"
+    )
 
-    parser_reveal = subparsers.add_parser('reveal', help='reveal help')
-    parser_reveal.add_argument("-i", "--input", dest="input_image_file",
-                    help="Image file")
+    parser_reveal = subparsers.add_parser("reveal", help="reveal help")
+    parser_reveal.add_argument(
+        "-i", "--input", dest="input_image_file", help="Image file"
+    )
 
     arguments = parser.parse_args()
 
-    if arguments.command == 'hide':
+    if arguments.command == "hide":
         secret = red.hide(arguments.input_image_file, arguments.secret_message)
         secret.save(arguments.output_image_file)
 
-    elif arguments.command == 'reveal':
+    elif arguments.command == "reveal":
         secret = red.reveal(arguments.input_image_file)
         print(secret)

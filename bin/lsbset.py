@@ -39,11 +39,12 @@ from stegano import tools
 import argparse
 
 
-
 class ValidateGenerator(argparse.Action):
     def __call__(self, parser, args, values, option_string=None):
-        valid_generators = [generator[0] for generator in inspect.getmembers(
-            generators, inspect.isfunction)]
+        valid_generators = [
+            generator[0]
+            for generator in inspect.getmembers(generators, inspect.isfunction)
+        ]
         # Verify that the generator is valid
         generator = values[0]
         if generator not in valid_generators:
@@ -51,81 +52,126 @@ class ValidateGenerator(argparse.Action):
         # Set the generator_function arg of the parser
         setattr(args, self.dest, values)
 
+
 def main():
-    parser = argparse.ArgumentParser(prog='stegano-lsb-set')
-    subparsers = parser.add_subparsers(help='sub-command help', dest='command')
+    parser = argparse.ArgumentParser(prog="stegano-lsb-set")
+    subparsers = parser.add_subparsers(help="sub-command help", dest="command")
 
     # Subparser: Hide
-    parser_hide = subparsers.add_parser('hide', help='hide help')
+    parser_hide = subparsers.add_parser("hide", help="hide help")
     # Original image
-    parser_hide.add_argument("-i", "--input", dest="input_image_file",
-                             required=True, help="Input image file.")
-    parser_hide.add_argument("-e", "--encoding", dest="encoding",
-                             choices=tools.ENCODINGS.keys(), default='UTF-8',
-                             help="Specify the encoding of the message to hide." +
-                             " UTF-8 (default) or UTF-32LE.")
+    parser_hide.add_argument(
+        "-i",
+        "--input",
+        dest="input_image_file",
+        required=True,
+        help="Input image file.",
+    )
+    parser_hide.add_argument(
+        "-e",
+        "--encoding",
+        dest="encoding",
+        choices=tools.ENCODINGS.keys(),
+        default="UTF-8",
+        help="Specify the encoding of the message to hide."
+        + " UTF-8 (default) or UTF-32LE.",
+    )
 
     # Generator
-    parser_hide.add_argument("-g", "--generator", dest="generator_function",
-                             action=ValidateGenerator,
-                             nargs='*', required=True, help="Generator (with optional arguments)")
-    parser_hide.add_argument("-s", "--shift", dest="shift",
-                             default=0, help="Shift for the generator")
+    parser_hide.add_argument(
+        "-g",
+        "--generator",
+        dest="generator_function",
+        action=ValidateGenerator,
+        nargs="*",
+        required=True,
+        help="Generator (with optional arguments)",
+    )
+    parser_hide.add_argument(
+        "-s", "--shift", dest="shift", default=0, help="Shift for the generator"
+    )
 
     group_secret = parser_hide.add_mutually_exclusive_group(required=True)
     # Non binary secret message to hide
-    group_secret.add_argument("-m", dest="secret_message",
-                              help="Your secret message to hide (non binary).")
+    group_secret.add_argument(
+        "-m", dest="secret_message", help="Your secret message to hide (non binary)."
+    )
     # Binary secret message to hide
-    group_secret.add_argument("-f", dest="secret_file",
-                              help="Your secret to hide (Text or any binary file).")
+    group_secret.add_argument(
+        "-f", dest="secret_file", help="Your secret to hide (Text or any binary file)."
+    )
 
     # Image containing the secret
-    parser_hide.add_argument("-o", "--output", dest="output_image_file",
-                             required=True, help="Output image containing the secret.")
-
+    parser_hide.add_argument(
+        "-o",
+        "--output",
+        dest="output_image_file",
+        required=True,
+        help="Output image containing the secret.",
+    )
 
     # Subparser: Reveal
-    parser_reveal = subparsers.add_parser('reveal', help='reveal help')
-    parser_reveal.add_argument("-i", "--input", dest="input_image_file",
-                               required=True, help="Input image file.")
-    parser_reveal.add_argument("-e", "--encoding", dest="encoding",
-                               choices=tools.ENCODINGS.keys(), default='UTF-8',
-                               help="Specify the encoding of the message to reveal." +
-                               " UTF-8 (default) or UTF-32LE.")
-    parser_reveal.add_argument("-g", "--generator", dest="generator_function",
-                               action=ValidateGenerator,
-                               nargs='*', required=True, help="Generator (with optional arguments)")
-    parser_reveal.add_argument("-s", "--shift", dest="shift",
-                               default=0, help="Shift for the generator")
-    parser_reveal.add_argument("-o", dest="secret_binary",
-                               help="Output for the binary secret (Text or any binary file).")
-
+    parser_reveal = subparsers.add_parser("reveal", help="reveal help")
+    parser_reveal.add_argument(
+        "-i",
+        "--input",
+        dest="input_image_file",
+        required=True,
+        help="Input image file.",
+    )
+    parser_reveal.add_argument(
+        "-e",
+        "--encoding",
+        dest="encoding",
+        choices=tools.ENCODINGS.keys(),
+        default="UTF-8",
+        help="Specify the encoding of the message to reveal."
+        + " UTF-8 (default) or UTF-32LE.",
+    )
+    parser_reveal.add_argument(
+        "-g",
+        "--generator",
+        dest="generator_function",
+        action=ValidateGenerator,
+        nargs="*",
+        required=True,
+        help="Generator (with optional arguments)",
+    )
+    parser_reveal.add_argument(
+        "-s", "--shift", dest="shift", default=0, help="Shift for the generator"
+    )
+    parser_reveal.add_argument(
+        "-o",
+        dest="secret_binary",
+        help="Output for the binary secret (Text or any binary file).",
+    )
 
     # Subparser: List generators
-    parser_list_generators = subparsers.add_parser('list-generators',
-                                                   help='list-generators help')
+    parser_list_generators = subparsers.add_parser(
+        "list-generators", help="list-generators help"
+    )
 
     arguments = parser.parse_args()
 
-    if arguments.command != 'list-generators':
+    if arguments.command != "list-generators":
         try:
             arguments.generator_function[0]
         except AttributeError:
-            print('You must specify the name of a generator.')
+            print("You must specify the name of a generator.")
             parser.print_help()
             exit(1)
 
         try:
-            if (arguments.generator_function[0] == "LFSR"):
+            if arguments.generator_function[0] == "LFSR":
                 # Compute the size of the image for use by the LFSR generator if needed
                 tmp = tools.open_image(arguments.input_image_file)
                 size = tmp.width * tmp.height
                 tmp.close()
                 arguments.generator_function.append(size)
-            if (len(arguments.generator_function) > 1):
+            if len(arguments.generator_function) > 1:
                 generator = getattr(generators, arguments.generator_function[0])(
-                    *[int(e) for e in arguments.generator_function[1:]])
+                    *[int(e) for e in arguments.generator_function[1:]]
+                )
             else:
                 generator = getattr(generators, arguments.generator_function[0])()
 
@@ -133,24 +179,26 @@ def main():
             print("Unknown generator: {}".format(arguments.generator_function))
             exit(1)
 
-    if arguments.command == 'hide':
+    if arguments.command == "hide":
         if arguments.secret_message != None:
             secret = arguments.secret_message
         elif arguments.secret_file != "":
             secret = tools.binary2base64(arguments.secret_file)
 
-        img_encoded = lsbset.hide(arguments.input_image_file, secret, generator,
-                                  int(arguments.shift))
+        img_encoded = lsbset.hide(
+            arguments.input_image_file, secret, generator, int(arguments.shift)
+        )
         try:
             img_encoded.save(arguments.output_image_file)
         except Exception as e:
             # If hide() returns an error (Too long message).
             print(e)
 
-    elif arguments.command == 'reveal':
+    elif arguments.command == "reveal":
         try:
-            secret = lsbset.reveal(arguments.input_image_file, generator,
-                                   int(arguments.shift))
+            secret = lsbset.reveal(
+                arguments.input_image_file, generator, int(arguments.shift)
+            )
         except IndexError:
             print("Impossible to detect message.")
             exit(0)
@@ -161,10 +209,10 @@ def main():
         else:
             print(secret)
 
-    elif arguments.command == 'list-generators':
+    elif arguments.command == "list-generators":
         all_generators = inspect.getmembers(generators, inspect.isfunction)
         for generator in all_generators:
-            print('Generator id:')
-            print('    {}'.format(crayons.green(generator[0], bold=True)))
-            print('Desciption:')
-            print('    {}'.format(generator[1].__doc__))
+            print("Generator id:")
+            print("    {}".format(crayons.green(generator[0], bold=True)))
+            print("Desciption:")
+            print("    {}".format(generator[1].__doc__))

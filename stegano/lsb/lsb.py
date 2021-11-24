@@ -98,8 +98,7 @@ def hide(
 
 
 def reveal(input_image: Union[str, IO[bytes]], encoding: str = "UTF-8", shift: int = 0):
-    """Find a message in an image (with the LSB technique).
-    """
+    """Find a message in an image (with the LSB technique)."""
     img = tools.open_image(input_image)
     width, height = img.size
     buff, count = 0, 0
@@ -128,4 +127,4 @@ def reveal(input_image: Union[str, IO[bytes]], encoding: str = "UTF-8", shift: i
 
             if len(bitab) - len(str(limit)) - 1 == limit:
                 img.close()
-                return "".join(bitab)[len(str(limit)) + 1:]
+                return "".join(bitab)[len(str(limit)) + 1 :]

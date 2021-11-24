@@ -106,8 +106,7 @@ def reveal(
     shift: int = 0,
     encoding: str = "UTF-8",
 ):
-    """Find a message in an image (with the LSB technique).
-    """
+    """Find a message in an image (with the LSB technique)."""
     img = tools.open_image(input_image)
     img_list = list(img.getdata())
     width, height = img.size

@@ -72,11 +72,15 @@ class TestLSBSet(unittest.TestCase):
         messages_to_hide = ["foo bar"]
         for message in messages_to_hide:
             secret = lsbset.hide(
-                "./tests/sample-files/Lenna.png", message, generators.shi_tomashi("./tests/sample-files/Lenna.png")
+                "./tests/sample-files/Lenna.png",
+                message,
+                generators.shi_tomashi("./tests/sample-files/Lenna.png"),
             )
             secret.save("./image.png")
 
-            clear_message = lsbset.reveal("./image.png", generators.shi_tomashi("./tests/sample-files/Lenna.png"))
+            clear_message = lsbset.reveal(
+                "./image.png", generators.shi_tomashi("./tests/sample-files/Lenna.png")
+            )
 
             self.assertEqual(message, clear_message)
 

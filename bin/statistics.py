@@ -36,11 +36,9 @@ except:
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='stegano-steganalysis-parity')
-    parser.add_argument("-i", "--input", dest="input_image_file",
-                    help="Image file")
-    parser.add_argument("-o", "--output", dest="output_image_file",
-                    help="Image file")
+    parser = argparse.ArgumentParser(prog="stegano-steganalysis-parity")
+    parser.add_argument("-i", "--input", dest="input_image_file", help="Image file")
+    parser.add_argument("-o", "--output", dest="output_image_file", help="Image file")
     arguments = parser.parse_args()
 
     input_image_file = Image.open(arguments.input_image_file)

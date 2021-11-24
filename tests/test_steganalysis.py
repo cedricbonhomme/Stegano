@@ -38,8 +38,7 @@ from PIL import Image, ImageChops
 
 class TestSteganalysis(unittest.TestCase):
     def test_parity(self):
-        """Test stegano.steganalysis.parity
-        """
+        """Test stegano.steganalysis.parity"""
         text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide) as f:
             message = f.read()
@@ -50,8 +49,7 @@ class TestSteganalysis(unittest.TestCase):
         self.assertTrue(diff is None)
 
     def test_parity_rgba(self):
-        """ Test that stegano.steganalysis.parity works with RGBA images
-        """
+        """Test that stegano.steganalysis.parity works with RGBA images"""
         img = Image.open("./tests/sample-files/transparent.png")
         analysis = parity.steganalyse(img)
         target = Image.open("./tests/expected-results/parity_rgba.png")
@@ -59,8 +57,7 @@ class TestSteganalysis(unittest.TestCase):
         self.assertTrue(diff is None)
 
     def test_statistics(self):
-        """ Test stegano.steganalysis.statistics
-        """
+        """Test stegano.steganalysis.statistics"""
         image = Image.open("./tests/sample-files/Lenna.png")
         stats = str(statistics.steganalyse(image)) + "\n"
         file = open("./tests/expected-results/statistics")
