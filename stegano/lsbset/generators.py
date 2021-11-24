@@ -230,7 +230,7 @@ def LFSR(m: int) -> Iterator[int]:
 
 
 def shi_tomashi(
-    image_path: str, corners: int = 100, quality: float = 0.01, min_distance: float = 10.0
+    image_path: str, max_corners: int = 100, quality: float = 0.01, min_distance: float = 10.0
 ) -> Iterator[int]:
     """Shi-Tomachi corner generator of the given points
     https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
@@ -238,7 +238,7 @@ def shi_tomashi(
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     corners: Union[int, List[Any]] = cv2.goodFeaturesToTrack(
-        gray, corners, quality, min_distance)
+        gray, max_corners, quality, min_distance)
     corners = np.int0(corners)
     i = 0
     while True:
