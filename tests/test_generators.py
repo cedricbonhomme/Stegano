@@ -177,8 +177,7 @@ class TestGenerators(unittest.TestCase):
             int(test_file.shape[0]), int(test_file.shape[1])
         )
         self.assertIsNone(
-            np.testing.assert_allclose(
-                corners, test_file_reshaped, verbose=True, rtol=1e-0, atol=0)
+            np.testing.assert_allclose(corners, test_file_reshaped, rtol=1e-0, atol=0)
         )
 
     @staticmethod
