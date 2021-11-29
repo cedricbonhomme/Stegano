@@ -4,8 +4,8 @@
 ### 0.10.0 (2021-11-29)
 
 * new: Implemented Shi-Tomashi corner generator
-  ([PR #32](https://github.com/cedricbonhomme/Stegano/pull/32))
-  implemented by thundersparkf (see CONTRIBUTORS.md file).
+  ([PR #32](https://github.com/cedricbonhomme/Stegano/pull/32)).
+  Implemented by thundersparkf (see CONTRIBUTORS.md file).
 
 
 ### 0.9.9 (2021-07-02)
