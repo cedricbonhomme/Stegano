@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stegano"
-version = "0.9.9"
+version = "0.10.0"
 description = "A pure Python Steganography module."
 authors = [
     "Cédric Bonhomme <cedric@cedricbonhomme.org>"

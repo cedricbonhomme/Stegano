@@ -9,8 +9,7 @@ LSB method
 
 .. code-block:: python
 
-    Python 3.5.1 (default, Dec  7 2015, 11:33:57)
-    [GCC 4.9.2] on linux
+    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import lsb
     >>> secret = lsb.hide("./tests/sample-files/Lenna.png", "Hello world!")
@@ -27,8 +26,7 @@ Sets are used in order to select the pixels where the message will be hidden.
 
 .. code-block:: python
 
-    Python 3.5.1 (default, Dec  7 2015, 11:33:57)
-    [GCC 4.9.2] on linux
+    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import lsbset
     >>> from stegano.lsbset import generators
@@ -94,6 +92,12 @@ Sets are used in order to select the pixels where the message will be hidden.
     syracuse
         Generate the sequence of Syracuse.
 
+    shi_tomashi Shi-Tomachi corner generator of the given points
+        https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
+
+    triangular_numbers Triangular numbers: a(n) = C(n+1,2) = n(n+1)/2 = 0+1+2+...+n.
+        http://oeis.org/A000217
+
 
 
 Description field of the image
@@ -103,8 +107,7 @@ For JPEG and TIFF images.
 
 .. code-block:: python
 
-    Python 3.5.1 (default, Dec  7 2015, 11:33:57)
-    [GCC 4.9.2] on linux
+    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import exifHeader
     >>> secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",

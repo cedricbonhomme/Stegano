@@ -14,5 +14,6 @@
 - panni <panni@fragstore.net>
 - Peter Justin <peter@peterjustin.me>
 - Christophe Goessen - https://github.com/cgoessen
+- thundersparkf - https://github.com/thundersparkf
 
 And thank you to the testers!

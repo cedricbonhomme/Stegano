@@ -22,18 +22,19 @@
 __author__ = "Cedric Bonhomme"
 __version__ = "$Revision: 0.3 $"
 __date__ = "$Date: 2011/12/28 $"
-__revision__ = "$Date: 2019/06/04 $"
+__revision__ = "$Date: 2021/11/29 $"
 __license__ = "GPLv3"
 
 import itertools
 import cv2
 import numpy as np
 import math
-from typing import Dict, Iterator, List, Any, Union
+from typing import Dict, Iterator, List, Any
 
 
 def identity() -> Iterator[int]:
-    """f(x) = x"""
+    """f(x) = x
+    """
     n = 0
     while True:
         yield n
@@ -109,7 +110,8 @@ def carmichael() -> Iterator[int]:
 
 
 def ackermann_slow(m: int, n: int) -> int:
-    """Ackermann number."""
+    """Ackermann number.
+    """
     if m == 0:
         return n + 1
     elif n == 0:
@@ -119,7 +121,8 @@ def ackermann_slow(m: int, n: int) -> int:
 
 
 def ackermann_naive(m: int) -> Iterator[int]:
-    """Naive Ackermann encapsulated in a generator"""
+    """Naive Ackermann encapsulated in a generator.
+    """
     n = 0
     while True:
         yield ackermann_slow(m, n)
@@ -127,7 +130,8 @@ def ackermann_naive(m: int) -> Iterator[int]:
 
 
 def ackermann_fast(m: int, n: int) -> int:
-    """Ackermann number."""
+    """Ackermann number.
+    """
     while m >= 4:
         if n == 0:
             n = 1
@@ -145,7 +149,8 @@ def ackermann_fast(m: int, n: int) -> int:
 
 
 def ackermann(m: int) -> Iterator[int]:
-    """Ackermann encapsulated in a generator."""
+    """Ackermann encapsulated in a generator.
+    """
     n = 0
     while True:
         yield ackermann_fast(m, n)
@@ -163,7 +168,8 @@ def fibonacci() -> Iterator[int]:
 
 
 def log_gen() -> Iterator[int]:
-    """Logarithmic generator."""
+    """Logarithmic generator.
+    """
     y = 1
     while True:
         adder = max(1, math.pow(10, int(math.log10(y))))

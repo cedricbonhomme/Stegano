@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2017  Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2021  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.4 $"
+__version__ = "$Revision: 0.5 $"
 __date__ = "$Date: 2016/04/13 $"
-__revision__ = "$Date: 2017/05/04 $"
+__revision__ = "$Date: 2021/11/29 $"
 __license__ = "GPLv3"
 
 import io
@@ -40,9 +40,7 @@ class TestLSBSet(unittest.TestCase):
         Test hiding the empty string.
         """
         with self.assertRaises(AssertionError):
-            secret = lsbset.hide(
-                "./tests/sample-files/Lenna.png", "", generators.eratosthenes()
-            )
+            lsbset.hide("./tests/sample-files/Lenna.png", "", generators.eratosthenes())
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
@@ -128,7 +126,7 @@ class TestLSBSet(unittest.TestCase):
     @patch("builtins.input", return_value="y")
     def test_manual_convert_rgb(self, input):
         message_to_hide = "Hello World!"
-        secret = lsbset.hide(
+        lsbset.hide(
             "./tests/sample-files/Lenna-grayscale.png",
             message_to_hide,
             generators.eratosthenes(),
@@ -138,7 +136,7 @@ class TestLSBSet(unittest.TestCase):
     def test_refuse_convert_rgb(self, input):
         message_to_hide = "Hello World!"
         with self.assertRaises(Exception):
-            secret = lsbset.hide(
+            lsbset.hide(
                 "./tests/sample-files/Lenna-grayscale.png",
                 message_to_hide,
                 generators.eratosthenes(),
@@ -163,7 +161,7 @@ class TestLSBSet(unittest.TestCase):
 
     def test_auto_convert_rgb(self):
         message_to_hide = "Hello World!"
-        secret = lsbset.hide(
+        lsbset.hide(
             "./tests/sample-files/Lenna-grayscale.png",
             message_to_hide,
             generators.eratosthenes(),
@@ -187,12 +185,12 @@ class TestLSBSet(unittest.TestCase):
         secret.save("./image.png")
 
         with self.assertRaises(IndexError):
-            clear_message = lsbset.reveal("./image.png", generators.identity())
+            lsbset.reveal("./image.png", generators.identity())
 
     def test_with_unknown_generator(self):
         message_to_hide = "Hello World!"
         with self.assertRaises(AttributeError):
-            secret = lsbset.hide(
+            lsbset.hide(
                 "./tests/sample-files/Lenna.png",
                 message_to_hide,
                 generators.eratosthene(),
@@ -201,7 +199,7 @@ class TestLSBSet(unittest.TestCase):
     def tearDown(self):
         try:
             os.unlink("./image.png")
-        except:
+        except Exception:
             pass
 
 

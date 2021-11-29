@@ -40,7 +40,7 @@ class TestLSB(unittest.TestCase):
         Test hiding the empty string.
         """
         with self.assertRaises(AssertionError):
-            secret = lsb.hide("./tests/sample-files/Lenna.png", "")
+            lsb.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
@@ -76,7 +76,7 @@ class TestLSB(unittest.TestCase):
     @patch("builtins.input", return_value="y")
     def test_manual_convert_rgb(self, input):
         message_to_hide = "I love 🍕 and 🍫!"
-        secret = lsb.hide(
+        lsb.hide(
             "./tests/sample-files/Lenna-grayscale.png",
             message_to_hide,
             encoding="UTF-32LE",
@@ -86,7 +86,7 @@ class TestLSB(unittest.TestCase):
     def test_refuse_convert_rgb(self, input):
         message_to_hide = "I love 🍕 and 🍫!"
         with self.assertRaises(Exception):
-            secret = lsb.hide(
+            lsb.hide(
                 "./tests/sample-files/Lenna-grayscale.png",
                 message_to_hide,
                 encoding="UTF-32LE",
@@ -94,7 +94,7 @@ class TestLSB(unittest.TestCase):
 
     def test_auto_convert_rgb(self):
         message_to_hide = "I love 🍕 and 🍫!"
-        secret = lsb.hide(
+        lsb.hide(
             "./tests/sample-files/Lenna-grayscale.png",
             message_to_hide,
             encoding="UTF-32LE",
@@ -130,7 +130,7 @@ class TestLSB(unittest.TestCase):
         self.assertEqual(message, message1)
         try:
             os.unlink("./file1")
-        except:
+        except Exception:
             pass
 
     def test_with_too_long_message(self):
@@ -170,7 +170,7 @@ class TestLSB(unittest.TestCase):
     def tearDown(self):
         try:
             os.unlink("./image.png")
-        except:
+        except Exception:
             pass
 
 
