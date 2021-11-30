@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stegano"
-version = "0.10.0"
+version = "0.10.1"
 description = "A pure Python Steganography module."
 authors = [
     "Cédric Bonhomme <cedric@cedricbonhomme.org>"
@@ -44,11 +44,11 @@ stegano-steganalysis-parity = "bin.parity:main"
 stegano-steganalysis-statistics = "bin.statistics:main"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.11"
 pillow = "^8.2.0"
 piexif = "^1.1.3"
 crayons = "^0.4.0"
-opencv-python = "^4.5.0"
+opencv-python = "^4.5.4"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"

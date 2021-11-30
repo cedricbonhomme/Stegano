@@ -1,6 +1,11 @@
 ## Release History
 
 
+### 0.10.1 (2021-11-30)
+
+* Stegano now uses OpenCV Python 4.5.4 abd Numpy 1.21.4.
+
+
 ### 0.10.0 (2021-11-29)
 
 * new: Implemented Shi-Tomashi corner generator
@@ -10,12 +15,12 @@
 
 ### 0.9.9 (2021-07-02)
 
-* stegano now uses Pillow 8.3.0.
+* Stegano now uses Pillow 8.3.0.
 
 
 ### 0.9.8 (2019-12-20)
 
-* stegano is now using poetry;
+* Stegano is now using poetry;
 * minor improvements to the command line.
 
 
