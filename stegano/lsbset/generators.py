@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2021 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -29,12 +29,11 @@ import itertools
 import cv2
 import numpy as np
 import math
-from typing import Dict, Iterator, List, Any
+from typing import Dict, Iterator, List, Any, Union
 
 
 def identity() -> Iterator[int]:
-    """f(x) = x
-    """
+    """f(x) = x"""
     n = 0
     while True:
         yield n
@@ -110,8 +109,7 @@ def carmichael() -> Iterator[int]:
 
 
 def ackermann_slow(m: int, n: int) -> int:
-    """Ackermann number.
-    """
+    """Ackermann number."""
     if m == 0:
         return n + 1
     elif n == 0:
@@ -121,8 +119,7 @@ def ackermann_slow(m: int, n: int) -> int:
 
 
 def ackermann_naive(m: int) -> Iterator[int]:
-    """Naive Ackermann encapsulated in a generator.
-    """
+    """Naive Ackermann encapsulated in a generator."""
     n = 0
     while True:
         yield ackermann_slow(m, n)
@@ -130,8 +127,7 @@ def ackermann_naive(m: int) -> Iterator[int]:
 
 
 def ackermann_fast(m: int, n: int) -> int:
-    """Ackermann number.
-    """
+    """Ackermann number."""
     while m >= 4:
         if n == 0:
             n = 1
@@ -149,8 +145,7 @@ def ackermann_fast(m: int, n: int) -> int:
 
 
 def ackermann(m: int) -> Iterator[int]:
-    """Ackermann encapsulated in a generator.
-    """
+    """Ackermann encapsulated in a generator."""
     n = 0
     while True:
         yield ackermann_fast(m, n)
@@ -168,8 +163,7 @@ def fibonacci() -> Iterator[int]:
 
 
 def log_gen() -> Iterator[int]:
-    """Logarithmic generator.
-    """
+    """Logarithmic generator."""
     y = 1
     while True:
         adder = max(1, math.pow(10, int(math.log10(y))))
@@ -246,13 +240,15 @@ def shi_tomashi(
     """
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    corners: np.signedinteger[Any] = cv2.goodFeaturesToTrack(
+    corners: np.ndarray = cv2.goodFeaturesToTrack(
         gray, max_corners, quality, min_distance
     )
-    corners = np.int0(corners)
+    corners_int: np.ndarray[Any, np.dtype[np.signedinteger[Any]]] = np.array(
+        np.int0(corners)
+    )
     i = 0
     while True:
-        x, y = corners[i].ravel()
+        x, y = corners_int[i].ravel()
         # Compute the pixel number with top left of image as origin
         # using coordinates of the corner.
         # (y * number of pixels a row) + pixels left in last row

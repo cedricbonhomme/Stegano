@@ -39,4 +39,4 @@ tasks:
   - typecheck: |
       export PATH="$PATH:/home/build/.local/bin"
       cd ${project}
-      poetry run mypy stegano
+      poetry run mypy .

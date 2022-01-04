@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2021  Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2022  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -20,9 +20,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.5 $"
+__version__ = "$Revision: 0.6 $"
 __date__ = "$Date: 2016/04/13 $"
-__revision__ = "$Date: 2021/11/29 $"
+__revision__ = "$Date: 2022/01/04 $"
 __license__ = "GPLv3"
 
 import io
@@ -193,7 +193,7 @@ class TestLSBSet(unittest.TestCase):
             lsbset.hide(
                 "./tests/sample-files/Lenna.png",
                 message_to_hide,
-                generators.eratosthene(),
+                generators.eratosthene(),  # type: ignore
             )
 
     def tearDown(self):

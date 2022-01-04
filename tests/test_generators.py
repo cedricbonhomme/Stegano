@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2021 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -183,7 +183,7 @@ class TestGenerators(unittest.TestCase):
     @staticmethod
     def shi_tomashi_reconfigure(
         file_name: str,
-        corners: int = 1000,
+        max_corners: int = 1000,
         quality: float = 0.001,
         min_distance: int = 10,
     ):
@@ -192,8 +192,10 @@ class TestGenerators(unittest.TestCase):
         """
         image = cv2.imread(file_name)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        corners = cv2.goodFeaturesToTrack(gray, corners, quality, min_distance)
-        corners = np.int0(corners)
+        corners = cv2.goodFeaturesToTrack(gray, max_corners, quality, min_distance)
+        # Commented because min_distance argument of generators.shi_tomashi is now set
+        # to 10.0:
+        # corners = np.int0(corners)
         corners = corners.reshape(corners.shape[0], -1)
         np.savetxt("tests/expected-results/shi_tomashi.txt", corners)
 

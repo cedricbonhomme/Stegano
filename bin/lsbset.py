@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2021 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -31,7 +31,7 @@ import crayons
 try:
     from stegano import lsbset
     from stegano.lsbset import generators
-except:
+except Exception:
     print("Install stegano: pipx install Stegano")
 
 from stegano import tools
@@ -175,12 +175,12 @@ def main():
             else:
                 generator = getattr(generators, arguments.generator_function[0])()
 
-        except AttributeError as e:
+        except AttributeError:
             print("Unknown generator: {}".format(arguments.generator_function))
             exit(1)
 
     if arguments.command == "hide":
-        if arguments.secret_message != None:
+        if arguments.secret_message is not None:
             secret = arguments.secret_message
         elif arguments.secret_file != "":
             secret = tools.binary2base64(arguments.secret_file)
@@ -202,9 +202,9 @@ def main():
         except IndexError:
             print("Impossible to detect message.")
             exit(0)
-        if arguments.secret_binary != None:
+        if arguments.secret_binary is not None:
             data = tools.base642binary(secret)
-            with open(arguments.secret_binary, "w") as f:
+            with open(arguments.secret_binary, "wb") as f:
                 f.write(data)
         else:
             print(secret)

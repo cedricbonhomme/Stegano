@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2021 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -29,7 +29,7 @@ import argparse
 
 try:
     from stegano import lsb
-except:
+except Exception:
     print("Install Stegano: pipx install Stegano")
 
 from stegano import tools
@@ -114,9 +114,9 @@ def main():
     arguments = parser.parse_args()
 
     if arguments.command == "hide":
-        if arguments.secret_message != None:
+        if arguments.secret_message is not None:
             secret = arguments.secret_message
-        elif arguments.secret_file != None:
+        elif arguments.secret_file is not None:
             secret = tools.binary2base64(arguments.secret_file)
 
         img_encoded = lsb.hide(
@@ -132,7 +132,7 @@ def main():
         secret = lsb.reveal(
             arguments.input_image_file, arguments.encoding, int(arguments.shift)
         )
-        if arguments.secret_binary != None:
+        if arguments.secret_binary is not None:
             data = tools.base642binary(secret)
             with open(arguments.secret_binary, "wb") as f:
                 f.write(data)
