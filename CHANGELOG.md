@@ -1,6 +1,11 @@
 ## Release History
 
 
+### 0.10.2 (2022-01-13)
+
+* Stegano now uses Pillow 9.0.0 (CVE-2022-22815).
+
+
 ### 0.10.1 (2021-11-30)
 
 * Stegano now uses OpenCV Python 4.5.4 abd Numpy 1.21.4.
