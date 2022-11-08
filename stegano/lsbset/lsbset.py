@@ -25,6 +25,7 @@ __date__ = "$Date: 2016/03/13 $"
 __revision__ = "$Date: 2019/05/31 $"
 __license__ = "GPLv3"
 
+import sys
 from typing import IO, Iterator, Union
 
 from PIL import Image
@@ -56,7 +57,7 @@ def hide(
                 raise Exception("Not a RGB image.")
         img = img.convert("RGB")
 
-    img_list = list(img.getdata())
+    encoded = img.copy()
     width, height = img.size
     index = 0
 
@@ -76,7 +77,12 @@ def hide(
 
     while index + 3 <= len_message_bits:
         generated_number = next(generator)
-        r, g, b, *a = img_list[generated_number]
+
+        col = generated_number % width
+        row = int(generated_number / width)
+        coordinate = (col, row)
+
+        r, g, b, *a = encoded.getpixel(coordinate)
 
         # Change the Least Significant Bit of each colour component.
         r = tools.setlsb(r, message_bits[index])
@@ -85,17 +91,11 @@ def hide(
 
         # Save the new pixel
         if img.mode == "RGBA":
-            img_list[generated_number] = (r, g, b, *a)
+            encoded.putpixel(coordinate, (r, g, b, *a))
         else:
-            img_list[generated_number] = (r, g, b)
+            encoded.putpixel(coordinate, (r, g, b))
 
         index += 3
-
-    # create empty new image of appropriate format
-    encoded = Image.new(img.mode, (img.size))
-
-    # insert saved data into the image
-    encoded.putdata(img_list)
 
     return encoded
 
