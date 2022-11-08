@@ -25,10 +25,7 @@ __date__ = "$Date: 2016/03/13 $"
 __revision__ = "$Date: 2019/05/31 $"
 __license__ = "GPLv3"
 
-import sys
 from typing import IO, Iterator, Union
-
-from PIL import Image
 
 from stegano import tools
 
@@ -120,8 +117,16 @@ def reveal(
 
     while True:
         generated_number = next(generator)
-        # color = [r, g, b]
-        for color in img_list[generated_number][:3]:  # ignore the alpha
+
+        col = generated_number % width
+        row = int(generated_number / width)
+
+        # pixel = [r, g, b] or [r,g,b,a]
+        pixel = img.getpixel((col, row))
+        if img.mode == "RGBA":
+            pixel = pixel[:3]  # ignore the alpha
+
+        for color in pixel:
             buff += (color & 1) << (tools.ENCODINGS[encoding] - 1 - count)
             count += 1
             if count == tools.ENCODINGS[encoding]:
@@ -132,5 +137,6 @@ def reveal(
                         limit = int("".join(bitab[:-1]))
                     else:
                         raise IndexError("Impossible to detect message.")
+
         if len(bitab) - len(str(limit)) - 1 == limit:
             return "".join(bitab)[len(str(limit)) + 1 :]
