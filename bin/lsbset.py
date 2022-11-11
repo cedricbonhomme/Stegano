@@ -29,8 +29,8 @@ import inspect
 import crayons
 
 try:
-    from stegano import lsbset
-    from stegano.lsbset import generators
+    from stegano import lsb
+    from stegano.lsb import generators
 except Exception:
     print("Install stegano: pipx install Stegano")
 
@@ -185,7 +185,7 @@ def main():
         elif arguments.secret_file != "":
             secret = tools.binary2base64(arguments.secret_file)
 
-        img_encoded = lsbset.hide(
+        img_encoded = lsb.hide(
             arguments.input_image_file, secret, generator, int(arguments.shift)
         )
         try:
@@ -196,7 +196,7 @@ def main():
 
     elif arguments.command == "reveal":
         try:
-            secret = lsbset.reveal(
+            secret = lsb.reveal(
                 arguments.input_image_file, generator, int(arguments.shift)
             )
         except IndexError:

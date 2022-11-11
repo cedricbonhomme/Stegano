@@ -20,55 +20,71 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.4 $"
-__date__ = "$Date: 2016/08/04 $"
-__revision__ = "$Date: 2019/06/01 $"
+__version__ = "$Revision: 0.7 $"
+__date__ = "$Date: 2016/03/13 $"
+__revision__ = "$Date: 2019/05/31 $"
 __license__ = "GPLv3"
 
-from typing import IO, Union
+from typing import IO, Iterator, Union
 
+from .generators import identity
 from stegano import tools
 
 
 def hide(
     image: Union[str, IO[bytes]],
     message: str,
-    encoding: str = "UTF-8",
+    generator: Iterator[int] = None,
     shift: int = 0,
+    encoding: str = "UTF-8",
     auto_convert_rgb: bool = False,
 ):
     """Hide a message (string) in an image with the
     LSB (Least Significant Bit) technique.
     """
     hider = tools.Hider(image, message, encoding, auto_convert_rgb)
-    width, height = hider.encoded_image.size
+    width = hider.encoded_image.width
 
-    for row in range(height):
-        for col in range(width):
-            if shift != 0:
-                shift -= 1
-                continue
+    if not generator:
+        generator = identity()
 
-            if hider.encode_another_pixel():
-                hider.encode_pixel((col, row))
-            else:
-                return hider.encoded_image
+    while shift != 0:
+        next(generator)
+        shift -= 1
+
+    while hider.encode_another_pixel():
+        generated_number = next(generator)
+
+        col = generated_number % width
+        row = int(generated_number / width)
+
+        hider.encode_pixel((col, row))
+
+    return hider.encoded_image
 
 
 def reveal(
     encoded_image: Union[str, IO[bytes]],
-    encoding: str = "UTF-8",
+    generator: Iterator[int] = None,
     shift: int = 0,
+    encoding: str = "UTF-8",
 ):
     """Find a message in an image (with the LSB technique)."""
     revealer = tools.Revealer(encoded_image, encoding)
-    width, height = revealer.encoded_image.size
+    width = revealer.encoded_image.width
 
-    for row in range(height):
-        for col in range(width):
-            if shift != 0:
-                shift -= 1
-                continue
+    if not generator:
+        generator = identity()
 
-            if revealer.decode_pixel((col, row)):
-                return revealer.secret_message
+    while shift != 0:
+        next(generator)
+        shift -= 1
+
+    while True:
+        generated_number = next(generator)
+
+        col = generated_number % width
+        row = int(generated_number / width)
+
+        if revealer.decode_pixel((col, row)):
+            return revealer.secret_message
