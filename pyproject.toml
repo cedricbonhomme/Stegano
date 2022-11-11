@@ -38,7 +38,6 @@ include = [
 
 [tool.poetry.scripts]
 stegano-lsb = "bin.lsb:main"
-stegano-lsb-set = "bin.lsbset:main"
 stegano-red = "bin.red:main"
 stegano-steganalysis-parity = "bin.parity:main"
 stegano-steganalysis-statistics = "bin.statistics:main"
