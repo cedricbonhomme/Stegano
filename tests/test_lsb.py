@@ -90,6 +90,20 @@ class TestLSB(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_hide_and_reveal_with_mersenne(self):
+        messages_to_hide = ["f"]
+        for message in messages_to_hide:
+            secret = lsb.hide(
+                "./tests/sample-files/Lenna.png",
+                message,
+                generators.mersenne(),
+            )
+            secret.save("./image.png")
+
+            clear_message = lsb.reveal("./image.png", generators.mersenne())
+
+            self.assertEqual(message, clear_message)
+
     def test_hide_and_reveal_with_shi_tomashi(self):
         messages_to_hide = ["foo bar"]
         for message in messages_to_hide:
