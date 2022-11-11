@@ -76,6 +76,20 @@ class TestLSB(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_hide_and_reveal_with_ackermann_naive(self):
+        messages_to_hide = ["foo"]
+        for message in messages_to_hide:
+            secret = lsb.hide(
+                "./tests/sample-files/Lenna.png",
+                message,
+                generators.ackermann_naive(m=2),
+            )
+            secret.save("./image.png")
+
+            clear_message = lsb.reveal("./image.png", generators.ackermann_naive(m=2))
+
+            self.assertEqual(message, clear_message)
+
     def test_hide_and_reveal_with_shi_tomashi(self):
         messages_to_hide = ["foo bar"]
         for message in messages_to_hide:
