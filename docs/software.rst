@@ -12,52 +12,56 @@ Display help
 .. code-block:: bash
 
     $ stegano-lsb --help
-    usage: stegano-lsb [-h] {hide,reveal} ...
+    usage: stegano-lsb [-h] {hide,reveal,list-generators} ...
 
     positional arguments:
-      {hide,reveal}  sub-command help
-        hide         hide help
-        reveal       reveal help
+    {hide,reveal,list-generators}
+                            sub-command help
+        hide                hide help
+        reveal              reveal help
+        list-generators     list-generators help
 
-    optional arguments:
-      -h, --help     show this help message and exit
+    options:
+    -h, --help            show this help message and exit
 
 
 .. code-block:: bash
 
     $ stegano-lsb hide --help
-    usage: stegano-lsb hide [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}]
-                        (-m SECRET_MESSAGE | -f SECRET_FILE) -o
-                        OUTPUT_IMAGE_FILE
+    usage: stegano-lsb hide [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}] [-g [GENERATOR_FUNCTION ...]] [-s SHIFT] (-m SECRET_MESSAGE | -f SECRET_FILE) -o OUTPUT_IMAGE_FILE
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+    options:
+    -h, --help            show this help message and exit
+    -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
                             Input image file.
-      -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
-                            Specify the encoding of the message to hide. UTF-8
-                            (default) or UTF-32LE.
-      -m SECRET_MESSAGE     Your secret message to hide (non binary).
-      -f SECRET_FILE        Your secret to hide (Text or any binary file).
-      -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
+    -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
+                            Specify the encoding of the message to hide. UTF-8 (default) or UTF-32LE.
+    -g [GENERATOR_FUNCTION ...], --generator [GENERATOR_FUNCTION ...]
+                            Generator (with optional arguments)
+    -s SHIFT, --shift SHIFT
+                            Shift for the generator
+    -m SECRET_MESSAGE     Your secret message to hide (non binary).
+    -f SECRET_FILE        Your secret to hide (Text or any binary file).
+    -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
                             Output image containing the secret.
 
 
 .. code-block:: bash
 
     $ stegano-lsb reveal --help
-    usage: stegano-lsb reveal [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}]
-                              [-o SECRET_BINARY]
+    usage: stegano-lsb reveal [-h] -i INPUT_IMAGE_FILE [-e {UTF-8,UTF-32LE}] [-g [GENERATOR_FUNCTION ...]] [-s SHIFT] [-o SECRET_BINARY]
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+    options:
+    -h, --help            show this help message and exit
+    -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
                             Input image file.
-      -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
-                            Specify the encoding of the message to reveal. UTF-8
-                            (default) or UTF-32LE.
-      -o SECRET_BINARY      Output for the binary secret (Text or any binary
-                            file).
+    -e {UTF-8,UTF-32LE}, --encoding {UTF-8,UTF-32LE}
+                            Specify the encoding of the message to reveal. UTF-8 (default) or UTF-32LE.
+    -g [GENERATOR_FUNCTION ...], --generator [GENERATOR_FUNCTION ...]
+                            Generator (with optional arguments)
+    -s SHIFT, --shift SHIFT
+                            Shift for the generator
+    -o SECRET_BINARY      Output for the binary secret (Text or any binary file).
 
 
 Hide and reveal a text message
@@ -92,63 +96,40 @@ Hide and reveal a binary file
 
 
 
-
-
-
-The command ``stegano-lsb-set``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 Sets are used in order to select the pixels where the message will be hidden.
 
-Hide and reveal a text message
-------------------------------
+Hide and reveal a text message with set
+---------------------------------------
 
 .. code-block:: bash
 
     # Hide the message with the Sieve of Eratosthenes
-    $ stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
+    $ stegano-lsb hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m 'Joyeux Noël!' -o ./surprise.png
 
     # Try to reveal with Mersenne numbers
-    $ stegano-lsb-set reveal --generator mersenne -i ./surprise.png
+    $ stegano-lsb reveal --generator mersenne -i ./surprise.png
 
     # Try to reveal with fermat numbers
-    $ stegano-lsb-set reveal --generator fermat -i ./surprise.png
+    $ stegano-lsb reveal --generator fermat -i ./surprise.png
 
     # Try to reveal with carmichael numbers
-    $ stegano-lsb-set reveal --generator carmichael -i ./surprise.png
+    $ stegano-lsb reveal --generator carmichael -i ./surprise.png
 
     # Try to reveal with Sieve of Eratosthenes
-    $ stegano-lsb-set reveal --generator eratosthenes -i ./surprise.png
-
-An other example:
-
-.. code-block:: bash
-
-    # Hide the message - LSB with a set defined by the identity function (f(x) = x).
-    stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m 'I like steganography.' -o ./enc-identity.png
-
-    # Hide the message - LSB only.
-    stegano-lsb hide -i ./tests/sample-files/Montenach.png -m 'I like steganography.' -o ./enc.png
-
-    # Check if the two generated files are the same.
-    sha1sum ./enc-identity.png ./enc.png
-
-    # The output of lsb is given to lsb-set.
-    stegano-lsb-set reveal -i ./enc.png --generator identity
-
-    # The output of lsb-set is given to lsb.
-    stegano-lsb reveal -i ./enc-identity.png
+    $ stegano-lsb reveal --generator eratosthenes -i ./surprise.png
 
 
 Sometimes it can be useful to skip the first values of a set. For example if you want
 to hide several messages or because due to the selected generator
 (Fibonacci starts with 0, 1, 1, etc.). Or maybe you just want to add more complexity.
-In this case, simply use the optional arguments ``--shift``:
+In this case, simply use the optional arguments ``--shift`` or ``-s``:
 
 
 .. code-block:: bash
 
-    stegano-lsb-set reveal -i ./tests/sample-files/Lenna.png --generator fibonacci --shift 7
+    $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'Shifted secret message' -o ~/Lenna1.png --shift 7
+    $ stegano-lsb reveal -i ~/Lenna1.png --shift 7
+    Shifted secret message
 
 
 List all available generators
@@ -156,7 +137,7 @@ List all available generators
 
 .. code-block:: bash
 
-    $ stegano-lsb-set list-generators
+    $ stegano-lsb list-generators
     Generator id:
         ackermann
     Desciption:

@@ -68,7 +68,7 @@ Secret Message
 ### Hide the message with the Sieve of Eratosthenes
 
 ```bash
-$ stegano-lsb-set hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
+$ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'Secret Message' --generator eratosthenes -o Lena2.png
 ```
 
 The message will be scattered in the picture, following a set described by the
