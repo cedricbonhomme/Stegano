@@ -30,7 +30,7 @@ Moreover some methods of steganalysis_ are provided:
 - steganalysis of LSB encoding in color images;
 - statistical steganalysis.
 
-You can also use Stegano through this `Web service <https://stegano-web.herokuapp.com>`_.
+You can also use Stegano through a `Web service <https://github.com/cedricbonhomme/stegano-web>`_.
 Not all functionalities of Stegano are covered.
 
 Requirements
