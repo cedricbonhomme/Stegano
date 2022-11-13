@@ -25,11 +25,7 @@ __date__ = "$Date: 2019/06/06 $"
 __revision__ = "$Date: 2019/06/06 $"
 __license__ = "GPLv3"
 
-import io
-import os
-import base64
 import unittest
-from unittest.mock import patch
 
 from stegano import lsb
 from stegano.steganalysis import parity, statistics

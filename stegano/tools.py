@@ -183,8 +183,8 @@ class Revealer:
         self.encoded_image = open_image(encoded_image)
         self._encoding_length = ENCODINGS[encoding]
         self._buff, self._count = 0, 0
-        self._bitab = []
-        self._limit = None
+        self._bitab: List[str] = []
+        self._limit: Union[None, int] = None
         self.secret_message = ""
 
     def decode_pixel(self, coordinate: tuple):
@@ -209,7 +209,7 @@ class Revealer:
                         raise IndexError("Impossible to detect message.")
 
         if len(self._bitab) - len(str(self._limit)) - 1 == self._limit:
-            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1 :]
+            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1:]
             self.encoded_image.close()
 
             return True

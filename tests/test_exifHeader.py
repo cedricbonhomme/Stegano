@@ -35,10 +35,9 @@ from stegano import exifHeader
 class TestEXIFHeader(unittest.TestCase):
     def test_hide_empty_message(self):
         """Test hiding the empty string."""
-        secret = exifHeader.hide(
+        exifHeader.hide(
             "./tests/sample-files/20160505T130442.jpg", "./image.jpg", secret_message=""
         )
-        # secret.save(""./image.png"")
 
         clear_message = exifHeader.reveal("./image.jpg")
 
@@ -48,7 +47,7 @@ class TestEXIFHeader(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            secret = exifHeader.hide(
+            exifHeader.hide(
                 "./tests/sample-files/20160505T130442.jpg",
                 "./image.jpg",
                 secret_message=message,
@@ -56,13 +55,12 @@ class TestEXIFHeader(unittest.TestCase):
 
             clear_message = exifHeader.reveal("./image.jpg")
 
-            self.assertEqual(message, message)
+            self.assertEqual(message, clear_message.decode())
 
     def test_with_image_without_exif_data(self):
-        secret = exifHeader.hide(
+        exifHeader.hide(
             "./tests/sample-files/Lenna.jpg", "./image.jpg", secret_message=""
         )
-        # secret.save(""./image.png"")
 
         clear_message = exifHeader.reveal("./image.jpg")
 
@@ -72,7 +70,7 @@ class TestEXIFHeader(unittest.TestCase):
         text_file_to_hide = "./tests/sample-files/lorem_ipsum.txt"
         with open(text_file_to_hide, "rb") as f:
             message = f.read()
-        secret = exifHeader.hide(
+        exifHeader.hide(
             "./tests/sample-files/20160505T130442.jpg",
             img_enc="./image.jpg",
             secret_file=text_file_to_hide,
@@ -82,13 +80,12 @@ class TestEXIFHeader(unittest.TestCase):
         self.assertEqual(message, clear_message)
 
     def test_with_png_image(self):
-        secret = exifHeader.hide(
+        exifHeader.hide(
             "./tests/sample-files/Lenna.png", "./image.png", secret_message="Secret"
         )
-        # secret.save(""./image.png"")
 
         with self.assertRaises(ValueError):
-            clear_message = exifHeader.reveal("./image.png")
+            exifHeader.reveal("./image.png")
 
     def test_with_bytes(self):
         outputBytes = io.BytesIO()
@@ -102,11 +99,11 @@ class TestEXIFHeader(unittest.TestCase):
     def tearDown(self):
         try:
             os.unlink("./image.jpg")
-        except:
+        except Exception:
             pass
         try:
             os.unlink("./image.png")
-        except:
+        except Exception:
             pass
 
 

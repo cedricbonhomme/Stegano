@@ -36,7 +36,7 @@ class TestRed(unittest.TestCase):
         Test hiding the empty string.
         """
         with self.assertRaises(AssertionError):
-            secret = red.hide("./tests/sample-files/Lenna.png", "")
+            red.hide("./tests/sample-files/Lenna.png", "")
 
     def test_hide_and_reveal(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
@@ -47,7 +47,7 @@ class TestRed(unittest.TestCase):
 
             clear_message = red.reveal("./image.png")
 
-            self.assertEqual(message, message)
+            self.assertEqual(message, clear_message)
 
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
@@ -58,7 +58,7 @@ class TestRed(unittest.TestCase):
     def tearDown(self):
         try:
             os.unlink("./image.png")
-        except:
+        except Exception:
             pass
 
 

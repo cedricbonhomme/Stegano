@@ -25,9 +25,7 @@ __date__ = "$Date: 2017/02/22 $"
 __revision__ = "$Date: 2017/02/22 $"
 __license__ = "GPLv3"
 
-import os
 import unittest
-import io
 
 from stegano import tools
 
