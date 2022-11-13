@@ -38,8 +38,8 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"Stegano"
-copyright = u"2010-2022, Cédric Bonhomme"
+project = "Stegano"
+copyright = "2010-2022, Cédric Bonhomme"
 author = "Cédric Bonhomme <cedric@cedricbonhomme.org>"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ latex_engine = "pdflatex"
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "Stgan.tex", u"Stegano Documentation", u"Cédric Bonhomme", "howto"),
+    ("index", "Stgan.tex", "Stegano Documentation", "Cédric Bonhomme", "howto"),
 ]
 
 latex_show_urls = True
