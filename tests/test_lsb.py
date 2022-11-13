@@ -94,7 +94,7 @@ class TestLSB(unittest.TestCase):
         messages_to_hide = ["f"]
         for message in messages_to_hide:
             secret = lsb.hide(
-                "./tests/sample-files/Lenna.png",
+                "./tests/sample-files/Montenach.png",
                 message,
                 generators.mersenne(),
             )
