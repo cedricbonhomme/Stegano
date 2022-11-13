@@ -28,26 +28,31 @@ Sets are used in order to select the pixels where the message will be hidden.
 
     Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> from stegano import lsbset
-    >>> from stegano.lsbset import generators
+    >>> from stegano import lsb
+    >>> from stegano.lsb import generators
 
     # Hide a secret with the Sieve of Eratosthenes
     >>> secret_message = "Hello World!"
-    >>> secret_image = lsbset.hide("./tests/sample-files/Lenna.png",
-                                    secret_message,
-                                    generators.eratosthenes())
+    >>> secret_image = lsb.hide("./tests/sample-files/Lenna.png", secret_message, generators.eratosthenes())
     >>> secret_image.save("./image.png")
 
     # Try to decode with another generator
-    >>> message = lsbset.reveal("./image.png", generators.fibonacci())
+    >>> message = lsb.reveal("./image.png", generators.fibonacci())
     Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-      File "/home/cedric/projects/Stegano/stegano/lsbset/lsbset.py", line 111, in reveal
-        for color in img_list[generated_number]:
-    IndexError: list index out of range
+    File "/Users/flavien/.local/share/virtualenvs/Stegano-sY_cwr69/bin/stegano-lsb", line 6, in <module>
+        sys.exit(main())
+    File "/Users/flavien/Perso/dev/Stegano/bin/lsb.py", line 190, in main
+        img_encoded = lsb.hide(
+    File "/Users/flavien/Perso/dev/Stegano/stegano/lsb/lsb.py", line 63, in hide
+        hider.encode_pixel((col, row))
+    File "/Users/flavien/Perso/dev/Stegano/stegano/tools.py", line 165, in encode_pixel
+        r, g, b, *a = self.encoded_image.getpixel(coordinate)
+    File "/Users/flavien/.local/share/virtualenvs/Stegano-sY_cwr69/lib/python3.10/site-packages/PIL/Image.py", line 1481, in getpixel
+        return self.im.getpixel(xy)
+    IndexError: image index out of range
 
     # Decode with Eratosthenes
-    >>> message = lsbset.reveal("./image.png", generators.eratosthenes())
+    >>> message = lsb.reveal("./image.png", generators.eratosthenes())
     >>> message
     'Hello World!'
 

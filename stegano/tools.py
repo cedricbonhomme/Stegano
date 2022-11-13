@@ -115,3 +115,104 @@ def open_image(fname_or_instance: Union[str, IO[bytes]]):
         return fname_or_instance
 
     return Image.open(fname_or_instance)
+
+
+class Hider:
+    def __init__(
+        self,
+        input_image: Union[str, IO[bytes]],
+        message: str,
+        encoding: str = "UTF-8",
+        auto_convert_rgb: bool = False,
+    ):
+        self._index = 0
+
+        message_length = len(message)
+        assert message_length != 0, "message length is zero"
+
+        image = open_image(input_image)
+
+        if image.mode not in ["RGB", "RGBA"]:
+            if not auto_convert_rgb:
+                print("The mode of the image is not RGB. Mode is {}".format(image.mode))
+                answer = input("Convert the image to RGB ? [Y / n]\n") or "Y"
+                if answer.lower() == "n":
+                    raise Exception("Not a RGB image.")
+
+            image = image.convert("RGB")
+
+        self.encoded_image = image.copy()
+        image.close()
+
+        message = str(message_length) + ":" + str(message)
+        self._message_bits = "".join(a2bits_list(message, encoding))
+        self._message_bits += "0" * ((3 - (len(self._message_bits) % 3)) % 3)
+
+        width, height = self.encoded_image.size
+        npixels = width * height
+        self._len_message_bits = len(self._message_bits)
+
+        if self._len_message_bits > npixels * 3:
+            raise Exception(
+                "The message you want to hide is too long: {}".format(message_length)
+            )
+
+    def encode_another_pixel(self):
+        return True if self._index + 3 <= self._len_message_bits else False
+
+    def encode_pixel(self, coordinate: tuple):
+        # Get the colour component.
+        r, g, b, *a = self.encoded_image.getpixel(coordinate)
+
+        # Change the Least Significant Bit of each colour component.
+        r = setlsb(r, self._message_bits[self._index])
+        g = setlsb(g, self._message_bits[self._index + 1])
+        b = setlsb(b, self._message_bits[self._index + 2])
+
+        # Save the new pixel
+        if self.encoded_image.mode == "RGBA":
+            self.encoded_image.putpixel(coordinate, (r, g, b, *a))
+        else:
+            self.encoded_image.putpixel(coordinate, (r, g, b))
+
+        self._index += 3
+
+
+class Revealer:
+    def __init__(self, encoded_image: Union[str, IO[bytes]], encoding: str = "UTF-8"):
+        self.encoded_image = open_image(encoded_image)
+        self._encoding_length = ENCODINGS[encoding]
+        self._buff, self._count = 0, 0
+        self._bitab = []
+        self._limit = None
+        self.secret_message = ""
+
+    def decode_pixel(self, coordinate: tuple):
+        # pixel = [r, g, b] or [r,g,b,a]
+        pixel = self.encoded_image.getpixel(coordinate)
+
+        if self.encoded_image.mode == "RGBA":
+            pixel = pixel[:3]  # ignore the alpha
+
+        for color in pixel:
+            self._buff += (color & 1) << (self._encoding_length - 1 - self._count)
+            self._count += 1
+
+            if self._count == self._encoding_length:
+                self._bitab.append(chr(self._buff))
+                self._buff, self._count = 0, 0
+
+                if self._bitab[-1] == ":" and self._limit is None:
+                    if "".join(self._bitab[:-1]).isdigit():
+                        self._limit = int("".join(self._bitab[:-1]))
+                    else:
+                        raise IndexError("Impossible to detect message.")
+
+        if len(self._bitab) - len(str(self._limit)) - 1 == self._limit:
+            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1 :]
+            self.encoded_image.close()
+
+            return True
+
+        else:
+            return False

@@ -29,7 +29,7 @@ import itertools
 import cv2
 import numpy as np
 import math
-from typing import Dict, Iterator, List, Any, Union
+from typing import Dict, Iterator, List, Any
 
 
 def identity() -> Iterator[int]:
@@ -225,7 +225,7 @@ def LFSR(m: int) -> Iterator[int]:
         # Add the feedback bit
         state.insert(0, feedback)
         # Convert the registers to an int
-        out = sum([e * (2 ** i) for i, e in enumerate(state)])
+        out = sum([e * (2**i) for i, e in enumerate(state)])
         yield out
 
 

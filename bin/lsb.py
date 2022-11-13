@@ -20,19 +20,37 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 __author__ = "Cedric Bonhomme"
-__version__ = "$Revision: 0.8 $"
-__date__ = "$Date: 2016/08/04 $"
-__revision__ = "$Date: 2019/06/01 $"
+__version__ = "$Revision: 0.7 $"
+__date__ = "$Date: 2016/03/18 $"
+__revision__ = "$Date: 2019/06/04 $"
 __license__ = "GPLv3"
 
-import argparse
+import inspect
+import crayons
 
 try:
     from stegano import lsb
+    from stegano.lsb import generators
 except Exception:
-    print("Install Stegano: pipx install Stegano")
+    print("Install stegano: pipx install Stegano")
 
 from stegano import tools
+
+import argparse
+
+
+class ValidateGenerator(argparse.Action):
+    def __call__(self, parser, args, values, option_string=None):
+        valid_generators = [
+            generator[0]
+            for generator in inspect.getmembers(generators, inspect.isfunction)
+        ]
+        # Verify that the generator is valid
+        generator = values[0]
+        if generator not in valid_generators:
+            raise ValueError("Unknown generator: %s" % generator)
+        # Set the generator_function arg of the parser
+        setattr(args, self.dest, values)
 
 
 def main():
@@ -59,6 +77,22 @@ def main():
         + " UTF-8 (default) or UTF-32LE.",
     )
 
+    # Generator
+    parser_hide.add_argument(
+        "-g",
+        "--generator",
+        dest="generator_function",
+        action=ValidateGenerator,
+        nargs="*",
+        required=False,
+        help="Generator (with optional arguments)",
+    )
+
+    # Shift the message to hide
+    parser_hide.add_argument(
+        "-s", "--shift", dest="shift", default=0, help="Shift for the generator"
+    )
+
     group_secret = parser_hide.add_mutually_exclusive_group(required=True)
     # Non binary secret message to hide
     group_secret.add_argument(
@@ -76,11 +110,6 @@ def main():
         dest="output_image_file",
         required=True,
         help="Output image containing the secret.",
-    )
-
-    # Shift the message to hide
-    parser_hide.add_argument(
-        "-s", "--shift", dest="shift", default=0, help="Shift for the message to hide"
     )
 
     # Subparser: Reveal
@@ -101,26 +130,69 @@ def main():
         help="Specify the encoding of the message to reveal."
         + " UTF-8 (default) or UTF-32LE.",
     )
+
+    # Generator
+    parser_reveal.add_argument(
+        "-g",
+        "--generator",
+        dest="generator_function",
+        action=ValidateGenerator,
+        nargs="*",
+        required=False,
+        help="Generator (with optional arguments)",
+    )
+
+    # Shift the message to reveal
+    parser_reveal.add_argument(
+        "-s", "--shift", dest="shift", default=0, help="Shift for the generator"
+    )
     parser_reveal.add_argument(
         "-o",
         dest="secret_binary",
         help="Output for the binary secret (Text or any binary file).",
     )
-    # Shift the message to reveal
-    parser_reveal.add_argument(
-        "-s", "--shift", dest="shift", default=0, help="Shift for the reveal"
+
+    # Subparser: List generators
+    parser_list_generators = subparsers.add_parser(
+        "list-generators", help="list-generators help"
     )
 
     arguments = parser.parse_args()
 
+    if arguments.command != "list-generators":
+        if not arguments.generator_function:
+            generator = None
+        else:
+            try:
+                if arguments.generator_function[0] == "LFSR":
+                    # Compute the size of the image for use by the LFSR generator if needed
+                    tmp = tools.open_image(arguments.input_image_file)
+                    size = tmp.width * tmp.height
+                    tmp.close()
+                    arguments.generator_function.append(size)
+                if len(arguments.generator_function) > 1:
+                    generator = getattr(generators, arguments.generator_function[0])(
+                        *[int(e) for e in arguments.generator_function[1:]]
+                    )
+                else:
+                    generator = getattr(generators, arguments.generator_function[0])()
+
+            except AttributeError:
+                print("Unknown generator: {}".format(arguments.generator_function))
+                exit(1)
+
     if arguments.command == "hide":
         if arguments.secret_message is not None:
             secret = arguments.secret_message
-        elif arguments.secret_file is not None:
+        elif arguments.secret_file != "":
             secret = tools.binary2base64(arguments.secret_file)
 
         img_encoded = lsb.hide(
-            arguments.input_image_file, secret, arguments.encoding, int(arguments.shift)
+            image=arguments.input_image_file,
+            message=secret,
+            generator=generator,
+            shift=int(arguments.shift),
+            encoding=arguments.encoding,
         )
         try:
             img_encoded.save(arguments.output_image_file)
@@ -129,12 +201,27 @@ def main():
             print(e)
 
     elif arguments.command == "reveal":
-        secret = lsb.reveal(
-            arguments.input_image_file, arguments.encoding, int(arguments.shift)
-        )
+        try:
+            secret = lsb.reveal(
+                encoded_image=arguments.input_image_file,
+                generator=generator,
+                shift=int(arguments.shift),
+                encoding=arguments.encoding,
+            )
+        except IndexError:
+            print("Impossible to detect message.")
+            exit(0)
         if arguments.secret_binary is not None:
             data = tools.base642binary(secret)
             with open(arguments.secret_binary, "wb") as f:
                 f.write(data)
         else:
             print(secret)
+
+    elif arguments.command == "list-generators":
+        all_generators = inspect.getmembers(generators, inspect.isfunction)
+        for generator in all_generators:
+            print("Generator id:")
+            print("    {}".format(crayons.green(generator[0], bold=True)))
+            print("Desciption:")
+            print("    {}".format(generator[1].__doc__))

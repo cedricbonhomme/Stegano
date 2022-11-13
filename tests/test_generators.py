@@ -30,7 +30,7 @@ import itertools
 import cv2
 import numpy as np
 
-from stegano.lsbset import generators
+from stegano.lsb import generators
 
 
 class TestGenerators(unittest.TestCase):
@@ -151,7 +151,7 @@ class TestGenerators(unittest.TestCase):
         """Test the LFSR generator"""
         with open("./tests/expected-results/LFSR", "r") as f:
             self.assertEqual(
-                tuple(itertools.islice(generators.LFSR(2 ** 8), 256)),
+                tuple(itertools.islice(generators.LFSR(2**8), 256)),
                 tuple(int(line) for line in f),
             )
 
