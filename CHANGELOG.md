@@ -1,6 +1,13 @@
 ## Release History
 
 
+### 0.11.0 (2022-11-20)
+
+* Reduced memory footprint and processing speed,
+  the modules ``lsb`` and ``lsbset`` have been merged
+  ([PR #34](https://github.com/cedricbonhomme/Stegano/pull/34)).
+
+
 ### 0.10.2 (2022-01-13)
 
 * Stegano now uses Pillow 9.0.0 (CVE-2022-22815).

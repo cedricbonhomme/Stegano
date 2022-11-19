@@ -9,7 +9,7 @@ LSB method
 
 .. code-block:: python
 
-    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
+    Python 3.11.0 (main, Oct 31 2022, 15:15:22) [GCC 12.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import lsb
     >>> secret = lsb.hide("./tests/sample-files/Lenna.png", "Hello world!")
@@ -26,7 +26,7 @@ Sets are used in order to select the pixels where the message will be hidden.
 
 .. code-block:: python
 
-    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
+    Python 3.11.0 (main, Oct 31 2022, 15:15:22) [GCC 12.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import lsb
     >>> from stegano.lsb import generators
@@ -112,7 +112,7 @@ For JPEG and TIFF images.
 
 .. code-block:: python
 
-    Python 3.10.0 (default, Oct 17 2021, 09:02:57) [GCC 11.2.0] on linux
+    Python 3.11.0 (main, Oct 31 2022, 15:15:22) [GCC 12.2.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from stegano import exifHeader
     >>> secret = exifHeader.hide("./tests/sample-files/20160505T130442.jpg",
