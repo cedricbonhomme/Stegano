@@ -137,7 +137,6 @@ class TestGenerators(unittest.TestCase):
             self.assertEqual(generators.ackermann_fast(3, 1), int(f.readline()))
             self.assertEqual(generators.ackermann_fast(3, 2), int(f.readline()))
             self.assertEqual(generators.ackermann_fast(4, 1), int(f.readline()))
-            self.assertEqual(generators.ackermann_fast(4, 2), int(f.readline()))
 
     def test_ackermann(self):
         """Test the Ackermann generator"""
