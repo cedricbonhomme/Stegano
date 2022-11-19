@@ -34,7 +34,7 @@ from stegano import tools
 def hide(
     image: Union[str, IO[bytes]],
     message: str,
-    generator: Iterator[int] = None,
+    generator: Union[None, Iterator[int]] = None,
     shift: int = 0,
     encoding: str = "UTF-8",
     auto_convert_rgb: bool = False,
@@ -65,7 +65,7 @@ def hide(
 
 def reveal(
     encoded_image: Union[str, IO[bytes]],
-    generator: Iterator[int] = None,
+    generator: Union[None, Iterator[int]] = None,
     shift: int = 0,
     encoding: str = "UTF-8",
 ):

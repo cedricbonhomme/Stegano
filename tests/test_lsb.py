@@ -229,7 +229,7 @@ class TestLSB(unittest.TestCase):
             lsb.hide(
                 "./tests/sample-files/Lenna.png",
                 message_to_hide,
-                generators.unknown_generator(),
+                generators.unknown_generator(),  # type: ignore
             )
 
     def tearDown(self):
