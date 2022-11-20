@@ -1,6 +1,11 @@
 ## Release History
 
 
+### 0.11.1 (2022-11-20)
+
+* Fixed a bug in the command line when no sub-command is specified.
+
+
 ### 0.11.0 (2022-11-20)
 
 * Reduced memory footprint and processing speed,
