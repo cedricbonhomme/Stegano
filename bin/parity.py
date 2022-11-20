@@ -30,7 +30,7 @@ import argparse
 
 try:
     from stegano.steganalysis import parity
-except:
+except Exception:
     print("Install Stegano: pipx install Stegano")
 
 

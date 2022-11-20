@@ -28,7 +28,7 @@ import argparse
 
 try:
     from stegano import red
-except:
+except Exception:
     print("Install stegano: sudo pip install Stegano")
 
 

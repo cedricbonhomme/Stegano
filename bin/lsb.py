@@ -55,7 +55,8 @@ class ValidateGenerator(argparse.Action):
 
 def main():
     parser = argparse.ArgumentParser(prog="stegano-lsb")
-    subparsers = parser.add_subparsers(help="sub-command help", dest="command")
+    subparsers = parser.add_subparsers(
+        help="sub-command help", dest="command", required=True)
 
     # Subparser: Hide
     parser_hide = subparsers.add_parser("hide", help="hide help")
@@ -85,6 +86,7 @@ def main():
         action=ValidateGenerator,
         nargs="*",
         required=False,
+        default=None,
         help="Generator (with optional arguments)",
     )
 

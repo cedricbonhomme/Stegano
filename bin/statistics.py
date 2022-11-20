@@ -31,7 +31,7 @@ import argparse
 
 try:
     from stegano.steganalysis import statistics
-except:
+except Exception:
     print("Install Stegano: sudo pip install Stegano")
 
 
