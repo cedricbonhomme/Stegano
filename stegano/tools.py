@@ -209,7 +209,9 @@ class Revealer:
                         raise IndexError("Impossible to detect message.")
 
         if len(self._bitab) - len(str(self._limit)) - 1 == self._limit:
-            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1 :]
+            self.secret_message = "".join(self._bitab)[
+                len(str(self._limit)) + 1 :  # noqa: E203
+            ]
             self.encoded_image.close()
 
             return True
