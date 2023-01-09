@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
 # Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
@@ -90,8 +88,7 @@ def composite() -> Iterator[int]:
     """
     p1 = 3
     for p2 in eratosthenes():
-        for n in range(p1 + 1, p2):
-            yield n
+        yield from range(p1 + 1, p2)
         p1 = p2
 
 
@@ -225,7 +222,7 @@ def LFSR(m: int) -> Iterator[int]:
         # Add the feedback bit
         state.insert(0, feedback)
         # Convert the registers to an int
-        out = sum([e * (2**i) for i, e in enumerate(state)])
+        out = sum(e * (2**i) for i, e in enumerate(state))
         yield out
 
 
@@ -244,7 +241,7 @@ def shi_tomashi(
         gray, max_corners, quality, min_distance
     )
     corners_int: np.ndarray[Any, np.dtype[np.signedinteger[Any]]] = np.array(
-        np.int0(corners)
+        np.intp(corners)
     )
     i = 0
     while True:
