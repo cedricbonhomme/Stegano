@@ -49,14 +49,14 @@ piexif = "^1.1.3"
 crayons = "^0.4.0"
 opencv-python = "^4.6.0.66"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 mypy = "^0.910"
 flake8 = "^4.0.1"
 nose2 = "^0.10.0"
 Sphinx = "^4.2.0"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=1.3.2"]
 build-backend = "poetry.masonry.api"
 
 [tool.mypy]
