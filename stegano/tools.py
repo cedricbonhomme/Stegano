@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
 # Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
@@ -28,7 +26,7 @@ __license__ = "GPLv3"
 import base64
 import itertools
 from functools import reduce
-from typing import IO, Iterator, List, Tuple, Union
+from typing import IO, List, Tuple, Union
 
 from PIL import Image
 
@@ -78,7 +76,7 @@ def setlsb(component: int, bit: str) -> int:
 
 def n_at_a_time(
     items: List[int], n: int, fillvalue: str
-) -> Iterator[Tuple[Union[int, str]]]:
+) -> itertools.zip_longest[Tuple[object, ...]]:
     """Returns an iterator which groups n items at a time.
     Any final partial tuple will be padded with the fillvalue
 
@@ -134,7 +132,7 @@ class Hider:
 
         if image.mode not in ["RGB", "RGBA"]:
             if not auto_convert_rgb:
-                print("The mode of the image is not RGB. Mode is {}".format(image.mode))
+                print(f"The mode of the image is not RGB. Mode is {image.mode}")
                 answer = input("Convert the image to RGB ? [Y / n]\n") or "Y"
                 if answer.lower() == "n":
                     raise Exception("Not a RGB image.")
@@ -154,7 +152,7 @@ class Hider:
 
         if self._len_message_bits > npixels * 3:
             raise Exception(
-                "The message you want to hide is too long: {}".format(message_length)
+                f"The message you want to hide is too long: {message_length}"
             )
 
     def encode_another_pixel(self):
