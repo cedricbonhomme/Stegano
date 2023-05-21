@@ -71,7 +71,7 @@ def eratosthenes() -> Iterator[int]:
     """Generate the prime numbers with the sieve of Eratosthenes.
     https://oeis.org/A000040
     """
-    d = {}  # type: Dict[int, List[int]]
+    d: Dict[int, List[int]] = {}
     for i in itertools.count(2):
         if i in d:
             for j in d[i]:
