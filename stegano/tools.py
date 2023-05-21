@@ -26,7 +26,7 @@ __license__ = "GPLv3"
 import base64
 import itertools
 from functools import reduce
-from typing import IO, List, Tuple, Union
+from typing import IO, List, Union
 
 from PIL import Image
 
@@ -74,9 +74,7 @@ def setlsb(component: int, bit: str) -> int:
     return component & ~1 | int(bit)
 
 
-def n_at_a_time(
-    items: List[int], n: int, fillvalue: str
-) -> itertools.zip_longest[Tuple[object, ...]]:
+def n_at_a_time(items: List[int], n: int, fillvalue: str):
     """Returns an iterator which groups n items at a time.
     Any final partial tuple will be padded with the fillvalue
 
