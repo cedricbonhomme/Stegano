@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
 # Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
@@ -36,7 +34,7 @@ def steganalyse(img):
     Steganlysis of the LSB technique.
     """
     width, height = img.size
-    colours_counter = Counter()  # type: typing.Counter[int]
+    colours_counter: typing.Counter[int] = Counter()
     for row in range(height):
         for col in range(width):
             r, g, b = img.getpixel((col, row))
@@ -47,7 +45,7 @@ def steganalyse(img):
         sorted(list(colours_counter.items()), key=lambda t: t[1])
     )
 
-    colours = 0  # type: float
+    colours: float = 0
     for colour in list(dict_colours.keys()):
         colours += colour
     colours = colours / len(dict_colours)
