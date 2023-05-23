@@ -1,18 +1,28 @@
+ci:
+  autoupdate_schedule: monthly
 repos:
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.13.0
+    hooks:
+      - id: django-upgrade
+        args: [--target-version, '4.2']
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.1
+    rev: v3.3.1
     hooks:
       - id: pyupgrade
         args: ["--py37-plus"]
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.0.1
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
     hooks:
-      - id: reorder-python-imports
-        additional_dependencies: ["setuptools>60.9"]
+      - id: isort
   - repo: https://github.com/psf/black
     rev: 22.3.0
     hooks:
       - id: black
+  - repo: https://github.com/asottile/blacken-docs
+    rev: 1.13.0
+    hooks:
+      - id: blacken-docs
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
@@ -20,7 +30,7 @@ repos:
         additional_dependencies:
           - flake8-bugbear
           - flake8-implicit-str-concat
-        args: ["--max-line-length=100"]
+        args: ["--max-line-length=125"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
@@ -31,4 +41,3 @@ repos:
     rev: v2.5.6
     hooks:
       -   id: pip-audit
-          args: ["--ignore-vuln", "PYSEC-2022-203"]

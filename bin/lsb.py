@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -26,6 +24,7 @@ __revision__ = "$Date: 2019/06/04 $"
 __license__ = "GPLv3"
 
 import inspect
+
 import crayons
 
 try:
@@ -34,9 +33,9 @@ try:
 except Exception:
     print("Install stegano: pipx install Stegano")
 
-from stegano import tools
-
 import argparse
+
+from stegano import tools
 
 
 class ValidateGenerator(argparse.Action):
@@ -76,7 +75,7 @@ def main():
         choices=tools.ENCODINGS.keys(),
         default="UTF-8",
         help="Specify the encoding of the message to hide."
-        + " UTF-8 (default) or UTF-32LE.",
+        " UTF-8 (default) or UTF-32LE.",
     )
 
     # Generator
@@ -131,7 +130,7 @@ def main():
         choices=tools.ENCODINGS.keys(),
         default="UTF-8",
         help="Specify the encoding of the message to reveal."
-        + " UTF-8 (default) or UTF-32LE.",
+        " UTF-8 (default) or UTF-32LE.",
     )
 
     # Generator
@@ -179,7 +178,7 @@ def main():
                     generator = getattr(generators, arguments.generator_function[0])()
 
             except AttributeError:
-                print("Unknown generator: {}".format(arguments.generator_function))
+                print(f"Unknown generator: {arguments.generator_function}")
                 exit(1)
 
     if arguments.command == "hide":
@@ -223,6 +222,6 @@ def main():
         all_generators = inspect.getmembers(generators, inspect.isfunction)
         for generator in all_generators:
             print("Generator id:")
-            print("    {}".format(crayons.green(generator[0], bold=True)))
+            print(f"    {crayons.green(generator[0], bold=True)}")
             print("Desciption:")
-            print("    {}".format(generator[1].__doc__))
+            print(f"    {generator[1].__doc__}")

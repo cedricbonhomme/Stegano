@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -25,9 +23,9 @@ __date__ = "$Date: 2016/08/26 $"
 __revision__ = "$Date: 2016/08/26 $"
 __license__ = "GPLv3"
 
-from PIL import Image
-
 import argparse
+
+from PIL import Image
 
 try:
     from stegano.steganalysis import statistics

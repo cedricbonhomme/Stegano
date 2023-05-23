@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022  Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023  Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -173,7 +171,12 @@ class TestLSB(unittest.TestCase):
     @patch("builtins.input", return_value="n")
     def test_refuse_convert_rgb(self, input):
         message_to_hide = "Hello World!"
-        with self.assertRaises(Exception):
+        # lsb.hide(
+        #         "./tests/sample-files/Lenna-grayscale.png",
+        #         message_to_hide,
+        #         generators.eratosthenes(),
+        #     )
+        with self.assertRaisesRegex(Exception, "Not a RGB image."):
             lsb.hide(
                 "./tests/sample-files/Lenna-grayscale.png",
                 message_to_hide,
@@ -210,7 +213,9 @@ class TestLSB(unittest.TestCase):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
         message += message * 2
-        with self.assertRaises(Exception):
+        with self.assertRaisesRegex(
+            Exception, "The message you want to hide is too long:"
+        ):
             lsb.hide("./tests/sample-files/Lenna.png", message, generators.identity())
 
     def test_hide_and_reveal_with_bad_generator(self):

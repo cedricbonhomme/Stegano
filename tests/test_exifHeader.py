@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -25,9 +23,9 @@ __date__ = "$Date: 2016/05/17 $"
 __revision__ = "$Date: 2017/01/18 $"
 __license__ = "GPLv3"
 
+import io
 import os
 import unittest
-import io
 
 from stegano import exifHeader
 

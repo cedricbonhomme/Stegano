@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stegano"
-version = "0.11.1"
+version = "0.11.2"
 description = "A pure Python Steganography module."
 authors = [
     "Cédric Bonhomme <cedric@cedricbonhomme.org>"
@@ -76,3 +76,6 @@ show_error_context = true
 pretty = true
 
 exclude = "build|dist|docs|stegano.egg-info"
+
+[tool.isort]
+profile = "black"

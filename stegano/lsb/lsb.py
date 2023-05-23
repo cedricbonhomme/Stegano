@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -27,8 +25,9 @@ __license__ = "GPLv3"
 
 from typing import IO, Iterator, Union
 
-from .generators import identity
 from stegano import tools
+
+from .generators import identity
 
 
 def hide(

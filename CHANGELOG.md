@@ -1,6 +1,12 @@
 ## Release History
 
 
+### 0.11.2 (2023-05-23)
+
+* improved typing of various functions;
+* updated dependencies.
+
+
 ### 0.11.1 (2022-11-20)
 
 * Fixed a bug in the command line when no sub-command is specified.

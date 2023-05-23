@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -24,9 +24,7 @@ __revision__ = "$Date: 2021/11/01 $"
 __license__ = "GPLv3"
 
 import typing
-
-from collections import Counter
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 
 
 def steganalyse(img):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Stéganô documentation build configuration file, created by
 # sphinx-quickstart on Wed Jul 25 13:33:39 2012.
@@ -10,17 +9,13 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
-
 # -- General configuration -----------------------------------------------------
-
 # If your documentation needs a minimal Sphinx version, state it here.
 # needs_sphinx = '1.0'
-
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = []
@@ -39,7 +34,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Stegano"
-copyright = "2010-2022, Cédric Bonhomme"
+copyright = "2010-2023, Cédric Bonhomme"
 author = "Cédric Bonhomme <cedric@cedricbonhomme.org>"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -170,6 +165,6 @@ latex_documents = [
 latex_show_urls = True
 latex_show_pagerefs = True
 
-ADDITIONAL_PREAMBLE = """
+ADDITIONAL_PREAMBLE = r"""
 \setcounter{tocdepth}{3}
 """

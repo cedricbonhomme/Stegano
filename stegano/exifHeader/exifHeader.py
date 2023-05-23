@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -26,6 +24,7 @@ __revision__ = "$Date: 2017/01/18 $"
 __license__ = "GPLv3"
 
 import piexif
+
 from stegano import tools
 
 
@@ -37,11 +36,11 @@ def hide(
     img_format=None,
 ):
     """Hide a message (string) in an image."""
-    from zlib import compress
     from base64 import b64encode
+    from zlib import compress
 
     if secret_file is not None:
-        with open(secret_file, "r") as f:
+        with open(secret_file) as f:
             secret_message = f.read()
 
     try:

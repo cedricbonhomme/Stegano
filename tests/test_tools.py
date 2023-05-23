@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://git.sr.ht/~cedric/stegano
 #
@@ -83,7 +81,7 @@ class TestTools(unittest.TestCase):
         self.assertEqual(list(result), [(1, 2), (3, 4), (5, "X")])
 
     def test_binary2base64(self):
-        with open("./tests/expected-results/binary2base64", "r") as f:
+        with open("./tests/expected-results/binary2base64") as f:
             expected_value = f.read()
         value = tools.binary2base64("tests/sample-files/free-software-song.ogg")
         self.assertEqual(expected_value, value)
