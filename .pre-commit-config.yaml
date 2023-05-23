@@ -28,7 +28,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
   - repo: https://github.com/trailofbits/pip-audit
-    rev: v2.4.13
+    rev: v2.5.6
     hooks:
       -   id: pip-audit
           args: ["--ignore-vuln", "PYSEC-2022-203"]
