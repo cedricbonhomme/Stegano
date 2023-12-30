@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 # Stegano - Stegano is a pure Python steganography module.
 # Copyright (C) 2010-2017  Cédric Bonhomme - https://www.cedricbonhomme.org
@@ -27,9 +26,10 @@ __license__ = "GPLv3"
 
 import unittest
 
+from PIL import Image, ImageChops
+
 from stegano import lsb
 from stegano.steganalysis import parity, statistics
-from PIL import Image, ImageChops
 
 
 class TestSteganalysis(unittest.TestCase):

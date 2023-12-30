@@ -1,10 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from . import red
-from . import exifHeader
-from . import lsb
-
-from . import steganalysis
+from . import exifHeader, lsb, red, steganalysis
 
 __all__ = ["red", "exifHeader", "lsb", "steganalysis"]
