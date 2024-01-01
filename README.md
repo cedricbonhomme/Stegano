@@ -102,6 +102,6 @@ recommend you to install it in a Python virtual environment with poetry.
 This software is licensed under
 [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-Copyright (C) 2010-2023 [Cédric Bonhomme](https://www.cedricbonhomme.org)
+Copyright (C) 2010-2024 [Cédric Bonhomme](https://www.cedricbonhomme.org)
 
 For more information, [the list of authors and contributors](CONTRIBUTORS.md) is available.

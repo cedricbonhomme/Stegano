@@ -34,7 +34,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Stegano"
-copyright = "2010-2023, Cédric Bonhomme"
+copyright = "2010-2024, Cédric Bonhomme"
 author = "Cédric Bonhomme <cedric@cedricbonhomme.org>"
 
 # The version info for the project you're documenting, acts as replacement for
