@@ -1,6 +1,11 @@
 ## Release History
 
 
+### 0.11.3 (2024-01-02)
+
+* Stegano now supports Python 3.12. Support of Python 3.8 has been removed.
+
+
 ### 0.11.2 (2023-05-23)
 
 * improved typing of various functions;
