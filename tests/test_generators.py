@@ -174,9 +174,8 @@ class TestGenerators(unittest.TestCase):
         test_file_reshaped = test_file.reshape(
             int(test_file.shape[0]), int(test_file.shape[1])
         )
-        self.assertIsNone(
-            np.testing.assert_allclose(corners, test_file_reshaped, rtol=1e-0, atol=0)
-        )
+        res = np.testing.assert_allclose(corners, test_file_reshaped, rtol=1e-0, atol=0)  # type: ignore
+        self.assertIsNone(res)
 
     @staticmethod
     def shi_tomashi_reconfigure(

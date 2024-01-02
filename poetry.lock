@@ -441,18 +441,18 @@ setuptools = "*"
 
 [[package]]
 name = "nose2"
-version = "0.12.0"
-description = "unittest2 with plugins, the successor to nose"
+version = "0.14.0"
+description = "unittest with plugins"
 optional = false
-python-versions = "*"
+python-versions = ">=3.8"
 files = [
-    {file = "nose2-0.12.0-py2.py3-none-any.whl", hash = "sha256:da7eb5e3cbe2abb693a053e17b4fbefca98ea9ea79fc729b0b0f41e8b4196304"},
-    {file = "nose2-0.12.0.tar.gz", hash = "sha256:956e79b9bd558ee08b6200c05ad2c76465b7e3860c0c0537686089285c320113"},
+    {file = "nose2-0.14.0-py3-none-any.whl", hash = "sha256:86993e9243c744df29c1ec237aecee33e2f59abb4bdd25a313f2e806b99228a1"},
+    {file = "nose2-0.14.0.tar.gz", hash = "sha256:5c28d770a0b9a702862bd6c3755ba2cd2f7994dd518c982e5ce298d7f37466a4"},
 ]
 
 [package.extras]
 coverage-plugin = ["coverage"]
-dev = ["Sphinx", "mock", "sphinx-issues", "sphinx-rtd-theme"]
+dev = ["Sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 
 [[package]]
 name = "numpy"
@@ -996,4 +996,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "96fd601171b20ab746b578859483cd9bd0764ed11542f352dc4d1ce78257a44c"
+content-hash = "926741415f055b468c84701fbe0b6baca88306b4e5102c49ecf5a99eab9d974c"
