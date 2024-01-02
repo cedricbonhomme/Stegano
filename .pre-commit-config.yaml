@@ -33,6 +33,7 @@ repos:
       - id: fix-byte-order-marker
       - id: trailing-whitespace
       - id: end-of-file-fixer
+        exclude: tests/.*
   - repo: https://github.com/trailofbits/pip-audit
     rev: v2.6.2
     hooks:
