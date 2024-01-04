@@ -21,7 +21,7 @@ environment:
   project: stegano
 tasks:
   - dependencies: |
-      pip3 install --user poetry
+      pipx install poetry
       export PATH="$PATH:/home/build/.local/bin"
       cd ${project}
       poetry install
