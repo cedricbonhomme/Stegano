@@ -1,4 +1,4 @@
-image: debian/bullseye
+image: debian/bookworm
 sources:
   - https://git.sr.ht/~cedric/stegano
 packages:
