@@ -65,7 +65,7 @@
 ### 0.9.5 (2019-10-27)
 
 * updated dependencies;
-* home page of the project is now: https://git.sr.ht/~cedric/Stegano
+* home page of the project is now: https://github.com/cedricbonhomme/Stegano
 
 
 ### 0.9.4 (2019-06-05)

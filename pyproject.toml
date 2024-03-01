@@ -9,8 +9,8 @@ license = "GPL-3.0-or-later"
 
 readme = "README.md"
 
-homepage = "https://sr.ht/~cedric/stegano"
-repository = "https://git.sr.ht/~cedric/stegano"
+homepage = "https://github.com/cedricbonhomme/Stegano"
+repository = "https://github.com/cedricbonhomme/Stegano"
 documentation = "https://stegano.readthedocs.io"
 
 keywords = ["steganography", "security", "stegano"]

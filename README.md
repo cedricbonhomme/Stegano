@@ -3,7 +3,7 @@
 [![builds.sr.ht status](https://builds.sr.ht/~cedric/stegano.svg)](https://builds.sr.ht/~cedric/stegano)
 [![Workflow](https://github.com/cedricbonhomme/Stegano/workflows/Python%20application/badge.svg?style=flat-square)](https://github.com/cedricbonhomme/Stegano/actions?query=workflow%3A%22Python+application%22)
 
-[Stegano](https://sr.ht/~cedric/stegano), a pure Python Steganography
+[Stegano](https://github.com/cedricbonhomme/Stegano), a pure Python Steganography
 module.
 
 Steganography is the art and science of writing hidden messages in such a way
@@ -11,9 +11,6 @@ that no one, apart from the sender and intended recipient, suspects the
 existence of the message, a form of security through obscurity. Consequently,
 functions provided by Stegano only hide messages, without encryption.
 Steganography is often used with cryptography.
-
-For reporting issues, visit the tracker here:
-https://todo.sr.ht/~cedric/stegano
 
 
 ## Installation

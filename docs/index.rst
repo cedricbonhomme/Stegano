@@ -53,7 +53,7 @@ Tutorial
     steganalysis
 
 You can have a look at the
-`unit tests <https://git.sr.ht/~cedric/stegano/tree/master/tests>`_.
+`unit tests <https://github.com/cedricbonhomme/Stegano/tree/master/tests>`_.
 
 
 License
@@ -77,7 +77,7 @@ Contact
 
 
 .. _Python: https://www.python.org
-.. _Stegano: https://sr.ht/~cedric/stegano
+.. _Stegano: https://github.com/cedricbonhomme/Stegano
 .. _`Pillow`: https://pypi.python.org/pypi/Pillow
 .. _`piexif`: https://pypi.python.org/pypi/piexif
 .. _steganography: http://en.wikipedia.org/wiki/Steganography
