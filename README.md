@@ -94,6 +94,15 @@ Contributions are welcome. If you want to contribute to Stegano I highly
 recommend you to install it in a Python virtual environment with poetry.
 
 
+## Donations
+
+If you wish and if you like Stegano, you can donate:
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cedricbonhomme)](https://github.com/sponsors/cedricbonhomme)
+
+Thank you !
+
+
 ## License
 
 This software is licensed under
