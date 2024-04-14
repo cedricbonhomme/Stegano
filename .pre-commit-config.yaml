@@ -29,7 +29,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: tests/.*
-  - repo: https://github.com/trailofbits/pip-audit
-    rev: v2.6.2
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.7.2
     hooks:
       -   id: pip-audit
