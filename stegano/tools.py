@@ -175,13 +175,19 @@ class Hider:
 
 
 class Revealer:
-    def __init__(self, encoded_image: Union[str, IO[bytes]], encoding: str = "UTF-8"):
+    def __init__(
+        self,
+        encoded_image: Union[str, IO[bytes]],
+        encoding: str = "UTF-8",
+        close_file: bool = True,
+    ):
         self.encoded_image = open_image(encoded_image)
         self._encoding_length = ENCODINGS[encoding]
         self._buff, self._count = 0, 0
         self._bitab: List[str] = []
         self._limit: Union[None, int] = None
         self.secret_message = ""
+        self.close_file = close_file
 
     def decode_pixel(self, coordinate: tuple):
         # pixel = [r, g, b] or [r,g,b,a]
@@ -208,7 +214,8 @@ class Revealer:
             self.secret_message = "".join(self._bitab)[
                 len(str(self._limit)) + 1 :  # noqa: E203
             ]
-            self.encoded_image.close()
+            if self.close_file:
+                self.encoded_image.close()
 
             return True
 

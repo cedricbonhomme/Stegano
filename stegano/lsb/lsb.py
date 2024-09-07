@@ -67,9 +67,10 @@ def reveal(
     generator: Union[None, Iterator[int]] = None,
     shift: int = 0,
     encoding: str = "UTF-8",
+    close_file: bool = True,
 ):
     """Find a message in an image (with the LSB technique)."""
-    revealer = tools.Revealer(encoded_image, encoding)
+    revealer = tools.Revealer(encoded_image, encoding, close_file)
     width = revealer.encoded_image.width
 
     if not generator:

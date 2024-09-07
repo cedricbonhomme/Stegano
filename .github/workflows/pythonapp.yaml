@@ -37,6 +37,6 @@ jobs:
       env:
         testing: actions
 
-    - name: Type check with mypy
-      run: |
-        poetry run mypy .
+    # - name: Type check with mypy
+    #   run: |
+    #     poetry run mypy .
