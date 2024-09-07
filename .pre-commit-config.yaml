@@ -30,6 +30,6 @@ repos:
       - id: end-of-file-fixer
         exclude: tests/.*
   - repo: https://github.com/pypa/pip-audit
-    rev: v2.7.2
+    rev: v2.7.3
     hooks:
       -   id: pip-audit
