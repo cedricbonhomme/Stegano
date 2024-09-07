@@ -1,6 +1,12 @@
 ## Release History
 
 
+### 0.11.4 (2024-09-07)
+
+* Added a parameter, close_file, to lsb.reveal in order to
+  specify if the file must be closed at the end of the processing.
+
+
 ### 0.11.3 (2024-01-02)
 
 * Stegano now supports Python 3.12. Support of Python 3.8 has been removed.
