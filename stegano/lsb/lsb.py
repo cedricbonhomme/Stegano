@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2024 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2025 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #

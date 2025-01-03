@@ -16,5 +16,6 @@
 - panni <panni@fragstore.net>
 - Peter Justin <peter@peterjustin.me>
 - thundersparkf - https://github.com/thundersparkf
+- Mickaël Schoentgen <mschoentgen@nuxeo.com>
 
 And thank you to the testers!
