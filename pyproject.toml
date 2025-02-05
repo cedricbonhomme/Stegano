@@ -15,7 +15,7 @@ readme = "README.md"
 keywords = ["steganography", "security", "stegano"]
 dynamic = ["classifiers"]
 
-requires-python = "^3.10"
+requires-python = ">=3.10,<4.0"
 dependencies = [
     "pillow (>=9.5,<11.0)",
     "piexif (>=1.1.3)",
