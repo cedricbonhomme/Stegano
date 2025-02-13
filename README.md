@@ -1,6 +1,5 @@
 # Stegano
 
-[![builds.sr.ht status](https://builds.sr.ht/~cedric/stegano.svg)](https://builds.sr.ht/~cedric/stegano)
 [![Workflow](https://github.com/cedricbonhomme/Stegano/workflows/Python%20application/badge.svg?style=flat-square)](https://github.com/cedricbonhomme/Stegano/actions?query=workflow%3A%22Python+application%22)
 
 [Stegano](https://github.com/cedricbonhomme/Stegano), a pure Python Steganography
