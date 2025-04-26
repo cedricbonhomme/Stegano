@@ -1,10 +1,17 @@
 ## Release History
 
+### 1.0.0 (2025-04-26)
+
+- Updated dependencies.
+- Improved the packaging configuration.
+- Fixed typing errors.
+
+
 ### 0.11.5 (2025-02-13)
 
-- Updated dependencies
+- Updated dependencies.
 - Aligned pyproject.toml with the standard specification.
-- Publishing to PyPI using a Trusted Publisher
+- Publishing to PyPI using a Trusted Publisher.
 
 
 ### 0.11.4 (2024-09-07)

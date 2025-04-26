@@ -34,7 +34,10 @@ def steganalyse(img: Image.Image) -> Image.Image:
     width, height = img.size
     for row in range(height):
         for col in range(width):
-            r, g, b = img.getpixel((col, row))[0:3]
+            if pixel := img.getpixel((col, row)):
+                r, g, b = pixel[0:3]
+            else:
+                raise Exception("Error during steganlysis.")
             if r % 2 == 0:
                 r = 0
             else:

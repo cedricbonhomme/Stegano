@@ -6,10 +6,6 @@
 Presentation
 ============
 
-.. image:: https://builds.sr.ht/~cedric/stegano.svg
-    :target: https://builds.sr.ht/~cedric/stegano
-
-
 Stegano_ is a pure Python steganography_ module.
 
 Steganography is the art and science of writing hidden messages in such a way

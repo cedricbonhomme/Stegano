@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "stegano"
-version = "0.11.5"
+version = "1.0.0"
 description = "A pure Python Steganography module."
 authors = [
     {name = "Cédric Bonhomme", email= "cedric@cedricbonhomme.org"}
@@ -49,7 +49,12 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+]
+packages = [
+    { include = "bin" },
+    { include = "stegano" }
 ]
 include = [
     "README.md",

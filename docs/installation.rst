@@ -13,6 +13,3 @@ If you want to retrieve the source code (with the unit tests):
 .. code-block:: bash
 
     $ git clone https://github.com/cedricbonhomme/Stegano
-
-.. image:: https://builds.sr.ht/~cedric/stegano.svg
-    :target: https://builds.sr.ht/~cedric/stegano
