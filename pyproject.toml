@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "stegano"
-version = "1.0.0"
+version = "1.0.1"
 description = "A pure Python Steganography module."
 authors = [
     {name = "Cédric Bonhomme", email= "cedric@cedricbonhomme.org"}
@@ -31,10 +31,10 @@ Repository = "https://github.com/cedricbonhomme/Stegano"
 Documentation = "https://stegano.readthedocs.io"
 
 [project.scripts]
-stegano-lsb = "bin.lsb:main"
-stegano-red = "bin.red:main"
-stegano-steganalysis-parity = "bin.parity:main"
-stegano-steganalysis-statistics = "bin.statistics:main"
+stegano-lsb = "stegano.console.lsb:main"
+stegano-red = "stegano.console.red:main"
+stegano-steganalysis-parity = "stegano.console.parity:main"
+stegano-steganalysis-statistics = "stegano.console.statistics:main"
 
 
 [tool.poetry]
@@ -52,16 +52,11 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
 ]
-packages = [
-    { include = "bin" },
-    { include = "stegano" }
-]
 include = [
     "README.md",
     "COPYING",
     "CHANGELOG.md",
     "docs/**/*",
-    "bin/*"
 ]
 
 

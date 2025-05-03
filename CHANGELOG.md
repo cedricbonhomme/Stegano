@@ -1,5 +1,10 @@
 ## Release History
 
+### 1.0.1 (2025-05-03)
+
+- Improved the packaging configuration for the command line (stegano.console).
+
+
 ### 1.0.0 (2025-04-26)
 
 - Updated dependencies.
