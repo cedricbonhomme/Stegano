@@ -690,14 +690,14 @@ xmp = ["defusedxml"]
 
 [[package]]
 name = "platformdirs"
-version = "4.3.7"
+version = "4.3.8"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "platformdirs-4.3.7-py3-none-any.whl", hash = "sha256:a03875334331946f13c549dbd8f4bac7a13a50a895a0eb1e8c6a8ace80d40a94"},
-    {file = "platformdirs-4.3.7.tar.gz", hash = "sha256:eb437d586b6a0986388f0d6f74aa0cde27b48d0e3d66843640bfb6bdcdb6e351"},
+    {file = "platformdirs-4.3.8-py3-none-any.whl", hash = "sha256:ff7059bb7eb1179e2685604f4aaf157cfd9535242bd23742eadc3c13542139b4"},
+    {file = "platformdirs-4.3.8.tar.gz", hash = "sha256:3d512d96e16bcb959a814c9f348431070822a6496326a4be0911c40b5a74c2bc"},
 ]
 
 [package.extras]
@@ -850,14 +850,14 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "snowballstemmer"
-version = "2.2.0"
-description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
+version = "3.0.1"
+description = "This package provides 32 stemmers for 30 languages generated from Snowball algorithms."
 optional = false
-python-versions = "*"
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*"
 groups = ["dev"]
 files = [
-    {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},
-    {file = "snowballstemmer-2.2.0.tar.gz", hash = "sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1"},
+    {file = "snowballstemmer-3.0.1-py3-none-any.whl", hash = "sha256:6cd7b3897da8d6c9ffb968a6781fa6532dce9c3618a4b127d920dab764a19064"},
+    {file = "snowballstemmer-3.0.1.tar.gz", hash = "sha256:6d5eeeec8e9f84d4d56b847692bacf79bc2c8e90c7f80ca4444ff8b6f2e52895"},
 ]
 
 [[package]]
@@ -1070,14 +1070,14 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "virtualenv"
-version = "20.30.0"
+version = "20.31.2"
 description = "Virtual Python Environment builder"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "virtualenv-20.30.0-py3-none-any.whl", hash = "sha256:e34302959180fca3af42d1800df014b35019490b119eba981af27f2fa486e5d6"},
-    {file = "virtualenv-20.30.0.tar.gz", hash = "sha256:800863162bcaa5450a6e4d721049730e7f2dae07720e0902b0e4040bd6f9ada8"},
+    {file = "virtualenv-20.31.2-py3-none-any.whl", hash = "sha256:36efd0d9650ee985f0cad72065001e66d49a6f24eb44d98980f630686243cf11"},
+    {file = "virtualenv-20.31.2.tar.gz", hash = "sha256:e10c0a9d02835e592521be48b332b6caee6887f332c111aa79a09b9e79efc2af"},
 ]
 
 [package.dependencies]
