@@ -40,7 +40,7 @@ def hide(
     from zlib import compress
 
     if secret_file is not None:
-        with open(secret_file) as f:
+        with open(secret_file, "rb") as f:
             secret_message = f.read()
 
     try:
