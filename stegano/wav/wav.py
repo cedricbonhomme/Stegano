@@ -41,8 +41,20 @@ def hide(input_file: Union[str, IO[bytes]], message: str, output_file: Union[str
 
     output = wave.open(output_file, "wb")
     with wave.open(input_file, "rb") as input:
-        pass
-        # TODO
+        nchannels, sampwidth, framerate, nframes, comptype, _ = input.getparams()
+        assert comptype == "NONE", "only uncompressed files are supported"
+
+        nsamples = nchannels * nframes
+        
+        # TODO get message bits and check length
+
+        output.setnchannels(nchannels)
+        output.setsampwidth(sampwidth)
+        output.setframerate(framerate)
+
+        # TODO encode message length + message
+        frames = input.readframes(nframes * nchannels)
+        output.writeframes(frames)
 
 
 def reveal(input_file: Union[str, IO[bytes]]):
