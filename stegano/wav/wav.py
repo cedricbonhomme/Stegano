@@ -36,7 +36,7 @@ def hide(
     """
     Hide a message (string) in a .wav audio file.
 
-    Use the lsb of each sample to hide the message string characters as ASCII values.
+    Use the lsb of each PCM encoded sample to hide the message string characters as ASCII values.
     The first eight bits are used for message_length of the string.
     """
     message_length = len(message)
@@ -45,6 +45,7 @@ def hide(
 
     output = wave.open(output_file, "wb")
     with wave.open(input_file, "rb") as input:
+        # get .wav params
         nchannels, sampwidth, framerate, nframes, comptype, _ = input.getparams()
         assert comptype == "NONE", "only uncompressed files are supported"
 
@@ -53,10 +54,12 @@ def hide(
         message_bits = f"{message_length:08b}" + "".join(tools.a2bits_list(message, encoding))
         assert len(message_bits) <= nsamples, "message is too long"
 
+        # copy over .wav params to output
         output.setnchannels(nchannels)
         output.setsampwidth(sampwidth)
         output.setframerate(framerate)
 
+        # encode message in frames
         frames = bytearray(input.readframes(nsamples))
         for i in range(nsamples):
             if i < len(message_bits):
@@ -65,6 +68,7 @@ def hide(
                 else:
                     frames[i] = frames[i] | 1
 
+        # write out
         output.writeframes(frames)
 
 
@@ -72,7 +76,7 @@ def reveal(input_file: Union[str, IO[bytes]], encoding: str = "UTF-8"):
     """
     Find a message in an image.
 
-    Check the lsb of each sample for hidden message characters (ASCII values).
+    Check the lsb of each PCM encoded sample for hidden message characters (ASCII values).
     The first eight bits are used for message_length of the string.
     """
     message = ""
