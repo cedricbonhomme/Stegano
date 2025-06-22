@@ -23,6 +23,8 @@ __date__ = "$Date: 2010/10/01 $"
 __revision__ = "$Date: 2019/06/06 $"
 __license__ = "GPLv3"
 
+from typing import cast
+
 from PIL import Image
 
 
@@ -34,7 +36,7 @@ def steganalyse(img: Image.Image) -> Image.Image:
     width, height = img.size
     for row in range(height):
         for col in range(width):
-            if pixel := img.getpixel((col, row)):
+            if pixel := cast(tuple[int, int, int], img.getpixel((col, row))):
                 r, g, b = pixel[0:3]
             else:
                 raise Exception("Error during steganlysis.")

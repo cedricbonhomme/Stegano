@@ -73,7 +73,7 @@ optional = true
 
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.13"
 check_untyped_defs = true
 ignore_errors = false
 ignore_missing_imports = true
@@ -87,7 +87,12 @@ warn_unreachable = true
 show_error_context = true
 pretty = true
 
-exclude = "build|dist|docs|stegano.egg-info"
+exclude = "build|dist|docs"
+
 
 [tool.isort]
 profile = "black"
+
+
+[tool.flake8]
+ignore = ["E203"]

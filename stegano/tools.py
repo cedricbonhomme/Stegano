@@ -26,7 +26,7 @@ __license__ = "GPLv3"
 import base64
 import itertools
 from functools import reduce
-from typing import IO, List, Union
+from typing import IO, List, Union, cast
 
 from PIL import Image
 
@@ -101,11 +101,12 @@ def base642binary(b64_fname: str) -> bytes:
     return base64.b64decode(b64_fname)
 
 
-def open_image(fname_or_instance: Union[str, IO[bytes]]):
-    """Opens a Image and returns it.
+def open_image(fname_or_instance: Union[str, IO[bytes], Image.Image]) -> Image.Image:
+    """Opens an image and returns it.
 
-    :param fname_or_instance: Can either be the location of the image as a
-                              string or the Image.Image instance itself.
+    :param fname_or_instance: Can be a path to the image (str),
+                              a file-like object (IO[bytes]),
+                              or a PIL Image instance.
     """
     if isinstance(fname_or_instance, Image.Image):
         return fname_or_instance
@@ -157,8 +158,15 @@ class Hider:
         return True if self._index + 3 <= self._len_message_bits else False
 
     def encode_pixel(self, coordinate: tuple):
-        # Get the colour component.
-        r, g, b, *a = self.encoded_image.getpixel(coordinate)
+        # Determine expected pixel format based on mode
+        if self.encoded_image.mode == "RGBA":
+            r, g, b, *a = cast(
+                tuple[int, int, int, int], self.encoded_image.getpixel(coordinate)
+            )
+        else:
+            r, g, b, *a = cast(
+                tuple[int, int, int], self.encoded_image.getpixel(coordinate)
+            )
 
         # Change the Least Significant Bit of each colour component.
         r = setlsb(r, self._message_bits[self._index])
@@ -190,8 +198,11 @@ class Revealer:
         self.close_file = close_file
 
     def decode_pixel(self, coordinate: tuple):
-        # pixel = [r, g, b] or [r,g,b,a]
-        pixel = self.encoded_image.getpixel(coordinate)
+        # Tell mypy that this will be a 3- or 4-tuple of ints
+        pixel = cast(
+            tuple[int, int, int] | tuple[int, int, int, int],
+            self.encoded_image.getpixel(coordinate),
+        )
 
         if self.encoded_image.mode == "RGBA":
             pixel = pixel[:3]  # ignore the alpha
@@ -211,13 +222,9 @@ class Revealer:
                         raise IndexError("Impossible to detect message.")
 
         if len(self._bitab) - len(str(self._limit)) - 1 == self._limit:
-            self.secret_message = "".join(self._bitab)[
-                len(str(self._limit)) + 1 :  # noqa: E203
-            ]
+            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1 :]
             if self.close_file:
                 self.encoded_image.close()
-
             return True
-
         else:
             return False

@@ -23,7 +23,7 @@ __date__ = "$Date: 2010/10/01 $"
 __revision__ = "$Date: 2017/02/06 $"
 __license__ = "GPLv3"
 
-from typing import IO, Union
+from typing import IO, Union, cast
 
 from stegano import tools
 
@@ -40,13 +40,17 @@ def hide(input_image: Union[str, IO[bytes]], message: str):
     assert message_length != 0, "message message_length is zero"
     assert message_length < 255, "message is too long"
     img = tools.open_image(input_image)
+    # Ensure image mode is RGB
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     # Use a copy of image to hide the text in
     encoded = img.copy()
     width, height = img.size
     index = 0
     for row in range(height):
         for col in range(width):
-            (r, g, b) = img.getpixel((col, row))
+            pixel = cast(tuple[int, int, int], img.getpixel((col, row)))
+            r, g, b = pixel
             # first value is message_length of message
             if row == 0 and col == 0 and index < message_length:
                 asc = message_length
@@ -70,12 +74,16 @@ def reveal(input_image: Union[str, IO[bytes]]):
     The red value of the first pixel is used for message_length of string.
     """
     img = tools.open_image(input_image)
+    # Ensure image mode is RGB
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     width, height = img.size
     message = ""
     index = 0
     for row in range(height):
         for col in range(width):
-            r, g, b = img.getpixel((col, row))
+            pixel = cast(tuple[int, int, int], img.getpixel((col, row)))
+            r, g, b = pixel
             # First pixel r value is length of message
             if row == 0 and col == 0:
                 message_length = r
