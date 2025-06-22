@@ -1,5 +1,12 @@
 ## Release History
 
+### 2.0.0 (2025-06-22)
+
+- Added functions for hiding/revealing messages in PCM encoded .wav files.
+  ([#54](https://github.com/cedricbonhomme/Stegano/pull/54))
+- Updated dependencies.
+
+
 ### 1.0.1 (2025-05-03)
 
 - Improved the packaging configuration for the command line (stegano.console).
