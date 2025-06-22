@@ -32,6 +32,7 @@ import argparse
 
 from stegano import tools
 
+
 def main():
     parser = argparse.ArgumentParser(prog="stegano-lsb")
     subparsers = parser.add_subparsers(
@@ -108,14 +109,13 @@ def main():
             input_file=arguments.input_audio_file,
             message=secret,
             encoding=arguments.encoding,
-            output_file=arguments.output_audio_file
+            output_file=arguments.output_audio_file,
         )
 
     elif arguments.command == "reveal":
         try:
             secret = wav.reveal(
-                encoded_wav=arguments.input_audio_file,
-                encoding=arguments.encoding
+                input_file=arguments.input_audio_file, encoding=arguments.encoding
             )
         except IndexError:
             print("Impossible to detect message.")
