@@ -7,7 +7,7 @@
 ## Contributors
 
 
-- AlexanderTreml - https://github.com/AlexanderTreml
+- Alexander Treml - https://github.com/AlexanderTreml
 - Adrien Cosson - https://cosson.io
 - Andrew Roberts <andy.roberts.uk@gmail.com>
 - Christophe Goessen - https://github.com/cgoessen
