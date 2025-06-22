@@ -25,13 +25,15 @@ __license__ = "GPLv3"
 
 import wave
 from typing import IO, Union
+
 from stegano import tools
 
+
 def hide(
-    input_file: Union[str, IO[bytes]], 
-    message: str, 
+    input_file: Union[str, IO[bytes]],
+    message: str,
     output_file: Union[str, IO[bytes]],
-    encoding: str = "UTF-8"
+    encoding: str = "UTF-8",
 ):
     """
     Hide a message (string) in a .wav audio file.
@@ -49,9 +51,11 @@ def hide(
         nchannels, sampwidth, framerate, nframes, comptype, _ = input.getparams()
         assert comptype == "NONE", "only uncompressed files are supported"
 
-        nsamples = nframes * nchannels 
-        
-        message_bits = f"{message_length:08b}" + "".join(tools.a2bits_list(message, encoding))
+        nsamples = nframes * nchannels
+
+        message_bits = f"{message_length:08b}" + "".join(
+            tools.a2bits_list(message, encoding)
+        )
         assert len(message_bits) <= nsamples, "message is too long"
 
         # copy over .wav params to output
@@ -100,6 +104,9 @@ def reveal(input_file: Union[str, IO[bytes]], encoding: str = "UTF-8"):
             message_bits += str(frames[i] & 1)
 
         # Convert bits to string
-        chars = [chr(int(message_bits[i:i+encoding_len], 2)) for i in range(0, len(message_bits), encoding_len)]
+        chars = [
+            chr(int(message_bits[i : i + encoding_len], 2))
+            for i in range(0, len(message_bits), encoding_len)
+        ]
         message = "".join(chars)
     return message
