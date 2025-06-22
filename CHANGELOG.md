@@ -4,6 +4,7 @@
 
 - Added functions for hiding/revealing messages in PCM encoded .wav files.
   ([#54](https://github.com/cedricbonhomme/Stegano/pull/54))
+- Improved typing.
 - Updated dependencies.
 
 
