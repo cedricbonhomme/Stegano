@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "stegano"
-version = "1.0.1"
+version = "2.0.0"
 description = "A pure Python Steganography module."
 authors = [
     {name = "Cédric Bonhomme", email= "cedric@cedricbonhomme.org"}
@@ -18,10 +18,10 @@ dynamic = ["classifiers"]
 
 requires-python = ">=3.10,<4.0"
 dependencies = [
-    "pillow (>=9.5,<11.0)",
+    "pillow (>=9.5,<12.0)",
     "piexif (>=1.1.3)",
     "crayons (>=0.4.0)",
-    "opencv-python (>=4.8.1.78)"
+    "opencv-python (>=4.11.0.86)"
 ]
 
 [project.urls]
