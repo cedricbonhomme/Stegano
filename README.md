@@ -110,6 +110,6 @@ Thank you !
 This software is licensed under
 [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-Copyright (C) 2010-2025 [Cédric Bonhomme](https://www.cedricbonhomme.org)
+Copyright (C) 2010-2026 [Cédric Bonhomme](https://www.cedricbonhomme.org)
 
 For more information, [the list of authors and contributors](CONTRIBUTORS.md) is available.

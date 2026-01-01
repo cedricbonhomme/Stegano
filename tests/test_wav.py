@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Stegano - Stegano is a pure Python steganography module.
-# Copyright (C) 2010-2025 Cédric Bonhomme - https://www.cedricbonhomme.org
+# Copyright (C) 2010-2026 Cédric Bonhomme - https://www.cedricbonhomme.org
 #
 # For more information : https://github.com/cedricbonhomme/Stegano
 #
@@ -40,7 +40,9 @@ class TestWav(unittest.TestCase):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
 
         for message in messages_to_hide:
-            wav.hide("./tests/sample-files/free-software-song.wav", message, "./audio.wav")
+            wav.hide(
+                "./tests/sample-files/free-software-song.wav", message, "./audio.wav"
+            )
             clear_message = wav.reveal("./audio.wav")
 
             self.assertEqual(message, clear_message)
@@ -49,7 +51,9 @@ class TestWav(unittest.TestCase):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
         with self.assertRaises(AssertionError):
-            wav.hide("./tests/sample-files/free-software-song.wav", message, "./audio.wav")
+            wav.hide(
+                "./tests/sample-files/free-software-song.wav", message, "./audio.wav"
+            )
 
     def tearDown(self):
         try:
