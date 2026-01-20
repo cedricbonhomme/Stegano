@@ -141,6 +141,10 @@ class Hider:
         self.encoded_image = image.copy()
         image.close()
 
+        # Pre-compute pixel access and mode for performance
+        self._is_rgba = self.encoded_image.mode == "RGBA"
+        self._pixels = self.encoded_image.load()
+
         message = str(message_length) + ":" + str(message)
         self._message_bits = "".join(a2bits_list(message, encoding))
         self._message_bits += "0" * ((3 - (len(self._message_bits) % 3)) % 3)
@@ -158,26 +162,24 @@ class Hider:
         return True if self._index + 3 <= self._len_message_bits else False
 
     def encode_pixel(self, coordinate: tuple):
-        # Determine expected pixel format based on mode
-        if self.encoded_image.mode == "RGBA":
-            r, g, b, *a = cast(
-                tuple[int, int, int, int], self.encoded_image.getpixel(coordinate)
-            )
+        # Use direct pixel access for performance
+        pixel = self._pixels[coordinate]
+
+        if self._is_rgba:
+            r, g, b, a = cast(tuple[int, int, int, int], pixel)
         else:
-            r, g, b, *a = cast(
-                tuple[int, int, int], self.encoded_image.getpixel(coordinate)
-            )
+            r, g, b = cast(tuple[int, int, int], pixel)
 
         # Change the Least Significant Bit of each colour component.
         r = setlsb(r, self._message_bits[self._index])
         g = setlsb(g, self._message_bits[self._index + 1])
         b = setlsb(b, self._message_bits[self._index + 2])
 
-        # Save the new pixel
-        if self.encoded_image.mode == "RGBA":
-            self.encoded_image.putpixel(coordinate, (r, g, b, *a))
+        # Save the new pixel using direct pixel access
+        if self._is_rgba:
+            self._pixels[coordinate] = (r, g, b, a)
         else:
-            self.encoded_image.putpixel(coordinate, (r, g, b))
+            self._pixels[coordinate] = (r, g, b)
 
         self._index += 3
 
@@ -194,17 +196,22 @@ class Revealer:
         self._buff, self._count = 0, 0
         self._bitab: List[str] = []
         self._limit: Union[None, int] = None
+        self._limit_str = ""  # Accumulator for length prefix to avoid O(n²) joins
         self.secret_message = ""
         self.close_file = close_file
 
+        # Pre-compute pixel access and mode for performance
+        self._is_rgba = self.encoded_image.mode == "RGBA"
+        self._pixels = self.encoded_image.load()
+
     def decode_pixel(self, coordinate: tuple):
-        # Tell mypy that this will be a 3- or 4-tuple of ints
+        # Use direct pixel access for performance
         pixel = cast(
             tuple[int, int, int] | tuple[int, int, int, int],
-            self.encoded_image.getpixel(coordinate),
+            self._pixels[coordinate],
         )
 
-        if self.encoded_image.mode == "RGBA":
+        if self._is_rgba:
             pixel = pixel[:3]  # ignore the alpha
 
         for color in pixel:
@@ -212,17 +219,23 @@ class Revealer:
             self._count += 1
 
             if self._count == self._encoding_length:
-                self._bitab.append(chr(self._buff))
+                char = chr(self._buff)
+                self._bitab.append(char)
                 self._buff, self._count = 0, 0
 
-                if self._bitab[-1] == ":" and self._limit is None:
-                    if "".join(self._bitab[:-1]).isdigit():
-                        self._limit = int("".join(self._bitab[:-1]))
+                # Accumulate length prefix incrementally to avoid O(n²) joins
+                if self._limit is None:
+                    if char == ":":
+                        if self._limit_str.isdigit():
+                            self._limit = int(self._limit_str)
+                        else:
+                            raise IndexError("Impossible to detect message.")
                     else:
-                        raise IndexError("Impossible to detect message.")
+                        self._limit_str += char
 
-        if len(self._bitab) - len(str(self._limit)) - 1 == self._limit:
-            self.secret_message = "".join(self._bitab)[len(str(self._limit)) + 1 :]
+        prefix_len = len(str(self._limit)) + 1
+        if len(self._bitab) - prefix_len == self._limit:
+            self.secret_message = "".join(self._bitab)[prefix_len:]
             if self.close_file:
                 self.encoded_image.close()
             return True
