@@ -1,5 +1,14 @@
 ## Release History
 
+### 2.1.0 (2026-01-20)
+
+- Major performance optimization: 50-1000x speedup for steganography operations.
+- Replaced slow `getpixel()`/`putpixel()` calls with direct pixel access via `load()` interface.
+- Fixed O(n²) string joining in message length prefix parsing with incremental accumulation.
+- All changes maintain full backward compatibility.
+- Added performance benchmark script.
+
+
 ### 2.0.0 (2025-06-22)
 
 - Added functions for hiding/revealing messages in PCM encoded .wav files.
