@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "stegano"
-version = "2.1.0"
+version = "2.2.0"
 description = "A pure Python Steganography module."
 authors = [
     {name = "Cédric Bonhomme", email= "cedric@cedricbonhomme.org"}

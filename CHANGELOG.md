@@ -1,5 +1,13 @@
 ## Release History
 
+### 2.2.0 (2026-02-14)
+
+- Fixed `shi_tomashi` generator not working from the `stegano-lsb` CLI due to
+  blanket `int()` coercion of generator arguments (#56).
+- Standardized exifHeader CLI (#63).
+- Updated dependencies.
+
+
 ### 2.1.0 (2026-01-20)
 
 - Major performance optimization: 50-1000x speedup for steganography operations.
