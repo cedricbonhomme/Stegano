@@ -38,6 +38,17 @@ import argparse
 from stegano import tools
 
 
+def _coerce_arg(value: str):
+    """Coerce a CLI string argument to int, float, or leave as str."""
+    try:
+        return int(value)
+    except ValueError:
+        try:
+            return float(value)
+        except ValueError:
+            return value
+
+
 class ValidateGenerator(argparse.Action):
     def __call__(self, parser, args, values, option_string=None):
         valid_generators = [
@@ -172,7 +183,7 @@ def main():
                     arguments.generator_function.append(size)
                 if len(arguments.generator_function) > 1:
                     generator = getattr(generators, arguments.generator_function[0])(
-                        *[int(e) for e in arguments.generator_function[1:]]
+                        *[_coerce_arg(e) for e in arguments.generator_function[1:]]
                     )
                 else:
                     generator = getattr(generators, arguments.generator_function[0])()
