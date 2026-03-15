@@ -1,5 +1,10 @@
 ## Release History
 
+### 2.3.0 (2026-03-15)
+
+- Updated dependencies, especially Pillow (version 12).
+
+
 ### 2.2.0 (2026-02-14)
 
 - Fixed `shi_tomashi` generator not working from the `stegano-lsb` CLI due to
