@@ -75,48 +75,39 @@ def reveal(input_image: Union[str, IO[bytes]]):
 
     Raises:
         ValueError: If the message length from the image exceeds the maximum
-            allowed length (254) or the available pixels.
+            allowed length (254) or exceeds the available pixels in the image.
     """
     img = tools.open_image(input_image)
-    # Ensure image mode is RGB
-    if img.mode != "RGB":
-        img = img.convert("RGB")
-    width, height = img.size
-    
-    # Maximum possible message length based on image size (excluding first pixel)
-    max_possible_length = (width * height) - 1
-    
-    message = ""
-    index = 0
-    message_length = 0
-    
-    for row in range(height):
-        for col in range(width):
-            pixel = cast(tuple[int, int, int], img.getpixel((col, row)))
-            r, g, b = pixel
-            # First pixel r value is length of message
-            if row == 0 and col == 0:
-                message_length = r
-                # Validate message length to prevent malicious input
-                if message_length > 254:
-                    img.close()
-                    raise ValueError(
-                        f"Invalid message length: {message_length} exceeds maximum (254)"
-                    )
-                if message_length > max_possible_length:
-                    img.close()
-                    raise ValueError(
-                        f"Invalid message length: {message_length} exceeds "
-                        f"available pixels ({max_possible_length})"
-                    )
-            elif index <= message_length:
-                # Validate character is in valid ASCII range
-                if r > 127:
-                    img.close()
-                    raise ValueError(
-                        f"Invalid character value at position {index}: {r}"
-                    )
-                message += chr(r)
-            index += 1
-    img.close()
+    try:
+        # Ensure image mode is RGB
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        width, height = img.size
+        max_possible_length = (width * height) - 1
+        message = ""
+        index = 0
+        message_length = 0
+
+        for row in range(height):
+            for col in range(width):
+                pixel = cast(tuple[int, int, int], img.getpixel((col, row)))
+                r, g, b = pixel
+                # First pixel r value is length of message
+                if row == 0 and col == 0:
+                    message_length = r
+                    # Validate message length to prevent malicious input
+                    if message_length > 254:
+                        raise ValueError(
+                            f"Invalid message length: {message_length} exceeds maximum (254)"
+                        )
+                    if message_length > max_possible_length:
+                        raise ValueError(
+                            f"Invalid message length: {message_length} exceeds "
+                            f"available pixels ({max_possible_length})"
+                        )
+                elif index <= message_length:
+                    message += chr(r)
+                index += 1
+    finally:
+        img.close()
     return message
