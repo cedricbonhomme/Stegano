@@ -52,15 +52,18 @@ def hide(input_image: Union[str, IO[bytes]], message: str):
             pixel = cast(tuple[int, int, int], img.getpixel((col, row)))
             r, g, b = pixel
             # first value is message_length of message
-            if row == 0 and col == 0 and index < message_length:
+            if row == 0 and col == 0:
                 asc = message_length
             elif index <= message_length:
                 c = message[index - 1]
                 asc = ord(c)
             else:
-                asc = r
+                break
             encoded.putpixel((col, row), (asc, g, b))
             index += 1
+        else:
+            continue
+        break
     img.close()
     return encoded
 
@@ -84,7 +87,7 @@ def reveal(input_image: Union[str, IO[bytes]]):
             img = img.convert("RGB")
         width, height = img.size
         max_possible_length = (width * height) - 1
-        message = ""
+        message_chars: list[str] = []
         index = 0
         message_length = 0
 
@@ -106,8 +109,13 @@ def reveal(input_image: Union[str, IO[bytes]]):
                             f"available pixels ({max_possible_length})"
                         )
                 elif index <= message_length:
-                    message += chr(r)
+                    message_chars.append(chr(r))
+                else:
+                    break
                 index += 1
+            else:
+                continue
+            break
     finally:
         img.close()
-    return message
+    return "".join(message_chars)
