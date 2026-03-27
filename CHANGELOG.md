@@ -1,5 +1,12 @@
 ## Release History
 
+### 2.4.0 (2026-03-27)
+
+- Added input validation for message length in the red channel `reveal()` function
+  ([#66](https://github.com/cedricbonhomme/Stegano/pull/66)).
+- Updated dependencies.
+
+
 ### 2.3.0 (2026-03-15)
 
 - Updated dependencies, especially Pillow (version 12).
