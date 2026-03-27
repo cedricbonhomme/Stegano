@@ -1,5 +1,13 @@
 ## Release History
 
+### 2.4.1 (2026-03-27)
+
+- Optimized red channel `hide()` and `reveal()` to stop iterating after the
+  message is fully written/read.
+- Replaced O(n²) string concatenation in red channel `reveal()` with list
+  accumulation.
+
+
 ### 2.4.0 (2026-03-27)
 
 - Added input validation for message length in the red channel `reveal()` function
