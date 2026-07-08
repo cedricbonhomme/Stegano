@@ -32,6 +32,7 @@ Documentation = "https://stegano.readthedocs.io"
 
 [project.scripts]
 stegano-lsb = "stegano.console.lsb:main"
+stegano-rdh = "stegano.console.rdh:main"
 stegano-red = "stegano.console.red:main"
 stegano-steganalysis-parity = "stegano.console.parity:main"
 stegano-steganalysis-statistics = "stegano.console.statistics:main"

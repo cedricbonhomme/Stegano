@@ -8,6 +8,7 @@
 
 
 - Alexander Treml - https://github.com/AlexanderTreml
+- Eesh Saxena - https://github.com/eeshsaxena
 - Adrien Cosson - https://cosson.io
 - Andrew Roberts <andy.roberts.uk@gmail.com>
 - Christophe Goessen - https://github.com/cgoessen
