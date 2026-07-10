@@ -104,6 +104,8 @@ class TestHistogramShifting(unittest.TestCase):
     def test_unsupported_mode_raises(self):
         with self.assertRaises(ValueError):
             rdh.hide(Image.new("CMYK", (64, 64)), "hi")
+        with self.assertRaises(ValueError):
+            rdh.capacity(Image.new("CMYK", (64, 64)))
 
     def test_saturated_histogram_raises(self):
         # An image whose payload region uses every value in 0-255 has no zero

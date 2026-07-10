@@ -165,12 +165,20 @@ def _extract_from_payload(
     return bits, restored
 
 
+def _check_mode(image: Image.Image) -> None:
+    if image.mode not in ("L", "RGB", "RGBA"):
+        raise ValueError(
+            f"Unsupported image mode {image.mode!r}; use 'L', 'RGB' or 'RGBA'."
+        )
+
+
 def capacity(image: Union[str, IO[bytes], Image.Image]) -> int:
     """Return the maximum message size, in bytes, for ``image``.
 
     This is the size of the histogram peak minus the fixed header overhead.
     """
     img = tools.open_image(image)
+    _check_mode(img)
     samples = _flatten(img)
     payload = samples[_HEADER_BITS:]
     if not payload:
@@ -191,10 +199,7 @@ def hide(
     recovered exactly with :func:`recover`.
     """
     img = tools.open_image(image)
-    if img.mode not in ("L", "RGB", "RGBA"):
-        raise ValueError(
-            f"Unsupported image mode {img.mode!r}; use 'L', 'RGB' or 'RGBA'."
-        )
+    _check_mode(img)
     if encoding == "UTF-8" and any(ord(char) > 255 for char in message):
         raise ValueError(
             "The message contains characters that do not fit in one byte "
