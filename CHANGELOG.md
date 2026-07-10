@@ -1,11 +1,16 @@
 ## Release History
 
-### Unreleased
+### 2.5.0 (2026-07-10)
 
 - Added a reversible data hiding technique based on histogram shifting
   (`stegano.rdh`), with a `stegano-rdh` command line tool. Unlike LSB, the
   original cover image can be recovered exactly after the message is
-  extracted.
+  extracted. Implements the method of Z. Ni, Y.-Q. Shi, N. Ansari and W. Su,
+  "Reversible data hiding," IEEE Transactions on Circuits and Systems for
+  Video Technology, vol. 16, no. 3, pp. 354-362, 2006
+  ([doi:10.1109/TCSVT.2006.869964](https://doi.org/10.1109/TCSVT.2006.869964)).
+  Thanks to Eesh Saxena
+  ([#71](https://github.com/cedricbonhomme/Stegano/pull/71)).
 
 
 ### 2.4.1 (2026-03-27)
