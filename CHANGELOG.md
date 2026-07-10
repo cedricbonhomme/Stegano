@@ -1,5 +1,13 @@
 ## Release History
 
+### Unreleased
+
+- Added a reversible data hiding technique based on histogram shifting
+  (`stegano.rdh`), with a `stegano-rdh` command line tool. Unlike LSB, the
+  original cover image can be recovered exactly after the message is
+  extracted.
+
+
 ### 2.4.1 (2026-03-27)
 
 - Optimized red channel `hide()` and `reveal()` to stop iterating after the

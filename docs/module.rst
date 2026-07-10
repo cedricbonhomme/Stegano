@@ -105,6 +105,37 @@ Sets are used in order to select the pixels where the message will be hidden.
 
 
 
+Reversible data hiding (histogram shifting)
+-------------------------------------------
+
+Unlike the LSB technique, histogram shifting is *reversible*: once the message
+has been extracted, the original cover image can be reconstructed
+pixel-for-pixel with ``recover()``. It implements the method of Ni et al.,
+*Reversible data hiding*, IEEE TCSVT, 2006.
+
+.. code-block:: python
+
+    Python 3.11.0 (main, Oct 31 2022, 15:15:22) [GCC 12.2.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> from stegano import rdh
+    >>> secret = rdh.hide("./tests/sample-files/Lenna-grayscale.png", "Hello world!")
+    >>> secret.save("./Lenna-secret.png")
+    >>> print(rdh.reveal("./Lenna-secret.png"))
+    Hello world!
+
+    # The original cover is recovered exactly.
+    >>> from PIL import Image
+    >>> original = Image.open("./tests/sample-files/Lenna-grayscale.png").convert("L")
+    >>> recovered = rdh.recover("./Lenna-secret.png")
+    >>> recovered.tobytes() == original.tobytes()
+    True
+
+    # How many bytes fit in a given cover.
+    >>> rdh.capacity("./tests/sample-files/Lenna-grayscale.png")
+    303
+
+
+
 Description field of the image
 ------------------------------
 

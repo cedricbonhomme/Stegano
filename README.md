@@ -49,6 +49,18 @@ appropriate steganography technique. For example:
 >>> clear_message = lsb.reveal("./Lenna-secret.png")
 ```
 
+For *reversible* data hiding (the original cover can be restored exactly after
+the message is extracted), use the histogram-shifting technique:
+
+```python
+>>> from stegano import rdh
+>>> secret = rdh.hide("./tests/sample-files/Lenna-grayscale.png", "Hello World")
+>>> secret.save("./Lenna-secret.png")
+>>>
+>>> clear_message = rdh.reveal("./Lenna-secret.png")
+>>> cover = rdh.recover("./Lenna-secret.png")  # restores the original image
+```
+
 
 ## Use Stegano as a command line tool
 
@@ -58,6 +70,15 @@ appropriate steganography technique. For example:
 $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m "Secret Message" -o Lena1.png
 $ stegano-lsb reveal -i Lena1.png
 Secret Message
+```
+
+### Reversibly hide a message and recover the cover
+
+```bash
+$ stegano-rdh hide -i ./tests/sample-files/Lenna-grayscale.png -m "Secret Message" -o stego.png
+$ stegano-rdh reveal -i stego.png
+Secret Message
+$ stegano-rdh recover -i stego.png -o cover.png   # cover.png == the original image
 ```
 
 

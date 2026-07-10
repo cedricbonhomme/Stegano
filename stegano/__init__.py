@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 
-from . import exifHeader, lsb, red, steganalysis
+from . import exifHeader, lsb, rdh, red, steganalysis
 
-__all__ = ["red", "exifHeader", "lsb", "steganalysis"]
+__all__ = ["red", "exifHeader", "lsb", "rdh", "steganalysis"]
