@@ -47,6 +47,18 @@ class TestHistogramShifting(unittest.TestCase):
         stego.save("./rdh-stego.png")
         self.assertEqual(message, rdh.reveal("./rdh-stego.png"))
 
+    def test_hide_and_reveal_utf32le(self):
+        message = "héllo €"
+        stego = rdh.hide(GRAYSCALE, message, "UTF-32LE")
+        stego.save("./rdh-stego.png")
+        self.assertEqual(message, rdh.reveal("./rdh-stego.png", "UTF-32LE"))
+
+    def test_wide_characters_rejected_with_utf8(self):
+        # Characters above U+00FF do not fit in the 8 bits per character of
+        # the UTF-8 encoding and would be silently corrupted.
+        with self.assertRaises(ValueError):
+            rdh.hide(GRAYSCALE, "héllo €")
+
     def test_cover_is_recovered_exactly_grayscale(self):
         # The defining property of reversible data hiding: after extraction
         # the original cover is restored pixel-for-pixel.

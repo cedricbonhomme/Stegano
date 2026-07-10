@@ -195,6 +195,11 @@ def hide(
         raise ValueError(
             f"Unsupported image mode {img.mode!r}; use 'L', 'RGB' or 'RGBA'."
         )
+    if encoding == "UTF-8" and any(ord(char) > 255 for char in message):
+        raise ValueError(
+            "The message contains characters that do not fit in one byte "
+            "with the UTF-8 encoding; use the UTF-32LE encoding instead."
+        )
 
     samples = _flatten(img)
     if len(samples) <= _HEADER_BITS:
