@@ -13,6 +13,18 @@
   pure ASCII text with the UTF-8 encoding (that case is bit-identical).
   Non-ASCII UTF-8 messages and all UTF-32LE messages use a different bit
   layout and must be hidden again with the new version.
+- Fixed the same Unicode corruption in the wav module: the message is now
+  embedded as its encoded bytes, and the 8-bit length prefix stores the
+  length of the message in bytes (up to 255) instead of characters.
+- Fixed the wav module modifying the least significant bit of every *byte*
+  of the frame data instead of every sample. On 16-bit PCM carriers this
+  changed sample amplitudes by up to ±257 (clearly audible and trivially
+  detectable); samples now change by at most ±1.
+- **Breaking change**: because of the two fixes above, the wav bit layout
+  changed as well. Messages hidden in WAV files with Stegano <= 2.5.0 can
+  only be revealed by this version if the message is pure ASCII with the
+  UTF-8 encoding *and* the carrier uses 8-bit samples; anything else must
+  be hidden again with the new version.
 
 
 ### 2.5.0 (2026-07-10)
