@@ -22,8 +22,10 @@ __version__ = "$Revision: 0.1 $"
 __date__ = "$Date: 2016/05/19 $"
 __license__ = "GPLv3"
 
+import array
 import os
 import unittest
+import wave
 
 from stegano import wav
 
@@ -47,9 +49,73 @@ class TestWav(unittest.TestCase):
 
             self.assertEqual(message, clear_message)
 
+    def test_hide_and_reveal_UTF8_unicode(self):
+        messages_to_hide = ["héllo wörld 🔥", "🍕🍕🍕", "café crème"]
+
+        for message in messages_to_hide:
+            wav.hide(
+                "./tests/sample-files/free-software-song.wav", message, "./audio.wav"
+            )
+            clear_message = wav.reveal("./audio.wav")
+
+            self.assertEqual(message, clear_message)
+
+    def test_hide_and_reveal_UTF32LE(self):
+        message = "I love 🍕 and 🍫!"
+        wav.hide(
+            "./tests/sample-files/free-software-song.wav",
+            message,
+            "./audio.wav",
+            encoding="UTF-32LE",
+        )
+        clear_message = wav.reveal("./audio.wav", encoding="UTF-32LE")
+
+        self.assertEqual(message, clear_message)
+
+    def test_sample_distortion(self):
+        """
+        Hiding a message must only change the least significant bit of the
+        samples: on a 16-bit carrier every sample may change by at most 1.
+        """
+        wav.hide(
+            "./tests/sample-files/free-software-song.wav",
+            "Hello World!",
+            "./audio.wav",
+        )
+
+        with wave.open("./tests/sample-files/free-software-song.wav", "rb") as f:
+            original = array.array("h", f.readframes(f.getnframes()))
+        with wave.open("./audio.wav", "rb") as f:
+            encoded = array.array("h", f.readframes(f.getnframes()))
+
+        max_delta = max(abs(a - b) for a, b in zip(original, encoded))
+        self.assertLessEqual(max_delta, 1)
+
+    def test_with_unsupported_encoding(self):
+        with self.assertRaises(ValueError):
+            wav.hide(
+                "./tests/sample-files/free-software-song.wav",
+                "Hello",
+                "./audio.wav",
+                encoding="latin-1",
+            )
+        with self.assertRaises(ValueError):
+            wav.reveal(
+                "./tests/sample-files/free-software-song.wav", encoding="latin-1"
+            )
+
     def test_with_too_long_message(self):
         with open("./tests/sample-files/lorem_ipsum.txt") as f:
             message = f.read()
+        with self.assertRaises(AssertionError):
+            wav.hide(
+                "./tests/sample-files/free-software-song.wav", message, "./audio.wav"
+            )
+
+    def test_with_message_over_byte_limit(self):
+        # 64 four-byte characters exceed the 255-byte capacity of the
+        # 8-bit length prefix even though the character count is small.
+        message = "🔥" * 64
         with self.assertRaises(AssertionError):
             wav.hide(
                 "./tests/sample-files/free-software-song.wav", message, "./audio.wav"

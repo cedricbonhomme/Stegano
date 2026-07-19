@@ -124,6 +124,9 @@ class Hider:
     ):
         self._index = 0
 
+        if encoding not in ENCODINGS:
+            raise ValueError(f"Unsupported encoding: {encoding}")
+
         message_length = len(message)
         assert message_length != 0, "message length is zero"
 
@@ -145,8 +148,13 @@ class Hider:
         self._is_rgba = self.encoded_image.mode == "RGBA"
         self._pixels = self.encoded_image.load()
 
-        message = str(message_length) + ":" + str(message)
-        self._message_bits = "".join(a2bits_list(message, encoding))
+        # The payload is the byte-length prefix "<n>:" followed by the
+        # message encoded to bytes, 8 bits per byte.
+        message_bytes = message.encode(encoding)
+        prefix_bytes = (str(len(message_bytes)) + ":").encode("ascii")
+        self._message_bits = "".join(
+            bin(byte)[2:].rjust(8, "0") for byte in prefix_bytes + message_bytes
+        )
         self._message_bits += "0" * ((3 - (len(self._message_bits) % 3)) % 3)
 
         width, height = self.encoded_image.size
@@ -155,7 +163,8 @@ class Hider:
 
         if self._len_message_bits > npixels * 3:
             raise Exception(
-                f"The message you want to hide is too long: {message_length}"
+                f"The message you want to hide is too long: "
+                f"{len(message_bytes)} bytes"
             )
 
     def encode_another_pixel(self):
@@ -191,10 +200,13 @@ class Revealer:
         encoding: str = "UTF-8",
         close_file: bool = True,
     ):
+        if encoding not in ENCODINGS:
+            raise ValueError(f"Unsupported encoding: {encoding}")
+
         self.encoded_image = open_image(encoded_image)
-        self._encoding_length = ENCODINGS[encoding]
+        self._encoding = encoding
         self._buff, self._count = 0, 0
-        self._bitab: List[str] = []
+        self._bitab: List[int] = []
         self._limit: Union[None, int] = None
         self._limit_str = ""  # Accumulator for length prefix to avoid O(n²) joins
         self.secret_message = ""
@@ -215,27 +227,32 @@ class Revealer:
             pixel = pixel[:3]  # ignore the alpha
 
         for color in pixel:
-            self._buff += (color & 1) << (self._encoding_length - 1 - self._count)
+            self._buff += (color & 1) << (7 - self._count)
             self._count += 1
 
-            if self._count == self._encoding_length:
-                char = chr(self._buff)
-                self._bitab.append(char)
+            if self._count == 8:
+                byte = self._buff
+                self._bitab.append(byte)
                 self._buff, self._count = 0, 0
 
                 # Accumulate length prefix incrementally to avoid O(n²) joins
                 if self._limit is None:
-                    if char == ":":
+                    if byte == ord(":"):
                         if self._limit_str.isdigit():
                             self._limit = int(self._limit_str)
                         else:
                             raise IndexError("Impossible to detect message.")
                     else:
-                        self._limit_str += char
+                        self._limit_str += chr(byte)
 
         prefix_len = len(str(self._limit)) + 1
         if len(self._bitab) - prefix_len == self._limit:
-            self.secret_message = "".join(self._bitab)[prefix_len:]
+            try:
+                self.secret_message = bytes(self._bitab[prefix_len:]).decode(
+                    self._encoding
+                )
+            except UnicodeDecodeError as exc:
+                raise IndexError("Impossible to detect message.") from exc
             if self.close_file:
                 self.encoded_image.close()
             return True
