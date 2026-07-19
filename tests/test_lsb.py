@@ -145,6 +145,53 @@ class TestLSB(unittest.TestCase):
         )
         self.assertEqual(messages_to_hide, clear_message)
 
+    def test_hide_and_reveal_UTF8_unicode(self):
+        messages_to_hide = ["héllo wörld 🔥", "🍕🍕🍕", "café crème", "こんにちは"]
+        for message in messages_to_hide:
+            secret = lsb.hide("./tests/sample-files/Lenna.png", message)
+            secret.save("./image.png")
+
+            clear_message = lsb.reveal("./image.png")
+
+            self.assertEqual(message, clear_message)
+
+    def test_on_image_format(self):
+        """
+        The on-image format is "<byte length>:" followed by the message
+        encoded to bytes, 8 bits per byte, one bit per colour component.
+        """
+        message = "héllo 🔥"
+        message_bytes = message.encode("UTF-8")
+        expected = str(len(message_bytes)).encode("ascii") + b":" + message_bytes
+
+        secret = lsb.hide("./tests/sample-files/Lenna.png", message)
+
+        width = secret.width
+        pixels = secret.load()
+        bits = []
+        for index in range((len(expected) * 8 + 2) // 3):
+            r, g, b = pixels[index % width, index // width][:3]
+            bits += [r & 1, g & 1, b & 1]
+        decoded = bytes(
+            int("".join(map(str, bits[i : i + 8])), 2)
+            for i in range(0, len(expected) * 8, 8)
+        )
+
+        self.assertEqual(decoded, expected)
+
+    def test_with_unsupported_encoding(self):
+        with self.assertRaises(ValueError):
+            lsb.hide("./tests/sample-files/Lenna.png", "Hello", encoding="latin-1")
+        with self.assertRaises(ValueError):
+            lsb.reveal("./tests/sample-files/Lenna.png", encoding="latin-1")
+
+    def test_reveal_with_wrong_encoding(self):
+        secret = lsb.hide("./tests/sample-files/Lenna.png", "🍕", encoding="UTF-32LE")
+        secret.save("./image.png")
+
+        with self.assertRaises(IndexError):
+            lsb.reveal("./image.png")
+
     def test_with_transparent_png(self):
         messages_to_hide = ["a", "foo", "Hello World!", ":Python:"]
         for message in messages_to_hide:

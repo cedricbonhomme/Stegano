@@ -79,7 +79,7 @@ Specify an encoding
 .. code-block:: bash
 
     $ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m 'I love 🍕 and 🍫.' -e UTF-32LE -o ./Lenna_enc.png
-    $ stegano-lsb reveal -i ./Lenna_enc.png
+    $ stegano-lsb reveal -i ./Lenna_enc.png -e UTF-32LE
     I love 🍕 and 🍫.
 
 The default encoding is UTF-8.

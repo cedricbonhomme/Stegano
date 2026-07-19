@@ -1,5 +1,20 @@
 ## Release History
 
+### Unreleased
+
+- Fixed silent corruption of LSB messages containing Unicode code points
+  above U+00FF (emoji, CJK, accented characters, etc.) with the UTF-8
+  encoding: the message is now embedded as its encoded bytes instead of
+  8-bit truncated code points
+  ([~cedric/stegano#4](https://todo.sr.ht/~cedric/stegano/4)).
+  Thanks to ~lechynte.
+- **Breaking change**: the on-image LSB format changed. Images hidden with
+  Stegano <= 2.5.0 can only be revealed by this version if they contain
+  pure ASCII text with the UTF-8 encoding (that case is bit-identical).
+  Non-ASCII UTF-8 messages and all UTF-32LE messages use a different bit
+  layout and must be hidden again with the new version.
+
+
 ### 2.5.0 (2026-07-10)
 
 - Added a reversible data hiding technique based on histogram shifting
