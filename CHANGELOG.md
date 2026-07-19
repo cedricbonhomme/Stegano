@@ -1,6 +1,6 @@
 ## Release History
 
-### Unreleased
+### 3.0.0 (2026-07-19)
 
 - Fixed silent corruption of LSB messages containing Unicode code points
   above U+00FF (emoji, CJK, accented characters, etc.) with the UTF-8
