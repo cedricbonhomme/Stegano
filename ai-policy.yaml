@@ -1,0 +1,34 @@
+# What this project accepts from contributors who use AI, for tools to read.
+# The rules themselves are in CONTRIBUTING.md; this file is their summary.
+# Format: https://codeberg.org/open-source-ecosystem/ai-policy
+version: 1
+summary: mixed
+statement: CONTRIBUTING.md#use-of-ai-and-llm-tools
+status: adopted
+
+defaults:
+  stance: generated        # AI may write a change, in part or largely
+  disclosure: required     # say so
+  humanReview: required    # read, understood and tested by the person who submits
+  accountability: contributor
+
+assertions:
+  - scope: comments        # answer review comments yourself
+    stance: disallowed
+    notes: Not with pasted LLM output.
+  - scope: issue-descriptions
+    requirements: [reproduced]
+    notes: Report only a problem that you have reproduced yourself.
+
+autonomousAgents:
+  allowed: false           # a human reviews and submits
+
+disclosureFormat:
+  method: [commit-trailer, pr-template]
+  trailer: "Co-Authored-By:"
+  content: [model]
+  notes: The trailer names the model and its version.
+
+enforcement:
+  mechanism: [maintainer-review]
+  consequence: A pull request that was never really reviewed by its author, or opened by an agent on its own, will be closed.

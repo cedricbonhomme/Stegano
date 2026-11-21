@@ -113,6 +113,9 @@ $ mypy stegano
 Contributions are welcome. If you want to contribute to Stegano I highly
 recommend you to install it in a Python virtual environment with poetry.
 
+Please read the [contribution guide](CONTRIBUTING.md) first, including its rules on
+AI-assisted contributions.
+
 
 ## Donations
 
